@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Gestor de Proyectos</title>
+    <link href="intro/resources/img/favicon.ico" rel="Shortcut icon">
+    <link href="intro/resources/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="intro/resources/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+    <link href="intro/resources/css/animate.css" rel="stylesheet" />
+    <link href="intro/resources/css/style.css" rel="stylesheet" />
+    <link href="intro/resources/css/view/login.css" rel="stylesheet" />
+    <!-- Sweet Alert -->
+    <link href="intro/resources/css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+   
+    <script src="core/Utilitario.js"></script>
+    <script src="core/Mensaje.js"></script>
+    <script>
+        //Valido si el usuario cuenta con sesión.
+        LoginView.validarLogin();
+    </script>
+</head>
+
+<body class="container-fluid d-flex align-items-center justify-content-center">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+    <div class="ibox-content">
+    <div class="login">
+        <div class="animated fadeInDown">
+            <div class="row justify-content-center mb-4">
+                <div class=" text-center">
+                    <img src="intro/resources/img/logo_ufps_grande.png" />
+                </div>
+            </div>
+            <div class="row ml-6 justify-content-center">
+                <div class="col-md-4 ">
+                    <h2> <p style="text-align: center"> Sistema de Gestion de Semilleros</p></h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class=" col-lg-6  mb-3">
+                    <input type="email" id="correo" class="form-control" id="InputcorreoUsuario" placeholder="Correo institucional" />
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6  input-group">
+                    <input type="password" id="clave" class="form-control" id="InputclaveUsuario" placeholder="Contraseña" />
+                    <div class="input-group-append">
+                        <a class="btn personalizado" onclick="LoginView.verClave()"><i id="icono-ojo" class="fa fa-eye"></i
+              ></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class=" col-lg-6 mb-3">
+                    <a class="personalizado" onclick="LoginView.abrirPanelRecover()">Recuperar Contraseña</a>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <button type="button" class="btn personalizado" onclick="LoginView.iniciarSesion()">
+                      Iniciar Sesión
+                    </button>
+                </div>
+           
+            </div>
+            <div class="row mt-3 justify-content-center">
+                <div class="col-md-7 col-lg-6 col-sm-8 col-xl-4">
+                    <a class="personalizado" onclick="LoginView.abrirPanelRegistro()">¿No cuenta con usuario?</a>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+    <!-- Modal para registrar usuario -->
+    <div class="modal fade" id="modalusuario" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div id="menumodal1" class="modal-content">
+                <div class="modal-body">
+                    <div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                <h1 class="panel-title" id="title">Registrar Usuario</h1>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="nombres"><span style="color: red">*</span> Nombres</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nombres"
+                      onchange="LoginView.validarNombres(this.value)"
+                      aria-describedby="validacionnombres"
+                    />
+                    <div id="validacionnombres" class="invalid-feedback">
+                      Diligencie un valor con más de tres caracteres por favor.
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="apellidos"
+                      ><span style="color: red">*</span> Apellidos</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="apellidos"
+                      onchange="LoginView.validarApellidos(this.value)"
+                      aria-describedby="validacionapellidos"
+                    />
+                    <div id="validacionnombres" class="invalid-feedback">
+                      Diligencie un valor con más de tres caracteres por favor.
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="correo"
+                      ><span style="color: red">*</span> Correo
+                      institucional</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="correonuevo"
+                      onchange="LoginView.validarCorreo(this.value)"
+                      aria-describedby="validacioncorreo"
+                    />
+                    <div id="validacioncorreo" class="invalid-feedback">
+                      Diligencie un correo institucional valido por favor.
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="clave"
+                      ><span style="color: red">*</span> Contraseña</label
+                    >
+                    <div class="input-group">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="clavenueva"
+                        onchange="LoginView.validarClave(this.value)"
+                        aria-describedby="validacionclave"
+                      />
+                      <div class="input-group-append">
+                        <a class="btn personalizado" onclick="LoginView.verClaveAct()"
+                          ><i id="icono-ojo-act" class="fa fa-eye"></i
+                        ></a>
+                </div>
+                <div id="validacionclave" class="invalid-feedback">
+                    La contraseña debe tener mínimo 6 caracteres.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="clavecon"><span style="color: red">*</span> Confirmar contraseña</label
+                    >
+                    <div class="input-group">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="clavecon"
+                        disabled
+                        onchange="LoginView.validarClaveConfirmacion(this.value)"
+                        aria-describedby="validacionclavecon"
+                      />
+                      <div class="input-group-append">
+                        <a class="btn personalizado" onclick="LoginView.verClaveActConfirmacion()"
+                          ><i id="icono-ojo-act-2" class="fa fa-eye"></i
+                        ></a>
+                      </div>
+                      <div id="validacionclavecon" class="invalid-feedback">
+                        Las contraseñas diligenciada no coinciden.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="modal-footer container-fluid d-flex justify-content-center"
+            >
+              <button
+                type="button"
+                class="btn personalizado"
+                disabled
+                id="btnregistrar"
+                onclick="LoginView.registrarUsuario()"
+              >
+                Registrar
+              </button>
+              <button type="button" class="btn personalizado" data-dismiss="modal">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para recuperar contraseña -->
+    <div
+      class="modal fade"
+      id="modalrecover"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div id="menumodal1" class="modal-content">
+          <div class="modal-body">
+            <div>
+              <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                  <h1 class="panel-title" id="title">Recuperar contraseña</h1>
+                </div>
+                <div class="panel-body">
+                  <div class="form-group text-center">
+                    <img src="intro/resources/img/email.png" />
+                  </div>
+                  <div class="form-group">
+                    <label for="correo"
+                      ><span style="color: red">*</span> Correo
+                      institucional</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="correorecover"
+                      onchange="LoginView.validarRecover(this.value)"
+                      aria-describedby="validacionrecover"
+                    />
+                    <div id="validacionrecover" class="invalid-feedback">
+                      Diligencie un correo institucional valido por favor.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="modal-footer container-fluid d-flex justify-content-center"
+            >
+              <button
+                type="button"
+                class="btn personalizado"
+                disabled
+                id="btnrecover"
+                onclick="LoginView.recuperarClave()"
+              >
+                Enviar
+              </button>
+              <button type="button" class="btn personalizado" data-dismiss="modal">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <!-- Mainly scripts -->
+  <script src="intro/resources/js/jquery-3.5.1.min.js"></script>
+  <script src="intro/resources/js/bootstrap.min.js"></script>
+  <!-- iCheck -->
+  <script src="intro/resources/js/plugins/iCheck/icheck.min.js"></script>
+  <!-- Sweet alert -->
+  <script src="intro/resources/js/plugins/sweetalert/sweetalert.min.js"></script>
+</html>

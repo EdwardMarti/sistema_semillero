@@ -1,0 +1,162 @@
+<!-- Modal de Usuarios -->
+<div class="col-md-8 mx-auto" id="modalOrdernes">
+    <form role="form">
+        <div class="ibox-title">
+            <h5 style="color:#FFFFFF">GESTION DE ORDENES</h5>
+        </div>
+        <div class="panel panel-default" style="text-align: center;">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-6">
+                              <div class="form-group">
+                        <label for="formGroupExampleInput">Nombre: </label>
+                        <input type="hidden" style="background: white;" class="form-control" name="idOrder" id="idOrder">
+                        <input type="hidden" style="background: white;" class="form-control" name="index_order" id="index_order">
+ 
+                        <input type="text" style="background: white;" class="form-control" name="nombre_order" id="nombre_order" onkeyup="validar_order_fields('nombre_order',6)" aria-describedby="validar_nombre_order" required>
+                        <div id="validar_nombre_order" class="invalid-feedback">
+                            Diligencie un nombre mayor a 6 caracteres por favor.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">No. Medidor </label>
+                        <input type="text" style="background: white;" class="form-control" name="medidor" id="medidor" onkeyup="validar_order_fields('medidor',1)" aria-describedby="validar_medidor_order">
+                        <div id="validar_medidor_order" class="invalid-feedback">
+                            El numero medidor debe tener minimo 1 digito
+                        </div>
+                    </div>
+                            
+           
+                            
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Codigo </label>
+                        <input type="text" style="background: white;" class="form-control" name="codigo" id="codigo" >
+                       
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Municipio </label>
+                        <input type="text" style="background: white;" class="form-control" name="municipio" id="municipio" onkeyup="validar_order_fields('municipio',3)" aria-describedby="validar_municipio_order">
+                        <div id="validar_municipio_order" class="invalid-feedback">
+                            El Municipio debe tener minimo 3 caracteres
+                        </div>
+                    </div>
+                   
+                        </div>
+                        <div class="col-6">
+                               <div class="form-group">
+                        <label for="formGroupExampleInput">Barrio </label>
+                        <input type="text" style="background: white;" class="form-control" name="barrio" id="barrio" onkeyup="validar_order_fields('barrio',3)" aria-describedby="validar_barrio_order">
+                        <div id="validar_barrio_order" class="invalid-feedback">
+                            El Barrio debe tener minimo 3 caracteres
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Direccion </label>
+                        <input type="text" style="background: white;" class="form-control" name="direccion" id="direccion" onkeyup="validar_order_fields('direccion',3)" aria-describedby="validar_direccion_order">
+                        <div id="validar_direccion_order" class="invalid-feedback">
+                            La direccion debe tener minimo 3 caracteres
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">No. Phone </label>
+                        <input type="text" style="background: white;" class="form-control" name="phone" id="phone" onkeyup="validar_order_fields('phone',1)" aria-describedby="validar_phone_order">
+                        <div id="validar_phone_order" class="invalid-feedback">
+                            El telefono de Telefono debe tener minimo 1 digito
+                        </div>
+                    </div>
+                             <div class="form-group">
+                        <label for="formGroupExampleInput">Ruta </label>
+                        <input type="text" style="background: white;" class="form-control" name="ruta" id="ruta" >
+                       
+                    </div>
+                  
+               
+                    </div>
+                           </div>
+                          <div class="form-group">
+                        <label for="formGroupExampleInput">Inspector </label>
+                        <select class="form-control" name="inspector" id="inspector" onchange="validar_inspectores_order()" aria-describedby="validar_inspectores_order">
+                            <option value="-1">SELECCIONE UN INSPECTOR</option>
+                            <option value="2">SELECCIONE UN INSPECTOR</option>
+                        </select>
+                        <div id="validar_inspectores_order" class="invalid-feedback">
+                            Debe seleccionar un inspector
+                        </div>
+                    </div>
+                 
+                    
+                </div>
+                <!-- panel-body -->
+            <!-- panel -->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdateOrder()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarOrder()">Registrar</button>
+                <button type="button" class="btn btn-primary" onclick="ocultarModalOrdenes()">Cerrar</button>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+<!-- Cierre Modal de Usuarios -->
+
+<div class="modal inmodal" id="ModalLoadData" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <label title="Upload image file" for="fileUpload" class="btn btn-primary">
+                        <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" name="fileUpload" id="fileUpload" style="display:none">
+                        Upload image
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                <button type="button" onclick="loadDataxls()" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Tabla de Usuarios -->
+<div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title row">
+                    <h5 class="text-white col">Listado de Ordenes</h5>
+                    <h5 class="label label-successE"> <a onclick="mostrarModalOrdenes()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                    <h5 class="label label-successE"> <a  data-toggle="modal" data-target="#ModalLoadData" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ LoadXls</a></h5>
+                </div>
+                <div class="ibox-content">
+                    <div class='table mt-4 mb-4'><br>
+                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoOrdenesTabla' style='width: 100%'>
+                            <thead>
+                                <tr style='text-align: center; background: #356ab9f0; color:white;'>
+                                    <th>No Acta</th>
+                                    <th>Contador</th>
+                                    <th>InspectorId</th>
+                                    <th>Nombre</th>
+                                    <th>Municipio</th>
+                                    <th>Direccion</th>
+                                    <th>estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Tabla de Usuarios -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+<script type="text/javascript" src="../js/ordenes/ordenes.js"></script>

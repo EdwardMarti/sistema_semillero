@@ -1,0 +1,1 @@
+Utilitario.getLocal('rol')

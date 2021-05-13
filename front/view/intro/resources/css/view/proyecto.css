@@ -1,0 +1,20 @@
+.table-responsive .container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.modal-campo {
+    max-height: 90vh;
+}
+
+#idProye {
+    display: none;
+}
+
+#idProy {
+    display: none;
+}
+
+#idFe {
+    display: none;
+}

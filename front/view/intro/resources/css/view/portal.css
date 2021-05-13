@@ -1,0 +1,98 @@
+body {
+    background-color: #fcfafa !important;
+}
+
+h1 {
+    font-size: 1.4rem !important;
+}
+
+.inscribir {
+    background-color: #424242;
+    height: 6rem;
+}
+
+.inscribir a.personalizado {
+    color: white !important;
+    font-size: 1.2rem;
+}
+
+.inscribir a.personalizado:hover {
+    color: #843534 !important;
+}
+
+.inscribir a i {
+    font-size: 3rem;
+}
+
+a.carousel-control-next i, a.carousel-control-prev i {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.carousel {
+    height: 20rem;
+}
+
+.carousel .carousel-item span {
+    font-weight: bold;
+}
+
+#mostrarFerias .card {
+    width: 100%;
+    height: 25rem;
+}
+
+#mostrarFerias .card .card-header {
+    height: 22rem;
+}
+
+#mostrarFerias .card .card-header img {
+    max-height: 21rem;
+}
+
+.inscripcion header, .carousel, #bannerFerias.jumbotron {
+    background: url(../../../resources/img/header-superior-principal.jpg) repeat fixed !important;
+    background-size: 100%;
+    border-bottom: 2px solid #a94442;
+}
+
+.inscripcion section {
+    padding-bottom: 40px;
+}
+
+.inscripcion section .contenido {
+    padding-bottom: 40px;
+}
+
+.inscripcion textarea {
+    height: 72%;
+}
+
+.inscripcion header h1, .carousel h1 {
+    font-size: 2rem !important;
+    color: #a94442;
+}
+
+img.ufps {
+    max-width: 100px;
+    width: 100%;
+}
+
+img.programa {
+    max-width: 500px;
+    width: 100%;
+}
+
+.inscripcion .panel-heading {
+    color: white;
+    background-color: #a94442;
+    border-color: #e7eaec;
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.inscripcion #integrantestabla, .inscripcion select {
+    background-color: #fff !important;
+}

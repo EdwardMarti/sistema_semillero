@@ -1,0 +1,112 @@
+.card {
+    flex: 1;
+    flex-basis: 300px;
+    flex-grow: 0;
+    height: 450px;
+    background: #fff;
+    border: 2px solid #fff;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, .5);
+    cursor: pointer;
+    transition: all .5s cubic-bezier(.8, .5, .2, 1.4);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 5rem;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    transition: all .5s cubic-bezier(.8, .5, .2, 1.4);
+}
+
+.descriptions {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, .7);
+    width: 100%;
+    height: 100%;
+    transition: all .7s ease-in-out;
+    padding: 20px;
+    box-sizing: border-box;
+    clip-path: circle(0% at 100% 100%);
+}
+
+.card h1 {
+    color: #dd4b39;
+    letter-spacing: 1px;
+    margin: 0px;
+}
+
+.card p {
+    line-height: 24px;
+}
+
+.card button {
+    width: fit-content;
+    height: 40px;
+    cursor: pointer;
+    border-style: none;
+    background-color: #dd4b39;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, .4);
+    transition: all .5s ease-in-out;
+}
+
+.card button:hover {
+    transform: scale(.95) translateX(-5px);
+    transition: all .5s ease-in-out;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 1.2rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#panel-heading {
+    height: 100px;
+}
+
+.personalizado {
+    color: #a94442 !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+.scrollable-panel {
+    max-height: 300px;
+    overflow: auto;
+    background: #fff;
+    overflow-y: scroll;
+}
+
+.scrollable-panel::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+.scrollable-panel::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #a94442;
+}
+
+.scrollable-panel {
+    scrollbar-color: #a94442 #F5F5F5;
+}

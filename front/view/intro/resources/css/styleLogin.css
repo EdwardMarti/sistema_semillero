@@ -1,0 +1,103 @@
+@font-face {
+    font-family: Olios;
+    src: url('../fonts/Olios.otf');
+}
+
+body {
+    background-color: white;
+    font-family: "Lato", sans-serif;
+}
+
+.main-container {
+    position: absolute;
+    margin-left: 25%;
+    padding-left: 100px;
+    width: 50%;
+    height: 50%;
+}
+
+.main-container-login {
+    position: absolute;
+    margin-left: 25%;
+    margin-bottom: 20%;
+    padding-left: 10%;
+    width: 50%;
+    height: 50%;
+}
+
+.sidenav {
+    height: 100%;
+    background-color: #000;
+    background-image: linear-gradient( 135deg, #FF8A65 10%, #FF5722 100%);
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.login-main-text {
+    padding: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.text-encima {
+    position: absolute;
+    top: 55%;
+    left: 5%;
+    font-size: 500%;
+    font-family: "Olios";
+    font-weight: bold;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .login-form {
+        margin-top: 10%;
+    }
+    .register-form {
+        margin-top: 10%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .main {
+        margin-left: 40%;
+    }
+    .sidenav {
+        width: 45%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+    .login-form {
+        margin-top: 50%;
+        margin-left: 30%;
+    }
+    .register-form {
+        margin-top: 20%;
+        margin-left: 30%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .text-encima {
+        position: absolute;
+        top: 55%;
+        left: 7%;
+        font-size: 320%;
+        font-family: "Olios";
+        font-weight: bold;
+    }
+    .main-container {
+        position: absolute;
+        margin-left: 0%;
+        margin-bottom: 20%;
+        padding-left: 1%;
+        width: 100%;
+    }
+}
