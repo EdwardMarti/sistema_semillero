@@ -1139,32 +1139,30 @@ function dataItemTablaLn( data) {
 }
 
 
-function UpdateDataSemillero() {
+function ActualizarData() {
 
-    let order = {
-        id: $('#idOrder').val(),
-        nombre: $('#nombre_order').val(),
-        codigo: $('#codigo').val(),
-        medidor: $('#medidor').val(),
-        municipio: $('#municipio').val(),
-        barrio: $('#barrio').val(),
-        direccion: $('#direccion').val(),
-        telefono: $('#phone').val(),
-        ruta: $('#ruta').val(),
-        estado: "1",
-        inspector: $('#inspector').val(),
-        //        pensum_id: '1',
+     let semillero = {
+        id: $('#id_semillero').val(),
+        nombre: $('#nombre').val(),
+        sigla: $('#sigla').val(),
+        fecha: $('#fecha').val(),
+        grupo_investigacion: $('#grupo_investigacion').val(),
+        departamentos: $('#departamentos').val(),
+        facultades: $('#facultades').val(),
+        p_estudio: $('#p_estudio').val(),
+       
+       
     };
     Utilitario.agregarMascara();
-    fetch("../../back/controller/OrdenesController_update.php", {
+    fetch("../../back/controller/SemilleroController_Update_datos.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                
                 Plataform: "web",
             },
-            body: JSON.stringify(order),
+            body: JSON.stringify(semillero),
         })
         .then(function(response) {
             if (response.ok) {

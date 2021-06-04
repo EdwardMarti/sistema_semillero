@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Gestor de Proyectos</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+    <link href="../../resources/img/favicon.ico" rel="Shortcut icon">
+    <link href="../../resources/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../resources/css/style.css" rel="stylesheet" />
+    <!-- Sweet Alert -->
+    <link href="../../resources/css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+    <script src="../../core/Utilitario.js"></script>
+    <script src="../../core/Mensaje.js"></script>
+</head>
+
+<body>
+    <!-- Modal para cambiar contraseña -->
+    <div class="modal fade" id="modalrecover" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div id="menumodal1" class="modal-content">
+                <div class="modal-body">
+                    <div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading text-center">
+                                <h1 class="panel-title" id="title">Cambiar contraseña</h1>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group text-center">
+                                    <img src="../../resources/img/lock.png" width="20%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="clave"><span style="color: red">*</span> Contraseña</label
+                    >
+                    <div class="input-group">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="clavenueva"
+                        onchange="LoginView.validarNuevaClave(this.value)"
+                        aria-describedby="validacionclave"
+                      />
+                      <div class="input-group-append">
+                        <a class="btn personalizado" onclick="LoginView.verClaveAct()"
+                          ><i id="icono-ojo-act" class="fa fa-eye"></i
+                        ></a>
+                      </div>
+                      <div id="validacionclave" class="invalid-feedback">
+                        La contraseña debe tener mínimo 6 caracteres.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="clavecon"
+                      ><span style="color: red">*</span> Confirmar contraseña</label
+                    >
+                    <div class="input-group">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="clavecon"
+                        disabled
+                        onchange="LoginView.validarNuevaClaveConfirmacion(this.value)"
+                        aria-describedby="validacionclavecon"
+                      />
+                      <div class="input-group-append">
+                        <a class="btn personalizado" onclick="LoginView.verClaveActConfirmacion()"
+                          ><i id="icono-ojo-act-2" class="fa fa-eye"></i
+                        ></a>
+                      </div>
+                      <div id="validacionclavecon" class="invalid-feedback">
+                        Las contraseñas diligenciada no coinciden.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="modal-footer container-fluid d-flex justify-content-center"
+            >
+              <button
+                type="button"
+                class="btn personalizado"
+                disabled
+                id="btncambiar"
+                onclick="LoginView.cambiarClave()"
+              >
+                Cambiar contraseña
+              </button>
+              <a class="btn personalizado" style="min-width: 12rem;" href="login.html">Cancelar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../usuarios/UsuarioView.js"></script>
+    <script src="../usuarios/UsuarioController.js"></script>
+    <!-- Mainly scripts -->
+    <script src="../../resources/js/jquery-3.5.1.min.js"></script>
+    <script src="../../resources/js/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="../../resources/js/plugins/iCheck/icheck.min.js"></script>
+    <!-- Sweet alert -->
+    <script src="../../resources/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="LoginView.js"></script>
+    <script src="LoginController.js"></script>
+    <script>
+      $(document).ready(function () {
+        jQuery("#modalrecover")
+          .modal("show")
+          .on("hide.bs.modal", function (e) {
+            e.preventDefault();
+          });
+
+        var URLsearch = window.location.search;
+            let params = new URLSearchParams(URLsearch);
+            let token = params.get("token");
+            Utilitario.setLocal("tokenChange", token);            
+      });
+    </script>
+  </body>
+</html>

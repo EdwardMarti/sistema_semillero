@@ -299,7 +299,7 @@ function construirSelectPlan(planes) {
 //<editor-fold defaultstate="collapsed" desc="Select Lineas de Investigacion">
 function cargarSelectLinea_inv() {
  
-    fetch("../../../back/controller/Linea_investigacionController_List.php", {
+    fetch("../../../back/controller/Linea_investigacionController_Lis.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
