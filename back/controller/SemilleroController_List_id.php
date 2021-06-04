@@ -18,11 +18,11 @@ $JSONData = file_get_contents("php://input");
 $dataObject = json_decode($JSONData);
 
 
-//$id = strip_tags($dataObject->id);
+$id = strip_tags($dataObject->id);
 // \"id\":\"{$Persona_has_semillero->getid()}\",
 //	    \"persona_id_id\":\"{$Persona_has_semillero->getpersona_id()->getid()}\",
 //	    \"semillero_id_id\":\"{$Persona_has_semillero->getsemillero_id()->getid()}\"
-$id = 2;
+//$id = 2;
 
         $list= Persona_has_semilleroFacade::listAll_todo($id);
         $rta="";

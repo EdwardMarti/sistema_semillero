@@ -40,7 +40,6 @@ class PersonaFacade {
    */
   public static function insert(   $nombre,  $telefono,  $correo,  $perfiles_id){
       $persona = new Persona();
-//      $persona->setId($id); 
       $persona->setNombre($nombre); 
       $persona->setTelefono($telefono); 
       $persona->setCorreo($correo); 

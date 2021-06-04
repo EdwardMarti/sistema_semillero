@@ -12,6 +12,7 @@ $dataObject = json_decode($JSONData);
 
 
 $id = strip_tags($dataObject->dptos);
+//$id = '2';
 
         $list=Plan_estudiosFacade::listAll_id($id);
         $rta="";

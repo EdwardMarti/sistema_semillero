@@ -39,9 +39,8 @@ class Pares_academicosFacade {
    * @param numero_docuemnto
    * @param tipo_docuemnto_id
    */
-  public static function insert( $id,  $inst_empresa,  $persona_id,  $numero_docuemnto,  $tipo_docuemnto_id){
+  public static function insert(  $inst_empresa,  $persona_id,  $numero_docuemnto,  $tipo_docuemnto_id){
       $pares_academicos = new Pares_academicos();
-      $pares_academicos->setId($id); 
       $pares_academicos->setInst_empresa($inst_empresa); 
       $pares_academicos->setPersona_id($persona_id); 
       $pares_academicos->setNumero_docuemnto($numero_docuemnto); 

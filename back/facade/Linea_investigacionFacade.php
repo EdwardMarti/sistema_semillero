@@ -5,12 +5,13 @@
               ------------------------
  */
 
-//    Estadistas informan que una linea de código equivale a un sorbo de café  \\
+//    Bastará decir que soy Juan Pablo Castel, el pintor que mató a María Iribarne...  \\
 
 require_once realpath('../facade/GlobalController.php');
 require_once realpath('../dao/interfaz/IFactoryDao.php');
 require_once realpath('../dto/Linea_investigacion.php');
 require_once realpath('../dao/interfaz/ILinea_investigacionDao.php');
+require_once realpath('../dto/Disciplina.php');
 
 class Linea_investigacionFacade {
 
@@ -34,12 +35,14 @@ class Linea_investigacionFacade {
    * @param id
    * @param descripcion
    * @param lider
+   * @param disciplina_id
    */
-  public static function insert( $id,  $descripcion,  $lider){
+  public static function insert(  $descripcion,  $lider,  $disciplina_id){
       $linea_investigacion = new Linea_investigacion();
-      $linea_investigacion->setId($id); 
+//      $linea_investigacion->setId($id); 
       $linea_investigacion->setDescripcion($descripcion); 
       $linea_investigacion->setLider($lider); 
+      $linea_investigacion->setDisciplina_id($disciplina_id); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $linea_investigacionDao =$FactoryDao->getlinea_investigacionDao(self::getDataBaseDefault());
@@ -71,11 +74,13 @@ class Linea_investigacionFacade {
    * @param id
    * @param descripcion
    * @param lider
+   * @param disciplina_id
    */
-  public static function update($id, $descripcion, $lider){
+  public static function update($id, $descripcion, $lider, $disciplina_id){
       $linea_investigacion = self::select($id);
       $linea_investigacion->setDescripcion($descripcion); 
       $linea_investigacion->setLider($lider); 
+      $linea_investigacion->setDisciplina_id($disciplina_id); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $linea_investigacionDao =$FactoryDao->getlinea_investigacionDao(self::getDataBaseDefault());
@@ -108,6 +113,13 @@ class Linea_investigacionFacade {
      $linea_investigacionDao =$FactoryDao->getlinea_investigacionDao(self::getDataBaseDefault());
      $result = $linea_investigacionDao->listAll();
      $linea_investigacionDao->close();
+     return $result;
+  }
+  public static function listAll_id($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $linea_investigacionDao =$FactoryDao->getlinea_investigacionDao(self::getDataBaseDefault());
+     $result = $linea_investigacionDao->listAll_id($id);
+     $linea_investigacionDao->close($id);
      return $result;
   }
 

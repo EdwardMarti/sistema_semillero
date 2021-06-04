@@ -29,11 +29,11 @@ private $cn;
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($persona){
-//      $id=$persona->getId();
-$nombre=$persona->getNombre();
-$telefono=$persona->getTelefono();
-$correo=$persona->getCorreo();
-$perfiles_id=$persona->getPerfiles_id()->getId();
+    //      $id=$persona->getId();
+    $nombre=$persona->getNombre();
+    $telefono=$persona->getTelefono();
+    $correo=$persona->getCorreo();
+    $perfiles_id=$persona->getPerfiles_id()->getId();
 
       try {
           $sql= "INSERT INTO `persona`(  `nombre`, `telefono`, `correo`, `perfiles_id`)"

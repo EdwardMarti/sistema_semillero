@@ -162,6 +162,30 @@ $facultad_id=$departamento->getFacultad_id()->getId();
       return null;
       }
   }
+  
+  public function listAll_idRpta($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `descripcion`, `facultad_id`"
+          ."FROM `departamento`"
+          ."WHERE `id` = '$id'";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $departamento= new Departamento();
+          $departamento->setId($data[$i]['id']);
+          $departamento->setDescripcion($data[$i]['descripcion']);
+           $facultad = new Facultad();
+           $facultad->setId($data[$i]['facultad_id']);
+           $departamento->setFacultad_id($facultad);
+
+          array_push($lista,$departamento);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

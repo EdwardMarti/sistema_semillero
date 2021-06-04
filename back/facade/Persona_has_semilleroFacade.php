@@ -120,6 +120,36 @@ class Persona_has_semilleroFacade {
      $persona_has_semilleroDao->close();
      return $result;
   }
+  public static function listAll_Semillero($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $persona_has_semilleroDao =$FactoryDao->getpersona_has_semilleroDao(self::getDataBaseDefault());
+     $result = $persona_has_semilleroDao->listAll_Semillero($id);
+     $persona_has_semilleroDao->close();
+     return $result;
+  }
+  public static function listAll_Stado($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $persona_has_semilleroDao =$FactoryDao->getpersona_has_semilleroDao(self::getDataBaseDefault());
+     $result = $persona_has_semilleroDao->listAll_Stado($id);
+     $persona_has_semilleroDao->close();
+     return $result;
+  }
+
+    /**
+   * Elimina un objeto Persona_has_semillero de la base de datos a partir de su(s) llave(s) primaria(s).
+   * Puede recibir NullPointerException desde los métodos del Dao
+   * @param id
+   */
+  public static function deletecustom($id_persona,$id_semillero){
+      $persona_has_semillero = new Persona_has_semillero();
+      $persona_has_semillero->setPersona_id($id_persona); 
+      $persona_has_semillero->setSemillero_id($id_semillero); 
+
+      $FactoryDao=new FactoryDao(self::getGestorDefault());
+      $persona_has_semilleroDao =$FactoryDao->getpersona_has_semilleroDao(self::getDataBaseDefault());
+      $persona_has_semilleroDao->deletecustom($persona_has_semillero);
+      $persona_has_semilleroDao->close();
+   }
 
 
 }

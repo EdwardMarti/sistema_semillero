@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    Estadistas informan que una linea de código equivale a un sorbo de café  \\
+//    Se buscan memeros profesionales. Contacto: El benévolo señor Arciniegas  \\
 
 
 class Linea_investigacion {
@@ -13,6 +13,7 @@ class Linea_investigacion {
   private $id;
   private $descripcion;
   private $lider;
+  private $disciplina_id;
 
     /**
      * Constructor de Linea_investigacion
@@ -63,6 +64,21 @@ class Linea_investigacion {
      */
   public function setLider($lider){
       $this->lider = $lider;
+  }
+    /**
+     * Devuelve el valor correspondiente a disciplina_id
+     * @return disciplina_id
+     */
+  public function getDisciplina_id(){
+      return $this->disciplina_id;
+  }
+
+    /**
+     * Modifica el valor correspondiente a disciplina_id
+     * @param disciplina_id
+     */
+  public function setDisciplina_id($disciplina_id){
+      $this->disciplina_id = $disciplina_id;
   }
 
 

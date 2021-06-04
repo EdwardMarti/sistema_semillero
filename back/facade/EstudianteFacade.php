@@ -41,9 +41,8 @@ class EstudianteFacade {
    * @param num_documento
    * @param tipo_docuemnto_id
    */
-  public static function insert( $id,  $codigo,  $semestre,  $programa_academico,  $persona_id,  $num_documento,  $tipo_docuemnto_id){
+  public static function insert(  $codigo,  $semestre,  $programa_academico,  $persona_id,  $num_documento,  $tipo_docuemnto_id){
       $estudiante = new Estudiante();
-      $estudiante->setId($id); 
       $estudiante->setCodigo($codigo); 
       $estudiante->setSemestre($semestre); 
       $estudiante->setPrograma_academico($programa_academico); 

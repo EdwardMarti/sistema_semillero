@@ -143,25 +143,7 @@ class Menu {
                 Utilitario.quitarMascara();
             });
     }
-  /**
-     * @method mostrarMaterias
-     * Metodo que se encarga de mostrar la ventana gestion de materias
-     */
-    static mostrarProyectosTerminados() {
-        Utilitario.agregarMascara();
-        fetch("listarProyectos.html", {
-                method: "GET",
-            })
-            .then(function(response) {
-                return response.text();
-            })
-            .then(function(vista) {
-                $("#mostrarcontenido").html(vista);
-            })
-            .finally(function() {
-                Utilitario.quitarMascara();
-            });
-    }
+
     /**
      * @method mostrarCargarDocumentos
      * Metodo que se encarga de mostrar la ventana de carga de documentos para el docente

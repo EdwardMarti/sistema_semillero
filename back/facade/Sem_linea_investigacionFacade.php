@@ -37,15 +37,24 @@ class Sem_linea_investigacionFacade {
    * @param semillero_id
    * @param linea_investigacion_id
    */
-  public static function insert( $id,  $semillero_id,  $linea_investigacion_id){
+  public static function insert(  $semillero_id,  $linea_investigacion_id){
       $sem_linea_investigacion = new Sem_linea_investigacion();
-      $sem_linea_investigacion->setId($id); 
+      
       $sem_linea_investigacion->setSemillero_id($semillero_id); 
       $sem_linea_investigacion->setLinea_investigacion_id($linea_investigacion_id); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $sem_linea_investigacionDao =$FactoryDao->getsem_linea_investigacionDao(self::getDataBaseDefault());
      $rtn = $sem_linea_investigacionDao->insert($sem_linea_investigacion);
+     $sem_linea_investigacionDao->close();
+     return $rtn;
+  }
+  
+  public static function insert2(  $semillero_id,  $linea_investigacion_id){
+     
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $sem_linea_investigacionDao =$FactoryDao->getsem_linea_investigacionDao(self::getDataBaseDefault());
+     $rtn = $sem_linea_investigacionDao->insert2(  $semillero_id,  $linea_investigacion_id);
      $sem_linea_investigacionDao->close();
      return $rtn;
   }
@@ -96,8 +105,17 @@ class Sem_linea_investigacionFacade {
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $sem_linea_investigacionDao =$FactoryDao->getsem_linea_investigacionDao(self::getDataBaseDefault());
-     $sem_linea_investigacionDao->delete($sem_linea_investigacion);
+     $result = $sem_linea_investigacionDao->delete($sem_linea_investigacion);
      $sem_linea_investigacionDao->close();
+      return $result;
+  }
+  public static function delete_id($id){
+      
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $sem_linea_investigacionDao =$FactoryDao->getsem_linea_investigacionDao(self::getDataBaseDefault());
+     $result = $sem_linea_investigacionDao->delete_id($id);
+     $sem_linea_investigacionDao->close();
+      return $result;
   }
 
   /**
@@ -109,6 +127,13 @@ class Sem_linea_investigacionFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $sem_linea_investigacionDao =$FactoryDao->getsem_linea_investigacionDao(self::getDataBaseDefault());
      $result = $sem_linea_investigacionDao->listAll();
+     $sem_linea_investigacionDao->close();
+     return $result;
+  }
+  public static function listAll_Semillero($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $sem_linea_investigacionDao =$FactoryDao->getsem_linea_investigacionDao(self::getDataBaseDefault());
+     $result = $sem_linea_investigacionDao->listAll_Semillero($id);
      $sem_linea_investigacionDao->close();
      return $result;
   }

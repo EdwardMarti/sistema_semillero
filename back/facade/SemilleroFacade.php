@@ -108,6 +108,13 @@ class SemilleroFacade {
      $semilleroDao->close();
      return $result;
   }
+  public static function select_activo($correo,$clave){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $semilleroDao =$FactoryDao->getsemilleroDao(self::getDataBaseDefault());
+     $result = $semilleroDao->select_activo($correo,$clave);
+     $semilleroDao->close();
+     return $result;
+  }
 
   /**
    * Modifica los atributos de un objeto Semillero  ya existente en base de datos.
@@ -138,6 +145,16 @@ class SemilleroFacade {
      $semilleroDao->update($semillero);
      $semilleroDao->close();
   }
+  public static function update_Data($id, $nombre, $sigla, $fecha_creacion, $aval_dic_grupo, $aval_dic_sem, $aval_dic_unidad, $grupo_investigacion_id, $unidad_academica){
+     
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $semilleroDao =$FactoryDao->getsemilleroDao(self::getDataBaseDefault());
+     $result =  $semilleroDao->update_Data($id, $nombre, $sigla, $fecha_creacion, $aval_dic_grupo, $aval_dic_sem, $aval_dic_unidad, $grupo_investigacion_id, $unidad_academica);
+     $semilleroDao->close();
+     return $result;
+     
+  }
   public static function update_Activar($id, $flag, $valor){
      
      $FactoryDao=new FactoryDao(self::getGestorDefault());
@@ -167,6 +184,20 @@ class SemilleroFacade {
    * Puede recibir NullPointerException desde los métodos del Dao
    * @return $result Array con los objetos Semillero en base de datos o Null
    */
+  public static function listAll(){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $semilleroDao =$FactoryDao->getsemilleroDao(self::getDataBaseDefault());
+     $result = $semilleroDao->listAll();
+     $semilleroDao->close();
+     return $result;
+  }
+  public static function listStado($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $semilleroDao =$FactoryDao->getsemilleroDao(self::getDataBaseDefault());
+     $result = $semilleroDao->listStado($id);
+     $semilleroDao->close();
+     return $result;
+  }
   public static function listAll_Pendiente(){
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $semilleroDao =$FactoryDao->getsemilleroDao(self::getDataBaseDefault());

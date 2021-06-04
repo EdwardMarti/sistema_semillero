@@ -30,13 +30,24 @@ private $cn;
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($sem_linea_investigacion){
-      $id=$sem_linea_investigacion->getId();
+//      $id=$sem_linea_investigacion->getId();
 $semillero_id=$sem_linea_investigacion->getSemillero_id()->getId();
 $linea_investigacion_id=$sem_linea_investigacion->getLinea_investigacion_id()->getId();
 
       try {
-          $sql= "INSERT INTO `sem_linea_investigacion`( `id`, `semillero_id`, `linea_investigacion_id`)"
-          ."VALUES ('$id','$semillero_id','$linea_investigacion_id')";
+          $sql= "INSERT INTO `sem_linea_investigacion`( `semillero_id`, `linea_investigacion_id`)"
+          ."VALUES ('$semillero_id','$linea_investigacion_id')";
+          return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
+  public function insert2(  $semillero_id,  $linea_investigacion_id){
+
+
+      try {
+          $sql= "INSERT INTO `sem_linea_investigacion`( `semillero_id`, `linea_investigacion_id`)"
+          ."VALUES ('$semillero_id','$linea_investigacion_id')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -108,6 +119,15 @@ $linea_investigacion_id=$sem_linea_investigacion->getLinea_investigacion_id()->g
           throw new Exception('Primary key is null');
       }
   }
+  public function delete_id($id){
+     
+      try {
+          $sql ="DELETE FROM `sem_linea_investigacion` WHERE `id`='$id'";
+          return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
 
     /**
      * Busca un objeto Sem_linea_investigacion en la base de datos.
@@ -122,7 +142,7 @@ $linea_investigacion_id=$sem_linea_investigacion->getLinea_investigacion_id()->g
           ."WHERE 1";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
-              $sem_linea_investigacion= new Sem_linea_investigacion();
+          $sem_linea_investigacion= new Sem_linea_investigacion();
           $sem_linea_investigacion->setId($data[$i]['id']);
            $semillero = new Semillero();
            $semillero->setId($data[$i]['semillero_id']);
@@ -132,6 +152,32 @@ $linea_investigacion_id=$sem_linea_investigacion->getLinea_investigacion_id()->g
            $sem_linea_investigacion->setLinea_investigacion_id($linea_investigacion);
 
           array_push($lista,$sem_linea_investigacion);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  public function listAll_Semillero($id){
+      $lista = array();
+      try {
+          $sql =" SELECT `id`, `semillero_id`, `linea_investigacion_id`, `lineasD`, `disciplina_desc`, `areaD` FROM `lineasSemillero_id` WHERE `semillero_id` = '$id' ";
+//          var_dump($sql);
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+           $sem_linea_investigacion= new Sem_linea_investigacion();
+           $sem_linea_investigacion->setId($data[$i]['id']);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $semillero->setNombre($data[$i]['linea_investigacion_id']);
+           $semillero->setAval_dic_grupo($data[$i]['lineasD']);
+           $semillero->setAval_dic_sem($data[$i]['disciplina_desc']);
+           $semillero->setAval_dic_unidad($data[$i]['areaD']);
+           $sem_linea_investigacion->setSemillero_id($semillero);
+   
+            array_push($lista,$sem_linea_investigacion);
           }
       return $lista;
       } catch (SQLException $e) {

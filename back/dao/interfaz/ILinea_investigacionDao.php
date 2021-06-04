@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    No quiero morir sin tener cicatrices.  \\
+//    La vie est composé de combien de fois nous rions avant de mourir  \\
 
 
 interface ILinea_investigacionDao {

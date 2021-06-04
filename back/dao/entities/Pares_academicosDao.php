@@ -30,15 +30,14 @@ private $cn;
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($pares_academicos){
-      $id=$pares_academicos->getId();
-$inst_empresa=$pares_academicos->getInst_empresa();
-$persona_id=$pares_academicos->getPersona_id()->getId();
-$numero_docuemnto=$pares_academicos->getNumero_docuemnto();
-$tipo_docuemnto_id=$pares_academicos->getTipo_docuemnto_id()->getId();
+    $inst_empresa=$pares_academicos->getInst_empresa();
+    $persona_id=$pares_academicos->getPersona_id()->getId();
+    $numero_docuemnto=$pares_academicos->getNumero_docuemnto();
+    $tipo_docuemnto_id=$pares_academicos->getTipo_docuemnto_id()->getId();
 
       try {
-          $sql= "INSERT INTO `pares_academicos`( `id`, `inst_empresa`, `persona_id`, `numero_docuemnto`, `tipo_docuemnto_id`)"
-          ."VALUES ('$id','$inst_empresa','$persona_id','$numero_docuemnto','$tipo_docuemnto_id')";
+          $sql= "INSERT INTO `pares_academicos`( `inst_empresa`, `persona_id`, `numero_docuemnto`, `tipo_docuemnto_id`)"
+          ."VALUES ('$inst_empresa','$persona_id','$numero_docuemnto','$tipo_docuemnto_id')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');

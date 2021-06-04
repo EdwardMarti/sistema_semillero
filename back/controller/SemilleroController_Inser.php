@@ -26,43 +26,7 @@ $dataObject = json_decode($JSONData);
         $plan_estudios = strip_tags($dataObject->p_estudio);
        $rptaS= SemilleroFacade::insert_S( $nombre, $sigla, $fecha_creacion, $facultad, $plan_estudios, $grupo_investigacion, $departamento);
 
-  
 
-  
-        if ($rptaS > 0) {
-            
-      /**registro persona */
-        $nombre = strip_tags($dataObject->nombreD);
-        $telefono = strip_tags($dataObject->telefonoD);
-        $correo = strip_tags($dataObject->correoD);
-        $Perfiles_id = "1";
-//        $Perfiles_id = strip_tags($dataObject->perfiles_id);
-        $perfiles= new Perfiles();
-        $perfiles->setId($Perfiles_id);
-        $rptaP=PersonaFacade::insert( $nombre, $telefono, $correo, $perfiles);
-       
-       /*registrar docente*/
-        $Persona_id = $rptaP;
-        $persona= new Persona();
-        $persona->setId($Persona_id);
-//        $password = strip_tags($dataObject->password);
-        $password= randomPassword();
-        $Tipo_vinculacion_id = strip_tags($dataObject->tp_vinculacion);
-        $tipo_vinculacion= new Tipo_vinculacion();
-        $tipo_vinculacion->setId($Tipo_vinculacion_id);
-//        $ubicacion = strip_tags($dataObject->ubicacion);
-        $ubicacion = "NO APLICA";
-        DocenteFacade::insert($persona, $password, $tipo_vinculacion, $ubicacion);
-//            
-//            
-        $Persona_id =  $rptaP;
-        $persona= new Persona();
-        $persona->setId($Persona_id);
-        $Semillero_id = $rptaS;
-        $semillero= new Semillero();
-        $semillero->setId($Semillero_id);
-        $rpta=Persona_has_semilleroFacade::insert( $persona, $semillero);    
-//            
              try {
                         if ($rpta > 0) {
                             http_response_code(200);
@@ -74,7 +38,7 @@ $dataObject = json_decode($JSONData);
                     }    
             
            
-        }
+     
 
 
 
