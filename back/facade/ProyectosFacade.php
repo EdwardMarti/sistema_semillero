@@ -152,6 +152,13 @@ class ProyectosFacade {
      $proyectosDao->close();
      return $result;
   }
+  public static function listAll_id($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $proyectosDao =$FactoryDao->getproyectosDao(self::getDataBaseDefault());
+     $result = $proyectosDao->listAll_id($id);
+     $proyectosDao->close();
+     return $result;
+  }
 
 
 }

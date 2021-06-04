@@ -29,23 +29,22 @@ private $cn;
      * @return  Valor asignado a la llave primaria 
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
-  public function insert($estudiante){
-      $id=$estudiante->getId();
-$codigo=$estudiante->getCodigo();
-$semestre=$estudiante->getSemestre();
-$programa_academico=$estudiante->getPrograma_academico();
-$persona_id=$estudiante->getPersona_id()->getId();
-$num_documento=$estudiante->getNum_documento();
-$tipo_docuemnto_id=$estudiante->getTipo_docuemnto_id()->getId();
+public function insert($estudiante){
+    $codigo=$estudiante->getCodigo();
+    $semestre=$estudiante->getSemestre();
+    $programa_academico=$estudiante->getPrograma_academico();
+    $persona_id=$estudiante->getPersona_id()->getId();
+    $num_documento=$estudiante->getNum_documento();
+    $tipo_docuemnto_id=$estudiante->getTipo_docuemnto_id()->getId();
 
-      try {
-          $sql= "INSERT INTO `estudiante`( `id`, `codigo`, `semestre`, `programa_academico`, `persona_id`, `num_documento`, `tipo_docuemnto_id`)"
-          ."VALUES ('$id','$codigo','$semestre','$programa_academico','$persona_id','$num_documento','$tipo_docuemnto_id')";
-          return $this->insertarConsulta($sql);
-      } catch (SQLException $e) {
-          throw new Exception('Primary key is null');
-      }
-  }
+    try {
+        $sql= "INSERT INTO `estudiante`( `codigo`, `semestre`, `programa_academico`, `persona_id`, `num_documento`, `tipo_docuemnto_id`)"
+        ."VALUES ('$codigo','$semestre','$programa_academico','$persona_id','$num_documento','$tipo_docuemnto_id')";
+        return $this->insertarConsulta($sql);
+    } catch (SQLException $e) {
+        throw new Exception('Primary key is null');
+    }
+}
 
     /**
      * Busca un objeto Estudiante en la base de datos.
@@ -172,7 +171,7 @@ $tipo_docuemnto_id=$estudiante->getTipo_docuemnto_id()->getId();
                 $estudiante->setCodigo($data[$i]['codigo']);
                 $estudiante->setSemestre($data[$i]['semestre']);
                 $persona = new Persona();
-                $persona->setNombre($data[$i]['persona_id']);
+                $persona->setId($data[$i]['persona_id']);
                 $persona->setNombre($data[$i]['nombre']);
                 $persona->setCorreo($data[$i]['correo']);
                 $persona->setTelefono($data[$i]['telefono']);

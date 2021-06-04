@@ -13,7 +13,7 @@ $dataObject = json_decode($JSONData);
 
 $id = strip_tags($dataObject->dptos);
 
-        $list=Plan_estudiosFacade::listAll_id($id);
+        $list=Plan_estudiosFacade::listAll();
         $rta="";
         foreach ($list as $obj => $Plan_estudios) {	
 	       $rta.="{

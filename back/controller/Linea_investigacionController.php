@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    gravitaban alrededor del astro de la noche, y por primera vez podía la vista penetrar todos sus misterios.  \\
+//    Les traigo amor  \\
 include_once realpath('../facade/Linea_investigacionFacade.php');
 
 
@@ -15,7 +15,10 @@ class Linea_investigacionController {
         $id = strip_tags($_POST['id']);
         $descripcion = strip_tags($_POST['descripcion']);
         $lider = strip_tags($_POST['lider']);
-        Linea_investigacionFacade::insert($id, $descripcion, $lider);
+        $Disciplina_id = strip_tags($_POST['disciplina_id']);
+        $disciplina= new Disciplina();
+        $disciplina->setId($Disciplina_id);
+        Linea_investigacionFacade::insert($id, $descripcion, $lider, $disciplina);
 return true;
     }
 
@@ -26,7 +29,8 @@ return true;
 	       $rta.="{
 	    \"id\":\"{$Linea_investigacion->getid()}\",
 	    \"descripcion\":\"{$Linea_investigacion->getdescripcion()}\",
-	    \"lider\":\"{$Linea_investigacion->getlider()}\"
+	    \"lider\":\"{$Linea_investigacion->getlider()}\",
+	    \"disciplina_id_id\":\"{$Linea_investigacion->getdisciplina_id()->getid()}\"
 	       },";
         }
 

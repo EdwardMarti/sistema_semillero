@@ -136,10 +136,36 @@ $departamento_id=$plan_estudios->getDepartamento_id()->getId();
   }
   public function listAll_id($id){
       $lista = array();
+      $condicion = '';
+      if($id != '')  
+        $condicion = " WHERE `departamento_id` = '$id' ";
+      try {
+          $sql ="SELECT `id`, `descripcion`, `departamento_id`"
+          ."FROM `plan_estudios` "
+          ." $condicion ";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $plan_estudios= new Plan_estudios();
+          $plan_estudios->setId($data[$i]['id']);
+          $plan_estudios->setDescripcion($data[$i]['descripcion']);
+           $departamento = new Departamento();
+           $departamento->setId($data[$i]['departamento_id']);
+           $plan_estudios->setDepartamento_id($departamento);
+
+          array_push($lista,$plan_estudios);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  public function listAll_idRpta($id){
+      $lista = array();
       try {
           $sql ="SELECT `id`, `descripcion`, `departamento_id`"
           ."FROM `plan_estudios`"
-          ."WHERE `departamento_id` = '$id' ";
+          ."WHERE `id` = '$id' ";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $plan_estudios= new Plan_estudios();

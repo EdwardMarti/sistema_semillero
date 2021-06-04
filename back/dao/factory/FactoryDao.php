@@ -5,7 +5,7 @@
               ------------------------
  */
 
-//    ¿Documentaqué?  \\
+//    Nuestra empresa cuenta con una división sólo para las frases. Disfrútalas  \\
 
 include_once realpath('../dao/conexion/Conexion.php');
 include_once realpath('../dao/interfaz/IFactoryDao.php');
@@ -31,6 +31,22 @@ class FactoryDao implements IFactoryDao{
         return new ActividadesDao($this->conn->obtener($dbName));
     }
      /**
+     * Devuelve una instancia de Actividades_jovenesDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Actividades_jovenesDao
+     */
+     public function getActividades_jovenesDao($dbName){
+        return new Actividades_jovenesDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de AreaDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de AreaDao
+     */
+     public function getAreaDao($dbName){
+        return new AreaDao($this->conn->obtener($dbName));
+    }
+     /**
      * Devuelve una instancia de CapacitacionesDao con una conexiÃ³n que depende del gestor de base de datos
      * @param dbName Nombre o identificador de la base de datos a conectar
      * @return instancia de CapacitacionesDao
@@ -47,12 +63,68 @@ class FactoryDao implements IFactoryDao{
         return new ColaboradorDao($this->conn->obtener($dbName));
     }
      /**
+     * Devuelve una instancia de Compromisos_equipoDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Compromisos_equipoDao
+     */
+     public function getCompromisos_equipoDao($dbName){
+        return new Compromisos_equipoDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de Concepto_cumplimientoDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Concepto_cumplimientoDao
+     */
+     public function getConcepto_cumplimientoDao($dbName){
+        return new Concepto_cumplimientoDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de ContratoDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de ContratoDao
+     */
+     public function getContratoDao($dbName){
+        return new ContratoDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de Cumplimiento_acompanamientoDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Cumplimiento_acompanamientoDao
+     */
+     public function getCumplimiento_acompanamientoDao($dbName){
+        return new Cumplimiento_acompanamientoDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de Cumplimiento_cronogramaDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Cumplimiento_cronogramaDao
+     */
+     public function getCumplimiento_cronogramaDao($dbName){
+        return new Cumplimiento_cronogramaDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de Cumplimiento_objetivosDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Cumplimiento_objetivosDao
+     */
+     public function getCumplimiento_objetivosDao($dbName){
+        return new Cumplimiento_objetivosDao($this->conn->obtener($dbName));
+    }
+     /**
      * Devuelve una instancia de DepartamentoDao con una conexiÃ³n que depende del gestor de base de datos
      * @param dbName Nombre o identificador de la base de datos a conectar
      * @return instancia de DepartamentoDao
      */
      public function getDepartamentoDao($dbName){
         return new DepartamentoDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de DisciplinaDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de DisciplinaDao
+     */
+     public function getDisciplinaDao($dbName){
+        return new DisciplinaDao($this->conn->obtener($dbName));
     }
      /**
      * Devuelve una instancia de DocenteDao con una conexiÃ³n que depende del gestor de base de datos
@@ -133,6 +205,38 @@ class FactoryDao implements IFactoryDao{
      */
      public function getGrupo_solicitud_horasDao($dbName){
         return new Grupo_solicitud_horasDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de Impactos_socialesDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Impactos_socialesDao
+     */
+     public function getImpactos_socialesDao($dbName){
+        return new Impactos_socialesDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de Informe_gestion_jovenesDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Informe_gestion_jovenesDao
+     */
+     public function getInforme_gestion_jovenesDao($dbName){
+        return new Informe_gestion_jovenesDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de Informes_gestion_financiadoDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Informes_gestion_financiadoDao
+     */
+     public function getInformes_gestion_financiadoDao($dbName){
+        return new Informes_gestion_financiadoDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de InvestigadorDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de InvestigadorDao
+     */
+     public function getInvestigadorDao($dbName){
+        return new InvestigadorDao($this->conn->obtener($dbName));
     }
      /**
      * Devuelve una instancia de Linea_investigacionDao con una conexiÃ³n que depende del gestor de base de datos
@@ -279,6 +383,22 @@ class FactoryDao implements IFactoryDao{
         return new Solicitud_horasDao($this->conn->obtener($dbName));
     }
      /**
+     * Devuelve una instancia de Solicitud_horas_financiadoDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Solicitud_horas_financiadoDao
+     */
+     public function getSolicitud_horas_financiadoDao($dbName){
+        return new Solicitud_horas_financiadoDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de Solicitud_horas_tutorDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Solicitud_horas_tutorDao
+     */
+     public function getSolicitud_horas_tutorDao($dbName){
+        return new Solicitud_horas_tutorDao($this->conn->obtener($dbName));
+    }
+     /**
      * Devuelve una instancia de Tipo_docuemntoDao con una conexiÃ³n que depende del gestor de base de datos
      * @param dbName Nombre o identificador de la base de datos a conectar
      * @return instancia de Tipo_docuemntoDao
@@ -325,6 +445,14 @@ class FactoryDao implements IFactoryDao{
      */
      public function getTitulosDao($dbName){
         return new TitulosDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de Uso_equiposDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de Uso_equiposDao
+     */
+     public function getUso_equiposDao($dbName){
+        return new Uso_equiposDao($this->conn->obtener($dbName));
     }
      /**
      * Devuelve una instancia de UsuariosDao con una conexiÃ³n que depende del gestor de base de datos

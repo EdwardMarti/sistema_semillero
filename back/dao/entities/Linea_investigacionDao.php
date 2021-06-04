@@ -5,10 +5,11 @@
               ------------------------
  */
 
-//    NEVERMORE  \\
+//    Podrías agradecernos con unos cuantos billetes _/(n.n)\_  \\
 
 include_once realpath('../dao/interfaz/ILinea_investigacionDao.php');
 include_once realpath('../dto/Linea_investigacion.php');
+include_once realpath('../dto/Disciplina.php');
 
 class Linea_investigacionDao implements ILinea_investigacionDao{
 
@@ -28,13 +29,14 @@ private $cn;
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($linea_investigacion){
-      $id=$linea_investigacion->getId();
+//      $id=$linea_investigacion->getId();
 $descripcion=$linea_investigacion->getDescripcion();
 $lider=$linea_investigacion->getLider();
+$disciplina_id=$linea_investigacion->getDisciplina_id()->getId();
 
       try {
-          $sql= "INSERT INTO `linea_investigacion`( `id`, `descripcion`, `lider`)"
-          ."VALUES ('$id','$descripcion','$lider')";
+          $sql= "INSERT INTO `linea_investigacion`(  `descripcion`, `lider`, `disciplina_id`)"
+          ."VALUES ('$descripcion','$lider','$disciplina_id')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -51,7 +53,7 @@ $lider=$linea_investigacion->getLider();
       $id=$linea_investigacion->getId();
 
       try {
-          $sql= "SELECT `id`, `descripcion`, `lider`"
+          $sql= "SELECT `id`, `descripcion`, `lider`, `disciplina_id`"
           ."FROM `linea_investigacion`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
@@ -59,6 +61,9 @@ $lider=$linea_investigacion->getLider();
           $linea_investigacion->setId($data[$i]['id']);
           $linea_investigacion->setDescripcion($data[$i]['descripcion']);
           $linea_investigacion->setLider($data[$i]['lider']);
+           $disciplina = new Disciplina();
+           $disciplina->setId($data[$i]['disciplina_id']);
+           $linea_investigacion->setDisciplina_id($disciplina);
 
           }
       return $linea_investigacion;      } catch (SQLException $e) {
@@ -77,9 +82,10 @@ $lider=$linea_investigacion->getLider();
       $id=$linea_investigacion->getId();
 $descripcion=$linea_investigacion->getDescripcion();
 $lider=$linea_investigacion->getLider();
+$disciplina_id=$linea_investigacion->getDisciplina_id()->getId();
 
       try {
-          $sql= "UPDATE `linea_investigacion` SET`id`='$id' ,`descripcion`='$descripcion' ,`lider`='$lider' WHERE `id`='$id' ";
+          $sql= "UPDATE `linea_investigacion` SET`id`='$id' ,`descripcion`='$descripcion' ,`lider`='$lider' ,`disciplina_id`='$disciplina_id' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -111,7 +117,7 @@ $lider=$linea_investigacion->getLider();
   public function listAll(){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `descripcion`, `lider`"
+          $sql ="SELECT `id`, `descripcion`, `lider`, `disciplina_id`"
           ."FROM `linea_investigacion`"
           ."WHERE 1";
           $data = $this->ejecutarConsulta($sql);
@@ -120,6 +126,33 @@ $lider=$linea_investigacion->getLider();
           $linea_investigacion->setId($data[$i]['id']);
           $linea_investigacion->setDescripcion($data[$i]['descripcion']);
           $linea_investigacion->setLider($data[$i]['lider']);
+           $disciplina = new Disciplina();
+           $disciplina->setId($data[$i]['disciplina_id']);
+           $linea_investigacion->setDisciplina_id($disciplina);
+
+          array_push($lista,$linea_investigacion);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  public function listAll_id($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `descripcion`, `lider`, `disciplina_id`"
+          ."FROM `linea_investigacion`"
+          ."WHERE `disciplina_id` = '$id' ";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $linea_investigacion= new Linea_investigacion();
+          $linea_investigacion->setId($data[$i]['id']);
+          $linea_investigacion->setDescripcion($data[$i]['descripcion']);
+          $linea_investigacion->setLider($data[$i]['lider']);
+           $disciplina = new Disciplina();
+           $disciplina->setId($data[$i]['disciplina_id']);
+           $linea_investigacion->setDisciplina_id($disciplina);
 
           array_push($lista,$linea_investigacion);
           }

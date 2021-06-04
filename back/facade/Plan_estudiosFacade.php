@@ -123,6 +123,13 @@ class Plan_estudiosFacade {
      $plan_estudiosDao->close();
      return $result;
   }
+  public static function listAll_idRpta($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $plan_estudiosDao =$FactoryDao->getplan_estudiosDao(self::getDataBaseDefault());
+     $result = $plan_estudiosDao->listAll_idRpta($id);
+     $plan_estudiosDao->close();
+     return $result;
+  }
 
 
 }

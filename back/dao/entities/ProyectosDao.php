@@ -179,6 +179,41 @@ $semillero_id=$proyectos->getSemillero_id()->getId();
       return null;
       }
   }
+  
+  public function listAll_id($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `titulo`,  `semillero_id` FROM `proyectos`"
+          ."WHERE  `semillero_id` = '$id' ";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $proyectos= new Proyectos();
+          $proyectos->setId($data[$i]['id']);
+          $proyectos->setTitulo($data[$i]['titulo']);
+          $proyectos->setInvestigador($data[$i]['investigador']);
+           $estado_proyecto = new Estado_proyecto();
+           $estado_proyecto->setId($data[$i]['tipo_proyecto_id']);
+           $proyectos->setTipo_proyecto_id($estado_proyecto);
+          $proyectos->setTiempo_ejecucion($data[$i]['tiempo_ejecucion']);
+          $proyectos->setFecha_ini($data[$i]['fecha_ini']);
+          $proyectos->setResumen($data[$i]['resumen']);
+          $proyectos->setObj_general($data[$i]['obj_general']);
+          $proyectos->setObj_esÃÂ©cifico($data[$i]['obj_esÃÂ©cifico']);
+          $proyectos->setResultados($data[$i]['resultados']);
+          $proyectos->setCosto_valor($data[$i]['costo_valor']);
+          $proyectos->setProducto($data[$i]['producto']);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $proyectos->setSemillero_id($semillero);
+
+          array_push($lista,$proyectos);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

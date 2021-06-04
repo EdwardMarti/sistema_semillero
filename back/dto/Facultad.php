@@ -8,7 +8,7 @@
 //    Nuestra empresa cuenta con una división sólo para las frases. Disfrútalas  \\
 
 
-class Facultad {
+class facultad {
 
   private $id;
   private $descripcion;

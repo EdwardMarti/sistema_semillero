@@ -46,9 +46,23 @@ include_once realpath('../dao/entities/Tipo_publicacionesDao.php');
 include_once realpath('../dao/entities/Tipo_vinculacionDao.php');
 include_once realpath('../dao/entities/TitulosDao.php');
 include_once realpath('../dao/entities/UsuariosDao.php');
+include_once realpath('../dao/entities/AreaDao.php');
+include_once realpath('../dao/entities/DisciplinaDao.php');
 
 
 interface IFactoryDao {
+      /**
+     * Devuelve una instancia de AreaDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de AreaDao
+     */
+    public function getAreaDao($dbName);
+     /**
+     * Devuelve una instancia de DisciplinaDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de DisciplinaDao
+     */
+    public function getDisciplinaDao($dbName);
 	
      /**
      * Devuelve una instancia de ActividadesDao con una conexiÃ³n que depende del gestor de base de datos

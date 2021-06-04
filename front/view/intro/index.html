@@ -86,9 +86,10 @@ a.personalizado1 {
         <ul class="d-flex navbar-top-links navbar-right m-0">
       
           <li>
-            <a class="personalizado font-weight-bold" href="../login.html" 
-              ><i class="fa fa-user-o"></i>Iniciar sesión</a
-            >
+              <a class="personalizado font-weight-bold" href="../principal.html" 
+                 ><i class="fa fa-user-o"></i>Iniciar sesión</a>
+               <!--  <a class="personalizado font-weight-bold" href="../login.html" -->
+            
           </li>
 
         </ul>
@@ -135,9 +136,9 @@ a.personalizado1 {
       <div class="container-fluid col-2" style="background-color: #aa1916 !important ;  box-shadow: 2px 2px 5px #999;">
         <div class="row align-content-center inscribir">
           <div class="col-md-12 text-center"><br>
-            <a class="personalizado1 font-weight-bold" data-toggle="modal" data-target="#myModal2"
-              ><i class="fa fa-file-text-o"></i><br> Pre - Registrar Semillero</a
-            >
+    <a class="personalizado1 font-weight-bold" onclick="mostrarModalRegistro()" >    
+        <i class="fa fa-file-text-o"></i><br> Pre - Registrar Semillero</a>
+        
           </div>
         </div>
              <br />
@@ -152,100 +153,139 @@ a.personalizado1 {
       </div>
       <!-- //footer -->
       
-      <div class="modal inmodal" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog">
-              <div class="modal-content animated flipInY">
-                  <div class="modal-header">
+     
+      <div class="modal inmodal fade" id="myModalRegistro" tabindex="-1" role="dialog"  aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+              <div class="modal-content" >
+                  <div class="modal-header" style="padding: 1px 1px; background:#aa1916 ; ">
                       <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                      <h4 class="modal-title">Pre-Registro Semillero</h4>
+                      <h3 class="modal-title" style="color: #ffffff">Pre-Registro Semillero</h3>
 
                   </div>
                   <div class="modal-body">
+                       <!--  padding: 5px 5px;-->
+                      <div class="ibox-content">
+                          <h3 class="modal-title" style=" text-align: center" ><b>informacion Semillero</b></h3>
                       <div class="row">
+                         
                           <div class="col-6">
+                               
                               <div class="form-group">
+                                   
                                   <label for="formGroupExampleInput">Nombre: </label>
-                                  <input type="hidden" style="background: white;" class="form-control" name="idOrder" id="idOrder">
-                                  <input type="hidden" style="background: white;" class="form-control" name="index_order" id="index_order">
-
-                                  <input type="text" style="background: white;" class="form-control" name="nombre_order" id="nombre_order" onkeyup="validar_order_fields('nombre_order',6)" aria-describedby="validar_nombre_order" required>
-                                  <div id="validar_nombre_order" class="invalid-feedback">
-                                      Diligencie un nombre mayor a 6 caracteres por favor.
-                                  </div>
+                                       <input type="text" style="background: white;" class="form-control" name="nombre" id="nombre"  required>
+                                  
                               </div>
                               
                               <div class="form-group">
-                                  <label for="formGroupExampleInput">No. Medidor </label>
-                                  <input type="text" style="background: white;" class="form-control" name="medidor" id="medidor" onkeyup="validar_order_fields('medidor',1)" aria-describedby="validar_medidor_order">
-                                  <div id="validar_medidor_order" class="invalid-feedback">
-                                      El numero medidor debe tener minimo 1 digito
-                                  </div>
+                                  <label for="formGroupExampleInput">Grupo de Investigacion </label>
+                                  <select class="form-control" name="grupo_investigacion" id="grupo_investigacion" >
+                                      <option value="-1">SELECCIONE</option>
+
+                                  </select>
+
                               </div>
                               
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput">HOla nuevo</label>
-                                  <input type="text" style="background: white;" class="form-control" name="medidor" id="medidor" onkeyup="validar_order_fields('medidor',1)" aria-describedby="validar_medidor_order">
-                                  <div id="validar_medidor_order" class="invalid-feedback">
-                                      El numero medidor debe tener minimo 1 digito
-                                  </div>
+                         <div class="form-group">
+                                  <label for="formGroupExampleInput">Departamentos </label>
+                                  <select onchange="cargarSelectPlan(this.value);" class="form-control" name="departamentos" id="departamentos" >
+                                      <option value="-1">SELECCIONE</option>
+
+                                  </select>
+
+                              </div>
+                              
+                         <div class="form-group">
+                                  <label for="formGroupExampleInput">Linea de Investigacion </label>
+                                  <select class="form-control" name="linea_i" id="linea_i" >
+                                      <option value="-1">SELECCIONE</option>
+
+                                  </select>
+
                               </div>
 
 
-
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput">Codigo </label>
-                                  <input type="text" style="background: white;" class="form-control" name="codigo" id="codigo" >
-
-                              </div>
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput">Municipio </label>
-                                  <input type="text" style="background: white;" class="form-control" name="municipio" id="municipio" onkeyup="validar_order_fields('municipio',3)" aria-describedby="validar_municipio_order">
-                                  <div id="validar_municipio_order" class="invalid-feedback">
-                                      El Municipio debe tener minimo 3 caracteres
-                                  </div>
-                              </div>
 
                           </div>
+                   <!-------------------------------------------------->       
                           <div class="col-6">
                               <div class="form-group">
-                                  <label for="formGroupExampleInput">Barrio </label>
-                                  <input type="text" style="background: white;" class="form-control" name="barrio" id="barrio" onkeyup="validar_order_fields('barrio',3)" aria-describedby="validar_barrio_order">
-                                  <div id="validar_barrio_order" class="invalid-feedback">
-                                      El Barrio debe tener minimo 3 caracteres
-                                  </div>
+                                  <label for="formGroupExampleInput">Sigla </label>
+                                  <input type="text" style="background: white;" class="form-control" name="sigla" id="sigla" >
+                                  
                               </div>
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput">Direccion </label>
-                                  <input type="text" style="background: white;" class="form-control" name="direccion" id="direccion" onkeyup="validar_order_fields('direccion',3)" aria-describedby="validar_direccion_order">
-                                  <div id="validar_direccion_order" class="invalid-feedback">
-                                      La direccion debe tener minimo 3 caracteres
-                                  </div>
+                            <div class="form-group">
+                                  <label for="formGroupExampleInput">Facultad</label>
+                                  <select onchange="cargarSelectDepartamentos(this.value);" class="form-control" name="facultades" id="facultades" >
+                                      <option  value="-1">SELECCIONE</option>
+
+                                  </select>
+
                               </div>
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput">No. Phone </label>
-                                  <input type="text" style="background: white;" class="form-control" name="phone" id="phone" onkeyup="validar_order_fields('phone',1)" aria-describedby="validar_phone_order">
-                                  <div id="validar_phone_order" class="invalid-feedback">
-                                      El telefono de Telefono debe tener minimo 1 digito
-                                  </div>
+                            <div class="form-group">
+                                  <label for="formGroupExampleInput">Plan de Estudios</label>
+                                  <select class="form-control" name="p_estudio" id="p_estudio" >
+                                      <option value="-1">SELECCIONE</option>
+
+                                  </select>
+
                               </div>
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput">Ruta </label>
-                                  <input type="text" style="background: white;" class="form-control" name="ruta" id="ruta" >
+                           <div class="form-group">
+                                  <label for="formGroupExampleInput">Fecha de Creacion </label>
+                                  <input type="date" style="background: white;" class="form-control" name="fecha" id="fecha" >
 
                               </div>
 
 
                           </div>
                       </div>
+                          <hr>
+                          <h3 class="modal-title" style=" text-align: center"><b>Informacion Tutor</b></h3>
+                          <hr>
+                            <div class="row">
+                         
+                          <div class="col-6">
+                               
+                              <div class="form-group">
+                                   
+                                  <label for="formGroupExampleInput">Nombre </label>
+                                       <input type="text" style="background: white;" class="form-control" name="nombreD" id="nombreD"  required>
+                                  
+                              </div>
+                              <div class="form-group">
+                                   
+                                  <label for="formGroupExampleInput">Telefono </label>
+                                       <input type="text" style="background: white;" class="form-control" name="telefonoD" id="telefonoD"  required>
+                                  
+                              </div>
+                      </div>    
+                          <div class="col-6">
+                               
+                              <div class="form-group">
+                                   
+                                  <label for="formGroupExampleInput">Correo </label>
+                                       <input type="text" style="background: white;" class="form-control" name="correoD" id="correoD"  required>
+                                  
+                              </div>
+                                   <div class="form-group">
+                                  <label for="formGroupExampleInput">Tipo Vinculacion</label>
+                                  <select class="form-control" name="tp_vinculacion" id="tp_vinculacion" >
+                                      <option value="-1">SELECCIONE</option>
+
+                                  </select>
+
+                              </div>
+                      </div>    
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
+                      <button type="button" class="btn btn-primary" onclick="registrarSemillero()">Registrar</button>
                   </div>
               </div>
           </div>
       </div>
 
+    </div>
     </div>
 
     <!-- Default-JavaScript-File -->
@@ -256,10 +296,12 @@ a.personalizado1 {
 
     <script type="text/javascript" src="js/move-top.js"></script>
     <script type="text/javascript" src="js/easing.js"></script>
-    <script type="text/javascript" src="js/feria/feria.min.js"></script>
-    <script type="text/javascript" src="../../core/Utilitario.js"></script>
-    <script type="text/javascript" src="../../core/Mensaje.js"></script>
-    <!-- here stars scrolling icon -->
+    
+    <script type="text/javascript" src="js/semillero_reg/datos_select.js"></script>
+  
+    <script type="text/javascript" src="js/core/Utilitario2.js"></script>
+    <script type="text/javascript" src="js/core/Mensaje.js"></script>
+    
 
     <!-- //here ends scrolling icon -->
   </body>

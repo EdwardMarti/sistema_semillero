@@ -123,7 +123,13 @@ class DepartamentoFacade {
      $departamentoDao->close();
      return $result;
   }
-
+ public static function listAll_idRpta($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $departamentoDao =$FactoryDao->getdepartamentoDao(self::getDataBaseDefault());
+     $result = $departamentoDao->listAll_idRpta($id);
+     $departamentoDao->close();
+     return $result;
+  }
 
 }
 //That`s all folks!

@@ -3,7 +3,7 @@
  *
  **/
 class Menu {
-    
+
     /**
      * @method cargarMenu
      * MÃ©todo que se encarga de ocultar los modulos a los que el usuario no tenga permisos.
@@ -11,9 +11,9 @@ class Menu {
      *
      */
     static cargarMenu() {
-        const { ...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+        const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
         //Se carga el nombre del usuario.
-//        this.validarSesison();
+        //        this.validarSesison();
         this.mostrarNombresUsuario();
 
         // Oculta los modulos si el usuario no es SuperAdmin
@@ -31,8 +31,8 @@ class Menu {
      * MÃ©todo que se encarga de mostrar el nombre del usuario en el mensaje de bienvenida.
      *
      */
-    static mostrarNombresUsuario() {        
-        const { ...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+    static mostrarNombresUsuario() {
+        const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
         $("#nombreUsuario").html(usuario.displayName);
     }
 
@@ -42,41 +42,63 @@ class Menu {
      *
      */
     static validarSesison() {
-        if (Utilitario.getLocal("userId") === "") {
+        /* if (Utilitario.getLocal("userId") === "") {
             window.location.href = "../login.html";
-        }
+        } */
     }
-        
+
     /**
      * @method listadoUsuarios
      * Metodo que se encarga de mostrar los usuarios registrados
      */
     static listadoUsuarios() {
-        const { ...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
-        Utilitario.agregarMascara();
-        fetch("listadoUsuarios.html", {
-                method: "GET",
-            })
-            .then(function(response) {
-                return response.text();
-            })
-            .then(function(vista) {
-                (usuario.rol === 3 || usuario.rol === 2) ?
-                window.location.href = "principal.html": $("#mostrarcontenido").html(vista);
-            })
-            .finally(function() {
-                Utilitario.quitarMascara();
-            });
-    }
-    /**
-     * @method listadoOrdenes
-     * Metodo que se encarga de mostrar las ordenes registradas
-     */
+            const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+            Utilitario.agregarMascara();
+            fetch("listadoUsuarios.html", {
+                    method: "GET",
+                })
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(vista) {
+                    (usuario.rol === 3 || usuario.rol === 2) ?
+                    window.location.href = "principal.html": $("#mostrarcontenido").html(vista);
+                })
+                .finally(function() {
+                    Utilitario.quitarMascara();
+                });
+        }
+        /**
+         * @method listadoOrdenes
+         * Metodo que se encarga de mostrar las ordenes registradas
+         */
     static listadoOrdenes() {
-        console.log('ordenes');
-        const { ...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+            console.log('ordenes');
+            const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+            Utilitario.agregarMascara();
+            fetch("listadoOrdenes.html", {
+                    method: "GET",
+                })
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(vista) {
+                    $("#mostrarcontenido").html(vista);
+                    /*(usuario.rol == = 1 || usuario.rol === 2) ?
+                    window.location.href = "principal.html": $("#mostrarcontenido").html(vista); */
+                })
+                .finally(function() {
+                    Utilitario.quitarMascara();
+                });
+        }
+        /**
+         * @method listadoFacultades
+         * Metodo que se encarga de mostrar las ordenes registradas
+         */
+    static listadoFacultades() {
+        const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
         Utilitario.agregarMascara();
-        fetch("listadoOrdenes.html", {
+        fetch("listadoFacultades.html", {
                 method: "GET",
             })
             .then(function(response) {
@@ -91,15 +113,10 @@ class Menu {
                 Utilitario.quitarMascara();
             });
     }
-    //<editor-fold defaultstate="collapsed" desc="Actas">
-    /**
-     * 
-     * @return {undefined}
-     */
-          static mostrarRangos() {
-            
+    static listadoProyectos_t() {
+
         Utilitario.agregarMascara();
-        fetch("listadoRangos.html", {
+        fetch("listadoProyectos_t.html", {
                 method: "GET",
             })
             .then(function(response) {
@@ -107,31 +124,213 @@ class Menu {
             })
             .then(function(vista) {
                 $("#mostrarcontenido").html(vista);
+
             })
             .finally(function() {
                 Utilitario.quitarMascara();
             });
     }
-    //</editor-fold>
+    static listadoProyectos_e() {
+
+        Utilitario.agregarMascara();
+        fetch("listadoProyectos_e.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+    static listadoActividades() {
+
+        Utilitario.agregarMascara();
+        fetch("listadoActividades.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    static listadoPublicaciones() {
+
+        Utilitario.agregarMascara();
+        fetch("listadoPublicaciones.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    static listadoAlumnos() {
+
+        Utilitario.agregarMascara();
+        fetch("listadoEstudiantes.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    static listadoPares() {
+
+        Utilitario.agregarMascara();
+        fetch("listadoPares.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    static MonstrarRegistrarSemillero() {
+
+            Utilitario.agregarMascara();
+            fetch("registroSemillero.html", {
+                    method: "GET",
+                })
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(vista) {
+                    $("#mostrarcontenido").html(vista);
+
+                })
+                .finally(function() {
+                    Utilitario.quitarMascara();
+                });
+        }
+        
+    static MonstrarEstadoSemillero() {
+
+            Utilitario.agregarMascara();
+            fetch("estadoSemillero.html", {
+                    method: "GET",
+                })
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(vista) {
+                    $("#mostrarcontenido").html(vista);
+
+                })
+                .finally(function() {
+                    Utilitario.quitarMascara();
+                });
+        }
+        
+    static MonstrarPerfilSemillero() {
+
+            Utilitario.agregarMascara();
+            fetch("perfilSemillero.html", {
+                    method: "GET",
+                })
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(vista) {
+                    $("#mostrarcontenido").html(vista);
+
+                })
+                .finally(function() {
+                    Utilitario.quitarMascara();
+                });
+        }
+        
+            static listadoSemilleros_p() {
+
+        Utilitario.agregarMascara();
+        fetch("listadoSemillero_p.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+        //<editor-fold defaultstate="collapsed" desc="Actas">
+        /**
+         * 
+         * @return {undefined}
+         */
+    static mostrarRangos() {
+
+            Utilitario.agregarMascara();
+            fetch("listadoRangos.html", {
+                    method: "GET",
+                })
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(vista) {
+                    $("#mostrarcontenido").html(vista);
+                })
+                .finally(function() {
+                    Utilitario.quitarMascara();
+                });
+        }
+        //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Actas Danadas">
-            static mostrarDanadas() {
-            
-        Utilitario.agregarMascara();
-        fetch("listadoDanadas.html", {
-                method: "GET",
-            })
-            .then(function(response) {
-                return response.text();
-            })
-            .then(function(vista) {
-                $("#mostrarcontenido").html(vista);
-            })
-            .finally(function() {
-                Utilitario.quitarMascara();
-            });
-    }
-    //</editor-fold>
+    static mostrarDanadas() {
+
+            Utilitario.agregarMascara();
+            fetch("listadoDanadas.html", {
+                    method: "GET",
+                })
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(vista) {
+                    $("#mostrarcontenido").html(vista);
+                })
+                .finally(function() {
+                    Utilitario.quitarMascara();
+                });
+        }
+        //</editor-fold>
 
 
 }

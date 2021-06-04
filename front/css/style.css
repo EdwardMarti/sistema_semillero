@@ -1997,34 +1997,48 @@ button:focus {
 }
 
 .btn-primary {
+    color: #ffffff;
+    /*background-color: #1ab394;*/
+    background-color: #1ab394;
+    /*border-color: #1ab394;*/
+    border-color: #1ab394;
+}
+.btn-menu {
     color: #000000;
     /*background-color: #1ab394;*/
     background-color: #FFFFFF;
     /*border-color: #1ab394;*/
     border-color: #FFFFFF;
 }
+.btn-menu:hover,
+.btn-menu:focus,
+.btn-menu.focus {
+    background-color: #FFFFFF;
+    background-color: #FFFFFF;
+    color: #000000;
+}
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary.focus {
-    background-color: #356ab9f0;
-    border-color: #243747;
-    color: #000000;
+    background-color: #1ab394;
+    background-color: #1ab394;
+    color: #ffffff;
 }
 
 .btn-primary.disabled,
 .btn-primary:disabled {
-    color: #fff;
-    background-color: #356ab9f0;
-    border-color: #243747;
+     background-color: #1ab394;
+    background-color: #1ab394;
+    color: #ffffff;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show>.btn-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #356ab9f0;
-    border-color: #243747;
+    color: #ffffff;
+    background-color: #1ab394;
+    border-color: #1ab394;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -2036,8 +2050,8 @@ button:focus {
 
 .btn-success {
     color: #fff;
-    background-color: #356ab9f0;
-    border-color: #243747;
+    background-color: #1ab394;
+    border-color: #1ab394;
     /*  background-color: #1c84c6;
   border-color: #1c84c6;*/
 }
@@ -2705,8 +2719,8 @@ button.dim:active:before {
 }
 
 .page-item.active .page-link {
-    background-color: #4274bd;
-    border-color: #aa1916c7;
+    background-color: #aa1916c7;
+    border-color: #000000;
     /*  background-color: #1ab394;
   border-color: #1ab394;*/
 }
@@ -3208,7 +3222,7 @@ table.dataTable thead .sorting_desc_disabled {
 
 .html5buttons a {
     border: 1px solid #e7eaec;
-    background: #4173bd;
+    background: #af2724c7;
     color: #ffffff;
     box-shadow: none;
     padding: 6px 8px;
@@ -11890,4 +11904,8 @@ body.md-skin {
     -moz-opacity: 65;
     opacity: 0.65;
     background: #999;
+}
+
+.field-invalid {
+    border: 1.5px solid #dd6b55 !important;
 }

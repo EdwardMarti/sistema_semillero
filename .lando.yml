@@ -1,0 +1,24 @@
+name: semillero
+recipe: lemp
+excludes:
+  - vendor
+config:
+  php: 7.3
+  webroot: .
+  xdebug: true
+  database: mariadb
+  cache: none
+  via: nginx
+services:
+  appserver:
+    ssl: true
+  database:
+    type: mariadb:10.5
+    creds:
+      user: mariadb
+      password: mariadb
+      database: semillero
+    portforward: 3306
+proxy:
+  appserver_nginx:
+    - semillero.lndo.site

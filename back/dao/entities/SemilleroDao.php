@@ -101,6 +101,28 @@ $departamento=$semillero->getUnidad_academica();
       return null;
       }
   }
+  
+  public function select_activo($correo,$clave){
+  $existe=false;
+
+      
+      try {
+          $sql= "SELECT `id` FROM `semillero_doc` WHERE `correo`='$correo' and `password` = '$clave' and  `stado`='0' ";
+          
+        
+          $data = $this->ejecutarConsulta($sql);
+         
+              if(!empty($data)){
+                $existe=true;
+              }
+       
+       
+      return $existe;     
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
     /**
      * Modifica un objeto Semillero en la base de datos.
@@ -122,6 +144,24 @@ $unidad_academica=$semillero->getUnidad_academica();
       try {
           $sql= "UPDATE `semillero` SET`id`='$id' ,`nombre`='$nombre' ,`sigla`='$sigla' ,`fecha_creacion`='$fecha_creacion' ,`aval_dic_grupo`='$aval_dic_grupo' ,`aval_dic_sem`='$aval_dic_sem' ,`aval_dic_unidad`='$aval_dic_unidad' ,`grupo_investigacion_id`='$grupo_investigacion_id' ,`unidad_academica`='$unidad_academica' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
+  public function update_Data($id, $nombre, $sigla, $fecha_creacion, $aval_dic_grupo, $aval_dic_sem, $aval_dic_unidad, $grupo_investigacion_id, $unidad_academica){
+      $id=$semillero->getId();
+$nombre=$semillero->getNombre();
+$sigla=$semillero->getSigla();
+$fecha_creacion=$semillero->getFecha_creacion();
+$aval_dic_grupo=$semillero->getAval_dic_grupo();
+$aval_dic_sem=$semillero->getAval_dic_sem();
+$aval_dic_unidad=$semillero->getAval_dic_unidad();
+$grupo_investigacion_id=$semillero->getGrupo_investigacion_id()->getId();
+$unidad_academica=$semillero->getUnidad_academica();
+
+      try {
+          $sql= "UPDATE `semillero` SET `nombre`='$nombre' ,`sigla`='$sigla' ,`fecha_creacion`='$fecha_creacion' ,`aval_dic_grupo`='$aval_dic_grupo' ,`aval_dic_sem`='$aval_dic_sem' ,`aval_dic_unidad`='$aval_dic_unidad' ,`grupo_investigacion_id`='$grupo_investigacion_id' ,`unidad_academica`='$unidad_academica' WHERE `id`='$id' ";
+         return $this->updateConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       }
@@ -188,6 +228,52 @@ $unidad_academica=$semillero->getUnidad_academica();
       return null;
       }
   }
+  
+  public function listStado($id){
+      $lista = array();
+      $dic_grupo="Pendiente";
+      $dic_sem="Pendiente";
+      $dic_unidad="Pendiente";
+      try {
+          $sql ="SELECT `id`, `fecha_creacion`, `aval_dic_grupo`, `aval_dic_sem`, `aval_dic_unidad` FROM `semillero` WHERE `id`='$id'";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $semillero= new Semillero();
+          $semillero->setId($data[$i]['id']);
+          if($data[$i]['aval_dic_grupo']==1){
+              $dic_grupo="Aprobado";
+          }
+          if($data[$i]['aval_dic_grupo']==2){
+              $dic_grupo="Rechazado";
+          }
+          if($data[$i]['aval_dic_sem']==1){
+              $dic_sem="Aprobado";
+          }
+          if($data[$i]['aval_dic_sem']==2){
+              $dic_sem="Rechazado";
+          }
+          if($data[$i]['aval_dic_unidad']==1){
+              $dic_unidad="Aprobado";
+          }
+          if($data[$i]['aval_dic_unidad']==2){
+              $dic_unidad="Rechazado";
+          }
+          $semillero->setFecha_creacion($data[$i]['fecha_creacion']);
+          $semillero->setAval_dic_grupo($dic_grupo);
+          $semillero->setAval_dic_sem($dic_sem);
+          $semillero->setAval_dic_unidad($dic_unidad);
+       
+
+          array_push($lista,$semillero);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+
   
   public function listAll_id($id){
       $lista = array();

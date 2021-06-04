@@ -252,6 +252,41 @@ class Utilitario {
             Mensaje.mostrarMsjWarningHTML("Advertencia", mensaje);
         }
     }
+
+    static validForm(recurso) {
+        var retorno = false;
+        $.each(recurso, function (index, id) {
+            // validar select
+            if ($("#"+id).is('select')  && ( $("#" + id).val() == "" || $("#" + id).val() == "NULL" || $("#" + id).val() == "0" || $("#" + id).val() == "null" || $("#" + id).val() == null ) )  {
+                $("#" + id).addClass('field-invalid');
+                Utilitario.validCombobox(id, true);
+                retorno = true;
+            } else {
+                // valida el resto de tipos.
+                if(!$("#"+id).is('select') &&  ( $.trim($("#" + id).val()) == ""  || $("#" + id).val() == "0"  || $("#" + id).val() == null ) ){
+                    $("#" + id).addClass('field-invalid');
+                    retorno = true;
+                }else{
+                    // todo OK
+                    $("#" + id).removeClass('field-invalid');
+                    Utilitario.validCombobox(id, false);
+                }
+            }
+
+        });
+        return retorno;
+    }
+
+    static validCombobox(id, bad) {
+        if (typeof ($('#' + id).siblings('span.custom-combobox').find('input').html()) !== 'undefined') {
+            if (bad) {
+                $('#' + id).siblings('span.custom-combobox').addClass('field-invalid');
+            } else {
+                $('#' + id).siblings('span.custom-combobox').removeClass('field-invalid');
+            }
+        }
+    };
+
 }
 
 function getFormData($form) {
@@ -264,3 +299,4 @@ function getFormData($form) {
 
     return indexed_array;
 }
+
