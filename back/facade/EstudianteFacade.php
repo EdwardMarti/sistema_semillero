@@ -96,8 +96,9 @@ class EstudianteFacade {
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $estudianteDao =$FactoryDao->getestudianteDao(self::getDataBaseDefault());
-     $estudianteDao->update($estudiante);
+     $result = $estudianteDao->update($estudiante);
      $estudianteDao->close();
+     return $result;
   }
 
   /**
@@ -113,6 +114,7 @@ class EstudianteFacade {
      $estudianteDao =$FactoryDao->getestudianteDao(self::getDataBaseDefault());
      $estudianteDao->delete($estudiante);
      $estudianteDao->close();
+     return true;
   }
 
   /**

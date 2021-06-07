@@ -109,8 +109,8 @@ $descripcion=$area->getDescripcion();
       $lista = array();
       try {
           $sql ="SELECT `id`, `descripcion`"
-          ."FROM `area`"
-          ."WHERE 1";
+          ."FROM `area`";
+      
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $area= new Area();

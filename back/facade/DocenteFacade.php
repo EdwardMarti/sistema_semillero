@@ -92,6 +92,14 @@ class DocenteFacade {
      $docenteDao->update($docente);
      $docenteDao->close();
   }
+  public static function update2( $persona_id,  $tipo_vinculacion_id, $ubicacion){
+   
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $docenteDao =$FactoryDao->getdocenteDao(self::getDataBaseDefault());
+    $result =  $docenteDao->update2($persona_id,  $tipo_vinculacion_id, $ubicacion);
+     $docenteDao->close();
+     return $result ;
+  }
 
   /**
    * Elimina un objeto Docente de la base de datos a partir de su(s) llave(s) primaria(s).

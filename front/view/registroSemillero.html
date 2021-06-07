@@ -24,14 +24,12 @@
             </div>
             <div class="ibox-content">
                 <h2>
-                    Validation Wizard Form
+                    Formulario Registro Semillero
                 </h2>
-                <p>
-                    This example show how to use Steps with jQuery Validation plugin.
-                </p>
+            
 
                 <form id="form" action="#" class="wizard-big">
-                    <h1>paso1</h1>
+                    <h1>Datos Generales</h1>
                     <fieldset>
 
                         <div class="ibox-content">
@@ -62,8 +60,14 @@
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <div class="ibox-content">
+                 
+
+                    </fieldset>
+                    <h1>Registro Alumnos y Pares Acdemicos</h1>
+                    <fieldset>
+                        <h2 style="color: black"></h2>
+                     
+                            <div class="ibox-content">
                             <h2 style="color: black">Estudiantes</h2>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" onclick="showModalRegisEstu()">
@@ -118,33 +122,7 @@
                             </div>
                         </div>
 
-
-                    </fieldset>
-                    <h1>Profile</h1>
-                    <fieldset>
-                        <h2>Profile Information</h2>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label>First name *</label>
-                                    <input id="name" name="name" type="text" class="form-control required">
-                                </div>
-                                <div class="form-group">
-                                    <label>Last name *</label>
-                                    <input id="surname" name="surname" type="text" class="form-control required">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label>Email *</label>
-                                    <input id="email" name="email" type="text" class="form-control required email">
-                                </div>
-                                <div class="form-group">
-                                    <label>Address *</label>
-                                    <input id="address" name="address" type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
+                 
                     </fieldset>
 
                     <h1>Warning</h1>
@@ -234,7 +212,7 @@
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-white" onclick="cerrarModalFacultades()">Close</button>
+                <button type="button" class="btn btn-white" onclick="cerrarModalEstu()">Close</button>
                 <button type="button" class="btn btn-primary" id="btnEstuAct" onclick="UpdateEstu()">Actualizar</button>
                 <button type="button" class="btn btn-primary" id="btnEstuReg" onclick="registrarEstu()">Registrar</button>
             </div>
@@ -290,7 +268,7 @@
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-white" onclick="cerrarModalFacultades()">Close</button>
+                <button type="button" class="btn btn-white" onclick="cerrarModalPares()">Close</button>
                 <button type="button" class="btn btn-primary" id="btnParesAct" onclick="UpdatePares()">Actualizar</button>
                 <button type="button" class="btn btn-primary" id="btnParesReg" onclick="registrarPares()">Registrar</button>
             </div>

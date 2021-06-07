@@ -53,7 +53,7 @@ class Mensaje {
      * @param {String}      msg         Mensaje mostrado en el panel.
      * @param {Function}    funcion     Función a ejecutar luego de aceptar la advertencia.
      */
-    static mostrarMsjWarning(titulo, msg, funcion) {
+    static mostrarMsjWarningDelete(titulo, msg, funcion) {
         swal({
                 title: titulo,
                 text: msg,

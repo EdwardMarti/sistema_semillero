@@ -209,7 +209,7 @@ $semillero_id=$persona_has_semillero->getSemillero_id()->getId();
   public function listAll_Semillero($id){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `nombre`, `sigla`, `fecha_creacion`, `aval_dic_grupo`, `aval_dic_sem`, `aval_dic_unidad`, `grupo_investigacion_id`, `gi_nombre`, `departamento`, `dpto_d`, `facultad`, `fdescrip`, `plan_estudios`, `pe_descrip`, `nombreD`, `telefono`, `correo`, `tipo_vinculacion_id`, `descripcion` FROM `data_seme` WHERE `id` = '$id'";
+          $sql ="SELECT `id`, `nombre`, `sigla`, `fecha_creacion`, `aval_dic_grupo`, `aval_dic_sem`, `aval_dic_unidad`, `grupo_investigacion_id`, `gi_nombre`, `departamento`, `dpto_d`, `facultad`, `fdescrip`, `plan_estudios`, `pe_descrip`, `ubicacionSemillero`, `persona_id`, `nombreD`, `telefono`, `correo`, `tipo_vinculacion_id`, `descripcion`, `id_docente`, `ubicacionDocente` FROM `data_seme` WHERE `id` = '$id'";
 //          var_dump($sql);
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
@@ -230,15 +230,21 @@ $semillero_id=$persona_has_semillero->getSemillero_id()->getId();
                 $semillero->setUnidad_academica($data[$i]['departamento']);
                 $semillero->setFacultad($data[$i]['facultad']);
                 $semillero->setPlan_estudio($data[$i]['plan_estudios']);
+                $semillero->setUbicacion($data[$i]['ubicacionSemillero']);
           $persona_has_semillero->setSemillero_id($semillero);
           
            $persona = new Persona();
+           $persona->setId($data[$i]['persona_id']);
            $persona->setNombre($data[$i]['nombreD']);
            $persona->setTelefono($data[$i]['telefono']);
            $persona->setCorreo($data[$i]['correo']);
+           $persona->setId_aux($data[$i]['id_docente']);
            $perfiles = new Perfiles();
            $perfiles->setId($data[$i]['tipo_vinculacion_id']);
+           $perfiles->setDescripcion($data[$i]['ubicacionDocente']);
            $persona->setPerfiles_id($perfiles);
+           
+           
            $persona_has_semillero->setPersona_id($persona);
 
 

@@ -1,9 +1,11 @@
 $(document).ready(function() {
 
-var  sem_id='2';
+  sem_id='2';
+  p_idPersona='2';
+ 
   cargarSelectgrupos_investigacion();
   cargarSelectFacultades();
-    
+     cargarSelectArea();
 sleep(1000);
 
     cargarSelectTp_vin();
@@ -12,11 +14,13 @@ sleep(1000);
     
     cargarInfoSemillero(sem_id);
     
-    cargarSelectArea();
+   
     
     iniciarTablaS();
     
     obtenerDatosS(sem_id);
+    
+    
 });
 
  function sleep(milliseconds) {
@@ -48,6 +52,21 @@ function cerrarModalLineas() {
      $('#ModalLineas').modal('hide');
 }
 
+function mostrarModalTitulos() {
+    
+   $('#ModalTitulos').modal({show: true});
+    $("#btnTitReg").show();
+    $("#btnTitAct").hide();
+}
+
+/**
+ * @method ocultarModalOrdenes
+ * Método que se encarga de cerrar el modal para registro o actualizacion
+ */
+function cerrarModalTitulos() {
+     $('#ModalTitulos').modal('hide');
+}
+
 function cargarInfoSemillero(id_order) {
 
     let semillero = {
@@ -71,7 +90,7 @@ function cargarInfoSemillero(id_order) {
             throw response;
         })
         .then(function(data) {
-//            console.log(data.semilleroPer,'data  semillero');
+            console.log(data.semilleroPer,'data  semillero');
             dataItem(data.semilleroPer);
         })
         .catch(function(promise) {
@@ -98,6 +117,7 @@ function cargarInfoSemillero(id_order) {
         });
 }
 function dataItem( data) {
+iniciarTablaTitulos();
 
 
     $('#id_semillero').val(data[0].id);
@@ -112,10 +132,16 @@ function dataItem( data) {
    var pRpta=data[0].p_estudio;
     cargarSelectPlanRpta(pRpta);
     $('#fecha').val(data[0].fecha_creacion);
+    $('#ubicacion').val(data[0].ubicacion);
+    $('#persona_Id').val(data[0].persona_Id);
+    var rpDocen=data[0].persona_Id;
+    obtenerDatosTitulos(rpDocen)
     $('#nombreD').val(data[0].nombreD);
     $('#correoD').val(data[0].correoD);
     $('#telefonoD').val(data[0].telefonoD);
     $('#tp_vinculacion').val(data[0].tp_vinculacion);
+    $('#id_docente').val(data[0].id_docente);
+    $('#ubicacionD').val(data[0].ubicacionD);
 //    $('#fecha').val(data.inspector).change();
 
  mostrarModalP();
@@ -654,15 +680,15 @@ function construirSelectLinea_inv(li_inv) {
 
 //<editor-fold defaultstate="collapsed" desc="Select Areas">
 function cargarSelectArea() {
-
+  
     fetch("../../back/controller/AreaController_List.php", {
-            method: "GET",
+                 method: "GET",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                 Plataform: "web",
+//                Authorization: JSON.parse(Utilitario2.getLocal("user")).token,
+                Plataform: "web",
             },
-//            body: JSON.stringify(facultades),
         })
         .then(function(response) {
             if (response.ok) {
@@ -671,7 +697,7 @@ function cargarSelectArea() {
             throw response;
         })
         .then(function(data) {
-            construirSelectArea(data.area);
+            construirSelectArea(data.areaS);
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -961,7 +987,7 @@ function obtenerDatosS(semi) {
             throw response;
         })
         .then(function(data) {
-            console.log(data.linea_sem)
+          
              listadoLi(data.linea_sem);
         })
         .catch(function(promise) {
@@ -989,6 +1015,7 @@ function obtenerDatosS(semi) {
         });
 };
 
+
 function listadoLi(linea_sem) {
 
     let tabla = $("#listadoTablal").DataTable();
@@ -1000,7 +1027,7 @@ function listadoLi(linea_sem) {
 
 
 function registrarLn() {
-let sem_id_aux=$('#id_semillero').val();
+
     let ordenes = {
         id_semillero: $('#id_semillero').val(),
         ln: $('#lineas_investigacion').val(),
@@ -1027,7 +1054,7 @@ let sem_id_aux=$('#id_semillero').val();
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            obtenerDatosS(sem_id_aux);
+            obtenerDatosS(sem_id);
             cerrarModalLineas();
         })
         .catch(function(promise) {
@@ -1172,9 +1199,9 @@ function ActualizarData() {
         })
         .then(function(data) {
 
-            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            obtenerDatos();
-            ocultarModalOrdenes();
+            Mensaje.mostrarMsjExito("Datos Actualizados", data.mensaje);
+//            obtenerDatos();
+//            ocultarModalOrdenes();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1202,32 +1229,27 @@ function ActualizarData() {
 
 }
 
-function registrarOrder() {
+function ActualizarDataDocente() {
 
-    let ordenes = {
-        nombre: $('#nombre_order').val(),
-        medidor: $('#medidor').val(),
-        codigo: $('#codigo').val(),
-        municipio: $('#municipio').val(),
-        barrio: $('#barrio').val(),
-        direccion: $('#direccion').val(),
-        telefono: $('#phone').val(),
-        ruta: $('#ruta').val(),
-        estado: "2",
-        nominspector: $("#inspectores option:selected").text(),
-        inspector: $('#inspectores').val(),
+     let semillero = {
+        persona_Id: $('#persona_Id').val(),
+        nombreD: $('#nombreD').val(),
+        telefonoD: $('#telefonoD').val(),
+        correoD: $('#correoD').val(),
+        ubicacionD: $('#ubicacionD').val(),
+        tp_vinculacion: $('#tp_vinculacion').val(),
+
     };
-
     Utilitario.agregarMascara();
-    fetch("../../back/controller/OrdenesController_insert.php", {
+    fetch("../../back/controller/DocenteController_Semillero_Update.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                
                 Plataform: "web",
             },
-            body: JSON.stringify(ordenes),
+            body: JSON.stringify(semillero),
         })
         .then(function(response) {
             if (response.ok) {
@@ -1236,10 +1258,10 @@ function registrarOrder() {
             throw response;
         })
         .then(function(data) {
-
-            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            obtenerDatos();
-            ocultarModalOrdenes();
+                console.log(data.mensaje);
+            Mensaje.mostrarMsjExito("Datos Actualizados", data.mensaje);
+//            obtenerDatos();
+//            ocultarModalOrdenes();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1270,14 +1292,28 @@ function registrarOrder() {
 
 
 function DeleteOrder(id,data) {
-
-    Mensaje.mostrarMsjConfirmacion(
-        'Eliminar Orden',
-        'Este proceso es irreversible , ¿esta seguro que desea eliminar la Linea de Investigacion?',
-        function() {
-            eliminarLn(id,data);
-        }
-    );
+    
+    
+ swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+    }, function () {
+          eliminarLn(id,data);
+        swal("Deleted!", "Your imaginary file has been deleted.", "success");
+    });
+  
+//    Mensaje.mostrarMsjConfirmacionBorrar(
+//        'Eliminar Orden',
+//        'Este proceso es irreversible , ¿esta seguro que desea eliminar este Registro?',
+//        function() {
+//            eliminarLn(id,data);
+//        }
+//    );
 }
 
 
@@ -1286,7 +1322,8 @@ function DeleteOrder(id,data) {
  * Método que se encarga de eliminar el estudiante de todas la bd
  */
 function eliminarLn(id,datos) {
-let varSem=datos.semillero_id;
+    alert(id);
+   
     let data = {
         id: id,
 
@@ -1310,11 +1347,12 @@ let varSem=datos.semillero_id;
             throw response;
         })
         .then(function(data) {
-
+           
+    
             Mensaje.mostrarMsjExito("Borrado Exitoso", data.mensaje);
 
 //            ocultarModalOrdenes()();
-                obtenerDatosS(varSem);
+                obtenerDatosS(varSemi);
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1345,3 +1383,279 @@ let varSem=datos.semillero_id;
 
 
 //</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc="Titulos Docentes">
+
+function iniciarTablaTitulos() {
+
+    //tabla de alumnos
+    $("#listadoTablaTitulos").DataTable({
+        responsive: false,
+        ordering: false,
+        paging: false,
+        searching: false,
+        info: false,
+        lengthChange: false,
+        language: {
+            emptyTable: "Sin Ordenes...",
+            search: "Buscar:",
+            info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
+            infoEmpty: "Ningun registro 0 de 0",
+            infoFiltered: "(filtro de _MAX_ registros en total)",
+            paginate: {
+                first: "Primero",
+                previous: "Anterior",
+                next: "Siguiente",
+                last: "Ultimo"
+            }
+        },
+        columns: [
+            {
+                data: "descripcion",
+                className: "text-center",
+                orderable: false,
+            },
+            {
+                data: "universidad",
+                className: "text-center",
+                orderable: false,
+            },
+
+                     
+            {
+                orderable: false,
+                defaultContent: [
+                    "<div class='text-center'>",
+                  
+                    "<a class='personalizado eliminar' title='eliminar'><i class='fa fa-trash'></i></a>",
+                    "</div>",
+                ].join(""),
+            },
+        ],
+        rowCallback: function(row, data, index) {
+            var id_order = data.id
+
+         
+            $(".eliminar", row).click(function() {
+                DeleteTitulo(id_order);
+            });
+        },
+   
+    });
+
+}
+
+//----------------------------------CRUD----------------------------------
+/**
+ * @method obtenerDatos
+ * Método que se encarga de consumir el servicio que devuelve la data para la tabla de alumnos.
+ */
+
+
+function obtenerDatosTitulos(semi) {
+  
+      let lista_sem = {
+        id_docente: semi,
+      };
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/TitulosController_List_docente.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                //                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                Plataform: "web",
+            },
+               body: JSON.stringify(lista_sem),
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+          console.log("datos de titulos",data.titulos);
+             listadoTitulos(data.titulos);
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+//                Mensaje.mostrarMsjError(
+//                    "Error",
+//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+//                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+};
+
+
+function listadoTitulos(titulos) {
+
+    let tabla = $("#listadoTablaTitulos").DataTable();
+    tabla.data().clear();
+    tabla.rows.add(titulos).order( [ 0, 'asc' ] ).draw();
+}
+
+
+
+function DeleteTitulo(id) {
+
+ swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+    }, function () {
+          eliminarTitulos(id);
+        swal("Deleted!", "Your imaginary file has been deleted.", "success");
+    });
+
+
+//    Mensaje.mostrarMsjConfirmacionBorrar(
+//        'Eliminar Registro',
+//        'Este proceso es irreversible , ¿esta seguro que desea eliminar este Registro?',
+//        function() {
+//            eliminarTitulos(id);
+//        }
+//    );
+}
+
+function eliminarTitulos(id) {
+
+    let data = {
+        id: id,
+
+    };
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/TitulosController_Delete_Docente.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                Plataform: "web",
+            },
+
+            body: JSON.stringify(data),
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+
+            Mensaje.mostrarMsjExito("Borrado Exitoso", data.mensaje);
+
+//            ocultarModalOrdenes()();
+                obtenerDatosTitulos(p_idPersona);
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+
+}
+
+
+function registrarTitulos() {
+   
+   let  id_auxDoc=$('#persona_id').val();
+   
+     alert(id_auxDoc);
+    let ordenes = {
+        descripcionD: $('#descripcionD').val(),
+        universidad: $('#universidad').val(),
+        id_docente: $('#id_docente').val(),
+       
+    };
+
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/TitulosController_Insert_Docente.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+             
+                Plataform: "web",
+            },
+            body: JSON.stringify(ordenes),
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+
+            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
+               
+                obtenerDatosTitulos(p_idPersona);
+                cerrarModalTitulos();
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+
+}
+
+//</editor-fold  id_docente>

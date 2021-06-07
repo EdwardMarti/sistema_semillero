@@ -87,17 +87,19 @@ public function insert($estudiante){
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function update($estudiante){
-      $id=$estudiante->getId();
-$codigo=$estudiante->getCodigo();
-$semestre=$estudiante->getSemestre();
-$programa_academico=$estudiante->getPrograma_academico();
-$persona_id=$estudiante->getPersona_id()->getId();
-$num_documento=$estudiante->getNum_documento();
-$tipo_docuemnto_id=$estudiante->getTipo_docuemnto_id()->getId();
+    $id=$estudiante->getId();
+    $codigo=$estudiante->getCodigo();
+    $semestre=$estudiante->getSemestre();
+    $programa_academico=$estudiante->getPrograma_academico();
+    $num_documento=$estudiante->getNum_documento();
+    $tipo_docuemnto_id=$estudiante->getTipo_docuemnto_id()->getId();
 
+  
       try {
-          $sql= "UPDATE `estudiante` SET`id`='$id' ,`codigo`='$codigo' ,`semestre`='$semestre' ,`programa_academico`='$programa_academico' ,`persona_id`='$persona_id' ,`num_documento`='$num_documento' ,`tipo_docuemnto_id`='$tipo_docuemnto_id' WHERE `id`='$id' ";
-         return $this->insertarConsulta($sql);
+          $sql= "UPDATE `estudiante` SET `id`='$id' ,`codigo`='$codigo' ,`semestre`='$semestre' ,
+          `programa_academico`='$programa_academico' ,
+          `num_documento`='$num_documento' ,`tipo_docuemnto_id`='$tipo_docuemnto_id' WHERE `id`='$id' ";
+         return $this->updateConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       }
@@ -202,6 +204,15 @@ $tipo_docuemnto_id=$estudiante->getTipo_docuemnto_id()->getId();
           $data = $sentencia->fetchAll();
           $sentencia = null;
           return $data;
+    }
+      
+    public function updateConsulta($sql)
+    {
+        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sentencia = $this->cn->prepare($sql);
+        $sentencia->execute();
+        $sentencia = null;
+        return true;
     }
     /**
      * Cierra la conexión actual a la base de datos

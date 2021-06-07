@@ -90,6 +90,16 @@ class PersonaFacade {
      $personaDao->update($persona);
      $personaDao->close();
   }
+  
+  public static function update2($id, $nombre, $telefono, $correo){
+
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $personaDao =$FactoryDao->getpersonaDao(self::getDataBaseDefault());
+    $result =  $personaDao->update2($id, $nombre, $telefono, $correo);
+     $personaDao->close();
+     return $result ;
+  }
 
   /**
    * Elimina un objeto Persona de la base de datos a partir de su(s) llave(s) primaria(s).

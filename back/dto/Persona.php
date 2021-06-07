@@ -15,6 +15,7 @@ class Persona {
   private $telefono;
   private $correo;
   private $perfiles_id;
+  private $id_aux;
 
     /**
      * Constructor de Persona
@@ -36,7 +37,15 @@ class Persona {
   public function setId($id){
       $this->id = $id;
   }
-    /**
+  function getId_aux() {
+      return $this->id_aux;
+  }
+
+  function setId_aux($id_aux) {
+      $this->id_aux = $id_aux;
+  }
+
+      /**
      * Devuelve el valor correspondiente a nombre
      * @return nombre
      */

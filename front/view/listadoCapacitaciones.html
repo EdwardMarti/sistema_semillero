@@ -1,0 +1,126 @@
+
+
+
+ <div class="modal inmodal fade" id="myModalProyectos_e" tabindex="-1" role="dialog"  aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">Modal title</h4>
+                                            <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="ibox-content">
+                                                <form role="form" id="ProyectosInsert">
+
+                                                    <div style="display: none" class="form-group">
+                                                        <label for="Inputid">id</label>
+                                                        <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="Inputtitulo">titulo</label>
+                                                                <input type="text" name="titulo" class="form-control" id="Inputtitulo" placeholder="titulo">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Inputinvestigador">investigador</label>
+                                                                <input type="text" name="investigador" class="form-control" id="Inputinvestigador" placeholder="investigador">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Inputtipo_proyecto_id">tipo_proyecto_id</label>
+                                                                <input type="text" name="tipo_proyecto_id" class="form-control" id="Inputtipo_proyecto_id" placeholder="tipo_proyecto_id">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Inputtiempo_ejecucion">tiempo_ejecucion</label>
+                                                                <input type="text" name="tiempo_ejecucion" class="form-control" id="Inputtiempo_ejecucion" placeholder="tiempo_ejecucion">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Inputfecha_ini">fecha_ini</label>
+                                                                <input type="text" name="fecha_ini" class="form-control" id="Inputfecha_ini" placeholder="fecha_ini">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Inputproducto">producto</label>
+                                                                <input type="text" name="producto" class="form-control" id="Inputproducto" placeholder="producto">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="Inputresumen">resumen</label>
+                                                                <input type="text" name="resumen" class="form-control" id="Inputresumen" placeholder="resumen">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Inputobj_general">obj_general</label>
+                                                                <input type="text" name="obj_general" class="form-control" id="Inputobj_general" placeholder="obj_general">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Inputobj_esÃÂ©cifico">obj_esÃÂ©cifico</label>
+                                                                <input type="text" name="obj_esÃÂ©cifico" class="form-control" id="Inputobj_esÃÂ©cifico" placeholder="obj_esÃÂ©cifico">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Inputresultados">resultados</label>
+                                                                <input type="text" name="resultados" class="form-control" id="Inputresultados" placeholder="resultados">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="Inputcosto_valor">costo_valor</label>
+                                                                <input type="text" name="costo_valor" class="form-control" id="Inputcosto_valor" placeholder="costo_valor">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="Inputsemillero_id">semillero_id</label>
+                                                                <input type="text" name="semillero_id" class="form-control" id="Inputsemillero_id" placeholder="semillero_id">
+                                                            </div>
+                                                        </div>
+                                                    </div>                                    
+
+
+
+                                                </form>
+                                            </div>
+                                        </div>
+       
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-white" onclick="cerrarModalProyectos_e()">Close</button>
+                                            <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdateOrder()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarOrder()">Registrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+<!-- Tabla de Usuarios -->
+<div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title row">
+                    <h5 class="text-white col">Listado Capacitaciones</h5>
+                    <h5 class="label label-successE"> <a onclick="mostrarModalProyectos_e()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                    <h5 class="label label-successE"> <a  data-toggle="modal" data-target="#ModalLoadData" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ LoadXls</a></h5>
+                </div>
+                <div class="ibox-content">
+                    <div class='table mt-4 mb-4'><br>
+                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoOrdenesTabla' style='width: 100%'>
+                            <thead>
+                                <tr class="ufps-tabl">
+                                  
+                                    <th>TITULO CAPACITACION</th>
+                                    <th>DOCENTE</th>
+                                    <th>FECHA CAPACITACION</th>
+                                    <th>N° DE ESTUDIANTES CAPACITADOS</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Tabla de Usuarios -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+<script type="text/javascript" src="../js/proyectos/proyectos_e.js"></script>

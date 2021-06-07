@@ -37,9 +37,9 @@ class TitulosFacade {
    * @param universidad_id
    * @param docente_id
    */
-  public static function insert( $id,  $descripcion,  $universidad_id,  $docente_id){
+  public static function insert(   $descripcion,  $universidad_id,  $docente_id){
       $titulos = new Titulos();
-      $titulos->setId($id); 
+//      $titulos->setId($id); 
       $titulos->setDescripcion($descripcion); 
       $titulos->setUniversidad_id($universidad_id); 
       $titulos->setDocente_id($docente_id); 
@@ -112,6 +112,13 @@ class TitulosFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $titulosDao =$FactoryDao->gettitulosDao(self::getDataBaseDefault());
      $result = $titulosDao->listAll();
+     $titulosDao->close();
+     return $result;
+  }
+  public static function listAll_Docente($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $titulosDao =$FactoryDao->gettitulosDao(self::getDataBaseDefault());
+     $result = $titulosDao->listAll_Docente($id);
      $titulosDao->close();
      return $result;
   }

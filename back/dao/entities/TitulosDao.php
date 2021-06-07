@@ -29,14 +29,14 @@ private $cn;
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($titulos){
-      $id=$titulos->getId();
+//      $id=$titulos->getId();
 $descripcion=$titulos->getDescripcion();
 $universidad_id=$titulos->getUniversidad_id();
 $docente_id=$titulos->getDocente_id()->getId();
 
       try {
-          $sql= "INSERT INTO `titulos`( `id`, `descripcion`, `universidad_id`, `docente_id`)"
-          ."VALUES ('$id','$descripcion','$universidad_id','$docente_id')";
+          $sql= "INSERT INTO `titulos`(  `descripcion`, `universidad`, `docente_id`)"
+          ."VALUES ('$descripcion','$universidad_id','$docente_id')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -126,6 +126,30 @@ $docente_id=$titulos->getDocente_id()->getId();
           $titulos->setId($data[$i]['id']);
           $titulos->setDescripcion($data[$i]['descripcion']);
           $titulos->setUniversidad_id($data[$i]['universidad_id']);
+           $docente = new Docente();
+           $docente->setId($data[$i]['docente_id']);
+           $titulos->setDocente_id($docente);
+
+          array_push($lista,$titulos);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  public function listAll_Docente($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `titulos`.`id`, `titulos`.`descripcion`, `titulos`.`universidad`, persona.id as persona_id , `docente_id` FROM `titulos`  INNER JOIN docente  ON docente.id=titulos.docente_id  INNER JOIN persona  ON persona.id=docente.persona_id WHERE `persona_id` = '$id' ";
+ 
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $titulos= new Titulos();
+          $titulos->setId($data[$i]['id']);
+          $titulos->setDescripcion($data[$i]['descripcion']);
+          $titulos->setUniversidad_id($data[$i]['universidad']);
            $docente = new Docente();
            $docente->setId($data[$i]['docente_id']);
            $titulos->setDocente_id($docente);
