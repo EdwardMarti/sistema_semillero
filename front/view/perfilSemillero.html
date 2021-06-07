@@ -78,7 +78,12 @@
                                   </select>
 
                               </div>
-                      
+                          <div class="form-group">
+
+                        <label for="formGroupExampleInput">Ubicacion </label>
+                        <input type="text" style="background: white;" class="form-control" name="ubicacion" id="ubicacion"  required>
+
+                    </div>
                                     <div class="modal-footer">
 
                               <h5 class="label label-successE"> <a onclick="ActualizarData()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">Actualizar</a></h5>
@@ -89,6 +94,7 @@
       </div>
     </div>
   </div>
+    
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h5 class="mb-0">
@@ -137,45 +143,112 @@
       </h5>
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+            <form role="form" >
+            <div class="row">
+
+                <div class="col-6">
+ <!--style="display: none"-->
+                    <div class="form-group">
+
+                        <label for="formGroupExampleInput">persona_Id </label>
+                        <input type="text" style="background: white;" class="form-control" name="persona_Id" id="persona_Id"  required>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="formGroupExampleInput">Nombre </label>
+                        <input type="text" style="background: white;" class="form-control" name="nombreD" id="nombreD"  required>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="formGroupExampleInput">Telefono </label>
+                        <input type="text" style="background: white;" class="form-control" name="telefonoD" id="telefonoD"  required>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="formGroupExampleInput">Ubicacion </label>
+                        <input type="text" style="background: white;" class="form-control" name="ubicacionD" id="ubicacionD"  required>
+
+                    </div>
+                    <div class="form-group" style="display: none">
+
+                        <label for="formGroupExampleInput">id_docente </label>
+                        <input type="text" style="background: white;" class="form-control" name="id_docente" id="id_docente"  required>
+
+                    </div>
+                </div>    
+                <div class="col-6">
+
+                    <div class="form-group">
+
+                        <label for="formGroupExampleInput">Correo </label>
+                        <input type="text" style="background: white;" class="form-control" name="correoD" id="correoD"  required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Tipo Vinculacion</label>
+                        <select class="form-control" name="tp_vinculacion" id="tp_vinculacion" >
+                            <option value="-1">SELECCIONE</option>
+
+                        </select>
+
+                    </div>
+                         <div class="modal-footer">
+
+                <h5 class="label label-successE"> <a onclick="ActualizarDataDocente()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">Actualizar</a></h5>
+            </div>
+                </div>   
+              
+            </div>
+       </form>
+        </div>
+    </div>
+  </div>
+    
+    
+     <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            <b>* Titulos Obtenidos </b> 
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
       <div class="card-body">
-           <div class="row">
-                         
-                          <div class="col-6">
-                               
-                              <div class="form-group">
-                                   
-                                  <label for="formGroupExampleInput">Nombre </label>
-                                       <input type="text" style="background: white;" class="form-control" name="nombreD" id="nombreD"  required>
-                                  
-                              </div>
-                              <div class="form-group">
-                                   
-                                  <label for="formGroupExampleInput">Telefono </label>
-                                       <input type="text" style="background: white;" class="form-control" name="telefonoD" id="telefonoD"  required>
-                                  
-                              </div>
-                      </div>    
-                          <div class="col-6">
-                               
-                              <div class="form-group">
-                                   
-                                  <label for="formGroupExampleInput">Correo </label>
-                                       <input type="text" style="background: white;" class="form-control" name="correoD" id="correoD"  required>
-                                  
-                              </div>
-                                   <div class="form-group">
-                                  <label for="formGroupExampleInput">Tipo Vinculacion</label>
-                                  <select class="form-control" name="tp_vinculacion" id="tp_vinculacion" >
-                                      <option value="-1">SELECCIONE</option>
+           <div class="col-lg-12">
+            <div class="ibox ">
+             
+                    <div class="col-lg-12">
+            <div class="ibox ">
+               <div class="modal-footer">
 
-                                  </select>
-
-                              </div>
-                      </div>    
-                  </div>
+                              <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                            </div>
+                      <div class='table mt-4 mb-4'>
+                                              <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaTitulos' >
+                            <thead>
+                                <tr class="ufps-tabl">
+                                   
+                                    <th>DESCRIPCION</th>
+                                    <th>UNIVERSIDAD</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>       
+                    </div>       
+                    </div>  
+              
+            </div>
+        </div>
       </div>
     </div>
   </div>
+    
 </div>
 
 </div>
@@ -222,7 +295,7 @@
                            <select class="form-control" name="disciplina" id="disciplina" onchange="cargarSelectLineas(this.value)" >
                                   <option value="-1">SELECCIONE</option>
                            </select>
-                   
+                      </div>
                       <div class="form-group">
                           <label for="Inputdescripcion">Linea de Investigacion</label>
                           <select class="form-control" name="lineas_investigacion" id="lineas_investigacion" >
@@ -231,7 +304,7 @@
 
                                   </select>
               
-                   
+                      </div>
                        
                    </form>
             </div>
@@ -245,6 +318,42 @@
         </div>
     </div>
 </div>
+
+
+<div class="modal inmodal" id="ModalTitulos" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <form role="form" >
+                  <div class="form-group">
+
+                        <label for="formGroupExampleInput">Descripcion </label>
+                        <input type="text" style="background: white;" class="form-control" name="descripcionD" id="descripcionD"  required>
+
+                    </div>
+                  <div class="form-group">
+
+                        <label for="formGroupExampleInput">Universidad </label>
+                        <input type="text" style="background: white;" class="form-control" name="universidad" id="universidad"  required>
+
+                    </div>
+                  
+            </form>
+            </div>
+            <div class="modal-footer">
+               
+                <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarTitulos()">Registrar</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+
+            </div>
+         
+        </div>
+    </div>
+</div>
+
 
 
 

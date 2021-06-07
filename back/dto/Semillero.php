@@ -21,6 +21,7 @@ class Semillero {
   private $unidad_academica;
   private $facultad;
   private $plan_estudio;
+  private $ubicacion;
 
     /**
      * Constructor de Semillero
@@ -62,7 +63,15 @@ class Semillero {
       return $this->facultad;
   }
 
-  function getPlan_estudio() {
+  function getUbicacion() {
+      return $this->ubicacion;
+  }
+
+  function setUbicacion($ubicacion) {
+      $this->ubicacion = $ubicacion;
+  }
+
+    function getPlan_estudio() {
       return $this->plan_estudio;
   }
 

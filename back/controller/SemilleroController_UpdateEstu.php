@@ -36,9 +36,8 @@ $persona->setId($Persona_id);
 $tipo_doc_obnject = new Tipo_docuemnto();
 $tipo_doc_obnject->setId($estu_tipo_docuemnto_id);
 $estudiante = EstudianteFacade::update($estu_id, $estu_codigo,  $estu_semestre,  $estu_programa_academico,  $persona,  $estu_num_documento,  $tipo_doc_obnject);
-
 try {
-        if ($estudiante > 0) {
+        if ($estudiante) {
                 http_response_code(200);
                 echo "{\"mensaje\":\"Se ha actualizado exitosamente\"}";
         }

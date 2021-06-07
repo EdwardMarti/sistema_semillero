@@ -104,6 +104,21 @@ class Mensaje {
      * @param {String}    msg       Mensaje del panel.
      * @param {Function}  funcion   Función a ejecutar si se confirma el panel.
      */
+    static mostrarMsjConfirmacionBorrar(titulo, msg, funcion) {
+        swal({
+                title: titulo,
+                text: msg,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#dd4b39",
+                cancelButtonColor: "#dd4b39",
+                confirmButtonText: "Aceptar",
+                cancelButtonText: "Cancelar",
+            },
+            function() {
+                funcion();
+            });
+    }
     static mostrarMsjConfirmacion(titulo, msg, funcion) {
         swal({
                 title: titulo,

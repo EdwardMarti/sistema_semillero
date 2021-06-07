@@ -97,6 +97,17 @@ $ubicacion=$docente->getUbicacion();
           throw new Exception('Primary key is null');
       }
   }
+  
+  public function update2($persona_id,  $tipo_vinculacion_id, $ubicacion){
+
+
+      try {
+          $sql= "UPDATE `docente` SET  `tipo_vinculacion_id`='$tipo_vinculacion_id' ,`ubicacion`='$ubicacion' WHERE `persona_id`='$persona_id' ";
+           return $this->updateConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
 
     /**
      * Elimina un objeto Docente en la base de datos.
@@ -195,6 +206,16 @@ on docente.tipo_vinculacion_id=tp.id`"
           $data = $sentencia->fetchAll();
           $sentencia = null;
           return $data;
+    }
+    
+        public function updateConsulta($sql)
+    {
+        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sentencia = $this->cn->prepare($sql);
+        $sentencia->execute();
+        $rta = $sentencia->rowCount();
+        $sentencia = null;
+        return $rta;
     }
     /**
      * Cierra la conexión actual a la base de datos

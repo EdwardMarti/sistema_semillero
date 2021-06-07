@@ -94,6 +94,18 @@ $perfiles_id=$persona->getPerfiles_id()->getId();
           throw new Exception('Primary key is null');
       }
   }
+  
+  
+  public function update2($id, $nombre, $telefono, $correo){
+
+
+      try {
+          $sql= "UPDATE `persona` SET `nombre`='$nombre' ,`telefono`='$telefono' ,`correo`='$correo'  WHERE `id`='$id' ";
+         return $this->updateConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
 
     /**
      * Elimina un objeto Persona en la base de datos.
@@ -157,6 +169,16 @@ $perfiles_id=$persona->getPerfiles_id()->getId();
           $data = $sentencia->fetchAll();
           $sentencia = null;
           return $data;
+    }
+    
+       public function updateConsulta($sql)
+    {
+        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sentencia = $this->cn->prepare($sql);
+        $sentencia->execute();
+        $rta = $sentencia->rowCount();
+        $sentencia = null;
+        return $rta;
     }
     /**
      * Cierra la conexión actual a la base de datos

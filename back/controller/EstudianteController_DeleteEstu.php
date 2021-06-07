@@ -13,15 +13,15 @@ $estu_id = strip_tags($dataObject->id);
 $persona_id = strip_tags($dataObject->persona_id_id);
 
 $list=EstudianteFacade::delete($estu_id);
-$list=PersonaFacade::delete($persona_id);
 $list_pares=Persona_has_semilleroFacade::deletecustom($estu_id,$persona_id);
+// $list=PersonaFacade::delete($persona_id);
 
 if ($list == "") {
    http_response_code(400);
    echo "{\"mensaje\":\"Complete todos los campos\"}";
 } else {
    try {
-       if ($list == 0) {
+       if ($list) {
            http_response_code(200);
            echo "{\"mensaje\":\"Se ha eliminado exitosamente\"}";
        }

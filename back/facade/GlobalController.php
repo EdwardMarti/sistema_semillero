@@ -16,5 +16,6 @@
    * Para su comodidad, defina aquÃ­ el nombre de base de datos predilecto para su proyecto
    */    
     define("DEFAULT_DBNAME", "semillero");
+//    define("DEFAULT_DBNAME", "nortcodingdemos_sistema");
 
 //That`s all folks!

@@ -15,6 +15,7 @@ class Docente {
   private $password;
   private $tipo_vinculacion_id;
   private $ubicacion;
+  private $titulos;
 
     /**
      * Constructor de Docente

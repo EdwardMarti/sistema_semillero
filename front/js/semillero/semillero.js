@@ -101,12 +101,14 @@ function iniciarTablaEstudiantes() {
         ],
         rowCallback: function(row, data, index) {
             var id_order = data.id
+            var persona_id_id = data.persona_id_id
+
 
             $(".actualizarestu", row).click(function() {
                 gestionarEstu(id_order, data, index);
             });
             $(".eliminarestu", row).click(function() {
-                DeleteEstu(id_order, index);
+                DeleteEstu(id_order, index, persona_id_id);
             });
         },
         dom: '<"html5buttons"B>lTfgitp',
@@ -229,12 +231,13 @@ function iniciarTablaPares() {
         ],
         rowCallback: function(row, data, index) {
             var id_order = data.id
+            var persona_id_id = data.persona_id_id
 
             $(".actualizarpares", row).click(function() {
                 gestionarPares(id_order, data, index);
             });
             $(".eliminarpares", row).click(function() {
-                DeleteOrder(id_order, index);
+                DeletePares(id_order, index, persona_id_id);
             });
         },
         dom: '<"html5buttons"B>lTfgitp',
@@ -730,12 +733,22 @@ function registrarOrder() {
 
 
 
-function DeleteEstu(id, index) {
+function DeleteEstu(id, index, persona_id_id) {
     Mensaje.mostrarMsjConfirmacion(
         'Eliminar Estudiante',
         'Este proceso es irreversible , ¿esta seguro que desea eliminar el Estudiante?',
         function() {
-            eliminarEstu(id, index);
+            eliminarEstu(id, index, persona_id_id);
+        }
+    );
+}
+
+function DeletePares(id, index, persona_id_id) {
+    Mensaje.mostrarMsjConfirmacion(
+        'Eliminar Par Academico',
+        'Este proceso es irreversible , ¿esta seguro que desea eliminar el Par Academico?',
+        function() {
+            eliminarPares(id, index, persona_id_id);
         }
     );
 }
@@ -1439,16 +1452,16 @@ function UpdatePares() {
  * @method eliminarEstu
  * Método que se encarga de eliminar el estudiante de todas la bd
  */
-function eliminarEstu(id, index) {
+function eliminarEstu(id, index, persona_id_id) {
 
-    let data = { id: id };
+    let data = { id: id, persona_id_id: persona_id_id };
     Utilitario.agregarMascara();
     fetch("../../back/controller/EstudianteController_DeleteEstu.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                // Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
 
@@ -1503,7 +1516,7 @@ function eliminarPares(id, index, persona_id_id) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                // Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
 
@@ -1544,4 +1557,12 @@ function eliminarPares(id, index, persona_id_id) {
             Utilitario.quitarMascara();
         });
 
+}
+
+function cerrarModalEstu() {
+    $('#myModalEstudiantes').modal('hide');
+}
+
+function cerrarModalPares() {
+    $('#myModalPares').modal('hide');
 }

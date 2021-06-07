@@ -18,11 +18,11 @@ $JSONData = file_get_contents("php://input");
 $dataObject = json_decode($JSONData);
 
 
-$id = strip_tags($dataObject->id);
+//$id = strip_tags($dataObject->id);
 // \"id\":\"{$Persona_has_semillero->getid()}\",
 //	    \"persona_id_id\":\"{$Persona_has_semillero->getpersona_id()->getid()}\",
 //	    \"semillero_id_id\":\"{$Persona_has_semillero->getsemillero_id()->getid()}\"
-//$id = 2;
+$id = 2;
 
         $list= Persona_has_semilleroFacade::listAll_Semillero($id);
         $rta="";
@@ -39,10 +39,14 @@ $id = strip_tags($dataObject->id);
 	    \"departamento\":\"{$Persona_has_semillero->getsemillero_id()->getunidad_academica()}\",
 	    \"facultad\":\"{$Persona_has_semillero->getsemillero_id()->getFacultad()}\",
 	    \"p_estudio\":\"{$Persona_has_semillero->getsemillero_id()->getPlan_estudio()}\",
+	    \"ubicacion\":\"{$Persona_has_semillero->getsemillero_id()->getUbicacion()}\",
+            \"persona_Id\":\"{$Persona_has_semillero->getpersona_id()->getid()}\",
             \"nombreD\":\"{$Persona_has_semillero->getpersona_id()->getnombre()}\",
 	    \"telefonoD\":\"{$Persona_has_semillero->getpersona_id()->gettelefono()}\",
 	    \"correoD\":\"{$Persona_has_semillero->getpersona_id()->getcorreo()}\",
-	    \"tp_vinculacion\":\"{$Persona_has_semillero->getpersona_id()->getperfiles_id()->getid()}\"
+	    \"id_docente\":\"{$Persona_has_semillero->getpersona_id()->getId_aux()}\",
+	    \"tp_vinculacion\":\"{$Persona_has_semillero->getpersona_id()->getperfiles_id()->getid()}\",
+	    \"ubicacionD\":\"{$Persona_has_semillero->getpersona_id()->getperfiles_id()->getDescripcion()}\"
        
 	       },";
         }
