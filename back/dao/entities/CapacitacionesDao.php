@@ -45,6 +45,17 @@ $objetivo=$capacitaciones->getObjetivo();
           throw new Exception('Primary key is null');
       }
   }
+  
+  public function insertCap($tema,  $docente,  $fecha,  $cant_capacitados,  $semillero_id){
+    
+      try {
+          $sql= "INSERT INTO `capacitaciones`( `tema`, `docente`, `fecha`, `cant_capacitados`, `semillero_id`) VALUES  ('$tema','$docente','$fecha','$cant_capacitados','$semillero_id')";
+    
+          return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
 
     /**
      * Busca un objeto Capacitaciones en la base de datos.
@@ -100,6 +111,23 @@ $objetivo=$capacitaciones->getObjetivo();
           throw new Exception('Primary key is null');
       }
   }
+  
+  public function update2($capacitaciones){
+      $id=$capacitaciones->getId();
+$tema=$capacitaciones->getTema();
+$docente=$capacitaciones->getDocente();
+$fecha=$capacitaciones->getFecha();
+$cant_capacitados=$capacitaciones->getCant_capacitados();
+$semillero_id=$capacitaciones->getSemillero_id()->getId();
+
+
+      try {
+          $sql= "UPDATE `capacitaciones` SET `tema`='$tema' ,`docente`='$docente' ,`fecha`='$fecha' ,`cant_capacitados`='$cant_capacitados' ,`semillero_id`='$semillero_id'  WHERE `id`='$id' ";
+         return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
 
     /**
      * Elimina un objeto Capacitaciones en la base de datos.
@@ -129,6 +157,62 @@ $objetivo=$capacitaciones->getObjetivo();
           $sql ="SELECT `id`, `tema`, `docente`, `fecha`, `cant_capacitados`, `semillero_id`, `objetivo`"
           ."FROM `capacitaciones`"
           ."WHERE 1";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $capacitaciones= new Capacitaciones();
+          $capacitaciones->setId($data[$i]['id']);
+          $capacitaciones->setTema($data[$i]['tema']);
+          $capacitaciones->setDocente($data[$i]['docente']);
+          $capacitaciones->setFecha($data[$i]['fecha']);
+          $capacitaciones->setCant_capacitados($data[$i]['cant_capacitados']);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $capacitaciones->setSemillero_id($semillero);
+          $capacitaciones->setObjetivo($data[$i]['objetivo']);
+
+          array_push($lista,$capacitaciones);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  public function listAll_id($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `tema`, `docente`, `fecha`, `cant_capacitados`, `semillero_id`, `objetivo`"
+          ."FROM `capacitaciones`"
+          ."WHERE `id` = '$id' ";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $capacitaciones= new Capacitaciones();
+          $capacitaciones->setId($data[$i]['id']);
+          $capacitaciones->setTema($data[$i]['tema']);
+          $capacitaciones->setDocente($data[$i]['docente']);
+          $capacitaciones->setFecha($data[$i]['fecha']);
+          $capacitaciones->setCant_capacitados($data[$i]['cant_capacitados']);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $capacitaciones->setSemillero_id($semillero);
+          $capacitaciones->setObjetivo($data[$i]['objetivo']);
+
+          array_push($lista,$capacitaciones);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  public function listAll_id_Semillero($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `tema`, `docente`, `fecha`, `cant_capacitados`, `semillero_id`, `objetivo`"
+          ."FROM `capacitaciones`"
+          ."WHERE `semillero_id` = '$id' ";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $capacitaciones= new Capacitaciones();
