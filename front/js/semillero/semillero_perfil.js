@@ -73,6 +73,7 @@ function cargarInfoSemillero(id_order) {
         id: id_order,
   
     };
+    Utilitario.agregarMascara();
     fetch("../../back/controller/SemilleroController_Perfil_Semillero.php", {
             method: "POST",
             headers: {

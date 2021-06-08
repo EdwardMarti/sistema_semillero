@@ -147,6 +147,24 @@ class Menu {
                 Utilitario.quitarMascara();
             });
     }
+    static listadoCapacitaciones() {
+
+        Utilitario.agregarMascara();
+        fetch("listadoCapacitaciones.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+    
     static listadoActividades() {
 
         Utilitario.agregarMascara();
