@@ -1,0 +1,121 @@
+<div class="modal inmodal fade" id="myModalPonencias" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">Modal title</h4>
+                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.</small>
+            </div>
+            <div class="modal-body">
+                <div class="ibox-content">
+                    <form role="form" id="PonenciasInsert">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group" style="display: none">
+                                    <label for="Inputid">id</label>
+                                    <input type="text" name="id" class="form-control" id="id" placeholder="id" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputnombre_po">Nombre de la Ponencia</label>
+                                    <input type="text" name="nombre_po" class="form-control" id="nombre_po" placeholder="nombre_po">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputfecha">Fecha de la Presentación</label>
+                                    <input type="date" name="fecha" class="form-control" id="fecha" placeholder="fecha">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputnombre_eve">Nombre del Evento</label>
+                                    <input type="text" name="nombre_eve" class="form-control" id="nombre_eve" placeholder="nombre_eve">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputinstitucion">Institución Promotora</label>
+                                    <input type="text" name="institucion" class="form-control" id="institucion" placeholder="institucion">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="Inputciudad">Ciudad donde se Desarrolló</label>
+                                    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="ciudad">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputlugar">Lugar donde se Desarrolló</label>
+                                    <input type="text" name="lugar" class="form-control" id="lugar" placeholder="lugar">
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <label for="Inputtipo_ponencias_id">Tipo/Clase</label>
+
+                                    <select class="form-control" name="tipo_ponencias" id="tipo_ponencias">
+                                        <option value="-1">SELECCIONE</option>
+                                        <option value="1">CONFERENCIA</option>
+                                        <option value="2">CONGRESO</option>
+                                        <option value="3">SIMPOSIO</option>
+                                        <option value="4">SEMINARIO</option>
+                                        <option value="5">COMUNICACION</option>
+                                        <option value="6">OTRO</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" onclick="cerrarModalPonencias()">Close</button>
+                <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="ActualizarDataPo()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarPonencias()">Registrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tabla de Usuarios -->
+<div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title row">
+                    <h5 class="text-white col">Listado Ponencias</h5>
+                    <h5 class="label label-successE"> <a onclick="mostrarModalPonencias()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
+                            Agregar</a></h5>
+
+                </div>
+                <div class="ibox-content">
+                    <div class='table mt-4 mb-4'><br>
+                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoPonenciasTabla' style='width: 100%'>
+                            <thead>
+                                <tr class="ufps-tabl">
+
+                                    <th>NOMBRE</th>
+                                    <th>FECHA</th>
+                                    <th>NOMBRE EVENTO</th>
+                                    <th>INSTITUCION PROMOTORA</th>
+                                    <th>CIUDAD</th>
+                                    <th>LUGAR</th>
+                                    <th>TIPO/CLASE</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Tabla de Usuarios -->
+
+<script type="text/javascript" src="../js/ponencias/ponencias.js"></script>

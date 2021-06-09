@@ -38,14 +38,14 @@ class Solicitud_horasFacade {
    * @param horas_planta
    * @param horas_solicitadas
    */
-  public static function insert( $id,  $anio,  $semestre,  $horas_catedra,  $horas_planta,  $horas_solicitadas){
+  public static function insert( $anio,  $semestre,  $horas_catedra,  $horas_planta,  $horas_solicitadas, $idSemillero){
       $solicitud_horas = new Solicitud_horas();
-      $solicitud_horas->setId($id); 
       $solicitud_horas->setAnio($anio); 
       $solicitud_horas->setSemestre($semestre); 
       $solicitud_horas->setHoras_catedra($horas_catedra); 
       $solicitud_horas->setHoras_planta($horas_planta); 
-      $solicitud_horas->setHoras_solicitadas($horas_solicitadas); 
+      $solicitud_horas->setHoras_solicitadas($horas_solicitadas);
+      $solicitud_horas -> setId_semillero($idSemillero); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $solicitud_horasDao =$FactoryDao->getsolicitud_horasDao(self::getDataBaseDefault());
@@ -91,8 +91,9 @@ class Solicitud_horasFacade {
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $solicitud_horasDao =$FactoryDao->getsolicitud_horasDao(self::getDataBaseDefault());
-     $solicitud_horasDao->update($solicitud_horas);
+     $result = $solicitud_horasDao->update($solicitud_horas);
      $solicitud_horasDao->close();
+     return $result;
   }
 
   /**
@@ -106,8 +107,9 @@ class Solicitud_horasFacade {
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $solicitud_horasDao =$FactoryDao->getsolicitud_horasDao(self::getDataBaseDefault());
-     $solicitud_horasDao->delete($solicitud_horas);
+     $result = $solicitud_horasDao->delete($solicitud_horas);
      $solicitud_horasDao->close();
+     return $result;
   }
 
   /**
@@ -122,7 +124,19 @@ class Solicitud_horasFacade {
      $solicitud_horasDao->close();
      return $result;
   }
-
+  /**
+   * Lista todos los objetos Solicitud_horas pertenecientes a un semillero de la base de datos.
+   * Puede recibir NullPointerException desde los métodos del Dao
+   * @return $result Array con los objetos Solicitud_horas en base de datos o Null
+   */
+  public static function listHorasBySemillero($idSemillero){
+    $FactoryDao=new FactoryDao(self::getGestorDefault());
+    $solicitud_horasDao =$FactoryDao->getsolicitud_horasDao(self::getDataBaseDefault());
+    $result = $solicitud_horasDao->listHorasBySemillero($idSemillero);
+    $solicitud_horasDao->close();
+    return $result;
+ }
+//listHorasBySemillero
 
 }
 //That`s all folks!

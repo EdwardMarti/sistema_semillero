@@ -135,8 +135,9 @@ class CapacitacionesFacade {
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $capacitacionesDao =$FactoryDao->getcapacitacionesDao(self::getDataBaseDefault());
-     $capacitacionesDao->delete($capacitaciones);
+    $result = $capacitacionesDao->delete($capacitaciones);
      $capacitacionesDao->close();
+     return $result ;
   }
 
   /**

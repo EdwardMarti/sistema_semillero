@@ -164,7 +164,7 @@ function construirSelectfalcultades(falcultades) {
 //<editor-fold defaultstate="collapsed" desc="Select Departaentos">
 function cargarSelectDepartamentos(facultad) {
     
-//    alert($facultad);
+
     let facultades = {
         facultad: facultad,
   

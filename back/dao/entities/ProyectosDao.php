@@ -38,15 +38,15 @@ $tiempo_ejecucion=$proyectos->getTiempo_ejecucion();
 $fecha_ini=$proyectos->getFecha_ini();
 $resumen=$proyectos->getResumen();
 $obj_general=$proyectos->getObj_general();
-$obj_esÃÂ©cifico=$proyectos->getObj_esÃÂ©cifico();
+$obj_especifico=$proyectos->getobj_especifico();
 $resultados=$proyectos->getResultados();
 $costo_valor=$proyectos->getCosto_valor();
 $producto=$proyectos->getProducto();
 $semillero_id=$proyectos->getSemillero_id()->getId();
 
       try {
-          $sql= "INSERT INTO `proyectos`( `id`, `titulo`, `investigador`, `tipo_proyecto_id`, `tiempo_ejecucion`, `fecha_ini`, `resumen`, `obj_general`, `obj_esÃÂ©cifico`, `resultados`, `costo_valor`, `producto`, `semillero_id`)"
-          ."VALUES ('$id','$titulo','$investigador','$tipo_proyecto_id','$tiempo_ejecucion','$fecha_ini','$resumen','$obj_general','$obj_esÃÂ©cifico','$resultados','$costo_valor','$producto','$semillero_id')";
+          $sql= "INSERT INTO `proyectos`( `id`, `titulo`, `investigador`, `tipo_proyecto_id`, `tiempo_ejecucion`, `fecha_ini`, `resumen`, `obj_general`, `obj_especifico`, `resultados`, `costo_valor`, `producto`, `semillero_id`)"
+          ."VALUES ('$id','$titulo','$investigador','$tipo_proyecto_id','$tiempo_ejecucion','$fecha_ini','$resumen','$obj_general','$obj_especifico','$resultados','$costo_valor','$producto','$semillero_id')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -63,7 +63,7 @@ $semillero_id=$proyectos->getSemillero_id()->getId();
       $id=$proyectos->getId();
 
       try {
-          $sql= "SELECT `id`, `titulo`, `investigador`, `tipo_proyecto_id`, `tiempo_ejecucion`, `fecha_ini`, `resumen`, `obj_general`, `obj_esÃÂ©cifico`, `resultados`, `costo_valor`, `producto`, `semillero_id`"
+          $sql= "SELECT `id`, `titulo`, `investigador`, `tipo_proyecto_id`, `tiempo_ejecucion`, `fecha_ini`, `resumen`, `obj_general`, `obj_especifico`, `resultados`, `costo_valor`, `producto`, `semillero_id`"
           ."FROM `proyectos`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
@@ -78,7 +78,7 @@ $semillero_id=$proyectos->getSemillero_id()->getId();
           $proyectos->setFecha_ini($data[$i]['fecha_ini']);
           $proyectos->setResumen($data[$i]['resumen']);
           $proyectos->setObj_general($data[$i]['obj_general']);
-          $proyectos->setObj_esÃÂ©cifico($data[$i]['obj_esÃÂ©cifico']);
+          $proyectos->setobj_especifico($data[$i]['obj_especifico']);
           $proyectos->setResultados($data[$i]['resultados']);
           $proyectos->setCosto_valor($data[$i]['costo_valor']);
           $proyectos->setProducto($data[$i]['producto']);
@@ -108,14 +108,14 @@ $tiempo_ejecucion=$proyectos->getTiempo_ejecucion();
 $fecha_ini=$proyectos->getFecha_ini();
 $resumen=$proyectos->getResumen();
 $obj_general=$proyectos->getObj_general();
-$obj_esÃÂ©cifico=$proyectos->getObj_esÃÂ©cifico();
+$obj_especifico=$proyectos->getobj_especifico();
 $resultados=$proyectos->getResultados();
 $costo_valor=$proyectos->getCosto_valor();
 $producto=$proyectos->getProducto();
 $semillero_id=$proyectos->getSemillero_id()->getId();
 
       try {
-          $sql= "UPDATE `proyectos` SET`id`='$id' ,`titulo`='$titulo' ,`investigador`='$investigador' ,`tipo_proyecto_id`='$tipo_proyecto_id' ,`tiempo_ejecucion`='$tiempo_ejecucion' ,`fecha_ini`='$fecha_ini' ,`resumen`='$resumen' ,`obj_general`='$obj_general' ,`obj_esÃÂ©cifico`='$obj_esÃÂ©cifico' ,`resultados`='$resultados' ,`costo_valor`='$costo_valor' ,`producto`='$producto' ,`semillero_id`='$semillero_id' WHERE `id`='$id' ";
+          $sql= "UPDATE `proyectos` SET`id`='$id' ,`titulo`='$titulo' ,`investigador`='$investigador' ,`tipo_proyecto_id`='$tipo_proyecto_id' ,`tiempo_ejecucion`='$tiempo_ejecucion' ,`fecha_ini`='$fecha_ini' ,`resumen`='$resumen' ,`obj_general`='$obj_general' ,`obj_especifico`='$obj_especifico' ,`resultados`='$resultados' ,`costo_valor`='$costo_valor' ,`producto`='$producto' ,`semillero_id`='$semillero_id' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -147,7 +147,7 @@ $semillero_id=$proyectos->getSemillero_id()->getId();
   public function listAll(){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `titulo`, `investigador`, `tipo_proyecto_id`, `tiempo_ejecucion`, `fecha_ini`, `resumen`, `obj_general`, `obj_esÃÂ©cifico`, `resultados`, `costo_valor`, `producto`, `semillero_id`"
+          $sql ="SELECT `id`, `titulo`, `investigador`, `tipo_proyecto_id`, `tiempo_ejecucion`, `fecha_ini`, `resumen`, `obj_general`, `obj_especifico`, `resultados`, `costo_valor`, `producto`, `semillero_id`"
           ."FROM `proyectos`"
           ."WHERE 1";
           $data = $this->ejecutarConsulta($sql);
@@ -163,7 +163,7 @@ $semillero_id=$proyectos->getSemillero_id()->getId();
           $proyectos->setFecha_ini($data[$i]['fecha_ini']);
           $proyectos->setResumen($data[$i]['resumen']);
           $proyectos->setObj_general($data[$i]['obj_general']);
-          $proyectos->setObj_esÃÂ©cifico($data[$i]['obj_esÃÂ©cifico']);
+          $proyectos->setobj_especifico($data[$i]['obj_especifico']);
           $proyectos->setResultados($data[$i]['resultados']);
           $proyectos->setCosto_valor($data[$i]['costo_valor']);
           $proyectos->setProducto($data[$i]['producto']);
@@ -183,30 +183,29 @@ $semillero_id=$proyectos->getSemillero_id()->getId();
   public function listAll_id($id){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `titulo`,  `semillero_id` FROM `proyectos`"
+          $sql =" SELECT `id`, `titulo`, `investigador`, `tipo_proyecto_id`, `tiempo_ejecucion`, `fecha_ini`, `resumen`, `obj_general`, `obj_especifico`, `resultados`, `costo_valor`, `producto`, `semillero_id` FROM `proyectos` "
           ."WHERE  `semillero_id` = '$id' ";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
-              $proyectos= new Proyectos();
-          $proyectos->setId($data[$i]['id']);
-          $proyectos->setTitulo($data[$i]['titulo']);
-          $proyectos->setInvestigador($data[$i]['investigador']);
-           $estado_proyecto = new Estado_proyecto();
-           $estado_proyecto->setId($data[$i]['tipo_proyecto_id']);
-           $proyectos->setTipo_proyecto_id($estado_proyecto);
-          $proyectos->setTiempo_ejecucion($data[$i]['tiempo_ejecucion']);
-          $proyectos->setFecha_ini($data[$i]['fecha_ini']);
-          $proyectos->setResumen($data[$i]['resumen']);
-          $proyectos->setObj_general($data[$i]['obj_general']);
-          $proyectos->setObj_esÃÂ©cifico($data[$i]['obj_esÃÂ©cifico']);
-          $proyectos->setResultados($data[$i]['resultados']);
-          $proyectos->setCosto_valor($data[$i]['costo_valor']);
-          $proyectos->setProducto($data[$i]['producto']);
-           $semillero = new Semillero();
-           $semillero->setId($data[$i]['semillero_id']);
-           $proyectos->setSemillero_id($semillero);
-
-          array_push($lista,$proyectos);
+            $proyectos= new Proyectos();
+            $proyectos->setId($data[$i]['id']);
+            $proyectos->setTitulo($data[$i]['titulo']);
+            $proyectos->setInvestigador($data[$i]['investigador']);
+            $estado_proyecto = new Estado_proyecto();
+            $estado_proyecto->setId($data[$i]['tipo_proyecto_id']);
+            $proyectos->setTipo_proyecto_id($estado_proyecto);
+            $proyectos->setTiempo_ejecucion($data[$i]['tiempo_ejecucion']);
+            $proyectos->setFecha_ini($data[$i]['fecha_ini']);
+            $proyectos->setResumen($data[$i]['resumen']);
+            $proyectos->setObj_general($data[$i]['obj_general']);
+            $proyectos->setobj_especifico($data[$i]['obj_especifico']);
+            $proyectos->setResultados($data[$i]['resultados']);
+            $proyectos->setCosto_valor($data[$i]['costo_valor']);
+            $proyectos->setProducto($data[$i]['producto']);
+            $semillero = new Semillero();
+            $semillero->setId($data[$i]['semillero_id']);
+            $proyectos->setSemillero_id($semillero);
+            array_push($lista,$proyectos);
           }
       return $lista;
       } catch (SQLException $e) {

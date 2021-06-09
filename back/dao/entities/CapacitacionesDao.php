@@ -250,6 +250,16 @@ $semillero_id=$capacitaciones->getSemillero_id()->getId();
           $sentencia = null;
           return $data;
     }
+    
+       public function updateConsulta($sql)
+    {
+        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sentencia = $this->cn->prepare($sql);
+        $sentencia->execute();
+        $rta = $sentencia->rowCount();
+        $sentencia = null;
+        return $rta;
+    }
     /**
      * Cierra la conexión actual a la base de datos
      */

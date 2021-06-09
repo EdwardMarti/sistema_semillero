@@ -1,10 +1,9 @@
 $(document).ready(function() {
-    iniciarTabla();
+    semille='2';
+//    iniciarTabla();
 //    obtenerDatos();
-//    cargarSelectInspector();
 
-//    $("#btnOrderAct").hide();
-//    $("#btnOrderReg").hide();
+cargarSelectLineas(semille);
 });
 
 //----------------------------------TABLA----------------------------------
@@ -284,169 +283,6 @@ function limpiarcampos() {
     $('#inspectores').val('');
 }
 
-//-------------------------------HELPERS INPUTS-------------------------------
-
-function validar_order() {
-    if (($('#nombre_order').val() == '' || $('#nombre_order').val().length < 6) ||
-        ($('#medidor').val() == '' || $('#medidor').val().length < 1) ||
-        ($('#municipio').val() == '' || $('#municipio').val().length < 3) ||
-        ($('#barrio').val() == '' || $('#barrio').val().length <= 3) ||
-        ($('#direccion').val() == '' || $('#direccion').val().length < 3) ||
-        ($('#phone').val() == '' || $('#phone').val().length < 1) ||
-        ($('#inspector').val() == "1" || $('#inspector').val() == null)) {
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-
-/**
- * @method validarNombre
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_order_fields(idinput, size) {
-    let input = $("#" + idinput);
-    if (input.val() == "" || input.val().length < size) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-    }
-    validar_order();
-}
-/**
- * @method validar_medidor_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_medidor_order() {
-    let input = $("#medidor");
-
-    if (input.val() === "" || input.val().length < 1) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-    }
-    validar_order()
-}
-/**
- * @method validar_acta_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_acta_order() {
-    let input = $("#nombre_order");
-
-    if (input.val() === "" || input.val().length < 1) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-/**
- * @method validar_municipio_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_municipio_order() {
-    let input = $("#municipio");
-
-    if (input.val() === "" || input.val().length <= 3) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-/**
- * @method validar_barrio_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_barrio_order() {
-    let input = $("#barrio");
-
-    if (input.val() === "" || input.val().length <= 3) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-/**
- * @method validar_direccion_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_direccion_order() {
-    let input = $("#direccion");
-
-    if (input.val() === "" || input.val().length <= 3) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-/**
- * @method validar_phone_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_phone_order() {
-    let input = $("#phone");
-
-    if (input.val() === "" || input.val().length < 1) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-/**
- * @method validar_inspectores_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_inspectores_order() {
-    let input = $("#inspector");
-
-    if (input.val() === "-1" || $('#inspector').val() == null) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-    }
-    validar_order()
-}
-
-//<editor-fold defaultstate="collapsed" desc="CRUD">
-
 
 function UpdateOrder() {
 
@@ -470,7 +306,7 @@ function UpdateOrder() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
             body: JSON.stringify(order),
@@ -513,20 +349,12 @@ function UpdateOrder() {
 
 }
 
-function registrarOrder() {
+function registrarLineaP() {
 
     let ordenes = {
-        nombre: $('#nombre_order').val(),
-        medidor: $('#medidor').val(),
-        codigo: $('#codigo').val(),
-        municipio: $('#municipio').val(),
-        barrio: $('#barrio').val(),
-        direccion: $('#direccion').val(),
-        telefono: $('#phone').val(),
-        ruta: $('#ruta').val(),
-        estado: "2",
-        nominspector: $("#inspectores option:selected").text(),
-        inspector: $('#inspectores').val(),
+        lineas_investigacion2: $('#lineas_investigacion2').val(),
+        responsable: $('#responsable').val(),
+      
     };
 
     Utilitario.agregarMascara();
@@ -549,8 +377,8 @@ function registrarOrder() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            obtenerDatos();
-            ocultarModalOrdenes();
+//            obtenerDatos();
+//            ocultarModalOrdenes();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -718,66 +546,237 @@ function construirSelectPlan(planes) {
 //</editor-fold>
 
 
-/**
- * @method DeleteOrder
- * Método que se encarga de validar el campo de nombre.
- */
-function loadDataxls() {
-    //Reference the FileUpload element.
-    $('#ModalLoadData').modal('show');
-    var fileUpload = $("#fileUpload")[0];
+//<editor-fold defaultstate="collapsed" desc="Modales">
 
-    //Validate whether File is valid Excel file.
-    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
-    if (regex.test(fileUpload.value.toLowerCase())) {
-        if (typeof(FileReader) != "undefined") {
-            var reader = new FileReader();
 
-            //For Browsers other than IE.
-            if (reader.readAsBinaryString) {
-                reader.onload = function(e) {
-                    ProcessExcel(e.target.result);
-                };
-                reader.readAsBinaryString(fileUpload.files[0]);
-            } else {
-                //For IE Browser.
-                reader.onload = function(e) {
-                    var data = "";
-                    var bytes = new Uint8Array(e.target.result);
-                    for (var i = 0; i < bytes.byteLength; i++) {
-                        data += String.fromCharCode(bytes[i]);
-                    }
-                    ProcessExcel(data);
-                };
-                reader.readAsArrayBuffer(fileUpload.files[0]);
-            }
-        } else {
-            alert("This browser does not support HTML5.");
-        }
-    } else {
-        alert("Please upload a valid Excel file.");
-    }
+function mostrarModalLineas() {
+    
+   $('#ModalLineas').modal({show: true});
+    $("#btnLnReg").show();
+    $("#btnLnAct").hide();
 }
 
-function ProcessExcel(data) {
-    //Read the Excel File data.
-    var workbook = XLSX.read(data, {
-        type: 'binary'
-    });
-    //Fetch the name of First Sheet.
-    var firstSheet = workbook.SheetNames[0];
-    //Read all rows from First Sheet into an JSON array.
-    var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
-    //Add the data rows from Excel file.
-    var db = firebase.firestore();
-    var batch = db.batch();
-    for (var i = 0; i < excelRows.length; i++) {
-        batch.set(db.collection('ordenes').doc(), excelRows[i]);
+/**
+ * @method ocultarModalOrdenes
+ * Método que se encarga de cerrar el modal para registro o actualizacion
+ */
+function cerrarModalLineas() {
+     $('#ModalLineas').modal('hide');
+}
+
+
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc="Select">
+
+//<editor-fold defaultstate="collapsed" desc="Select Areas">
+function cargarSelectArea() {
+  
+    fetch("../../back/controller/AreaController_List.php", {
+                 method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+//                Authorization: JSON.parse(Utilitario2.getLocal("user")).token,
+                Plataform: "web",
+            },
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+            construirSelectArea(data.areaS);
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        });
+}
+
+/**
+ * @method construirSelectNacionalidad
+ * construye y agrega los tipos al contenedor
+ */
+function construirSelectArea(area) {
+       $("#area").empty();
+    let input = $("#area");
+     let opcion = new Option("SELECCIONE", "-1");
+        $(opcion).html("SELECCIONE");
+        input.append(opcion);
+  
+    for (let index = 0; index < area.length; index++) {
+        let areas = area[index],
+            opcion = new Option(areas.descripcion, areas.id);
+        $(opcion).html(areas.descripcion);
+        input.append(opcion);
     }
-    batch.commit().then(function() {
-        return Mensaje.mostrarMsjExito(
-            "¡Exito!",
-            "Ordenes Cargadas!"
-        );
-    });
-};
+
+
+}
+
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc="Select Disciplina">
+function cargarSelectDisciplina(area) {
+ 
+    let disciplina = {
+        id: area,
+  
+    };
+    fetch("../../back/controller/DisciplinaController_ListId.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                 Plataform: "web",
+            },
+            body: JSON.stringify(disciplina),
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+//            console.log(data.disciplina);
+    
+            construirSelectDisciplina(data.disciplina);
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        });
+}
+
+/**
+ * @method construirSelectNacionalidad
+ * construye y agrega los tipos al contenedor
+ */
+function construirSelectDisciplina(disciplina) {
+        $("#disciplina").empty();
+    let input = $("#disciplina");
+     let opcion = new Option("SELECCIONE", "-1");
+        $(opcion).html("SELECCIONE");
+        input.append(opcion);
+
+    for (let index = 0; index < disciplina.length; index++) {
+        let disciplinas = disciplina[index],
+            opcion = new Option(disciplinas.descripcion, disciplinas.id);
+        $(opcion).html(disciplinas.descripcion);
+        input.append(opcion);
+    }
+
+
+}
+
+//</editor-fold>
+
+//<editor-fold defaultstate="collapsed" desc="Select Lineas de Investigacion">
+function cargarSelectLineas(dpto) {
+   
+    let dptos = {
+        id: dpto,
+      };
+    fetch("../../back/controller/Sem_linea_investigacionController_ListId.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                 Plataform: "web",
+            },
+            body: JSON.stringify(dptos),
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+            console.log(data.linea_sem);
+            construirSelectlineas(data.linea_sem);
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+//                Mensaje.mostrarMsjError(
+//                    "Error",
+//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+//                );
+            }
+        });
+}
+
+/**
+ * @method construirSelectNacionalidad
+ * construye y agrega los tipos al contenedor
+ */
+function construirSelectlineas(linea_sem) {
+            $("#lineas_investigacion2").empty();
+    let input = $("#lineas_investigacion2");
+     let opcion = new Option("SELECCIONE", " ");
+        $(opcion).html("SELECCIONE");
+        input.append(opcion);
+    
+  
+    for (let index = 0; index < linea_sem.length; index++) {
+        let li_invs = linea_sem[index],
+            opcion = new Option(li_invs.linea, li_invs.id);
+        $(opcion).html(li_invs.linea);
+        input.append(opcion);
+    }
+
+
+}
+
+//</editor-fold>
+
+
+//</editor-fold>

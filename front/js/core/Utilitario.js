@@ -11,7 +11,7 @@ class Utilitario {
      */
     static cerrarSesion() {
         localStorage.clear();
-        window.location.href = "../login.html";
+        window.location.href = "login.html";
     }
 
     /**
@@ -255,18 +255,18 @@ class Utilitario {
 
     static validForm(recurso) {
         var retorno = false;
-        $.each(recurso, function (index, id) {
+        $.each(recurso, function(index, id) {
             // validar select
-            if ($("#"+id).is('select')  && ( $("#" + id).val() == "" || $("#" + id).val() == "NULL" || $("#" + id).val() == "0" || $("#" + id).val() == "null" || $("#" + id).val() == null ) )  {
+            if ($("#" + id).is('select') && ($("#" + id).val() == "" || $("#" + id).val() == "NULL" || $("#" + id).val() == "0" || $("#" + id).val() == "null" || $("#" + id).val() == null)) {
                 $("#" + id).addClass('field-invalid');
                 Utilitario.validCombobox(id, true);
                 retorno = true;
             } else {
                 // valida el resto de tipos.
-                if(!$("#"+id).is('select') &&  ( $.trim($("#" + id).val()) == ""  || $("#" + id).val() == "0"  || $("#" + id).val() == null ) ){
+                if (!$("#" + id).is('select') && ($.trim($("#" + id).val()) == "" || $("#" + id).val() == "0" || $("#" + id).val() == null)) {
                     $("#" + id).addClass('field-invalid');
                     retorno = true;
-                }else{
+                } else {
                     // todo OK
                     $("#" + id).removeClass('field-invalid');
                     Utilitario.validCombobox(id, false);
@@ -278,7 +278,7 @@ class Utilitario {
     }
 
     static validCombobox(id, bad) {
-        if (typeof ($('#' + id).siblings('span.custom-combobox').find('input').html()) !== 'undefined') {
+        if (typeof($('#' + id).siblings('span.custom-combobox').find('input').html()) !== 'undefined') {
             if (bad) {
                 $('#' + id).siblings('span.custom-combobox').addClass('field-invalid');
             } else {
@@ -299,4 +299,3 @@ function getFormData($form) {
 
     return indexed_array;
 }
-

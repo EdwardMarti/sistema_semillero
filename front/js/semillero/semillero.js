@@ -1,6 +1,7 @@
 $(document).ready(function() {
     iniciarTablaEstudiantes();
     iniciarTablaPares();
+    iniciarTablaProjectos();
     obtenerDatosEstudiantes();
     //    cargarSelectInspector();
     //    ocultarModalOrdenes();
@@ -307,12 +308,16 @@ function obtenerDatosEstudiantes() {
             throw response;
         })
         .then(function(data) {
+
+            $("#semi_id").val(data.semillero.id);
             $("#semi_nombre").val(data.semillero.nombre);
             $("#semi_grupo").val(data.semillero.grupo_investigacion_id_id);
             $("#semi_sigla").val(data.semillero.sigla);
             $("#semi_inv").val(1);
-            listadoEspecialEstudiantes(data.estudiante);
-            listadoEspecialPares(data.pares);
+            if (data.estudiante.length > 0)
+                listadoEspecialEstudiantes(data.estudiante);
+            if (data.pares.length > 0)
+                listadoEspecialPares(data.pares);
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -369,6 +374,22 @@ function listadoEspecialPares(pares) {
     tabla.data().clear();
     tabla.rows.add(pares).draw();
 }
+
+/**
+ * @method listadoEspecialProjectos
+ * Método que se encarga de listar los alumnos a la tabla.
+ *
+ * @param {Object} Projectos Arreglo con los datos de los Projectos.
+ */
+
+
+function listadoEspecialProjectos(Projectos) {
+
+    let tabla = $("#listadoProjectosTabla").DataTable();
+    tabla.data().clear();
+    tabla.rows.add(Projectos).draw();
+}
+
 
 /**
  * @method selectInspectores
@@ -1057,6 +1078,7 @@ async function showModalRegisEstu() {
     if (data_tipo_doc.tipo_doc) {
         construirSelect('estu_tipo_docuemnto_id', data_tipo_doc.tipo_doc)
     }
+    $("#btnEstuAct").hide();
     $('#myModalEstudiantes').modal('show');
 }
 
@@ -1079,15 +1101,17 @@ function construirSelect(id_select, data) {
 
 function registrarEstu() {
     let ordenes = {
+        semi_id: $('#semi_id').val(),
         estu_correo: $('#estu_correo').val(),
         estu_telefono: $('#estu_telefono').val(),
         estu_nombre: $('#estu_nombre').val(),
         estu_codigo: $('#estu_codigo').val(),
         estu_semestre: $('#estu_semestre').val(),
-        estu_programa_academico: $('#estu_programa_academico').val(),
+        estu_programa_academico: $("#estu_programa_academico option:selected").html(),
         estu_tipo_docuemnto_id: $('#estu_tipo_docuemnto_id').val(),
         estu_num_documento: $('#estu_num_documento').val()
     };
+
     if (Utilitario.validForm(['estu_correo', 'estu_telefono', 'estu_nombre', 'estu_codigo', 'estu_semestre', 'estu_programa_academico', 'estu_tipo_docuemnto_id', 'estu_num_documento'])) {
         Mensaje.mostrarMsjError("Error", 'parametros incompletos');
         return false;
@@ -1113,8 +1137,8 @@ function registrarEstu() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            // obtenerDatos();
-            // ocultarModalOrdenes();
+            obtenerDatosEstudiantes();
+            cerrarModalEstu();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1145,6 +1169,7 @@ function registrarEstu() {
 
 function registrarPares() {
     let ordenes = {
+        semi_id: $('#semi_id').val(),
         pares_codigo: $('#pares_codigo').val(),
         pares_nombre: $('#pares_nombre').val(),
         pares_telefono: $('#pares_telefono').val(),
@@ -1154,7 +1179,7 @@ function registrarPares() {
         pares_correo: $('#pares_correo').val(),
     };
 
-    if (Utilitario.validForm(['pares_codigo', 'pares_nombre', 'pares_telefono', 'pares_tipo_docuemnto_id', 'pares_num_documento', 'pares_empresa', 'pares_correo'])) {
+    if (Utilitario.validForm(['pares_nombre', 'pares_telefono', 'pares_tipo_docuemnto_id', 'pares_num_documento', 'pares_empresa', 'pares_correo'])) {
         Mensaje.mostrarMsjError("Error", 'parametros incompletos');
         return false;
     }
@@ -1179,8 +1204,8 @@ function registrarPares() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            // obtenerDatos();
-            // ocultarModalOrdenes();
+            obtenerDatosEstudiantes();
+            cerrarModalPares();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1214,10 +1239,90 @@ async function showModalRegisPares() {
     if (data_tipo_doc.tipo_doc) {
         construirSelect('pares_tipo_docuemnto_id', data_tipo_doc.tipo_doc)
     }
+    $("#btnParesAct").hide();
     $('#myModalPares').modal('show');
 }
 
 
+// function UpdateEstu() {
+//     let estu_index = $('#estu_index').val();
+//     let info_estu = {
+//         estu_id: $('#estu_id').val(),
+//         estu_index: $('#estu_index').val(),
+//         persona_id_id: $('#estu_persona_id_id').val(),
+//         estu_nombre: $('#estu_nombre').val(),
+//         estu_telefono: $('#estu_telefono').val(),
+//         estu_correo: $('#estu_correo').val(),
+//         estu_codigo: $('#estu_codigo').val(),
+//         estu_semestre: $('#estu_semestre').val(),
+//         estu_programa_academico: $("#estu_programa_academico option:selected").html(),
+//         estu_tipo_docuemnto_id: $('#estu_tipo_docuemnto_id').val(),
+//         estu_num_documento: $('#estu_num_documento').val()
+//     };
+
+//     let update_estu = {
+//         id: $('#estu_id').val(),
+//         estu_index: $('#estu_index').val(),
+//         persona_id_id: $('#estu_persona_id_id').val(),
+//         nombre: $('#estu_nombre').val(),
+//         telefono: $('#estu_telefono').val(),
+//         correo: $('#estu_correo').val(),
+//         codigo: $('#estu_codigo').val(),
+//         semestre: $('#estu_semestre').val(),
+//         programa_academico: $("#estu_programa_academico option:selected").html(),
+//         tipo_docuemnto_id_id: $('#estu_tipo_docuemnto_id').val(),
+//         num_documento: $('#estu_num_documento').val()
+//     };
+
+//     Utilitario.agregarMascara();
+//     fetch("../../back/controller/OrdenesController_update.php", {
+//             method: "POST",
+//             headers: {
+//                 Accept: "application/json",
+//                 "Content-Type": "application/json",
+//                 Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+//                 Plataform: "web",
+//             },
+//             body: JSON.stringify(info_estu),
+//         })
+//         .then(function(response) {
+//             if (response.ok) {
+//                 return response.json();
+//             }
+//             throw response;
+//         })
+//         .then(function(data) {
+//             $('#listadoEstudiantesTabla').DataTable().row(estu_index).data(update_estu).draw();
+//             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
+//             obtenerDatos();
+//             ocultarModalOrdenes();
+//         })
+//         .catch(function(promise) {
+//             if (promise.json) {
+//                 promise.json().then(function(response) {
+//                     let status = promise.status,
+//                         mensaje = response ? response.mensaje : "";
+//                     if (status === 401 && mensaje) {
+//                         Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+//                             Utilitario.cerrarSesion();
+//                         });
+//                     } else if (mensaje) {
+//                         Mensaje.mostrarMsjError("Error", mensaje);
+//                     }
+//                 });
+//             } else {
+//                 Mensaje.mostrarMsjError(
+//                     "Error",
+//                     "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+//                 );
+//             }
+//         })
+//         .finally(function() {
+//             Utilitario.quitarMascara();
+//         });
+
+// }
+
 function UpdateEstu() {
     let estu_index = $('#estu_index').val();
     let info_estu = {
@@ -1229,7 +1334,7 @@ function UpdateEstu() {
         estu_correo: $('#estu_correo').val(),
         estu_codigo: $('#estu_codigo').val(),
         estu_semestre: $('#estu_semestre').val(),
-        estu_programa_academico: $('#estu_programa_academico').val(),
+        estu_programa_academico: $("#estu_programa_academico option:selected").html(),
         estu_tipo_docuemnto_id: $('#estu_tipo_docuemnto_id').val(),
         estu_num_documento: $('#estu_num_documento').val()
     };
@@ -1243,86 +1348,7 @@ function UpdateEstu() {
         correo: $('#estu_correo').val(),
         codigo: $('#estu_codigo').val(),
         semestre: $('#estu_semestre').val(),
-        programa_academico: $('#estu_programa_academico').val(),
-        tipo_docuemnto_id_id: $('#estu_tipo_docuemnto_id').val(),
-        num_documento: $('#estu_num_documento').val()
-    };
-
-    Utilitario.agregarMascara();
-    fetch("../../back/controller/OrdenesController_update.php", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
-                Plataform: "web",
-            },
-            body: JSON.stringify(info_estu),
-        })
-        .then(function(response) {
-            if (response.ok) {
-                return response.json();
-            }
-            throw response;
-        })
-        .then(function(data) {
-            $('#listadoEstudiantesTabla').DataTable().row(estu_index).data(update_estu).draw();
-            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            obtenerDatos();
-            ocultarModalOrdenes();
-        })
-        .catch(function(promise) {
-            if (promise.json) {
-                promise.json().then(function(response) {
-                    let status = promise.status,
-                        mensaje = response ? response.mensaje : "";
-                    if (status === 401 && mensaje) {
-                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
-                            Utilitario.cerrarSesion();
-                        });
-                    } else if (mensaje) {
-                        Mensaje.mostrarMsjError("Error", mensaje);
-                    }
-                });
-            } else {
-                Mensaje.mostrarMsjError(
-                    "Error",
-                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-                );
-            }
-        })
-        .finally(function() {
-            Utilitario.quitarMascara();
-        });
-
-}
-
-function UpdateEstu() {
-    let estu_index = $('#estu_index').val();
-    let info_estu = {
-        estu_id: $('#estu_id').val(),
-        estu_index: $('#estu_index').val(),
-        persona_id_id: $('#estu_persona_id_id').val(),
-        estu_nombre: $('#estu_nombre').val(),
-        estu_telefono: $('#estu_telefono').val(),
-        estu_correo: $('#estu_correo').val(),
-        estu_codigo: $('#estu_codigo').val(),
-        estu_semestre: $('#estu_semestre').val(),
-        estu_programa_academico: $('#estu_programa_academico').val(),
-        estu_tipo_docuemnto_id: $('#estu_tipo_docuemnto_id').val(),
-        estu_num_documento: $('#estu_num_documento').val()
-    };
-
-    let update_estu = {
-        id: $('#estu_id').val(),
-        estu_index: $('#estu_index').val(),
-        persona_id_id: $('#estu_persona_id_id').val(),
-        nombre: $('#estu_nombre').val(),
-        telefono: $('#estu_telefono').val(),
-        correo: $('#estu_correo').val(),
-        codigo: $('#estu_codigo').val(),
-        semestre: $('#estu_semestre').val(),
-        programa_academico: $('#estu_programa_academico').val(),
+        programa_academico: $("#estu_programa_academico option:selected").html(),
         tipo_docuemnto_id_id: $('#estu_tipo_docuemnto_id').val(),
         num_documento: $('#estu_num_documento').val()
     };
@@ -1346,6 +1372,7 @@ function UpdateEstu() {
         })
         .then(function(data) {
             $('#listadoEstudiantesTabla').DataTable().row(estu_index).data(update_estu).draw();
+            cerrarModalEstu();
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
         })
         .catch(function(promise) {
@@ -1420,6 +1447,7 @@ function UpdatePares() {
         })
         .then(function(data) {
             $('#listadoParesTabla').DataTable().row(pares_index).data(update_pares).draw();
+            cerrarModalPares();
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
         })
         .catch(function(promise) {
@@ -1565,4 +1593,161 @@ function cerrarModalEstu() {
 
 function cerrarModalPares() {
     $('#myModalPares').modal('hide');
+}
+
+
+//----------------------------------CRUD----------------------------------
+/**
+ * @method obtenerDatosProjectos
+ * Método que se encarga de consumir el servicio que devuelve la data para la tabla de alumnos.
+ */
+
+function obtenerDatosProjectos() {
+    let semi = {
+        docente_id: 2,
+    };
+    fetch("../../back/controller/ProyectosControllerList.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                /*   Authorization: JSON.parse(Utilitario.getLocal("user")).token, */
+                Plataform: "web",
+            },
+            body: JSON.stringify(semi),
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+            if (data.projectos.length > 0)
+                listadoEspecialProjectos(data.projectos);
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error al traer projectos",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+}
+
+/**
+ * @method iniciarTablaProjectos
+ * Metodo para instanciar la DataTable
+ */
+function iniciarTablaProjectos() {
+
+    //tabla de alumnos
+    $("#listadoProjectosTabla").DataTable({
+        responsive: true,
+        ordering: false,
+        paging: false,
+        searching: false,
+        info: true,
+        lengthChange: false,
+        language: {
+            emptyTable: "Sin Projectos...",
+            search: "Buscar:",
+            info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
+            infoEmpty: "Ningun registro 0 de 0",
+            infoFiltered: "(filtro de _MAX_ registros en total)",
+            paginate: {
+                first: "Primero",
+                previous: "Anterior",
+                next: "Siguiente",
+                last: "Ultimo"
+            }
+        },
+        columns: [{
+                data: "id",
+                className: "text-center",
+                visible: false,
+            },
+            {
+                data: "titulo",
+                className: "text-center",
+                orderable: true,
+            },
+            {
+                data: "investigador",
+                className: "text-center",
+                orderable: true,
+            },
+            {
+                orderable: false,
+                defaultContent: [
+                    "<div class='text-center'>",
+                    "<a class='personalizado actualizarestu' title='Gestionar'><i class='fa fa-edit'></i>&nbsp; &nbsp;  &nbsp;</a>",
+                    "<a class='personalizado eliminarestu' title='eliminar'><i class='fa fa-trash'></i></a>",
+                    "</div>",
+                ].join(""),
+            },
+        ],
+        rowCallback: function(row, data, index) {
+            var id_order = data.id
+            var persona_id_id = data.persona_id_id
+
+
+            $(".actualizarestu", row).click(function() {
+                gestionarEstu(id_order, data, index);
+            });
+            $(".eliminarestu", row).click(function() {
+                DeleteEstu(id_order, index, persona_id_id);
+            });
+        },
+        dom: '<"html5buttons"B>lTfgitp',
+        buttons: [{
+                extend: "copy",
+                className: "btn btn-primary glyphicon glyphicon-duplicate"
+            },
+            {
+                extend: "csv",
+                title: "listadoProjectos",
+                className: "btn btn-primary glyphicon glyphicon-save-file"
+            },
+            {
+                extend: "excel",
+                title: "listadoProjectos",
+                className: "btn btn-primary glyphicon glyphicon-list-alt"
+            },
+            {
+                extend: "pdf",
+                title: "listadoProjectos",
+                className: "btn btn-primary glyphicon glyphicon-file"
+            },
+            {
+                extend: "print",
+                className: "btn btn-primary glyphicon glyphicon-print",
+                customize: function(win) {
+                    $(win.document.body).addClass("white-bg");
+                    $(win.document.body).css("font-size", "10px");
+                    $(win.document.body)
+                        .find("table")
+                        .addClass("compact")
+                        .css("font-size", "inherit");
+                },
+            },
+        ],
+    });
+
 }

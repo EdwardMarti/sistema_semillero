@@ -18,7 +18,7 @@ class Proyectos {
   private $fecha_ini;
   private $resumen;
   private $obj_general;
-  private $obj_esÃÂ©cifico;
+  private $obj_especifico;
   private $resultados;
   private $costo_valor;
   private $producto;
@@ -150,19 +150,19 @@ class Proyectos {
       $this->obj_general = $obj_general;
   }
     /**
-     * Devuelve el valor correspondiente a obj_esÃÂ©cifico
-     * @return obj_esÃÂ©cifico
+     * Devuelve el valor correspondiente a obj_especifico
+     * @return obj_especifico
      */
-  public function getObj_esÃÂ©cifico(){
-      return $this->obj_esÃÂ©cifico;
+  public function getobj_especifico(){
+      return $this->obj_especifico;
   }
 
     /**
-     * Modifica el valor correspondiente a obj_esÃÂ©cifico
-     * @param obj_esÃÂ©cifico
+     * Modifica el valor correspondiente a obj_especifico
+     * @param obj_especifico
      */
-  public function setObj_esÃÂ©cifico($obj_esÃÂ©cifico){
-      $this->obj_esÃÂ©cifico = $obj_esÃÂ©cifico;
+  public function setobj_especifico($obj_especifico){
+      $this->obj_especifico = $obj_especifico;
   }
     /**
      * Devuelve el valor correspondiente a resultados

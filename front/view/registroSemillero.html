@@ -1,4 +1,4 @@
-<link href="../css/plugins/steps/jquery.steps.css" rel="stylesheet">
+<link href="../css/plugins/steps/jquery.steps.css" rel="stylesheet" />
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox">
@@ -12,10 +12,8 @@
                         <i class="fa fa-wrench"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#" class="dropdown-item">Config option 1</a>
-                        </li>
-                        <li><a href="#" class="dropdown-item">Config option 2</a>
-                        </li>
+                        <li><a href="#" class="dropdown-item">Config option 1</a></li>
+                        <li><a href="#" class="dropdown-item">Config option 2</a></li>
                     </ul>
                     <a class="close-link">
                         <i class="fa fa-times"></i>
@@ -23,18 +21,244 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <h2>
-                    Formulario Registro Semillero
-                </h2>
-            
+                <h2>Formulario Registro Semillero</h2>
 
                 <form id="form" action="#" class="wizard-big">
                     <h1>Datos Generales</h1>
                     <fieldset>
-
                         <div class="ibox-content">
-                            <h2 style="color: black">Semillero Info</h2>
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <b>DATOS GENERALES</b>
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Nombre: </label>
+                                                        <input type="text" style="background: white" class="form-control" name="nombre" id="nombre" required />
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Grupo de Investigacion
+                                                        </label>
+                                                        <select class="form-control" name="grupo_investigacion" id="grupo_investigacion">
+                                                            <option value="-1">SELECCIONE</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Departamentos
+                                                        </label>
+                                                        <select onchange="cargarSelectPlan(this.value);" class="form-control" name="departamentos" id="departamentos">
+                                                            <option value="-1">SELECCIONE</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group" style="display: none">
+                                                        <label for="formGroupExampleInput">Id Semillero
+                                                        </label>
+                                                        <input type="text" style="background: white" class="form-control" name="id_semillero" id="id_semillero" required />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Fecha de Creacion
+                                                        </label>
+                                                        <input type="date" style="background: white" class="form-control" name="fecha" id="fecha" />
+                                                    </div>
+                                                </div>
+                                                <!-------------------------------------------------->
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Sigla </label>
+                                                        <input type="text" style="background: white" class="form-control" name="sigla" id="sigla" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Facultad</label>
+                                                        <select onchange="cargarSelectDepartamentos(this.value);" class="form-control" name="facultades" id="facultades">
+                                                            <option value="-1">SELECCIONE</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Plan de Estudios</label>
+                                                        <select class="form-control" name="p_estudio" id="p_estudio">
+                                                            <option value="-1">SELECCIONE</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Ubicacion
+                                                        </label>
+                                                        <input type="text" style="background: white" class="form-control" name="ubicacion" id="ubicacion" />
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <h5 class="label label-successE">
+                                                            <a onclick="ActualizarData()" style="
+                                  background-color: #243747;
+                                  display: inline !important;
+                                " class="btn btn-primary">Actualizar</a>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                <b>LINEAS DE INVESTIGACIÓN</b>
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="col-lg-12">
+                                                <div class="ibox">
+                                                    <div class="table mt-4 mb-4">
+                                                        <div class="modal-footer">
+                                                            <h5 class="label label-successE">
+                                                                <a onclick="mostrarModalLineas()" style="
+                                    background-color: #243747;
+                                    display: inline !important;
+                                  " class="btn btn-primary">+ Agregar</a>
+                                                            </h5>
+                                                        </div>
+                                                        <table class="table table-striped mt-4 mb-4 centradito" id="listadoTablal">
+                                                            <thead>
+                                                                <tr class="ufps-tabl">
+                                                                    <th>LINEA DE INVESTIGACION</th>
+                                                                    <th>DISCIPLINA</th>
+                                                                    <th>AREA</th>
+                                                                    <th>ACCIONES</th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                <b>INFORMACIÓN DE TUTOR</b>
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <!--style="display: none"-->
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">persona_Id
+                                                        </label>
+                                                        <input type="text" style="background: white" class="form-control" name="persona_Id" id="persona_Id" required />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Nombre </label>
+                                                        <input type="text" style="background: white" class="form-control" name="nombreD" id="nombreD" required />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Telefono </label>
+                                                        <input type="text" style="background: white" class="form-control" name="telefonoD" id="telefonoD" required />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Ubicacion
+                                                        </label>
+                                                        <input type="text" style="background: white" class="form-control" name="ubicacionD" id="ubicacionD" required />
+                                                    </div>
+                                                    <div class="form-group" style="display: none">
+                                                        <label for="formGroupExampleInput">id_docente
+                                                        </label>
+                                                        <input type="text" style="background: white" class="form-control" name="id_docente" id="id_docente" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Correo </label>
+                                                        <input type="text" style="background: white" class="form-control" name="correoD" id="correoD" required />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="formGroupExampleInput">Tipo Vinculacion</label>
+                                                        <select class="form-control" name="tp_vinculacion" id="tp_vinculacion">
+                                                            <option value="-1">SELECCIONE</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <h5 class="label label-successE">
+                                                            <a onclick="ActualizarDataDocente()" style="
+                                  background-color: #243747;
+                                  display: inline !important;
+                                " class="btn btn-primary">Actualizar</a>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingFour">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                <b>* Titulos Obtenidos </b>
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="col-lg-12">
+                                                <div class="ibox">
+                                                    <div class="col-lg-12">
+                                                        <div class="ibox">
+                                                            <div class="modal-footer">
+                                                                <h5 class="label label-successE">
+                                                                    <a onclick="mostrarModalTitulos()" style="
+                                      background-color: #243747;
+                                      display: inline !important;
+                                    " class="btn btn-primary">+ Agregar</a>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="table mt-4 mb-4">
+                                                                <table class="
+                                    table table-striped
+                                    mt-4
+                                    mb-4
+                                    centradito
+                                  " id="listadoTablaTitulos">
+                                                                    <thead>
+                                                                        <tr class="ufps-tabl">
+                                                                            <th>DESCRIPCION</th>
+                                                                            <th>UNIVERSIDAD</th>
+                                                                            <th>ACCIONES</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <h2 style="color: black">Semillero Info</h2>
                             <div class="row">
+                                <input id="semi_id" name="semi_id" type="hidden" class="form-control">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>nombre *</label>
@@ -58,24 +282,23 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
-                 
-
                     </fieldset>
-                    <h1>Registro Alumnos y Pares Acdemicos</h1>
+                    <h1>Alumnos y Pares</h1>
                     <fieldset>
                         <h2 style="color: black"></h2>
-                     
-                            <div class="ibox-content">
+
+                        <div class="ibox-content">
                             <h2 style="color: black">Estudiantes</h2>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" onclick="showModalRegisEstu()">
                                     Registrar
                                 </button>
                             </div>
-                            <div class='table mt-12 mb-12 table-responsive' id="tablaEstuadiantes"><br>
-                                <table class='table table-striped mt-4 mb-4 centradito' id='listadoEstudiantesTabla' style='width: 100%'>
+                            <div class="table mt-12 mb-12 table-responsive" id="tablaEstuadiantes">
+                                <br />
+                                <table class="table table-striped mt-4 mb-4 centradito" id="listadoEstudiantesTabla" style="width: 100%">
                                     <thead>
                                         <tr class="ufps-tabl">
                                             <th>id</th>
@@ -93,9 +316,8 @@
                                     </thead>
                                 </table>
                             </div>
-
                         </div>
-                        <br>
+                        <br />
                         <div class="ibox-content">
                             <h2 style="color: black">Pares Academicos</h2>
                             <div class="modal-footer">
@@ -103,8 +325,9 @@
                                     Registrar
                                 </button>
                             </div>
-                            <div class='table mt-12 mb-12 table-responsive' id="tablaPares"><br>
-                                <table class='table table-striped mt-4 mb-4 centradito' id='listadoParesTabla' style='width: 100%'>
+                            <div class="table mt-12 mb-12 table-responsive" id="tablaPares">
+                                <br />
+                                <table class="table table-striped mt-4 mb-4 centradito" id="listadoParesTabla" style="width: 100%">
                                     <thead>
                                         <tr class="ufps-tabl">
                                             <th>Id</th>
@@ -121,74 +344,204 @@
                                 </table>
                             </div>
                         </div>
-
-                 
                     </fieldset>
 
-                    <h1>Warning</h1>
+                    <h1>Projectos Terminado</h1>
                     <fieldset>
-                        <div class="text-center" style="margin-top: 120px">
-                            <h2>You did it Man :-)</h2>
+                        <div class="ibox-content">
+                            <h2 style="color: black">Projectos</h2>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" onclick="showModalRegisProjectos()">
+                                    Registrar
+                                </button>
+                            </div>
+                            <div class="table mt-12 mb-12 table-responsive" id="tablaProjectos">
+                                <br />
+                                <table class="table table-striped mt-4 mb-4 centradito" id="listadoProjectosTabla" style="width: 100%">
+                                    <thead>
+                                        <tr class="ufps-tabl">
+                                            <th>Id</th>
+                                            <th>Titulo</th>
+                                            <th>Insvestigador Principal</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                     </fieldset>
 
-                    <h1>Finish</h1>
+                    <h1>Projectos En Ejecucion</h1>
                     <fieldset>
                         <h2>Terms and Conditions</h2>
-                        <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
+                        <input id="acceptTerms" name="acceptTerms" type="checkbox" class="" />
+                        <label for="acceptTerms">I agree with the Terms and Conditions.</label>
                     </fieldset>
+                    <h1>Adicionales</h1>
+                    <fieldset>
+                        <div class="accordion" id="accordionExample2">
+                            <div class="card">
+                                <div class="card-header" id="headingTwo2">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo">
+                                            <b>Listado Capacitaciones</b>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2" data-parent="#accordionExample2">
+                                    <div class="card-body">
+                                        <div class="col-lg-12">
+                                            <div class="ibox ">
+                                                <div class="ibox-title row">
+                                                    <h5 class="text-white col">Listado Capacitaciones</h5>
+                                                    <h5 class="label label-successE"> <a onclick="mostrarModalCapacitaciones()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
 
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class='table mt-4 mb-4'><br>
+                                                        <table class='table table-striped mt-4 mb-4 centradito table-responsive' id='listadoCapacitacionesTabla' style='width: 100%'>
+                                                            <thead>
+                                                                <tr class="ufps-tabl">
 
+                                                                    <th>TITULO CAPACITACION</th>
+                                                                    <th>DOCENTE</th>
+                                                                    <th>FECHA CAPACITACION</th>
+                                                                    <th>N° DE ESTUDIANTES CAPACITADOS</th>
+                                                                    <th>ACCIONES</th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" id="headingFour2">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour2" aria-expanded="false" aria-controls="collapseFour">
+                                            <b>* Listado Ponencias </b>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseFour2" class="collapse" aria-labelledby="headingFour2" data-parent="#accordionExample2">
+                                    <div class="card-body">
+                                        <div class="col-lg-12">
+                                            <div class="ibox ">
+                                                <div class="ibox-title row">
+                                                    <h5 class="text-white col">Listado Ponencias</h5>
+                                                    <h5 class="label label-successE"> <a onclick="mostrarModalPonencias()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
+                                                            Agregar</a></h5>
+
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class='table mt-4 mb-4 table-responsive'><br>
+                                                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoPonenciasTabla' style='width: 100%'>
+                                                            <thead>
+                                                                <tr class="ufps-tabl">
+
+                                                                    <th>NOMBRE</th>
+                                                                    <th>FECHA</th>
+                                                                    <th>NOMBRE EVENTO</th>
+                                                                    <th>INSTITUCION PROMOTORA</th>
+                                                                    <th>CIUDAD</th>
+                                                                    <th>LUGAR</th>
+                                                                    <th>TIPO/CLASE</th>
+                                                                    <th>ACCIONES</th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingFour3">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour3" aria-expanded="false" aria-controls="collapseFour">
+                                            <b>* Listado Publicaciones </b>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseFour3" class="collapse" aria-labelledby="headingFour3" data-parent="#accordionExample2">
+                                    <div class="card-body">
+                                        <div class="col-lg-12">
+                                            <div class="ibox ">
+                                                <div class="ibox-title row">
+                                                    <h5 class="text-white col">Listado Publicaciones</h5>
+                                                    <h5 class="label label-successE"> <a onclick="mostrarModalPublicaciones()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
+                                                            Agregar</a></h5>
+
+                                                </div>
+                                                <div class="ibox-content">
+                                                    <div class='table mt-4 mb-4'><br>
+                                                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoPublicacionesTabla' style='width: 100%'>
+                                                            <thead>
+                                                                <tr class="ufps-tabl">
+                                                                    <th>#</th>
+                                                                    <th>Descripcion</th>
+                                                                    <th>Proyecto</th>
+                                                                    <th>Descripcion</th>
+                                                                    <th>Proyecto</th>
+                                                                    <th>Acciones</th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
     </div>
-
 </div>
-
-
-
-
-
-
-
-
-
-
 
 <div class="modal inmodal fade" id="myModalEstudiantes" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Modal title</h4>
-                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Registro Estudiante</h4>
             </div>
             <div class="modal-body">
                 <div class="ibox-content">
                     <form role="form" id="EstudianteInsert">
-                        <input type="hidden" name="estu_id" class="form-control" id="estu_id" placeholder="id">
-                        <input type="hidden" name="estu_index" class="form-control" id="estu_index" placeholder="id">
-                        <input type="hidden" name="estu_persona_id_id" class="form-control" id="estu_persona_id_id" placeholder="id">
+                        <input type="hidden" name="estu_id" class="form-control" id="estu_id" placeholder="id" />
+                        <input type="hidden" name="estu_index" class="form-control" id="estu_index" placeholder="id" />
+                        <input type="hidden" name="estu_persona_id_id" class="form-control" id="estu_persona_id_id" placeholder="id" />
                         <div class="form-group">
                             <label for="Inputnombre">nombre</label>
-                            <input type="text" name="estu_nombre" class="form-control" id="estu_nombre" placeholder="nombre">
+                            <input type="text" name="estu_nombre" class="form-control" id="estu_nombre" placeholder="nombre" />
                         </div>
                         <div class="form-group">
                             <label for="Inputtelefono">telefono</label>
-                            <input type="text" name="estu_telefono" class="form-control" id="estu_telefono" placeholder="telefono">
+                            <input type="text" name="estu_telefono" class="form-control" id="estu_telefono" placeholder="telefono" />
                         </div>
                         <div class="form-group">
                             <label for="Inputcorreo">correo</label>
-                            <input type="email" name="estu_correo" class="form-control" id="estu_correo" placeholder="correo">
+                            <input type="email" name="estu_correo" class="form-control" id="estu_correo" placeholder="correo" />
                         </div>
                         <div class="form-group">
                             <label for="Inputcodigo">codigo</label>
-                            <input type="text" name="estu_codigo" class="form-control" id="estu_codigo" placeholder="codigo">
+                            <input type="text" name="estu_codigo" class="form-control" id="estu_codigo" placeholder="codigo" />
                         </div>
                         <div class="form-group">
                             <label for="Inputsemestre">semestre</label>
-                            <input type="number" min="1" max="10" name="estu_semestre" class="form-control" id="estu_semestre" placeholder="semestre">
+                            <input type="number" min="1" max="10" name="estu_semestre" class="form-control" id="estu_semestre" placeholder="semestre" />
                         </div>
                         <div class="form-group">
                             <label for="Inputprograma_academico">programa_academico</label>
@@ -204,17 +557,22 @@
                         </div>
                         <div class="form-group">
                             <label for="Inputnum_documento">num_documento</label>
-                            <input type="text" name="estu_num_documento" class="form-control" id="estu_num_documento" placeholder="num_documento">
+                            <input type="text" name="estu_num_documento" class="form-control" id="estu_num_documento" placeholder="num_documento" />
                         </div>
                     </form>
                 </div>
             </div>
 
-
             <div class="modal-footer">
-                <button type="button" class="btn btn-white" onclick="cerrarModalEstu()">Close</button>
-                <button type="button" class="btn btn-primary" id="btnEstuAct" onclick="UpdateEstu()">Actualizar</button>
-                <button type="button" class="btn btn-primary" id="btnEstuReg" onclick="registrarEstu()">Registrar</button>
+                <button type="button" class="btn btn-white" onclick="cerrarModalEstu()">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" id="btnEstuAct" onclick="UpdateEstu()">
+                    Actualizar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnEstuReg" onclick="registrarEstu()">
+                    Registrar
+                </button>
             </div>
         </div>
     </div>
@@ -223,26 +581,26 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Modal title</h4>
-                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Registro Pares</h4>
             </div>
             <div class="modal-body">
                 <div class="ibox-content">
-                    <form role="form" id="EstudianteInsert">
+                    <form role="form" id="ParesInsert">
                         <div class="form-group">
-                            <input type="hidden" name="pares_id" class="form-control" id="pares_id" placeholder="pares_id">
-                            <input type="hidden" name="pares_index" class="form-control" id="pares_index" placeholder="index_par">
-                            <input type="hidden" name="pares_persona_id_id" class="form-control" id="pares_persona_id_id" placeholder="id">
-
+                            <input type="hidden" name="pares_id" class="form-control" id="pares_id" placeholder="pares_id" />
+                            <input type="hidden" name="pares_index" class="form-control" id="pares_index" placeholder="index_par" />
+                            <input type="hidden" name="pares_persona_id_id" class="form-control" id="pares_persona_id_id" placeholder="id" />
                         </div>
                         <div class="form-group">
                             <label for="Inputnombre">nombre</label>
-                            <input type="text" name="pares_nombre" class="form-control" id="pares_nombre" placeholder="nombre">
+                            <input type="text" name="pares_nombre" class="form-control" id="pares_nombre" placeholder="nombre" />
                         </div>
                         <div class="form-group">
                             <label for="Inputtelefono">telefono</label>
-                            <input type="text" name="pares_telefono" class="form-control" id="pares_telefono" placeholder="telefono">
+                            <input type="text" name="pares_telefono" class="form-control" id="pares_telefono" placeholder="telefono" />
                         </div>
                         <div class="form-group">
                             <label for="Inputtipo_docuemnto_id">tipo_docuemnto_id</label>
@@ -252,30 +610,376 @@
                         </div>
                         <div class="form-group">
                             <label for="Inputnum_documento">num_documento</label>
-                            <input type="text" name="pares_num_documento" class="form-control" id="pares_num_documento" placeholder="num_documento">
+                            <input type="text" name="pares_num_documento" class="form-control" id="pares_num_documento" placeholder="num_documento" />
                         </div>
                         <div class="form-group">
                             <label for="Inputsemestre">empresa</label>
-                            <input type="text" name="pares_empresa" class="form-control" id="pares_empresa" placeholder="empresa">
+                            <input type="text" name="pares_empresa" class="form-control" id="pares_empresa" placeholder="empresa" />
                         </div>
                         <div class="form-group">
                             <label for="Inputcorreo">correo</label>
-                            <input type="email" name="pares_correo" class="form-control" id="pares_correo" placeholder="correo">
+                            <input type="email" name="pares_correo" class="form-control" id="pares_correo" placeholder="correo" />
                         </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" onclick="cerrarModalPares()">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" id="btnParesAct" onclick="UpdatePares()">
+                    Actualizar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnParesReg" onclick="registrarPares()">
+                    Registrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="ModalLoadData" tabindex="-1" role="dialog" style="display: none" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <label title="Upload image file" for="fileUpload" class="btn btn-primary">
+                        <input type="file"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                            name="fileUpload" id="fileUpload" style="display: none" />
+                        Upload image
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" onclick="loadDataxls()" class="btn btn-primary">
+                    Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="ModalLineas" tabindex="-1" role="dialog" style="display: none" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="Linea_investigacionInsert">
+                    <div class="form-group">
+                        <label for="Inputid">Area</label>
+                        <select class="form-control" onchange="cargarSelectDisciplina(this.value)" name="area" id="area"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Inputdisciplina_id">Disciplina</label>
+                        <select class="form-control" name="disciplina" id="disciplina" onchange="cargarSelectLineas(this.value)">
+                            <option value="-1">SELECCIONE</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Inputdescripcion">Linea de Investigacion</label>
+                        <select class="form-control" name="lineas_investigacion" id="lineas_investigacion">
+                            <option value="-1">SELECCIONE</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnLnAct" onclick="actualizarRango()">
+                    Actualizar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarLn()">
+                    Registrar
+                </button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="ModalTitulos" tabindex="-1" role="dialog" style="display: none" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Descripcion </label>
+                        <input type="text" style="background: white" class="form-control" name="descripcionD" id="descripcionD" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Universidad </label>
+                        <input type="text" style="background: white" class="form-control" name="universidad" id="universidad" required />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarTitulos()">
+                    Registrar
+                </button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal fade" id="myModalCapacitaciones" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Modal title</h4>
+                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.</small>
+            </div>
+            <div class="modal-body">
+                <div class="ibox-content">
+                    <form role="form" id="CapacitacionesInsert">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group" style="display: none">
+                                    <label for="Inputid">id</label>
+                                    <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputtema">tema</label>
+                                    <input type="text" name="tema" class="form-control" id="tema" placeholder="tema" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputdocente">docente</label>
+                                    <input type="text" name="docente" class="form-control" id="docente" placeholder="docente" />
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="Inputfecha">fecha</label>
+                                    <input type="date" name="fecha" class="form-control" id="fecha" placeholder="fecha" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputcant_capacitados">cant_capacitados</label>
+                                    <input type="number" name="cant_capacitados" class="form-control" id="cant_capacitados" placeholder="cant_capacitados" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" onclick="cerrarModalCapacitaciones()">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdateOrder()">
+                    Actualizar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarCapacitacion()">
+                    Registrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal inmodal fade" id="myModalPonencias" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">Modal title</h4>
+                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry.</small>
+            </div>
+            <div class="modal-body">
+                <div class="ibox-content">
+                    <form role="form" id="PonenciasInsert">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group" style="display: none">
+                                    <label for="Inputid">id</label>
+                                    <input type="text" name="id" class="form-control" id="id" placeholder="id" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputnombre_po">Nombre de la Ponencia</label>
+                                    <input type="text" name="nombre_po" class="form-control" id="nombre_po" placeholder="nombre_po">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputfecha">Fecha de la Presentación</label>
+                                    <input type="date" name="fecha" class="form-control" id="fecha" placeholder="fecha">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputnombre_eve">Nombre del Evento</label>
+                                    <input type="text" name="nombre_eve" class="form-control" id="nombre_eve" placeholder="nombre_eve">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputinstitucion">Institución Promotora</label>
+                                    <input type="text" name="institucion" class="form-control" id="institucion" placeholder="institucion">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="Inputciudad">Ciudad donde se Desarrolló</label>
+                                    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="ciudad">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputlugar">Lugar donde se Desarrolló</label>
+                                    <input type="text" name="lugar" class="form-control" id="lugar" placeholder="lugar">
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <label for="Inputtipo_ponencias_id">Tipo/Clase</label>
+
+                                    <select class="form-control" name="tipo_ponencias" id="tipo_ponencias">
+                                        <option value="-1">SELECCIONE</option>
+                                        <option value="1">CONFERENCIA</option>
+                                        <option value="2">CONGRESO</option>
+                                        <option value="3">SIMPOSIO</option>
+                                        <option value="4">SEMINARIO</option>
+                                        <option value="5">COMUNICACION</option>
+                                        <option value="6">OTRO</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
                     </form>
                 </div>
             </div>
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-white" onclick="cerrarModalPares()">Close</button>
-                <button type="button" class="btn btn-primary" id="btnParesAct" onclick="UpdatePares()">Actualizar</button>
-                <button type="button" class="btn btn-primary" id="btnParesReg" onclick="registrarPares()">Registrar</button>
+                <button type="button" class="btn btn-white" onclick="cerrarModalPonencias()">Close</button>
+                <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="ActualizarDataPo()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarPonencias()">Registrar</button>
             </div>
         </div>
     </div>
 </div>
 
+
+<div class="modal inmodal fade" id="myModalPublicaciones" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">5. PUBLICACIONES EN REVISTAS Y/O PERIODICOS DE NOTICIAS</h4>
+
+            </div>
+
+            <div class="modal-body">
+                <div class="ibox-content">
+                    <form role="form" id="PublicacionesInsert">
+                        <div class="form-group">
+                            <label for="Inputid">id</label>
+                            <input type="text" name="id" class="form-control" id="id" placeholder="id" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="Inputautor">autor</label>
+                                    <input type="text" name="autor" class="form-control" id="autor" placeholder="autor">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputtitulo">titulo</label>
+                                    <input type="text" name="titulo" class="form-control" id="titulo" placeholder="titulo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputnombre_medio">nombre_medio</label>
+                                    <input type="text" name="nombre_medio" class="form-control" id="nombre_medio" placeholder="nombre_medio">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputissn">issn</label>
+                                    <input type="text" name="issn" class="form-control" id="issn" placeholder="issn">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputeditorial">editorial</label>
+                                    <input type="text" name="editorial" class="form-control" id="editorial" placeholder="editorial">
+                                </div>
+                            </div>
+                            <div class="col-6">
+
+                                <div class="form-group">
+                                    <label for="Inputvolumen">volumen</label>
+                                    <input type="text" name="volumen" class="form-control" id="volumen" placeholder="volumen">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputcant_pag">cant_pag</label>
+                                    <input type="number" name="cant_pag" class="form-control" id="cant_pag" placeholder="cant_pag">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputfecha">fecha</label>
+                                    <input type="date" name="fecha" class="form-control" id="fecha" placeholder="fecha">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputciudad">ciudad</label>
+                                    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="ciudad">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputtipo_publicaciones_id">Modalidad de Publicación</label>
+
+                                    <select class="form-control" name="tipo_publicaciones_id" id="tipo_publicaciones_id">
+                                        <option value="-1">SELECCIONE</option>
+                                        <option value="1">ARTICULO CIENTIFICO</option>
+                                        <option value="2">ARTICULO EN REVISTA DE DIVULGACION</option>
+                                        <option value="3">PERIODICO DE NOTICIAS</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" onclick="cerrarModalPublicaciones()">Close</button>
+                <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdatePublicacion()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarPublicacion()">Registrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PROYECTOS -->
 
 <!-- <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -304,75 +1008,78 @@
 </div> -->
 <!-- <script type="text/javascript" src="../js/core/Utilitario.js"></script> -->
 <script type="text/javascript" src="../js/semillero/semillero.js"></script>
+<script type="text/javascript" src="../js/semillero/semillero_perfil.js"></script>
+<script type="text/javascript" src="../js/capacitaciones/capacitaciones.js"></script>
+<script type="text/javascript" src="../js/ponencias/ponencias.js"></script>
+<script type="text/javascript" src="../js/publicaciones/publicaciones.js"></script>
 <!-- Steps -->
 <script src="../js/plugins/steps/jquery.steps.min.js"></script>
 
 <!-- Jquery Validate -->
 <script src="../js/plugins/validate/jquery.validate.min.js"></script>
 
-
 <script>
     $(document).ready(function() {
         $("#wizard").steps();
-        $("#form").steps({
-            bodyTag: "fieldset",
-            onStepChanging: function(event, currentIndex, newIndex) {
-                // Always allow going backward even if the current step contains invalid fields!
-                if (currentIndex > newIndex) {
-                    return true;
-                }
+        $("#form")
+            .steps({
+                bodyTag: "fieldset",
+                onStepChanging: function(event, currentIndex, newIndex) {
+                    // Always allow going backward even if the current step contains invalid fields!
+                    if (currentIndex > newIndex) {
+                        return true;
+                    }
+                    if (newIndex === 2) {
+                        obtenerDatosProjectos();
+                    }
 
-                // Forbid suppressing "Warning" step if the user is to young
-                if (newIndex === 3 && Number($("#age").val()) < 18) {
-                    return false;
-                }
+                    var form = $(this);
 
-                var form = $(this);
+                    // Clean up if user went backward before
+                    if (currentIndex < newIndex) {
+                        // To remove error styles
+                        $(".body:eq(" + newIndex + ") label.error", form).remove();
+                        $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                    }
 
-                // Clean up if user went backward before
-                if (currentIndex < newIndex) {
-                    // To remove error styles
-                    $(".body:eq(" + newIndex + ") label.error", form).remove();
-                    $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
-                }
+                    // Disable validation on fields that are disabled or hidden.
+                    form.validate().settings.ignore = ":disabled,:hidden";
 
-                // Disable validation on fields that are disabled or hidden.
-                form.validate().settings.ignore = ":disabled,:hidden";
+                    // Start validation; Prevent going forward if false
+                    return form.valid();
+                },
+                onStepChanged: function(event, currentIndex, priorIndex) {
+                    // Suppress (skip) "Warning" step if the user is old enough.
+                    if (currentIndex === 2 && Number($("#age").val()) >= 18) {
+                        $(this).steps("next");
+                    }
 
-                // Start validation; Prevent going forward if false
-                return form.valid();
-            },
-            onStepChanged: function(event, currentIndex, priorIndex) {
-                // Suppress (skip) "Warning" step if the user is old enough.
-                if (currentIndex === 2 && Number($("#age").val()) >= 18) {
-                    $(this).steps("next");
-                }
+                    // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                    if (currentIndex === 2 && priorIndex === 3) {
+                        $(this).steps("previous");
+                    }
+                },
+                onFinishing: function(event, currentIndex) {
+                    var form = $(this);
 
-                // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
-                if (currentIndex === 2 && priorIndex === 3) {
-                    $(this).steps("previous");
-                }
-            },
-            onFinishing: function(event, currentIndex) {
-                var form = $(this);
+                    // Disable validation on fields that are disabled.
+                    // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                    form.validate().settings.ignore = ":disabled";
 
-                // Disable validation on fields that are disabled.
-                // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
-                form.validate().settings.ignore = ":disabled";
+                    // Start validation; Prevent form submission if false
+                    return form.valid();
+                },
+                onFinished: function(event, currentIndex) {
+                    var form = $(this);
 
-                // Start validation; Prevent form submission if false
-                return form.valid();
-            },
-            onFinished: function(event, currentIndex) {
-                var form = $(this);
-
-                // Submit form input
-                form.submit();
-            }
-        }).validate({
-            errorPlacement: function(error, element) {
-                element.before(error);
-            }
-        });
+                    // Submit form input
+                    form.submit();
+                },
+            })
+            .validate({
+                errorPlacement: function(error, element) {
+                    element.before(error);
+                },
+            });
     });
 </script>

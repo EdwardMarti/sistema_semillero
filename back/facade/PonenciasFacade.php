@@ -43,9 +43,9 @@ class PonenciasFacade {
    * @param tipo_ponencias_id
    * @param semillero_id
    */
-  public static function insert( $id,  $nombre_po,  $fecha,  $nombre_eve,  $institucion,  $ciudad,  $lugar,  $tipo_ponencias_id,  $semillero_id){
+  public static function insert(   $nombre_po,  $fecha,  $nombre_eve,  $institucion,  $ciudad,  $lugar,  $tipo_ponencias_id,  $semillero_id){
       $ponencias = new Ponencias();
-      $ponencias->setId($id); 
+//      $ponencias->setId($id); 
       $ponencias->setNombre_po($nombre_po); 
       $ponencias->setFecha($fecha); 
       $ponencias->setNombre_eve($nombre_eve); 
@@ -58,6 +58,14 @@ class PonenciasFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $ponenciasDao =$FactoryDao->getponenciasDao(self::getDataBaseDefault());
      $rtn = $ponenciasDao->insert($ponencias);
+     $ponenciasDao->close();
+     return $rtn;
+  }
+  public static function insert2( $nombre_po, $fecha, $nombre_eve, $institucion, $ciudad, $lugar, $Tipo_ponencias_id, $Semillero_id){
+ 
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $ponenciasDao =$FactoryDao->getponenciasDao(self::getDataBaseDefault());
+     $rtn = $ponenciasDao->insert2($nombre_po, $fecha, $nombre_eve, $institucion, $ciudad, $lugar, $Tipo_ponencias_id, $Semillero_id);
      $ponenciasDao->close();
      return $rtn;
   }
@@ -108,6 +116,15 @@ class PonenciasFacade {
      $ponenciasDao->update($ponencias);
      $ponenciasDao->close();
   }
+  
+  public static function update2($id, $nombre_po, $fecha, $nombre_eve, $institucion, $ciudad, $lugar, $tipo_ponencias_id, $semillero_id){
+   
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $ponenciasDao =$FactoryDao->getponenciasDao(self::getDataBaseDefault());
+     $result=$ponenciasDao->update2($id, $nombre_po, $fecha, $nombre_eve, $institucion, $ciudad, $lugar, $tipo_ponencias_id, $semillero_id);
+     $ponenciasDao->close();
+     return $result;
+  }
 
   /**
    * Elimina un objeto Ponencias de la base de datos a partir de su(s) llave(s) primaria(s).
@@ -120,8 +137,9 @@ class PonenciasFacade {
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $ponenciasDao =$FactoryDao->getponenciasDao(self::getDataBaseDefault());
-     $ponenciasDao->delete($ponencias);
+     $result=$ponenciasDao->delete($ponencias);
      $ponenciasDao->close();
+     return $result;
   }
 
   /**
@@ -133,6 +151,20 @@ class PonenciasFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $ponenciasDao =$FactoryDao->getponenciasDao(self::getDataBaseDefault());
      $result = $ponenciasDao->listAll();
+     $ponenciasDao->close();
+     return $result;
+  }
+  public static function listAll_Sem($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $ponenciasDao =$FactoryDao->getponenciasDao(self::getDataBaseDefault());
+     $result = $ponenciasDao->listAll_Sem($id);
+     $ponenciasDao->close();
+     return $result;
+  }
+  public static function listAll_SemId($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $ponenciasDao =$FactoryDao->getponenciasDao(self::getDataBaseDefault());
+     $result = $ponenciasDao->listAll_SemId($id);
      $ponenciasDao->close();
      return $result;
   }

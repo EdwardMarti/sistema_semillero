@@ -14,7 +14,9 @@ include_once realpath('../facade/Persona_has_semilleroFacade.php');
 $JSONData = file_get_contents("php://input");
 $dataObject = json_decode($JSONData);
 
-// $pares_codigo = strip_tags($dataObject->pares_codigo);
+$semi_id = strip_tags($dataObject->semi_id);
+$semillero = new semillero();
+$semillero->setId($semi_id);
 $pares_nombre = strip_tags($dataObject->pares_nombre);
 $pares_telefono = strip_tags($dataObject->pares_telefono);
 $pares_tipo_docuemnto_id = strip_tags($dataObject->pares_tipo_docuemnto_id);
@@ -33,6 +35,7 @@ $persona->setId($Persona_id);
 $tipo_doc_obnject = new Tipo_docuemnto();
 $tipo_doc_obnject->setId($pares_tipo_docuemnto_id);
 $par_academico = Pares_academicosFacade::insert(  $pares_empresa,  $persona,  $pares_num_documento,  $tipo_doc_obnject);
+$perso_has_semi = Persona_has_semilleroFacade::insert($persona,$semillero);
 try {
         if ($par_academico > 0) {
                 http_response_code(200);

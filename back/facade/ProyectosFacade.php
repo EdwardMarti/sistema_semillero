@@ -41,13 +41,13 @@ class ProyectosFacade {
    * @param fecha_ini
    * @param resumen
    * @param obj_general
-   * @param obj_esÃÂ©cifico
+   * @param obj_especifico
    * @param resultados
    * @param costo_valor
    * @param producto
    * @param semillero_id
    */
-  public static function insert( $id,  $titulo,  $investigador,  $tipo_proyecto_id,  $tiempo_ejecucion,  $fecha_ini,  $resumen,  $obj_general,  $obj_esÃÂ©cifico,  $resultados,  $costo_valor,  $producto,  $semillero_id){
+  public static function insert( $id,  $titulo,  $investigador,  $tipo_proyecto_id,  $tiempo_ejecucion,  $fecha_ini,  $resumen,  $obj_general,  $obj_especifico,  $resultados,  $costo_valor,  $producto,  $semillero_id){
       $proyectos = new Proyectos();
       $proyectos->setId($id); 
       $proyectos->setTitulo($titulo); 
@@ -57,7 +57,7 @@ class ProyectosFacade {
       $proyectos->setFecha_ini($fecha_ini); 
       $proyectos->setResumen($resumen); 
       $proyectos->setObj_general($obj_general); 
-      $proyectos->setObj_esÃÂ©cifico($obj_esÃÂ©cifico); 
+      $proyectos->setobj_especifico($obj_especifico); 
       $proyectos->setResultados($resultados); 
       $proyectos->setCosto_valor($costo_valor); 
       $proyectos->setProducto($producto); 
@@ -98,13 +98,13 @@ class ProyectosFacade {
    * @param fecha_ini
    * @param resumen
    * @param obj_general
-   * @param obj_esÃÂ©cifico
+   * @param obj_especifico
    * @param resultados
    * @param costo_valor
    * @param producto
    * @param semillero_id
    */
-  public static function update($id, $titulo, $investigador, $tipo_proyecto_id, $tiempo_ejecucion, $fecha_ini, $resumen, $obj_general, $obj_esÃÂ©cifico, $resultados, $costo_valor, $producto, $semillero_id){
+  public static function update($id, $titulo, $investigador, $tipo_proyecto_id, $tiempo_ejecucion, $fecha_ini, $resumen, $obj_general, $obj_especifico, $resultados, $costo_valor, $producto, $semillero_id){
       $proyectos = self::select($id);
       $proyectos->setTitulo($titulo); 
       $proyectos->setInvestigador($investigador); 
@@ -113,7 +113,7 @@ class ProyectosFacade {
       $proyectos->setFecha_ini($fecha_ini); 
       $proyectos->setResumen($resumen); 
       $proyectos->setObj_general($obj_general); 
-      $proyectos->setObj_esÃÂ©cifico($obj_esÃÂ©cifico); 
+      $proyectos->setobj_especifico($obj_especifico); 
       $proyectos->setResultados($resultados); 
       $proyectos->setCosto_valor($costo_valor); 
       $proyectos->setProducto($producto); 

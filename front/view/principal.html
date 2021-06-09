@@ -76,71 +76,95 @@
                     </li>
 
 
-
                     <li id="menuOrdenes">
                         <a><i class="fa fa-users" aria-hidden="true"></i> <span
                                 class="nav-label">Semillero</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.MonstrarPerfilSemillero()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Perfil</a>
+                       
+                             <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="#">Informacion Adicional <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a onclick="Menu.MonstrarPerfilSemillero()">Datos Basicos</a>
                             </li>
+                            <li>
+                                <a onclick="Menu.listadoCapacitaciones()">Capacitaciones</a>
+                            </li>
+                            <li>
+                                <a onclick="Menu.listadoPonencias()">Ponencias</a>
+                            </li>
+                            <li>
+                                <a onclick="Menu.listadoPublicaciones()">Publicaciones</a>
+                            </li>
+
                         </ul>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.MonstrarEstadoSemillero()"><i
+                    </li>
+                     <li><a onclick="Menu.MonstrarEstadoSemillero()"><i
                                         class="fa fa-circle-o-notch" aria-hidden="true"></i>Estado</a>
                             </li>
-                        </ul>
-                         <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.MonstrarRegistrarSemillero()"><i
+                         <li><a onclick="Menu.MonstrarRegistrarSemillero()"><i
                                         class="fa fa-circle-o-notch" aria-hidden="true"></i>FO-IN-03 Inscripcion de Semilleros</a>
                             </li>
-                        </ul>
+                 
+                </ul>
+                    
                     </li>
+                    
+                 
+                  
                     <li id="menuActividades">
                         <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label">Capacitaciones</span> <span class="fa arrow"></span></a>
+                                class="nav-label"></span>Informe de Gestion <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.listadoCapacitaciones()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Capacitaciones</a>
+                            <li><a onclick="Menu.listadoInformes()"><i
+                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>FO-IN-14 INFORME DE GESTIÓN DE SEMILLEROS</a>
+                            </li>
+                        </ul>
+                    </li>
+                            <li id="menuProyectos">
+                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
+                                class="nav-label">Plan de Accion</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a onclick="Menu.añadirPlan()"><i
+                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>FO-IN-19 PLAN DE ACCIÓN SEMILLEROS V1</a>
+                            </li>
+                        </ul>
+                    </li>
+                              <li id="menuProyectos">
+                        <a><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Solicitudes</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a onclick="Menu.loadFormSolicitudHoras()"><i class="fa fa-clock-o" aria-hidden="true"></i>FO-IN-04 HORAS DE INVESTIGACIÓN</a>
+                            </li>
+                            <li>
+                                <a onclick="Menu.loadFormCumplimientoProductos()"><i class="fa fa-clock-o" aria-hidden="true"></i>FO-IN-08 CUMPLIMIENTO PRODUCTOS</a>
                             </li>
                         </ul>
                     </li>
                     <li id="menuActividades">
                         <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label">Actividades</span> <span class="fa arrow"></span></a>
+                                class="nav-label">Informacion Complementaria</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a onclick="Menu.listadoActividades()"><i
                                         class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Actividades</a>
                             </li>
-                        </ul>
-                    </li>
-                    <li id="menuPublicaciones">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label">Publicaciones</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.listadoPublicaciones()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Publicaciones</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li id="menuEstudiantes">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label">Alumnos</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.listadoAlumnos()"><i
+                                <li><a onclick="Menu.listadoAlumnos()"><i
                                         class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Alumnos</a>
                             </li>
-                        </ul>
-                    </li>
-                    <li id="menuPares">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label">Pares Academicos</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.listadoPares()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Alumnos</a>
+                               <li><a onclick="Menu.listadoPares()"><i
+                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Pares</a>
+                            </li>
+                             <li><a onclick="Menu.listadoProyectos_t()"><i
+                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Terminados</a>
+                            </li>
+                            <li><a onclick="Menu.listadoProyectos_e()"><i
+                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>En Ejecucion</a>
                             </li>
                         </ul>
+                         
                     </li>
+               
+               
                     <li id="menuFacultades">
                         <a><i class="fa fa-users" aria-hidden="true"></i> <span
                                 class="nav-label">Gestion Facultades</span> <span class="fa arrow"></span></a>
@@ -149,24 +173,10 @@
                                         class="fa fa-circle-o-notch" aria-hidden="true"></i>Facultades</a>
                             </li>
                         </ul>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.mostrarDanadas()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Actas Dañadas</a>
-                            </li>
-                        </ul>
+                   
                     </li>
-                    <li id="menuProyectos">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label">Proyectos</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.listadoProyectos_t()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Terminados</a>
-                            </li>
-                            <li><a onclick="Menu.listadoProyectos_e()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>En Ejecucion</a>
-                            </li>
-                        </ul>
-                    </li>
+              
+            
                     <li id="menuProyectos">
                         <a><i class="fa fa-users" aria-hidden="true"></i> <span
                                 class="nav-label">Adm Semillero</span> <span class="fa arrow"></span></a>
@@ -180,7 +190,8 @@
                         </ul>
                     </li>
 
-                  
+          
+                    
 
                 </ul>
 

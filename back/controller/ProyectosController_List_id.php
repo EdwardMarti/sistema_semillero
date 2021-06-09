@@ -25,7 +25,7 @@ include_once realpath('../facade/ProyectosFacade.php');
 	    \"fecha_ini\":\"{$Proyectos->getfecha_ini()}\",
 	    \"resumen\":\"{$Proyectos->getresumen()}\",
 	    \"obj_general\":\"{$Proyectos->getobj_general()}\",
-	    \"obj_esÃÂ©cifico\":\"{$Proyectos->getobj_esÃÂ©cifico()}\",
+	    \"obj_especifico\":\"{$Proyectos->getobj_especifico()}\",
 	    \"resultados\":\"{$Proyectos->getresultados()}\",
 	    \"costo_valor\":\"{$Proyectos->getcosto_valor()}\",
 	    \"producto\":\"{$Proyectos->getproducto()}\",

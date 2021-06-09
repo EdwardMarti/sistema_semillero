@@ -1,0 +1,297 @@
+<!-- Tabla de Usuarios -->
+<div class="wrapper wrapper-content animated fadeInRight" id="tablaFacultades">
+ 
+    
+    <div class="ibox-content">
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <b>DATOS BASICOS</b> 
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+   
+        <form role="form" >
+            
+                <div class="form-group">
+                          <label for="Inputdescripcion">Linea de Investigacion</label>
+                          <select class="form-control" name="lineas_investigacion2" id="lineas_investigacion2" >
+                                      <option value="-1">SELECCIONE</option>
+                                     
+
+                                  </select>
+              
+                      </div>
+                   
+                          <div class="form-group">
+
+                        <label for="formGroupExampleInput">Responsable </label>
+                        <input type="text" style="background: white;" class="form-control" name="responsable" id="responsable"  required>
+
+                    </div>
+                       
+            
+            
+            <div class="row">
+
+                <div class="col-6">
+ <!--style="display: none"-->
+ <div class="form-group" style="display: none">
+
+                        <label for="formGroupExampleInput">persona_Id </label>
+                        <input type="text" style="background: white;" class="form-control" name="persona_Id" id="persona_Id"  required>
+
+                    </div>
+                    <div class="form-group">
+
+                        
+                         <div class="form-group">
+                          <label for="Inputdescripcion">Semestre</label>
+                         <select class="form-control" name="semestre" id="semestre">
+                                    <option value="-1">SELECCIONE</option>
+                                    <option value="1">PRIMERO</option>
+                                    <option value="2">SEGUNDO</option>
+                                </select>
+              
+                      </div>
+                         <div class="form-group">
+                          <label for="Inputdescripcion">Proyecto a Ejecutar</label>
+                          <select class="form-control" name="lineas_investigacion2" id="lineas_investigacion2" >
+                                      <option value="-1">SELECCIONE</option>
+                                     
+
+                                  </select>
+              
+                      </div>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="formGroupExampleInput">Responsable del Proyecto </label>
+                        <input type="text" style="background: white;" class="form-control" name="telefonoD" id="telefonoD"  required>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="formGroupExampleInput">Objetivo General </label>
+                        <input type="text" style="background: white;" class="form-control" name="ubicacionD" id="ubicacionD"  required>
+
+                    </div>
+                 
+                </div>    
+                <div class="col-6">
+
+                    <div class="form-group">
+
+                        <label for="formGroupExampleInput">Año </label>
+                        <input class="form-control" type="number" id="anio" placeholder="YYYY" min="1900" max="2100" onkeypress="validarAño()">
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="formGroupExampleInput">Fecha de Inicio </label>
+                        <input type="text" style="background: white;" class="form-control" name="correoD" id="correoD"  required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Fecha de Terminación </label>
+                         <input type="text" style="background: white;" class="form-control" name="correoD" id="correoD"  required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Producto </label>
+                        <input type="text" style="background: white;" class="form-control" name="correoD" id="correoD"  required>
+
+                    </div>
+                         <div class="modal-footer">
+
+                <h5 class="label label-successE"> <a onclick="ActualizarDataDocente()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">Actualizar</a></h5>
+            </div>
+                </div>   
+              
+            </div>
+       </form>
+          
+      </div>
+    </div>
+  </div>
+    
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <b>1. ACTIVIDADES</b> 
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+           <div class="col-lg-12">
+            <div class="ibox ">
+             
+                     
+                               <div class='table mt-4 mb-4'>
+                             <div class="modal-footer">
+
+                              <h5 class="label label-successE"> <a onclick="mostrarModalLineas()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                            </div>
+                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablal' >
+                            <thead>
+                                <tr class="ufps-tabl">
+                                   
+                                    <th>DESCRIPCIOON</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div> 
+                
+              
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <b>2. CAPACITACIONES</b> 
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+              <div class="col-lg-12">
+            <div class="ibox ">
+             
+                    <div class="col-lg-12">
+            <div class="ibox ">
+               <div class="modal-footer">
+
+                              <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                            </div>
+                      <div class='table mt-4 mb-4'>
+                                              <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaTitulos' >
+                            <thead>
+                                <tr class="ufps-tabl">
+                                   
+                                    <th>NOMBRE DE LA CAPACITACION</th>
+                                    <th>OTADOR</th>
+                                    <th>OBJETIVO</th>
+                                    <th>FECHA DE REALIZACION</th>
+                                    <th>RESPONSABLE</th>
+                                    <th>Nº DE ASISTENTES</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>       
+                    </div>       
+                    </div>  
+              
+            </div>
+        </div>
+        </div>
+    </div>
+  </div>
+    
+    
+     <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            <b>3. OTRAS ACTIVIDADES DE INVESTIGACION (*) </b> 
+        </button>
+      </h5>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+      <div class="card-body">
+           <div class="col-lg-12">
+            <div class="ibox ">
+             
+                    <div class="col-lg-12">
+            <div class="ibox ">
+               <div class="modal-footer">
+
+                              <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                            </div>
+                      <div class='table mt-4 mb-4'>
+                                              <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaTitulos' >
+                            <thead>
+                                <tr class="ufps-tabl">
+                                   
+                                    <th>NOMBRE DEL PROYECTO</th>
+                                    <th>NOMBRE ACTIVIDAD</th>
+                                    <th>MODALIDAD DE PARTICIPACION</th>
+                                    <th>RESPONSABLE</th>
+                                    <th>FECHA DE REALIZACION</th>
+                                    <th>PRODUCTO(PONENCIA/ARTICULO)</th>
+                                    <th>ACCIONES</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>       
+                    </div>       
+                    </div>  
+              
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+</div>
+
+</div>
+</div>
+
+<!---------------------------------------        Modales    ----------------------->
+
+<div class="modal inmodal" id="ModalLineas" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+               <form role="form" id="Linea_investigacionInsert">
+                   
+                 
+                      <div class="form-group">
+                          <label for="Inputdescripcion">Linea de Investigacion</label>
+                          <select class="form-control" name="lineas_investigacion2" id="lineas_investigacion2" >
+                                      <option value="-1">SELECCIONE</option>
+                                     
+
+                                  </select>
+              
+                      </div>
+                   
+                          <div class="form-group">
+
+                        <label for="formGroupExampleInput">Responsable </label>
+                        <input type="text" style="background: white;" class="form-control" name="responsable" id="responsable"  required>
+
+                    </div>
+                       
+                   </form>
+            </div>
+            <div class="modal-footer">
+                   <button type="button" class="btn btn-primary" id="btnLnAct" onclick="actualizarRango()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarLineaP()">Registrar</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+
+            </div>
+         
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/plan/plan.js"></script>

@@ -1,0 +1,113 @@
+<div class="modal inmodal fade" id="modalRegistroHoras" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 1px 1px; background:#aa1916 ; ">
+                <button type="button" onclick="closeModalRegistroHoras()" class="close" ><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h3 class="modal-title" style="color: #ffffff">Registro de Horas</h3>
+
+            </div>
+            <div class="modal-body">
+                <!--  padding: 5px 5px;-->
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="hidden" id="id">
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Semestre Academico: </label>
+                                <input type="number" min="1" max="2" style="background: white;" class="form-control" name="semestre"
+                                    id="semestre">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Horas Planta </label>
+                                <input type="number" min="0" max="9999" style="background: white;" class="form-control" name="horas_planta"
+                                    id="horas_planta">
+                            </div>
+
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Año </label>
+                                <input type="number" min="2021" max="2100" style="background: white;" class="form-control" name="anio"
+                                    id="anio">
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Horasasas Catedra </label>
+                                <input type="number" min="0" max="9999" style="background: white;" class="form-control"
+                                    name="horas_catedra" id="horas_catedra">
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label for="formGroupExampleInput">Horas Solicitadas </label>
+                            <input type="number" min="0" max="9999" style="background: white;" class="form-control"
+                                name="horas_solicitadas" placeholder="Numero de horas solicitadas"
+                                id="horas_solicitadas">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" onclick="closeModalRegistroHoras()">Close</button>
+                <button type="button" class="btn btn-primary" style="display: none;" id="btnActualizar"
+                    onclick="actualizarSolicitudHoras()">Actualizar</button>
+                    <button type="button" class="btn btn-primary" id="btnOrderReg"
+                    onclick="registrarSolicitudHoras()">Registrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- Tabla de Usuarios -->
+<div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="ibox ">
+
+                <div class="ibox-title row">
+                    <h5 class="text-white col">Solicitud Horas</h5>
+                    <h5 class="label label-successE"> <a onclick="openModalRegistroHoras()"
+                            style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
+                            Agregar</a></h5>
+                </div>
+
+
+
+                <div class="ibox-content">
+
+                    <div class='table mt-4 mb-4'><br>
+                        <table class='table table-striped mt-4 mb-4 centradito table-hover' id='listadoHorasTabla'
+                            style='width: 100%'>
+                            <thead>
+                                <tr class="ufps-tabl">
+                                    <th>Año</th>
+                                    <th>Semestre</th>
+                                    <th>Horas Catedra</th>
+                                    <th>Horas Planta</th>
+                                    <th>Horas Solicitadas</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+<script type="text/javascript" src="../js/solicitudes/horasInvestigacion.js"></script>

@@ -22,14 +22,14 @@ class ProyectosController {
         $fecha_ini = strip_tags($_POST['fecha_ini']);
         $resumen = strip_tags($_POST['resumen']);
         $obj_general = strip_tags($_POST['obj_general']);
-        $obj_esÃÂ©cifico = strip_tags($_POST['obj_esÃÂ©cifico']);
+        $obj_especifico = strip_tags($_POST['obj_especifico']);
         $resultados = strip_tags($_POST['resultados']);
         $costo_valor = strip_tags($_POST['costo_valor']);
         $producto = strip_tags($_POST['producto']);
         $Semillero_id = strip_tags($_POST['semillero_id']);
         $semillero= new Semillero();
         $semillero->setId($Semillero_id);
-        ProyectosFacade::insert($id, $titulo, $investigador, $estado_proyecto, $tiempo_ejecucion, $fecha_ini, $resumen, $obj_general, $obj_esÃÂ©cifico, $resultados, $costo_valor, $producto, $semillero);
+        ProyectosFacade::insert($id, $titulo, $investigador, $estado_proyecto, $tiempo_ejecucion, $fecha_ini, $resumen, $obj_general, $obj_especifico, $resultados, $costo_valor, $producto, $semillero);
 return true;
     }
 
@@ -46,7 +46,7 @@ return true;
 	    \"fecha_ini\":\"{$Proyectos->getfecha_ini()}\",
 	    \"resumen\":\"{$Proyectos->getresumen()}\",
 	    \"obj_general\":\"{$Proyectos->getobj_general()}\",
-	    \"obj_esÃÂ©cifico\":\"{$Proyectos->getobj_esÃÂ©cifico()}\",
+	    \"obj_especifico\":\"{$Proyectos->getobj_especifico()}\",
 	    \"resultados\":\"{$Proyectos->getresultados()}\",
 	    \"costo_valor\":\"{$Proyectos->getcosto_valor()}\",
 	    \"producto\":\"{$Proyectos->getproducto()}\",

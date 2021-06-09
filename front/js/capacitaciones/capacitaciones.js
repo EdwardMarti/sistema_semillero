@@ -146,7 +146,7 @@ function obtenerDatosC(id) {
             throw response;
         })
         .then(function(data) {
-//                alert(data.capacitaciones);
+
             listadoTCap(data.capacitaciones);
         })
         .catch(function(promise) {
@@ -479,30 +479,14 @@ function ActualizarDataDocente() {
 }
 
 
-
-function DeleteCap(id,data) {
-    
-    
- swal({
-        title: "Are you sure?",
-        text: "You will not be able to recover this imaginary file!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, delete it!",
-        closeOnConfirm: false
-    }, function () {
-          eliminarLn(id,data);
-        swal("Deleted!", "Your imaginary file has been deleted.", "success");
-    });
-  
-//    Mensaje.mostrarMsjConfirmacionBorrar(
-//        'Eliminar Orden',
-//        'Este proceso es irreversible , ¿esta seguro que desea eliminar este Registro?',
-//        function() {
-//            eliminarLn(id,data);
-//        }
-//    );
+function DeleteCap(id) {
+    Mensaje.mostrarMsjConfirmacion(
+        'Eliminar Registro',
+        'Este proceso es irreversible , ¿esta seguro que desea este Registro?',
+        function() {
+            eliminarCapacitacion(id);
+        }
+    );
 }
 
 
@@ -510,20 +494,19 @@ function DeleteCap(id,data) {
  * @method AlumnoEliminar
  * Método que se encarga de eliminar el estudiante de todas la bd
  */
-function eliminarLn(id,datos) {
-    alert(id);
-   
+function eliminarCapacitacion(id) {
+
     let data = {
         id: id,
 
     };
     Utilitario.agregarMascara();
-    fetch("../../back/controller/Sem_linea_investigacionController_Delete.php", {
+    fetch("../../back/controller/CapacitacionesController_Delete.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
 
@@ -536,12 +519,11 @@ function eliminarLn(id,datos) {
             throw response;
         })
         .then(function(data) {
-           
-    
-            Mensaje.mostrarMsjExito("Borrado Exitoso", data.mensaje);
 
-//            ocultarModalOrdenes()();
-                obtenerDatosS(varSemi);
+            Mensaje.mostrarMsjExito("Borrado Exitoso", data.mensaje);
+             
+            obtenerDatosC(id_Semil);
+           
         })
         .catch(function(promise) {
             if (promise.json) {

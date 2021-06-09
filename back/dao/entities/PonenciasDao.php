@@ -30,7 +30,7 @@ private $cn;
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($ponencias){
-      $id=$ponencias->getId();
+//      $id=$ponencias->getId();
 $nombre_po=$ponencias->getNombre_po();
 $fecha=$ponencias->getFecha();
 $nombre_eve=$ponencias->getNombre_eve();
@@ -41,8 +41,21 @@ $tipo_ponencias_id=$ponencias->getTipo_ponencias_id()->getId();
 $semillero_id=$ponencias->getSemillero_id()->getId();
 
       try {
-          $sql= "INSERT INTO `ponencias`( `id`, `nombre_po`, `fecha`, `nombre_eve`, `institucion`, `ciudad`, `lugar`, `tipo_ponencias_id`, `semillero_id`)"
-          ."VALUES ('$id','$nombre_po','$fecha','$nombre_eve','$institucion','$ciudad','$lugar','$tipo_ponencias_id','$semillero_id')";
+          $sql= "INSERT INTO `ponencias`( `nombre_po`, `fecha`, `nombre_eve`, `institucion`, `ciudad`, `lugar`, `tipo_ponencias_id`, `semillero_id`)"
+          ."VALUES ( '$nombre_po','$fecha','$nombre_eve','$institucion','$ciudad','$lugar','$tipo_ponencias_id','$semillero_id')";
+          return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
+  
+  public function insert2($nombre_po, $fecha, $nombre_eve, $institucion, $ciudad, $lugar, $Tipo_ponencias_id, $Semillero_id){
+
+
+      try {
+          $sql= "INSERT INTO `ponencias`( `nombre_po`, `fecha`, `nombre_eve`, `institucion`, `ciudad`, `lugar`, `tipo_ponencias_id`, `semillero_id`)"
+          ."VALUES ( '$nombre_po','$fecha','$nombre_eve','$institucion','$ciudad','$lugar','$Tipo_ponencias_id','$Semillero_id')";
+
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -109,6 +122,16 @@ $semillero_id=$ponencias->getSemillero_id()->getId();
           throw new Exception('Primary key is null');
       }
   }
+  
+  public function update2($id, $nombre_po, $fecha, $nombre_eve, $institucion, $ciudad, $lugar, $tipo_ponencias_id, $semillero_id){
+     
+      try {
+          $sql= "UPDATE `ponencias` SET `nombre_po`='$nombre_po' ,`fecha`='$fecha' ,`nombre_eve`='$nombre_eve' ,`institucion`='$institucion' ,`ciudad`='$ciudad' ,`lugar`='$lugar' ,`tipo_ponencias_id`='$tipo_ponencias_id' ,`semillero_id`='$semillero_id' WHERE `id`='$id' ";
+         return $this->updateConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
 
     /**
      * Elimina un objeto Ponencias en la base de datos.
@@ -163,6 +186,70 @@ $semillero_id=$ponencias->getSemillero_id()->getId();
       return null;
       }
   }
+  
+  public function listAll_Sem($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `nombre_po`, `fecha`, `nombre_eve`, `institucion`, `ciudad`, `lugar`, `tipo_ponencias_id`, `semillero_id`"
+          ."FROM `ponencias`"
+          ."WHERE semillero_id = '$id' ";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $ponencias= new Ponencias();
+          $ponencias->setId($data[$i]['id']);
+          $ponencias->setNombre_po($data[$i]['nombre_po']);
+          $ponencias->setFecha($data[$i]['fecha']);
+          $ponencias->setNombre_eve($data[$i]['nombre_eve']);
+          $ponencias->setInstitucion($data[$i]['institucion']);
+          $ponencias->setCiudad($data[$i]['ciudad']);
+          $ponencias->setLugar($data[$i]['lugar']);
+           $tipo_ponencias = new Tipo_ponencias();
+           $tipo_ponencias->setId($data[$i]['tipo_ponencias_id']);
+           $ponencias->setTipo_ponencias_id($tipo_ponencias);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $ponencias->setSemillero_id($semillero);
+
+          array_push($lista,$ponencias);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  public function listAll_SemId($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `nombre_po`, `fecha`, `nombre_eve`, `institucion`, `ciudad`, `lugar`, `tipo_ponencias_id`, `semillero_id`"
+          ."FROM `ponencias`"
+          ."WHERE `id` = '$id' ";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $ponencias= new Ponencias();
+          $ponencias->setId($data[$i]['id']);
+          $ponencias->setNombre_po($data[$i]['nombre_po']);
+          $ponencias->setFecha($data[$i]['fecha']);
+          $ponencias->setNombre_eve($data[$i]['nombre_eve']);
+          $ponencias->setInstitucion($data[$i]['institucion']);
+          $ponencias->setCiudad($data[$i]['ciudad']);
+          $ponencias->setLugar($data[$i]['lugar']);
+           $tipo_ponencias = new Tipo_ponencias();
+           $tipo_ponencias->setId($data[$i]['tipo_ponencias_id']);
+           $ponencias->setTipo_ponencias_id($tipo_ponencias);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $ponencias->setSemillero_id($semillero);
+
+          array_push($lista,$ponencias);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -178,6 +265,17 @@ $semillero_id=$ponencias->getSemillero_id()->getId();
           $data = $sentencia->fetchAll();
           $sentencia = null;
           return $data;
+    }
+    
+        
+    public function updateConsulta($sql)
+    {
+        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sentencia = $this->cn->prepare($sql);
+        $sentencia->execute();
+        $rta = $sentencia->rowCount();
+        $sentencia = null;
+        return $rta;
     }
     /**
      * Cierra la conexión actual a la base de datos

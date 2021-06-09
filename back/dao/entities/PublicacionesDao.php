@@ -30,7 +30,7 @@ private $cn;
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($publicaciones){
-      $id=$publicaciones->getId();
+     
 $autor=$publicaciones->getAutor();
 $titulo=$publicaciones->getTitulo();
 $nombre_medio=$publicaciones->getNombre_medio();
@@ -44,8 +44,8 @@ $tipo_publicaciones_id=$publicaciones->getTipo_publicaciones_id()->getId();
 $semillero_id=$publicaciones->getSemillero_id()->getId();
 
       try {
-          $sql= "INSERT INTO `publicaciones`( `id`, `autor`, `titulo`, `nombre_medio`, `issn`, `editorial`, `volumen`, `cant_pag`, `fecha`, `ciudad`, `tipo_publicaciones_id`, `semillero_id`)"
-          ."VALUES ('$id','$autor','$titulo','$nombre_medio','$issn','$editorial','$volumen','$cant_pag','$fecha','$ciudad','$tipo_publicaciones_id','$semillero_id')";
+          $sql= "INSERT INTO `publicaciones`(  `autor`, `titulo`, `nombre_medio`, `issn`, `editorial`, `volumen`, `cant_pag`, `fecha`, `ciudad`, `tipo_publicaciones_id`, `semillero_id`)"
+          ."VALUES ( '$autor','$titulo','$nombre_medio','$issn','$editorial','$volumen','$cant_pag','$fecha','$ciudad','$tipo_publicaciones_id','$semillero_id')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -98,7 +98,7 @@ $semillero_id=$publicaciones->getSemillero_id()->getId();
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function update($publicaciones){
-      $id=$publicaciones->getId();
+$id=$publicaciones->getId();   
 $autor=$publicaciones->getAutor();
 $titulo=$publicaciones->getTitulo();
 $nombre_medio=$publicaciones->getNombre_medio();
@@ -112,8 +112,9 @@ $tipo_publicaciones_id=$publicaciones->getTipo_publicaciones_id()->getId();
 $semillero_id=$publicaciones->getSemillero_id()->getId();
 
       try {
-          $sql= "UPDATE `publicaciones` SET`id`='$id' ,`autor`='$autor' ,`titulo`='$titulo' ,`nombre_medio`='$nombre_medio' ,`issn`='$issn' ,`editorial`='$editorial' ,`volumen`='$volumen' ,`cant_pag`='$cant_pag' ,`fecha`='$fecha' ,`ciudad`='$ciudad' ,`tipo_publicaciones_id`='$tipo_publicaciones_id' ,`semillero_id`='$semillero_id' WHERE `id`='$id' ";
-         return $this->insertarConsulta($sql);
+          $sql= "UPDATE `publicaciones` SET `autor`='$autor' ,`titulo`='$titulo' ,`nombre_medio`='$nombre_medio' ,`issn`='$issn' ,`editorial`='$editorial' ,`volumen`='$volumen' ,`cant_pag`='$cant_pag' ,`fecha`='$fecha' ,`ciudad`='$ciudad' ,`tipo_publicaciones_id`='$tipo_publicaciones_id' ,`semillero_id`='$semillero_id' WHERE `id`='$id' ";
+      
+         return $this->updateConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       }
@@ -175,6 +176,41 @@ $semillero_id=$publicaciones->getSemillero_id()->getId();
       return null;
       }
   }
+  
+  public function listAll_id($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `autor`, `titulo`, `nombre_medio`, `issn`, `editorial`, `volumen`, `cant_pag`, `fecha`, `ciudad`, `tipo_publicaciones_id`, `semillero_id`"
+          ."FROM `publicaciones`"
+          ."WHERE `semillero_id` = '$id' ";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $publicaciones= new Publicaciones();
+          $publicaciones->setId($data[$i]['id']);
+          $publicaciones->setAutor($data[$i]['autor']);
+          $publicaciones->setTitulo($data[$i]['titulo']);
+          $publicaciones->setNombre_medio($data[$i]['nombre_medio']);
+          $publicaciones->setIssn($data[$i]['issn']);
+          $publicaciones->setEditorial($data[$i]['editorial']);
+          $publicaciones->setVolumen($data[$i]['volumen']);
+          $publicaciones->setCant_pag($data[$i]['cant_pag']);
+          $publicaciones->setFecha($data[$i]['fecha']);
+          $publicaciones->setCiudad($data[$i]['ciudad']);
+           $tipo_publicaciones = new Tipo_publicaciones();
+           $tipo_publicaciones->setId($data[$i]['tipo_publicaciones_id']);
+           $publicaciones->setTipo_publicaciones_id($tipo_publicaciones);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $publicaciones->setSemillero_id($semillero);
+
+          array_push($lista,$publicaciones);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -190,6 +226,16 @@ $semillero_id=$publicaciones->getSemillero_id()->getId();
           $data = $sentencia->fetchAll();
           $sentencia = null;
           return $data;
+    }
+    
+       public function updateConsulta($sql)
+    {
+        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sentencia = $this->cn->prepare($sql);
+        $sentencia->execute();
+        $rta = $sentencia->rowCount();
+        $sentencia = null;
+        return $rta;
     }
     /**
      * Cierra la conexión actual a la base de datos
