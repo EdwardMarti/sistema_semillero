@@ -150,6 +150,9 @@ class FactoryDao implements IFactoryDao{
      public function getEstudianteDao($dbName){
         return new EstudianteDao($this->conn->obtener($dbName));
     }
+     public function getEstudiante_proyectoDao($dbName){
+        return new Estudiante_proyectoDao($this->conn->obtener($dbName));
+    }
      /**
      * Devuelve una instancia de FacultadDao con una conexiÃ³n que depende del gestor de base de datos
      * @param dbName Nombre o identificador de la base de datos a conectar

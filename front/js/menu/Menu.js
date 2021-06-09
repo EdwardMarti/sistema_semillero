@@ -2,7 +2,7 @@
  * Clase encargada de realizar las interacciones necesarias con la vista de Menu.
  *
  **/
-class Menu {
+ class Menu {
 
     /**
      * @method cargarMenu
@@ -165,10 +165,65 @@ class Menu {
             });
     }
     
+    static listadoPonencias() {
+
+        Utilitario.agregarMascara();
+        fetch("listadoPonencias.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+    
     static listadoActividades() {
 
         Utilitario.agregarMascara();
         fetch("listadoActividades.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+    
+    static listadoInformes() {
+
+        Utilitario.agregarMascara();
+        fetch("listadoInformes.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+    
+    
+    static formatoInformes() {
+
+        Utilitario.agregarMascara();
+        fetch("formato_informe.html", {
                 method: "GET",
             })
             .then(function(response) {
@@ -239,62 +294,8 @@ class Menu {
 
     static MonstrarRegistrarSemillero() {
 
-            Utilitario.agregarMascara();
-            fetch("registroSemillero.html", {
-                    method: "GET",
-                })
-                .then(function(response) {
-                    return response.text();
-                })
-                .then(function(vista) {
-                    $("#mostrarcontenido").html(vista);
-
-                })
-                .finally(function() {
-                    Utilitario.quitarMascara();
-                });
-        }
-        
-    static MonstrarEstadoSemillero() {
-
-            Utilitario.agregarMascara();
-            fetch("estadoSemillero.html", {
-                    method: "GET",
-                })
-                .then(function(response) {
-                    return response.text();
-                })
-                .then(function(vista) {
-                    $("#mostrarcontenido").html(vista);
-
-                })
-                .finally(function() {
-                    Utilitario.quitarMascara();
-                });
-        }
-        
-    static MonstrarPerfilSemillero() {
-
-            Utilitario.agregarMascara();
-            fetch("perfilSemillero.html", {
-                    method: "GET",
-                })
-                .then(function(response) {
-                    return response.text();
-                })
-                .then(function(vista) {
-                    $("#mostrarcontenido").html(vista);
-
-                })
-                .finally(function() {
-                    Utilitario.quitarMascara();
-                });
-        }
-        
-            static listadoSemilleros_p() {
-
         Utilitario.agregarMascara();
-        fetch("listadoSemillero_p.html", {
+        fetch("registroSemillero.html", {
                 method: "GET",
             })
             .then(function(response) {
@@ -308,6 +309,60 @@ class Menu {
                 Utilitario.quitarMascara();
             });
     }
+
+    static MonstrarEstadoSemillero() {
+
+        Utilitario.agregarMascara();
+        fetch("estadoSemillero.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    static MonstrarPerfilSemillero() {
+
+        Utilitario.agregarMascara();
+        fetch("perfilSemillero.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    static listadoSemilleros_p() {
+
+            Utilitario.agregarMascara();
+            fetch("listadoSemillero_p.html", {
+                    method: "GET",
+                })
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(vista) {
+                    $("#mostrarcontenido").html(vista);
+
+                })
+                .finally(function() {
+                    Utilitario.quitarMascara();
+                });
+        }
         //<editor-fold defaultstate="collapsed" desc="Actas">
         /**
          * 
@@ -334,21 +389,56 @@ class Menu {
     //<editor-fold defaultstate="collapsed" desc="Actas Danadas">
     static mostrarDanadas() {
 
-            Utilitario.agregarMascara();
-            fetch("listadoDanadas.html", {
-                    method: "GET",
-                })
-                .then(function(response) {
-                    return response.text();
-                })
-                .then(function(vista) {
-                    $("#mostrarcontenido").html(vista);
-                })
-                .finally(function() {
-                    Utilitario.quitarMascara();
-                });
-        }
-        //</editor-fold>
+        Utilitario.agregarMascara();
+        fetch("listadoDanadas.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
 
+    //</editor-fold>
+    static añadirPlan() {
 
+        Utilitario.agregarMascara();
+        fetch("añadirPlanAccion.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+/**
+     * carga en la vista principal el formulario para registrar las horas
+     * de investigacion para directores de semillero
+     */
+ static loadFormSolicitudHoras() {
+
+    Utilitario.agregarMascara();
+    fetch("formRegistroHorasInvestigacion.html", {
+            method: "GET",
+        })
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(vista) {
+            $("#mostrarcontenido").html(vista);
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+}
 }

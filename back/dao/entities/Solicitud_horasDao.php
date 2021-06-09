@@ -28,16 +28,16 @@ private $cn;
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($solicitud_horas){
-      $id=$solicitud_horas->getId();
 $anio=$solicitud_horas->getAnio();
 $semestre=$solicitud_horas->getSemestre();
 $horas_catedra=$solicitud_horas->getHoras_catedra();
 $horas_planta=$solicitud_horas->getHoras_planta();
 $horas_solicitadas=$solicitud_horas->getHoras_solicitadas();
+$idSemillero = $solicitud_horas->getId_semillero();
 
       try {
-          $sql= "INSERT INTO `solicitud_horas`( `id`, `anio`, `semestre`, `horas_catedra`, `horas_planta`, `horas_solicitadas`)"
-          ."VALUES ('$id','$anio','$semestre','$horas_catedra','$horas_planta','$horas_solicitadas')";
+          $sql= "INSERT INTO `solicitud_horas`( `anio`, `semestre`, `horas_catedra`, `horas_planta`, `horas_solicitadas`, `id_semillero`)"
+          ."VALUES ('$anio','$semestre','$horas_catedra','$horas_planta','$horas_solicitadas', '$idSemillero')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -54,18 +54,18 @@ $horas_solicitadas=$solicitud_horas->getHoras_solicitadas();
       $id=$solicitud_horas->getId();
 
       try {
-          $sql= "SELECT `id`, `anio`, `semestre`, `horas_catedra`, `horas_planta`, `horas_solicitadas`"
+          $sql= "SELECT `id`, `anio`, `semestre`, `horas_catedra`, `horas_planta`, `horas_solicitadas`, `id_semillero`"
           ."FROM `solicitud_horas`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
-          $solicitud_horas->setId($data[$i]['id']);
+          //$solicitud_horas->setId($data[$i]['id']);
           $solicitud_horas->setAnio($data[$i]['anio']);
           $solicitud_horas->setSemestre($data[$i]['semestre']);
           $solicitud_horas->setHoras_catedra($data[$i]['horas_catedra']);
           $solicitud_horas->setHoras_planta($data[$i]['horas_planta']);
           $solicitud_horas->setHoras_solicitadas($data[$i]['horas_solicitadas']);
-
+          $solicitud_horas->setId_semillero($data[$i]["id_semillero"]);
           }
       return $solicitud_horas;      } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -86,10 +86,11 @@ $semestre=$solicitud_horas->getSemestre();
 $horas_catedra=$solicitud_horas->getHoras_catedra();
 $horas_planta=$solicitud_horas->getHoras_planta();
 $horas_solicitadas=$solicitud_horas->getHoras_solicitadas();
+$update=$solicitud_horas->getHoras_solicitadas();
 
       try {
           $sql= "UPDATE `solicitud_horas` SET`id`='$id' ,`anio`='$anio' ,`semestre`='$semestre' ,`horas_catedra`='$horas_catedra' ,`horas_planta`='$horas_planta' ,`horas_solicitadas`='$horas_solicitadas' WHERE `id`='$id' ";
-         return $this->insertarConsulta($sql);
+         return $this->updateConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       }
@@ -106,7 +107,7 @@ $horas_solicitadas=$solicitud_horas->getHoras_solicitadas();
 
       try {
           $sql ="DELETE FROM `solicitud_horas` WHERE `id`='$id'";
-          return $this->insertarConsulta($sql);
+          return $this->updateConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       }
@@ -142,6 +143,36 @@ $horas_solicitadas=$solicitud_horas->getHoras_solicitadas();
       }
   }
 
+/**
+     * Busca un objeto Solicitud_horas en la base de datos.
+     * @return ArrayList<Solicitud_horas> Puede contener los objetos consultados o estar vacío
+     * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
+     */
+    public function listHorasBySemillero($idSemillero){
+        $lista = array();
+        try {
+            $sql ="SELECT `id`, `anio`, `semestre`, `horas_catedra`, `horas_planta`, `horas_solicitadas`"
+            ."FROM `solicitud_horas`"
+            ."WHERE id_semillero=$idSemillero";
+            $data = $this->ejecutarConsulta($sql);
+            for ($i=0; $i < count($data) ; $i++) {
+                $solicitud_horas= new Solicitud_horas();
+            $solicitud_horas->setId($data[$i]['id']);
+            $solicitud_horas->setAnio($data[$i]['anio']);
+            $solicitud_horas->setSemestre($data[$i]['semestre']);
+            $solicitud_horas->setHoras_catedra($data[$i]['horas_catedra']);
+            $solicitud_horas->setHoras_planta($data[$i]['horas_planta']);
+            $solicitud_horas->setHoras_solicitadas($data[$i]['horas_solicitadas']);
+  
+            array_push($lista,$solicitud_horas);
+            }
+        return $lista;
+        } catch (SQLException $e) {
+            throw new Exception('Primary key is null');
+        return null;
+        }
+    }
+
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);
@@ -157,6 +188,16 @@ $horas_solicitadas=$solicitud_horas->getHoras_solicitadas();
           $sentencia = null;
           return $data;
     }
+    public function updateConsulta($sql)
+    {
+        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sentencia = $this->cn->prepare($sql);
+        $sentencia->execute();
+        $rta = $sentencia->rowCount();
+        $sentencia = null;
+        return $rta;
+    }
+
     /**
      * Cierra la conexión actual a la base de datos
      */

@@ -16,11 +16,20 @@ class Solicitud_horas {
   private $horas_catedra;
   private $horas_planta;
   private $horas_solicitadas;
+  private $id_semillero;
 
     /**
      * Constructor de Solicitud_horas
     */
      public function __construct(){}
+
+     function getId_semillero() {
+      return $this->id_semillero;
+  }
+
+  function setId_semillero($id_semillero) {
+      $this->id_semillero = $id_semillero;
+  }
 
     /**
      * Devuelve el valor correspondiente a id

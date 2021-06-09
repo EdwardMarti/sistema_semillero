@@ -1,0 +1,92 @@
+body, table{
+    font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+.table,
+.msg {
+    text-align: center;
+    width: 800px;
+    margin: auto;
+}
+
+.center{
+    text-align: center;
+}
+
+.msg{
+    text-align: left; padding-top: 20px
+}
+
+
+
+.table-border {
+    border-collapse: collapse;
+}
+
+.td-border{
+    border-width:1px;
+    border-style:inset;
+    border-color:black;
+}
+
+.strong{
+    font-weight: bold;
+}
+
+.rightBorder{
+    border-right: inset;
+    border-width:1px;
+    border-color:blue;
+    /* border-right: green; border-style:solid; border-width:1px; */
+}
+
+.wd-10{
+    width:10%
+}
+.wd-20{
+    width:20%
+}
+.wd-30{
+    width:30%
+}
+.wd-40{
+    width:40%
+}
+.wd-50{
+    width:50%
+}
+.wd-55{
+    width:55%
+}
+.wd-60{
+    width:60%
+}
+.wd-70{
+    width:70%
+}
+.wd-80{
+    width:80%
+}
+.wd-90{
+    width:90%
+}
+.wd-100{
+    width:100%
+}
+
+.mt-10{
+    margin-top: 20px;
+}
+
+.bg-red{
+    background-color: #c00000;
+}
+
+.td-border-bottom{
+    border-bottom: inset;
+    border-width:1px;
+}
+
+.underline{
+    text-decoration: underline;
+}

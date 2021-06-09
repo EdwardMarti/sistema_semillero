@@ -1,22 +1,23 @@
 $(document).ready(function() {
-    iniciarTabla();
-//    obtenerDatos();
+     id_Semil='2';
+    iniciarTablaPu();
+    obtenerDatosPu(id_Semil);
 //    cargarSelectInspector();
-    ocultarModalOrdenes();
+    $("#btnOrderReg").show();
     $("#btnOrderAct").hide();
-    $("#btnOrderReg").hide();
+
 });
 
 //----------------------------------TABLA----------------------------------
 
 /**
- * @method iniciarTabla
+ * @method iniciarTablaPu
  * Metodo para instanciar la DataTable
  */
-function iniciarTabla() {
+function iniciarTablaPu() {
 
     //tabla de alumnos
-    $("#listadoOrdenesTabla").DataTable({
+    $("#listadoPublicacionesTabla").DataTable({
         responsive: true,
         ordering: true,
         paging: true,
@@ -37,41 +38,32 @@ function iniciarTabla() {
             }
         },
         columns: [{
-                data: "numero_acta",
+                data: "autor",
                 className: "text-center",
                 orderable: true,
             },
             {
-                data: "contador",
+                data: "titulo",
                 className: "text-center",
                 orderable: true,
             },
             {
-                data: "nominspector",
+                data: "nombre_medio",
                 className: "text-center",
                 orderable: true,
             },
 
             {
-                data: "nombre",
+                data: "cant_pag",
                 className: "text-center",
                 orderable: true,
             },
             {
-                data: "municipio",
+                data: "fecha",
                 className: "text-center",
                 orderable: true,
             },
-            {
-                data: "direccion",
-                className: "text-center",
-                orderable: true,
-            },
-            {
-                data: "estado",
-                className: "text-center",
-                orderable: true,
-            },
+          
             {
                 orderable: false,
                 defaultContent: [
@@ -89,7 +81,7 @@ function iniciarTabla() {
                 gestionarItem(id_order, data, index);
             });
             $(".eliminar", row).click(function() {
-                DeleteOrder(id_order, index);
+                DeleteOrder(id_order, data);
             });
         },
         dom: '<"html5buttons"B>lTfgitp',
@@ -131,20 +123,27 @@ function iniciarTabla() {
 
 //----------------------------------CRUD----------------------------------
 /**
- * @method obtenerDatos
+ * @method obtenerDatosPu
  * Método que se encarga de consumir el servicio que devuelve la data para la tabla de alumnos.
  */
 
-function obtenerDatos() {
+function obtenerDatosPu(id) {
+ 
+      let semillero = {
+        id: id,
+  
+    };
+    
     Utilitario.agregarMascara();
-    fetch("../../back/controller/OrdenesController_list.php", {
-            method: "GET",
+    fetch("../../back/controller/PublicacionesController_List_Id.php", {
+            method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
+                   body: JSON.stringify(semillero),
         })
         .then(function(response) {
             if (response.ok) {
@@ -153,7 +152,7 @@ function obtenerDatos() {
             throw response;
         })
         .then(function(data) {
-            listadoEspecialOrdenes(data.ordenes);
+            listadoPublicaciones(data.publicaciones);
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -183,32 +182,18 @@ function obtenerDatos() {
 //----------------------------------HELPERS----------------------------------
 
 /**
- * @method listadoEspecialOrdenes
+ * @method listadoPublicaciones
  * Método que se encarga de listar los alumnos a la tabla.
  *
  * @param {Object} orders Arreglo con los datos de las ordenes.
  */
 
 
-function listadoEspecialOrdenes(ordenes) {
+function listadoPublicaciones(publicaciones) {
 
-    let tabla = $("#listadoOrdenesTabla").DataTable();
+    let tabla = $("#listadoPublicacionesTabla").DataTable();
     tabla.data().clear();
-    tabla.rows.add(ordenes).draw();
-}
-
-/**
- * @method selectInspectores
- * Método que se encarga de listar los alumnos a la tabla.
- *
- * @param {Object} orders Arreglo con los datos de las ordenes.
- */
-function selectInspectores(orders) {
-    let options = '<option value="-1">SELECCIONE UN ROL</option>';
-    orders.forEach(function(ins) {
-        options += '<option value="' + ins.id + '">' + ins.nombres + '</option>'
-    });
-    $('#inspector').html(options);
+    tabla.rows.add(publicaciones).draw();
 }
 
 /**
@@ -219,34 +204,28 @@ function selectInspectores(orders) {
  */
 
 function gestionarItem(id_order, data, index) {
-    $('#idOrder').val(id_order);
-    $('#index_order').val(index);
-    $('#nombre_order').val(data.nombre);
-    $('#medidor').val(data.contador);
-    $('#codigo').val(data.codigo);
-    $('#municipio').val(data.municipio);
-    $('#barrio').val(data.barrio);
-    $('#direccion').val(data.direccion);
-    $('#phone').val(data.telefono);
-    $('#ruta').val(data.ruta);
-    $('#inspector').val(data.inspector).change();
+ 
+            
+    $('#id').val(data.id);
+    $('#autor').val(data.autor);
+    $('#titulo').val(data.titulo);
+    $('#nombre_medio').val(data.nombre_medio);
+    $('#issn').val(data.issn);
+    $('#editorial').val(data.editorial);
+    $('#volumen').val(data.volumen);
+    $('#cant_pag').val(data.cant_pag);
+    $('#fecha').val(data.fecha);
+    $('#ciudad').val(data.ciudad);
+    $('#tipo_publicaciones_id').val(data.tipo_publicaciones_id).change();
 
 
 
 
     $("#btnOrderAct").show();
     $("#btnOrderReg").hide();
-    $("#modalOrdernes").show();
-    $("#tablaOrdenes").hide();
-    validar_order_fields('nombre_order', 6);
-    validar_order_fields('medidor', 1);
 
-    validar_order_fields('municipio', 3);
-    validar_order_fields('barrio', 3);
-    validar_order_fields('direccion', 3);
-    validar_order_fields('phone', 1);
-    validar_inspectores_order();
-    validar_order();
+   
+    mostrarModalPublicaciones();
 }
 
 /**
@@ -256,9 +235,9 @@ function gestionarItem(id_order, data, index) {
 function mostrarModalPublicaciones() {
 //    limpiarcampos();
    $('#myModalPublicaciones').modal({show: true});
-    $("#btnOrderReg").show();
-    $("#btnOrderAct").hide();
+  
 }
+
 
 /**
  * @method ocultarModalOrdenes
@@ -272,200 +251,30 @@ function cerrarModalPublicaciones() {
  * @method limpiarcampos
  * Método que se encarga de limpiar los campos del modal para registro o actualizacion
  */
-function limpiarcampos() {
-    $('#idOrder').val('');
-    $('#nombre_order').val('');
-    $('#medidor').val('');
-    $('#acta').val('');
-    $('#municipio').val('');
-    $('#barrio').val('');
-    $('#direccion').val('');
-    $('#phone').val('');
-    $('#inspectores').val('');
-}
 
-//-------------------------------HELPERS INPUTS-------------------------------
-
-function validar_order() {
-    if (($('#nombre_order').val() == '' || $('#nombre_order').val().length < 6) ||
-        ($('#medidor').val() == '' || $('#medidor').val().length < 1) ||
-        ($('#municipio').val() == '' || $('#municipio').val().length < 3) ||
-        ($('#barrio').val() == '' || $('#barrio').val().length <= 3) ||
-        ($('#direccion').val() == '' || $('#direccion').val().length < 3) ||
-        ($('#phone').val() == '' || $('#phone').val().length < 1) ||
-        ($('#inspector').val() == "1" || $('#inspector').val() == null)) {
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-
-/**
- * @method validarNombre
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_order_fields(idinput, size) {
-    let input = $("#" + idinput);
-    if (input.val() == "" || input.val().length < size) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-    }
-    validar_order();
-}
-/**
- * @method validar_medidor_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_medidor_order() {
-    let input = $("#medidor");
-
-    if (input.val() === "" || input.val().length < 1) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-    }
-    validar_order()
-}
-/**
- * @method validar_acta_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_acta_order() {
-    let input = $("#nombre_order");
-
-    if (input.val() === "" || input.val().length < 1) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-/**
- * @method validar_municipio_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_municipio_order() {
-    let input = $("#municipio");
-
-    if (input.val() === "" || input.val().length <= 3) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-/**
- * @method validar_barrio_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_barrio_order() {
-    let input = $("#barrio");
-
-    if (input.val() === "" || input.val().length <= 3) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-/**
- * @method validar_direccion_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_direccion_order() {
-    let input = $("#direccion");
-
-    if (input.val() === "" || input.val().length <= 3) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-/**
- * @method validar_phone_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_phone_order() {
-    let input = $("#phone");
-
-    if (input.val() === "" || input.val().length < 1) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-        $("#btnOrderAct").prop("disabled", true);
-        $("#btnOrderReg").prop("disabled", true);
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-        $("#btnOrderAct").prop("disabled", false);
-        $("#btnOrderReg").prop("disabled", false);
-    }
-}
-/**
- * @method validar_inspectores_order
- * Método que se encarga de validar el campo de nombre.
- */
-function validar_inspectores_order() {
-    let input = $("#inspector");
-
-    if (input.val() === "-1" || $('#inspector').val() == null) {
-        input.removeClass("is-valid");
-        input.addClass("is-invalid");
-    } else {
-        input.removeClass("is-invalid");
-        input.addClass("is-valid");
-    }
-    validar_order()
-}
 
 //<editor-fold defaultstate="collapsed" desc="CRUD">
 
 
-function UpdateOrder() {
+function UpdatePublicacion() {
 
     let order = {
-        id: $('#idOrder').val(),
-        nombre: $('#nombre_order').val(),
-        codigo: $('#codigo').val(),
-        medidor: $('#medidor').val(),
-        municipio: $('#municipio').val(),
-        barrio: $('#barrio').val(),
-        direccion: $('#direccion').val(),
-        telefono: $('#phone').val(),
-        ruta: $('#ruta').val(),
-        estado: "1",
-        inspector: $('#inspector').val(),
+        id: $('#id').val(),
+         autor: $('#autor').val(),
+        titulo: $('#titulo').val(),
+        nombre_medio: $('#nombre_medio').val(),
+        issn: $('#issn').val(),
+        editorial: $('#editorial').val(),
+        volumen: $('#volumen').val(),
+        cant_pag: $('#cant_pag').val(),
+        fecha: $('#fecha').val(),
+        ciudad: $("#ciudad").val(),
+        tipo_publicaciones_id: $('#tipo_publicaciones_id').val(),
+        semillero_id: id_Semil,
         //        pensum_id: '1',
     };
     Utilitario.agregarMascara();
-    fetch("../../back/controller/OrdenesController_update.php", {
+    fetch("../../back/controller/PublicacionesController_Update.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -484,8 +293,8 @@ function UpdateOrder() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            obtenerDatos();
-            ocultarModalOrdenes();
+            obtenerDatosPu(id_Semil);
+                cerrarModalPublicaciones();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -513,29 +322,32 @@ function UpdateOrder() {
 
 }
 
-function registrarOrder() {
-
+function registrarPublicacion() {
+   $("#btnOrderReg").show();
+    $("#btnOrderAct").hide();
+    
     let ordenes = {
-        nombre: $('#nombre_order').val(),
-        medidor: $('#medidor').val(),
-        codigo: $('#codigo').val(),
-        municipio: $('#municipio').val(),
-        barrio: $('#barrio').val(),
-        direccion: $('#direccion').val(),
-        telefono: $('#phone').val(),
-        ruta: $('#ruta').val(),
-        estado: "2",
-        nominspector: $("#inspectores option:selected").text(),
-        inspector: $('#inspectores').val(),
+        autor: $('#autor').val(),
+        titulo: $('#titulo').val(),
+        nombre_medio: $('#nombre_medio').val(),
+        issn: $('#issn').val(),
+        editorial: $('#editorial').val(),
+        volumen: $('#volumen').val(),
+        cant_pag: $('#cant_pag').val(),
+        fecha: $('#fecha').val(),
+        ciudad: $("#ciudad").val(),
+        tipo_publicaciones_id: $('#tipo_publicaciones_id').val(),
+        semillero_id: id_Semil,
+      
     };
 
     Utilitario.agregarMascara();
-    fetch("../../back/controller/OrdenesController_insert.php", {
+    fetch("../../back/controller/PublicacionesController_Insert.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
             body: JSON.stringify(ordenes),
@@ -549,8 +361,8 @@ function registrarOrder() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            obtenerDatos();
-            ocultarModalOrdenes();
+           obtenerDatosPu(id_Semil);
+                cerrarModalPublicaciones();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -566,10 +378,10 @@ function registrarOrder() {
                     }
                 });
             } else {
-                Mensaje.mostrarMsjError(
-                    "Error",
-                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-                );
+//                Mensaje.mostrarMsjError(
+//                    "Error",
+//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+//                );
             }
         })
         .finally(function() {
@@ -580,12 +392,12 @@ function registrarOrder() {
 
 
 
-function DeleteOrder(id) {
+function DeleteOrder(id,data) {
     Mensaje.mostrarMsjConfirmacion(
-        'Eliminar Orden',
-        'Este proceso es irreversible , ¿esta seguro que desea eliminar la Orden?',
+        'Eliminar Registro',
+        'Este proceso es irreversible , ¿esta seguro que desea eliminar El Registro?',
         function() {
-            eliminarOrden(id);
+                eliminarPublicaciones(id,data);
         }
     );
 }
@@ -595,19 +407,19 @@ function DeleteOrder(id) {
  * @method AlumnoEliminar
  * Método que se encarga de eliminar el estudiante de todas la bd
  */
-function eliminarRangos(id) {
+function eliminarPublicaciones(id) {
 
     let data = {
         id: id,
 
     };
     Utilitario.agregarMascara();
-    fetch("../../back/controller/OrdenesController_delete.php", {
+    fetch("../../back/controller/PublicacionesController_Delete.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
 
@@ -623,8 +435,8 @@ function eliminarRangos(id) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
 
-            ocultarModalOrdenes()();
-            obtenerDatos();
+           obtenerDatosPu(id_Semil);
+                cerrarModalPublicaciones();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -656,129 +468,3 @@ function eliminarRangos(id) {
 
 //</editor-fold>
 
-//<editor-fold defaultstate="collapsed" desc="Select">
-function cargarSelectInspector() {
-
-    fetch("../../back/controller/InspectorController_listAll.php", {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
-                Plataform: "web",
-            },
-        })
-        .then(function(response) {
-            if (response.ok) {
-                return response.json();
-            }
-            throw response;
-        })
-        .then(function(data) {
-            construirSelectInspector(data.inspector);
-        })
-        .catch(function(promise) {
-            if (promise.json) {
-                promise.json().then(function(response) {
-                    let status = promise.status,
-                        mensaje = response ? response.mensaje : "";
-                    if (status === 401 && mensaje) {
-                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
-                            Utilitario.cerrarSesion();
-                        });
-                    } else if (mensaje) {
-                        Mensaje.mostrarMsjError("Error", mensaje);
-                    }
-                });
-            } else {
-                Mensaje.mostrarMsjError(
-                    "Error",
-                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-                );
-            }
-        });
-}
-
-/**
- * @method construirSelectNacionalidad
- * construye y agrega los tipos al contenedor
- */
-function construirSelectInspector(inspectores) {
-    $("#inspector").empty();
-    let input = $("#inspector");
-    for (let index = 0; index < inspectores.length; index++) {
-        let inspector = inspectores[index],
-            opcion = new Option(inspector.nombre, inspector.id);
-        $(opcion).html(inspector.nombre);
-        input.append(opcion);
-    }
-
-
-}
-
-//</editor-fold>
-
-
-/**
- * @method DeleteOrder
- * Método que se encarga de validar el campo de nombre.
- */
-function loadDataxls() {
-    //Reference the FileUpload element.
-    $('#ModalLoadData').modal('show');
-    var fileUpload = $("#fileUpload")[0];
-
-    //Validate whether File is valid Excel file.
-    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
-    if (regex.test(fileUpload.value.toLowerCase())) {
-        if (typeof(FileReader) != "undefined") {
-            var reader = new FileReader();
-
-            //For Browsers other than IE.
-            if (reader.readAsBinaryString) {
-                reader.onload = function(e) {
-                    ProcessExcel(e.target.result);
-                };
-                reader.readAsBinaryString(fileUpload.files[0]);
-            } else {
-                //For IE Browser.
-                reader.onload = function(e) {
-                    var data = "";
-                    var bytes = new Uint8Array(e.target.result);
-                    for (var i = 0; i < bytes.byteLength; i++) {
-                        data += String.fromCharCode(bytes[i]);
-                    }
-                    ProcessExcel(data);
-                };
-                reader.readAsArrayBuffer(fileUpload.files[0]);
-            }
-        } else {
-            alert("This browser does not support HTML5.");
-        }
-    } else {
-        alert("Please upload a valid Excel file.");
-    }
-}
-
-function ProcessExcel(data) {
-    //Read the Excel File data.
-    var workbook = XLSX.read(data, {
-        type: 'binary'
-    });
-    //Fetch the name of First Sheet.
-    var firstSheet = workbook.SheetNames[0];
-    //Read all rows from First Sheet into an JSON array.
-    var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
-    //Add the data rows from Excel file.
-    var db = firebase.firestore();
-    var batch = db.batch();
-    for (var i = 0; i < excelRows.length; i++) {
-        batch.set(db.collection('ordenes').doc(), excelRows[i]);
-    }
-    batch.commit().then(function() {
-        return Mensaje.mostrarMsjExito(
-            "¡Exito!",
-            "Ordenes Cargadas!"
-        );
-    });
-};

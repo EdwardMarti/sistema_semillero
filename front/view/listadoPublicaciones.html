@@ -1,100 +1,93 @@
-
-
-<div class="modal inmodal" id="ModalLoadData" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content animated bounceInRight">
+<div class="modal inmodal fade" id="myModalPublicaciones" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">5. PUBLICACIONES EN REVISTAS Y/O PERIODICOS DE NOTICIAS</h4>
+
             </div>
+
             <div class="modal-body">
-                <div class="text-center">
-                    <label title="Upload image file" for="fileUpload" class="btn btn-primary">
-                        <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" name="fileUpload" id="fileUpload" style="display:none">
-                        Upload image
-                    </label>
+                <div class="ibox-content">
+                    <form role="form" id="PublicacionesInsert">
+                        <div class="form-group">
+                            <label for="Inputid">id</label>
+                            <input type="text" name="id" class="form-control" id="id" placeholder="id" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="Inputautor">autor</label>
+                                    <input type="text" name="autor" class="form-control" id="autor" placeholder="autor">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputtitulo">titulo</label>
+                                    <input type="text" name="titulo" class="form-control" id="titulo" placeholder="titulo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputnombre_medio">nombre_medio</label>
+                                    <input type="text" name="nombre_medio" class="form-control" id="nombre_medio" placeholder="nombre_medio">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputissn">issn</label>
+                                    <input type="text" name="issn" class="form-control" id="issn" placeholder="issn">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputeditorial">editorial</label>
+                                    <input type="text" name="editorial" class="form-control" id="editorial" placeholder="editorial">
+                                </div>
+                            </div>
+                            <div class="col-6">
+
+                                <div class="form-group">
+                                    <label for="Inputvolumen">volumen</label>
+                                    <input type="text" name="volumen" class="form-control" id="volumen" placeholder="volumen">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputcant_pag">cant_pag</label>
+                                    <input type="number" name="cant_pag" class="form-control" id="cant_pag" placeholder="cant_pag">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputfecha">fecha</label>
+                                    <input type="date" name="fecha" class="form-control" id="fecha" placeholder="fecha">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputciudad">ciudad</label>
+                                    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="ciudad">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Inputtipo_publicaciones_id">Modalidad de Publicación</label>
+
+                                    <select class="form-control" name="tipo_publicaciones_id" id="tipo_publicaciones_id">
+                                        <option value="-1">SELECCIONE</option>
+                                        <option value="1">ARTICULO CIENTIFICO</option>
+                                        <option value="2">ARTICULO EN REVISTA DE DIVULGACION</option>
+                                        <option value="3">PERIODICO DE NOTICIAS</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </form>
                 </div>
             </div>
+
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                <button type="button" onclick="loadDataxls()" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-white" onclick="cerrarModalPublicaciones()">Close</button>
+                <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdatePublicacion()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarPublicacion()">Registrar</button>
             </div>
         </div>
     </div>
 </div>
-
- <div class="modal inmodal fade" id="myModalPublicaciones" tabindex="-1" role="dialog"  aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                            <h4 class="modal-title">Registro Actividades</h4>
-                                          
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="ibox-content">
-                                              <form role="form" id="PublicacionesInsert">
-                      <div class="form-group">
-                          <label for="Inputid">id</label>
-                          <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputautor">autor</label>
-                          <input type="text" name="autor" class="form-control" id="Inputautor" placeholder="autor">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputtitulo">titulo</label>
-                          <input type="text" name="titulo" class="form-control" id="Inputtitulo" placeholder="titulo">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputnombre_medio">nombre_medio</label>
-                          <input type="text" name="nombre_medio" class="form-control" id="Inputnombre_medio" placeholder="nombre_medio">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputissn">issn</label>
-                          <input type="text" name="issn" class="form-control" id="Inputissn" placeholder="issn">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputeditorial">editorial</label>
-                          <input type="text" name="editorial" class="form-control" id="Inputeditorial" placeholder="editorial">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputvolumen">volumen</label>
-                          <input type="text" name="volumen" class="form-control" id="Inputvolumen" placeholder="volumen">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputcant_pag">cant_pag</label>
-                          <input type="text" name="cant_pag" class="form-control" id="Inputcant_pag" placeholder="cant_pag">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputfecha">fecha</label>
-                          <input type="text" name="fecha" class="form-control" id="Inputfecha" placeholder="fecha">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputciudad">ciudad</label>
-                          <input type="text" name="ciudad" class="form-control" id="Inputciudad" placeholder="ciudad">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputtipo_publicaciones_id">tipo_publicaciones_id</label>
-                          <input type="text" name="tipo_publicaciones_id" class="form-control" id="Inputtipo_publicaciones_id" placeholder="tipo_publicaciones_id">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputsemillero_id">semillero_id</label>
-                          <input type="text" name="semillero_id" class="form-control" id="Inputsemillero_id" placeholder="semillero_id">
-                       </div>
-                        <a href="javascript:prePublicacionesInsert('PublicacionesInsert')" class="btn btn-warning">Registrar</a>
-                   </form>
-                                            </div>
-                                        </div>
-       
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-white" onclick="cerrarModalPublicaciones()">Close</button>
-                                            <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdateOrder()">Actualizar</button>
-                <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarOrder()">Registrar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 <!-- Tabla de Usuarios -->
 <div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
@@ -104,15 +97,18 @@
             <div class="ibox ">
                 <div class="ibox-title row">
                     <h5 class="text-white col">Listado Publicaciones</h5>
-                    <h5 class="label label-successE"> <a onclick="mostrarModalPublicaciones()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
-                    <h5 class="label label-successE"> <a  data-toggle="modal" data-target="#ModalLoadData" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ LoadXls</a></h5>
+                    <h5 class="label label-successE"> <a onclick="mostrarModalPublicaciones()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
+                            Agregar</a></h5>
+
                 </div>
                 <div class="ibox-content">
                     <div class='table mt-4 mb-4'><br>
-                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoOrdenesTabla' style='width: 100%'>
+                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoPublicacionesTabla' style='width: 100%'>
                             <thead>
                                 <tr class="ufps-tabl">
                                     <th>#</th>
+                                    <th>Descripcion</th>
+                                    <th>Proyecto</th>
                                     <th>Descripcion</th>
                                     <th>Proyecto</th>
                                     <th>Acciones</th>

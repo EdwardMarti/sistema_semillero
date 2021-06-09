@@ -15,9 +15,10 @@
     <link href="intro/resources/css/view/login.css" rel="stylesheet" />
     <!-- Sweet Alert -->
     <link href="intro/resources/css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
-   
-    <script src="core/Utilitario.js"></script>
-    <script src="core/Mensaje.js"></script>
+    <script src="../js/login/LoginView.js"></script>
+    <script src="../js/login/LoginController.js"></script>
+    <script src="../js/core/Utilitario.js"></script>
+    <script src="../js/core/Mensaje.js"></script>
     <script>
         //Valido si el usuario cuenta con sesión.
         LoginView.validarLogin();
@@ -31,54 +32,56 @@
         <div class="sk-bounce3"></div>
     </div>
     <div class="ibox-content">
-    <div class="login">
-        <div class="animated fadeInDown">
-            <div class="row justify-content-center mb-4">
-                <div class=" text-center">
-                    <img src="intro/resources/img/logo_ufps_grande.png" />
-                </div>
-            </div>
-            <div class="row ml-6 justify-content-center">
-                <div class="col-md-4 ">
-                    <h2> <p style="text-align: center"> Sistema de Gestion de Semilleros</p></h2>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class=" col-lg-6  mb-3">
-                    <input type="email" id="correo" class="form-control" id="InputcorreoUsuario" placeholder="Correo institucional" />
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-6  input-group">
-                    <input type="password" id="clave" class="form-control" id="InputclaveUsuario" placeholder="Contraseña" />
-                    <div class="input-group-append">
-                        <a class="btn personalizado" onclick="LoginView.verClave()"><i id="icono-ojo" class="fa fa-eye"></i
-              ></a>
+        <div class="login">
+            <div class="animated fadeInDown">
+                <div class="row justify-content-center mb-4">
+                    <div class=" text-center">
+                        <img src="intro/resources/img/logo_ufps_grande.png" />
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class=" col-lg-6 mb-3">
-                    <a class="personalizado" onclick="LoginView.abrirPanelRecover()">Recuperar Contraseña</a>
+                <div class="row ml-6 justify-content-center">
+                    <div class="col-md-4 ">
+                        <h2>
+                            <p style="text-align: center"> Sistema de Gestion de Semilleros</p>
+                        </h2>
+                    </div>
                 </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <button type="button" class="btn personalizado" onclick="LoginView.iniciarSesion()">
+                <div class="row justify-content-center">
+                    <div class=" col-lg-6  mb-3">
+                        <input type="email" id="correo" class="form-control" id="InputcorreoUsuario" placeholder="Correo institucional" />
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6  input-group">
+                        <input type="password" id="clave" class="form-control" id="InputclaveUsuario" placeholder="Contraseña" />
+                        <div class="input-group-append">
+                            <a class="btn personalizado" onclick="LoginView.verClave()"><i id="icono-ojo" class="fa fa-eye"></i
+              ></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class=" col-lg-6 mb-3">
+                        <a style="color: brown;" onclick="LoginView.abrirPanelRecover()">Recuperar Contraseña</a>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <button type="button" class="btn personalizado" onclick="LoginView.iniciarSesion()">
                       Iniciar Sesión
                     </button>
+                    </div>
+
                 </div>
-           
-            </div>
-            <div class="row mt-3 justify-content-center">
-                <div class="col-md-7 col-lg-6 col-sm-8 col-xl-4">
-                    <a class="personalizado" onclick="LoginView.abrirPanelRegistro()">¿No cuenta con usuario?</a>
+                <div class="row mt-3 justify-content-center">
+                    <div class="col-md-7 col-lg-6 col-sm-8 col-xl-4">
+                        <a class="personalizado" onclick="LoginView.abrirPanelRegistro()">¿No cuenta con usuario?</a>
+                    </div>
                 </div>
+
             </div>
-           
         </div>
     </div>
-</div>
     <!-- Modal para registrar usuario -->
     <div class="modal fade" id="modalusuario" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">

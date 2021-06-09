@@ -46,9 +46,9 @@ class PublicacionesFacade {
    * @param tipo_publicaciones_id
    * @param semillero_id
    */
-  public static function insert( $id,  $autor,  $titulo,  $nombre_medio,  $issn,  $editorial,  $volumen,  $cant_pag,  $fecha,  $ciudad,  $tipo_publicaciones_id,  $semillero_id){
+  public static function insert(  $autor,  $titulo,  $nombre_medio,  $issn,  $editorial,  $volumen,  $cant_pag,  $fecha,  $ciudad,  $tipo_publicaciones_id,  $semillero_id){
       $publicaciones = new Publicaciones();
-      $publicaciones->setId($id); 
+     
       $publicaciones->setAutor($autor); 
       $publicaciones->setTitulo($titulo); 
       $publicaciones->setNombre_medio($nombre_medio); 
@@ -117,8 +117,9 @@ class PublicacionesFacade {
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $publicacionesDao =$FactoryDao->getpublicacionesDao(self::getDataBaseDefault());
-     $publicacionesDao->update($publicaciones);
+     $result=$publicacionesDao->update($publicaciones);
      $publicacionesDao->close();
+     return $result;
   }
 
   /**
@@ -132,8 +133,9 @@ class PublicacionesFacade {
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $publicacionesDao =$FactoryDao->getpublicacionesDao(self::getDataBaseDefault());
-     $publicacionesDao->delete($publicaciones);
+     $result=$publicacionesDao->delete($publicaciones);
      $publicacionesDao->close();
+     return $result;
   }
 
   /**
@@ -145,6 +147,13 @@ class PublicacionesFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $publicacionesDao =$FactoryDao->getpublicacionesDao(self::getDataBaseDefault());
      $result = $publicacionesDao->listAll();
+     $publicacionesDao->close();
+     return $result;
+  }
+  public static function listAll_id($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $publicacionesDao =$FactoryDao->getpublicacionesDao(self::getDataBaseDefault());
+     $result = $publicacionesDao->listAll_id($id);
      $publicacionesDao->close();
      return $result;
   }

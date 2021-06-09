@@ -123,9 +123,9 @@ function iniciarTabla() {
 }
 
 function perfilUser(perfil){
-    alert("sadas"+perfil);
+
     if(perfil==1){
-        alert("entre ca");
+   
     $("#AvalSemilleroDir").show();
     $("#AvalSemilleroDir1").show();
     $("#AvalSemilleroGrup").hide();

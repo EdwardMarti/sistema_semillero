@@ -1,261 +1,260 @@
-  
 <div class="ibox-content">
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             <b>DATOS GENERALES</b> 
         </button>
-      </h5>
-    </div>
+                </h5>
+            </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-        <div class="row">
-                         
-                          <div class="col-6">
-                               
-                              <div class="form-group">
-                                   
-                                  <label for="formGroupExampleInput">Nombre: </label>
-                                       <input type="text" style="background: white;" class="form-control" name="nombre" id="nombre"  required>
-                                  
-                              </div>
-                              
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput">Grupo de Investigacion </label>
-                                  <select class="form-control" name="grupo_investigacion" id="grupo_investigacion" >
-                                      <option value="-1">SELECCIONE</option>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="row">
 
-                                  </select>
+                        <div class="col-6">
 
-                              </div>
-                              
-                         <div class="form-group">
-                                  <label for="formGroupExampleInput">Departamentos </label>
-                                  <select onchange="cargarSelectPlan(this.value);" class="form-control" name="departamentos" id="departamentos" >
-                                      <option value="-1">SELECCIONE</option>
-
-                                  </select>
-
-                              </div>
-                              
-                              <div class="form-group" style="display: none">
-                                   
-                                  <label for="formGroupExampleInput">Id Semillero </label>
-                                       <input type="text" style="background: white;" class="form-control" name="id_semillero" id="id_semillero"  required>
-                                  
-                              </div>
-     <div class="form-group">
-                                  <label for="formGroupExampleInput">Fecha de Creacion </label>
-                                  <input type="date" style="background: white;" class="form-control" name="fecha" id="fecha" >
-
-                              </div>
-
-
-                          </div>
-                   <!-------------------------------------------------->       
-                          <div class="col-6">
-                              <div class="form-group">
-                                  <label for="formGroupExampleInput">Sigla </label>
-                                  <input type="text" style="background: white;" class="form-control" name="sigla" id="sigla" >
-                                  
-                              </div>
                             <div class="form-group">
-                                  <label for="formGroupExampleInput">Facultad</label>
-                                  <select onchange="cargarSelectDepartamentos(this.value);" class="form-control" name="facultades" id="facultades" >
+
+                                <label for="formGroupExampleInput">Nombre: </label>
+                                <input type="text" style="background: white;" class="form-control" name="nombre" id="nombre" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Grupo de Investigacion </label>
+                                <select class="form-control" name="grupo_investigacion" id="grupo_investigacion">
+                                      <option value="-1">SELECCIONE</option>
+
+                                  </select>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Departamentos </label>
+                                <select onchange="cargarSelectPlan(this.value);" class="form-control" name="departamentos" id="departamentos">
+                                      <option value="-1">SELECCIONE</option>
+
+                                  </select>
+
+                            </div>
+
+                            <div class="form-group" style="display: none">
+
+                                <label for="formGroupExampleInput">Id Semillero </label>
+                                <input type="text" style="background: white;" class="form-control" name="id_semillero" id="id_semillero" required>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Fecha de Creacion </label>
+                                <input type="date" style="background: white;" class="form-control" name="fecha" id="fecha">
+
+                            </div>
+
+
+                        </div>
+                        <!-------------------------------------------------->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Sigla </label>
+                                <input type="text" style="background: white;" class="form-control" name="sigla" id="sigla">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Facultad</label>
+                                <select onchange="cargarSelectDepartamentos(this.value);" class="form-control" name="facultades" id="facultades">
                                       <option  value="-1">SELECCIONE</option>
 
                                   </select>
 
-                              </div>
+                            </div>
                             <div class="form-group">
-                                  <label for="formGroupExampleInput">Plan de Estudios</label>
-                                  <select class="form-control" name="p_estudio" id="p_estudio" >
+                                <label for="formGroupExampleInput">Plan de Estudios</label>
+                                <select class="form-control" name="p_estudio" id="p_estudio">
                                       <option value="-1">SELECCIONE</option>
 
                                   </select>
 
-                              </div>
-                          <div class="form-group">
+                            </div>
+                            <div class="form-group">
 
-                        <label for="formGroupExampleInput">Ubicacion </label>
-                        <input type="text" style="background: white;" class="form-control" name="ubicacion" id="ubicacion"  required>
+                                <label for="formGroupExampleInput">Ubicacion </label>
+                                <input type="text" style="background: white;" class="form-control" name="ubicacion" id="ubicacion" required>
 
-                    </div>
-                                    <div class="modal-footer">
+                            </div>
+                            <div class="modal-footer">
 
-                              <h5 class="label label-successE"> <a onclick="ActualizarData()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">Actualizar</a></h5>
+                                <h5 class="label label-successE"> <a onclick="ActualizarData()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">Actualizar</a></h5>
                             </div>
 
-                          </div>
-                      </div>
-      </div>
-    </div>
-  </div>
-    
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <b>LINEAS DE INVESTIGACIÓN</b> 
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-           <div class="col-lg-12">
-            <div class="ibox ">
-             
-                     
-                    
-                      <div class='table mt-4 mb-4'>
-                             <div class="modal-footer">
-
-                              <h5 class="label label-successE"> <a onclick="mostrarModalLineas()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
-                            </div>
-                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablal' >
-                            <thead>
-                                <tr class="ufps-tabl">
-                                   
-                                    <th>LINEA DE INVESTIGACION</th>
-                                    <th>DISCIPLINA</th>
-                                    <th>AREA</th>
-                                    <th>ACCIONES</th>
-                                </tr>
-                            </thead>
-                        </table>
+                        </div>
                     </div>
-              
+                </div>
             </div>
         </div>
-      </div>
-    </div>
-  </div>
-    
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <b>LINEAS DE INVESTIGACIÓN</b> 
+        </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="col-lg-12">
+                        <div class="ibox ">
+
+
+
+                            <div class='table mt-4 mb-4'>
+                                <div class="modal-footer">
+
+                                    <h5 class="label label-successE"> <a onclick="mostrarModalLineas()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                </div>
+                                <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablal'>
+                                    <thead>
+                                        <tr class="ufps-tabl">
+
+                                            <th>LINEA DE INVESTIGACION</th>
+                                            <th>DISCIPLINA</th>
+                                            <th>AREA</th>
+                                            <th>ACCIONES</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
             <b>INFORMACIÓN DE TUTOR</b> 
         </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-        <div class="card-body">
-            <form role="form" >
-            <div class="row">
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form role="form">
+                        <div class="row">
 
-                <div class="col-6">
- <!--style="display: none"-->
-                    <div class="form-group">
+                            <div class="col-6">
+                                <!--style="display: none"-->
+                                <div class="form-group">
 
-                        <label for="formGroupExampleInput">persona_Id </label>
-                        <input type="text" style="background: white;" class="form-control" name="persona_Id" id="persona_Id"  required>
+                                    <label for="formGroupExampleInput">persona_Id </label>
+                                    <input type="text" style="background: white;" class="form-control" name="persona_Id" id="persona_Id" required>
 
-                    </div>
-                    <div class="form-group">
+                                </div>
+                                <div class="form-group">
 
-                        <label for="formGroupExampleInput">Nombre </label>
-                        <input type="text" style="background: white;" class="form-control" name="nombreD" id="nombreD"  required>
+                                    <label for="formGroupExampleInput">Nombre </label>
+                                    <input type="text" style="background: white;" class="form-control" name="nombreD" id="nombreD" required>
 
-                    </div>
-                    <div class="form-group">
+                                </div>
+                                <div class="form-group">
 
-                        <label for="formGroupExampleInput">Telefono </label>
-                        <input type="text" style="background: white;" class="form-control" name="telefonoD" id="telefonoD"  required>
+                                    <label for="formGroupExampleInput">Telefono </label>
+                                    <input type="text" style="background: white;" class="form-control" name="telefonoD" id="telefonoD" required>
 
-                    </div>
-                    <div class="form-group">
+                                </div>
+                                <div class="form-group">
 
-                        <label for="formGroupExampleInput">Ubicacion </label>
-                        <input type="text" style="background: white;" class="form-control" name="ubicacionD" id="ubicacionD"  required>
+                                    <label for="formGroupExampleInput">Ubicacion </label>
+                                    <input type="text" style="background: white;" class="form-control" name="ubicacionD" id="ubicacionD" required>
 
-                    </div>
-                    <div class="form-group" style="display: none">
+                                </div>
+                                <div class="form-group" style="display: none">
 
-                        <label for="formGroupExampleInput">id_docente </label>
-                        <input type="text" style="background: white;" class="form-control" name="id_docente" id="id_docente"  required>
+                                    <label for="formGroupExampleInput">id_docente </label>
+                                    <input type="text" style="background: white;" class="form-control" name="id_docente" id="id_docente" required>
 
-                    </div>
-                </div>    
-                <div class="col-6">
+                                </div>
+                            </div>
+                            <div class="col-6">
 
-                    <div class="form-group">
+                                <div class="form-group">
 
-                        <label for="formGroupExampleInput">Correo </label>
-                        <input type="text" style="background: white;" class="form-control" name="correoD" id="correoD"  required>
+                                    <label for="formGroupExampleInput">Correo </label>
+                                    <input type="text" style="background: white;" class="form-control" name="correoD" id="correoD" required>
 
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Tipo Vinculacion</label>
-                        <select class="form-control" name="tp_vinculacion" id="tp_vinculacion" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Tipo Vinculacion</label>
+                                    <select class="form-control" name="tp_vinculacion" id="tp_vinculacion">
                             <option value="-1">SELECCIONE</option>
 
                         </select>
 
-                    </div>
-                         <div class="modal-footer">
+                                </div>
+                                <div class="modal-footer">
 
-                <h5 class="label label-successE"> <a onclick="ActualizarDataDocente()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">Actualizar</a></h5>
+                                    <h5 class="label label-successE"> <a onclick="ActualizarDataDocente()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">Actualizar</a></h5>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
             </div>
-                </div>   
-              
-            </div>
-       </form>
         </div>
-    </div>
-  </div>
-    
-    
-     <div class="card">
-    <div class="card-header" id="headingFour">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+
+
+        <div class="card">
+            <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
             <b>* Titulos Obtenidos </b> 
         </button>
-      </h5>
-    </div>
-    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-      <div class="card-body">
-           <div class="col-lg-12">
-            <div class="ibox ">
-             
+                </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body">
                     <div class="col-lg-12">
-            <div class="ibox ">
-               <div class="modal-footer">
+                        <div class="ibox ">
 
-                              <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                            <div class="col-lg-12">
+                                <div class="ibox ">
+                                    <div class="modal-footer">
+
+                                        <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                    </div>
+                                    <div class='table mt-4 mb-4'>
+                                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaTitulos'>
+                                            <thead>
+                                                <tr class="ufps-tabl">
+
+                                                    <th>DESCRIPCION</th>
+                                                    <th>UNIVERSIDAD</th>
+                                                    <th>ACCIONES</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                      <div class='table mt-4 mb-4'>
-                                              <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaTitulos' >
-                            <thead>
-                                <tr class="ufps-tabl">
-                                   
-                                    <th>DESCRIPCION</th>
-                                    <th>UNIVERSIDAD</th>
-                                    <th>ACCIONES</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>       
-                    </div>       
-                    </div>  
-              
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-      </div>
+
     </div>
-  </div>
-    
-</div>
 
 </div>
 
 <div class="modal inmodal" id="ModalLoadData" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content animated bounceInRight">
+        <div class="modal-content animated bounceInRight">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
             </div>
@@ -277,44 +276,44 @@
 
 <div class="modal inmodal" id="ModalLineas" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content animated bounceInRight">
+        <div class="modal-content animated bounceInRight">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
-               <form role="form" id="Linea_investigacionInsert">
-                      <div class="form-group">
-                          <label for="Inputid">Area</label>
-                          <select class="form-control"   onchange="cargarSelectDisciplina(this.value)" name="area" id="area" >
+                <form role="form" id="Linea_investigacionInsert">
+                    <div class="form-group">
+                        <label for="Inputid">Area</label>
+                        <select class="form-control" onchange="cargarSelectDisciplina(this.value)" name="area" id="area">
                                       
 
                                   </select>
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputdisciplina_id">Disciplina</label>
-                           <select class="form-control" name="disciplina" id="disciplina" onchange="cargarSelectLineas(this.value)" >
+                    </div>
+                    <div class="form-group">
+                        <label for="Inputdisciplina_id">Disciplina</label>
+                        <select class="form-control" name="disciplina" id="disciplina" onchange="cargarSelectLineas(this.value)">
                                   <option value="-1">SELECCIONE</option>
                            </select>
-                      </div>
-                      <div class="form-group">
-                          <label for="Inputdescripcion">Linea de Investigacion</label>
-                          <select class="form-control" name="lineas_investigacion" id="lineas_investigacion" >
+                    </div>
+                    <div class="form-group">
+                        <label for="Inputdescripcion">Linea de Investigacion</label>
+                        <select class="form-control" name="lineas_investigacion" id="lineas_investigacion">
                                       <option value="-1">SELECCIONE</option>
                                      
 
                                   </select>
-              
-                      </div>
-                       
-                   </form>
+
+                    </div>
+
+                </form>
             </div>
             <div class="modal-footer">
-                   <button type="button" class="btn btn-primary" id="btnLnAct" onclick="actualizarRango()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnLnAct" onclick="actualizarRango()">Actualizar</button>
                 <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarLn()">Registrar</button>
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
             </div>
-         
+
         </div>
     </div>
 </div>
@@ -322,34 +321,34 @@
 
 <div class="modal inmodal" id="ModalTitulos" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content animated bounceInRight">
+        <div class="modal-content animated bounceInRight">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
-                <form role="form" >
-                  <div class="form-group">
+                <form role="form">
+                    <div class="form-group">
 
                         <label for="formGroupExampleInput">Descripcion </label>
-                        <input type="text" style="background: white;" class="form-control" name="descripcionD" id="descripcionD"  required>
+                        <input type="text" style="background: white;" class="form-control" name="descripcionD" id="descripcionD" required>
 
                     </div>
-                  <div class="form-group">
+                    <div class="form-group">
 
                         <label for="formGroupExampleInput">Universidad </label>
-                        <input type="text" style="background: white;" class="form-control" name="universidad" id="universidad"  required>
+                        <input type="text" style="background: white;" class="form-control" name="universidad" id="universidad" required>
 
                     </div>
-                  
-            </form>
+
+                </form>
             </div>
             <div class="modal-footer">
-               
+
                 <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarTitulos()">Registrar</button>
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
             </div>
-         
+
         </div>
     </div>
 </div>
@@ -358,5 +357,3 @@
 
 
 <script type="text/javascript" src="../js/semillero/semillero_perfil.js"></script>
-
-
