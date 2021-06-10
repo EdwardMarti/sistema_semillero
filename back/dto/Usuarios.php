@@ -19,6 +19,7 @@ class Usuarios {
     */
      public function __construct(){}
 
+
     /**
      * Devuelve el valor correspondiente a id
      * @return id

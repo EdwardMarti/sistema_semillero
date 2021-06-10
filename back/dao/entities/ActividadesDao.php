@@ -29,13 +29,14 @@ private $cn;
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function insert($actividades){
-      $id=$actividades->getId();
+//      $id=$actividades->getId();
 $descripcion=$actividades->getDescripcion();
 $proyectos_id=$actividades->getProyectos_id()->getId();
 
       try {
-          $sql= "INSERT INTO `actividades`( `id`, `descripcion`, `proyectos_id`)"
-          ."VALUES ('$id','$descripcion','$proyectos_id')";
+          $sql= "INSERT INTO `actividades`(  `descripcion`, `proyectos_id`)"
+          ."VALUES ('$descripcion','$proyectos_id')";
+
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -117,6 +118,30 @@ $proyectos_id=$actividades->getProyectos_id()->getId();
           $sql ="SELECT `id`, `descripcion`, `proyectos_id`"
           ."FROM `actividades`"
           ."WHERE 1";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $actividades= new Actividades();
+          $actividades->setId($data[$i]['id']);
+          $actividades->setDescripcion($data[$i]['descripcion']);
+           $proyectos = new Proyectos();
+           $proyectos->setId($data[$i]['proyectos_id']);
+           $actividades->setProyectos_id($proyectos);
+
+          array_push($lista,$actividades);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  public function listAll_proyectos($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `descripcion`, `proyectos_id`"
+          ."FROM `actividades`"
+          ."WHERE `proyectos_id` = '$id' ";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $actividades= new Actividades();

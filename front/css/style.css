@@ -2037,8 +2037,8 @@ button:focus {
 .btn-primary:not(:disabled):not(.disabled).active,
 .show>.btn-primary.dropdown-toggle {
     color: #ffffff;
-    background-color: #1ab394;
-    border-color: #1ab394;
+    background-color: #105a4b;
+    border-color: #105a4b;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,

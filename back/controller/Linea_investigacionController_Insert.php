@@ -17,3 +17,14 @@ include_once realpath('../facade/Linea_investigacionFacade.php');
         $disciplina= new Disciplina();
         $disciplina->setId($Disciplina_id);
         Linea_investigacionFacade::insert($id, $descripcion, $lider, $disciplina);
+
+         try {
+            $rta = FacultadFacade::insert($titulo);
+            if ($rta > 0) {
+                http_response_code(200);
+                echo "{\"mensaje\":\"Exito al registrar \"}";
+            }
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo "{\"mensaje\":\"Error al registrar\"}";
+        }

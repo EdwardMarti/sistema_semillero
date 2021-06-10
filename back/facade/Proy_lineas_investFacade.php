@@ -112,6 +112,20 @@ class Proy_lineas_investFacade {
      $proy_lineas_investDao->close();
      return $result;
   }
+  public static function listAll_Linea($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $proy_lineas_investDao =$FactoryDao->getproy_lineas_investDao(self::getDataBaseDefault());
+     $result = $proy_lineas_investDao->listAll_Linea($id);
+     $proy_lineas_investDao->close();
+     return $result;
+  }
+  public static function listAll_Linea2($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $proy_lineas_investDao =$FactoryDao->getproy_lineas_investDao(self::getDataBaseDefault());
+     $result = $proy_lineas_investDao->listAll_Linea2($id);
+     $proy_lineas_investDao->close();
+     return $result;
+  }
 
 
 }

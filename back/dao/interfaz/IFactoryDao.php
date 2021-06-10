@@ -9,6 +9,7 @@
 
 include_once realpath('../dao/entities/ActividadesDao.php');
 include_once realpath('../dao/entities/CapacitacionesDao.php');
+include_once realpath('../dao/entities/Capacitaciones_ProyectosDao.php');
 include_once realpath('../dao/entities/ColaboradorDao.php');
 include_once realpath('../dao/entities/DepartamentoDao.php');
 include_once realpath('../dao/entities/DocenteDao.php');
@@ -16,6 +17,7 @@ include_once realpath('../dao/entities/Estado_proyectoDao.php');
 include_once realpath('../dao/entities/EstudianteDao.php');
 include_once realpath('../dao/entities/Estudiante_proyectoDao.php');
 include_once realpath('../dao/entities/FacultadDao.php');
+include_once realpath('../dao/entities/CumplimientoDao.php');
 include_once realpath('../dao/entities/Fuente_financiacionDao.php');
 include_once realpath('../dao/entities/Grupo_has_participanteDao.php');
 include_once realpath('../dao/entities/Grupo_has_proyectoDao.php');
@@ -71,12 +73,16 @@ interface IFactoryDao {
      * @return instancia de ActividadesDao
      */
      public function getActividadesDao($dbName);
+     
+
      /**
      * Devuelve una instancia de CapacitacionesDao con una conexiÃ³n que depende del gestor de base de datos
      * @param dbName Nombre o identificador de la base de datos a conectar
      * @return instancia de CapacitacionesDao
      */
      public function getCapacitacionesDao($dbName);
+     
+     public function getCapacitaciones_ProyectosDao($dbName);
      /**
      * Devuelve una instancia de ColaboradorDao con una conexiÃ³n que depende del gestor de base de datos
      * @param dbName Nombre o identificador de la base de datos a conectar
@@ -95,6 +101,12 @@ interface IFactoryDao {
      * @return instancia de DocenteDao
      */
      public function getDocenteDao($dbName);
+     /**
+     * Devuelve una instancia de DocenteDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de DocenteDao
+     */
+     public function getCumplimientoDao($dbName);
      /**
      * Devuelve una instancia de Estado_proyectoDao con una conexiÃ³n que depende del gestor de base de datos
      * @param dbName Nombre o identificador de la base de datos a conectar

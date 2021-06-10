@@ -106,7 +106,7 @@
 .wizard>.steps .done a,
 .wizard>.steps .done a:hover,
 .wizard>.steps .done a:active {
-    background: #6fd1bd;
+    background: #928484;
     color: #fff;
 }
 
@@ -219,7 +219,7 @@
 .wizard>.actions a,
 .wizard>.actions a:hover,
 .wizard>.actions a:active {
-    background: #1AB394;
+    background: #36403e;
     color: #fff;
     display: block;
     padding: 0.5em 1em;

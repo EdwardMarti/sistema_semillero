@@ -16,6 +16,7 @@ class Proyectos {
   private $tipo_proyecto_id;
   private $tiempo_ejecucion;
   private $fecha_ini;
+  private $fecha_fin;
   private $resumen;
   private $obj_general;
   private $obj_especifico;
@@ -119,7 +120,22 @@ class Proyectos {
   public function setFecha_ini($fecha_ini){
       $this->fecha_ini = $fecha_ini;
   }
+      /**
+     * Modifica el valor correspondiente a fecha_ini
+     * @param fecha_ini
+     */
+  function getFecha_fin() {
+      return $this->fecha_fin;
+  }
     /**
+     * Modifica el valor correspondiente a fecha_ini
+     * @param fecha_ini
+     */
+  function setFecha_fin($fecha_fin) {
+      $this->fecha_fin = $fecha_fin;
+  }
+
+      /**
      * Devuelve el valor correspondiente a resumen
      * @return resumen
      */
