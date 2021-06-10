@@ -15,7 +15,7 @@ $dataObject = json_decode($JSONData);
 $id = strip_tags($dataObject->id);
 //$id = '7';
 
-        $list=Proy_lineas_investFacade::listAll_Linea($id);
+        $list=Proy_lineas_investFacade::listAll_Linea2($id);
         $rta="";
         foreach ($list as $obj => $Proy_lineas_invest) {	
 	       $rta.="{

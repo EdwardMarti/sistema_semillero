@@ -139,6 +139,66 @@ $linea_investigacion_id=$proy_lineas_invest->getLinea_investigacion_id()->getId(
       return null;
       }
   }
+  
+  public function listAll_Linea($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `proyectos_id`, `linea_investigacion_id`, `titulo`, `investigador`, `obj_general`, `fecha_ini`, `fecha_fin`, `producto`, `responsable` FROM `proyec_id_lineaInv` WHERE `linea_investigacion_id`='$id' ";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $proy_lineas_invest= new Proy_lineas_invest();
+          $proy_lineas_invest->setId($data[$i]['id']);
+           $proyectos = new Proyectos();
+           $proyectos->setId($data[$i]['proyectos_id']);
+           $proyectos->setTitulo($data[$i]['titulo']);
+           $proyectos->setInvestigador($data[$i]['investigador']);
+           $proyectos->setObj_general($data[$i]['obj_general']);
+           $proyectos->setFecha_ini($data[$i]['fecha_ini']);
+           $proyectos->setFecha_fin($data[$i]['fecha_fin']);
+           $proyectos->setProducto($data[$i]['producto']);
+           $proy_lineas_invest->setProyectos_id($proyectos);
+           $linea_investigacion = new Linea_investigacion();
+           $linea_investigacion->setId($data[$i]['linea_investigacion_id']);
+           $proy_lineas_invest->setLinea_investigacion_id($linea_investigacion);
+
+          array_push($lista,$proy_lineas_invest);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  public function listAll_Linea2($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `proyectos_id`, `linea_investigacion_id`, `titulo`, `investigador`, `obj_general`, `fecha_ini`, `fecha_fin`, `producto`, `responsable` FROM `proyec_id_lineaInv` WHERE `proyectos_id`='$id' ";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $proy_lineas_invest= new Proy_lineas_invest();
+          $proy_lineas_invest->setId($data[$i]['id']);
+           $proyectos = new Proyectos();
+           $proyectos->setId($data[$i]['proyectos_id']);
+           $proyectos->setTitulo($data[$i]['titulo']);
+           $proyectos->setInvestigador($data[$i]['investigador']);
+           $proyectos->setObj_general($data[$i]['obj_general']);
+           $proyectos->setFecha_ini($data[$i]['fecha_ini']);
+           $proyectos->setFecha_fin($data[$i]['fecha_fin']);
+           $proyectos->setProducto($data[$i]['producto']);
+           $proy_lineas_invest->setProyectos_id($proyectos);
+           $linea_investigacion = new Linea_investigacion();
+           $linea_investigacion->setId($data[$i]['linea_investigacion_id']);
+           $proy_lineas_invest->setLinea_investigacion_id($linea_investigacion);
+
+          array_push($lista,$proy_lineas_invest);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

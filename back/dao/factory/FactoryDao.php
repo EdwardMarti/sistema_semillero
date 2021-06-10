@@ -47,6 +47,14 @@ class FactoryDao implements IFactoryDao{
         return new AreaDao($this->conn->obtener($dbName));
     }
      /**
+     * Devuelve una instancia de AreaDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de AreaDao
+     */
+     public function getCumplimientoDao($dbName){
+        return new CumplimientoDao($this->conn->obtener($dbName));
+    }
+     /**
      * Devuelve una instancia de CapacitacionesDao con una conexiÃ³n que depende del gestor de base de datos
      * @param dbName Nombre o identificador de la base de datos a conectar
      * @return instancia de CapacitacionesDao
@@ -464,6 +472,10 @@ class FactoryDao implements IFactoryDao{
      */
      public function getUsuariosDao($dbName){
         return new UsuariosDao($this->conn->obtener($dbName));
+    }
+
+    public function getCapacitaciones_ProyectosDao($dbName){
+        return new Capacitaciones_ProyectosDao($this->conn->obtener($dbName));
     }
 
 }

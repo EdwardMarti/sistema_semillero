@@ -1,551 +1,553 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Borrar cache del navegador -->
-    <meta http-equiv="Expires" content="0">
-    <meta http-equiv="Last-Modified" content="0">
-    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
-    <meta http-equiv="Pragma" content="no-cache">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Borrar cache del navegador -->
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Last-Modified" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+        <meta http-equiv="Pragma" content="no-cache">
 
-    <title>Semillero</title>
+        <title>Semillero</title>
 
-    <link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="../css/plugins/steps/jquery.steps.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../img/logollama.png" type="img/x-icon">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="../css/plugins/dataTables/datatables.min.css" rel="stylesheet">
-    <link href="../css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
-    <link href="../libs/summernote/summernote-bs4.css" rel="stylesheet">
-    <link href="../css/plugins/select2/select2.min.css" rel="stylesheet">
-    <link href="../css/animate.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
-    <!-- Bootstrap Tour -->
-    <link href="../css/plugins/bootstrapTour/bootstrap-tour.min.css" rel="stylesheet">
-
-
+        <link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
+        <link href="../css/plugins/steps/jquery.steps.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../img/logollama.png" type="img/x-icon">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link href="../css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+        <link href="../css/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+        <link href="../libs/summernote/summernote-bs4.css" rel="stylesheet">
+        <link href="../css/plugins/select2/select2.min.css" rel="stylesheet">
+        <link href="../css/animate.css" rel="stylesheet">
+        <link href="../css/style.css" rel="stylesheet">
+        <link href="../css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+        <!-- Bootstrap Tour -->
+        <link href="../css/plugins/bootstrapTour/bootstrap-tour.min.css" rel="stylesheet">
 
 
 
 
-    <style>
-        .ufps-tabl {
-            text-align: back center;
-            background: #af2724;
-            color: white;
-        }
-        
-       .card-header {
-    color: #FFFFFF;
-    background-color: #aa1916;
-    border-color: #e7eaec;
-}
-.btn-link
-.btn-link:hover,
-.btn-link:focus,
-.btn-link:active
-{
-    color: #ffffff !important;
-}
-    </style>
-
-</head>
-
-<body>
-    <div id="wrapper">
-        <nav class="navbar-default navbar-static-side" role="navigation">
-            <div class="sidebar-collapse">
-                <ul class="nav metismenu" id="side-menu">
-                    <li class="nav-header">
-                        <div class="dropdown profile-element" align=center> <span>
-                 <img alt="image" class="img" width="100%" heigh="100%" src="../img/logo.png" /><br><br>
-                             <!--   <h3 style="color: black"></h3>-->
-                            </span>
-
-                        </div>
-                        <div class="logo-element">
-                            <img alt="logo" width="40px" src="../img/logollama.png" /><br>
-                            <h3 style="color: black">UFPS</h3>
-
-                        </div>
-                    </li>
 
 
-                    <li id="menuOrdenes">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label">Semillero</span> <span class="fa arrow"></span></a>
-                       
-                             <ul class="nav nav-second-level collapse">
-                    <li>
-                        <a href="#">Informacion Adicional <span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a onclick="Menu.MonstrarPerfilSemillero()">Datos Basicos</a>
-                            </li>
-                            <li>
-                                <a onclick="Menu.listadoCapacitaciones()">Capacitaciones</a>
-                            </li>
-                            <li>
-                                <a onclick="Menu.listadoPonencias()">Ponencias</a>
-                            </li>
-                            <li>
-                                <a onclick="Menu.listadoPublicaciones()">Publicaciones</a>
-                            </li>
+        <style>
+            .ufps-tabl {
+                text-align: back center;
+                background: #af2724;
+                color: white;
+            }
 
-                        </ul>
-                    </li>
-                     <li><a onclick="Menu.MonstrarEstadoSemillero()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Estado</a>
-                            </li>
-                         <li><a onclick="Menu.MonstrarRegistrarSemillero()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>FO-IN-03 Inscripcion de Semilleros</a>
-                            </li>
-                 
-                </ul>
-                    
-                    </li>
-                    
-                 
-                  
-                    <li id="menuActividades">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label"></span>Informe de Gestion <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.listadoInformes()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>FO-IN-14 INFORME DE GESTIÓN DE SEMILLEROS</a>
-                            </li>
-                        </ul>
-                    </li>
-                            <li id="menuProyectos">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label">Plan de Accion</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.añadirPlan()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>FO-IN-19 PLAN DE ACCIÓN SEMILLEROS V1</a>
-                            </li>
-                        </ul>
-                    </li>
-                              <li id="menuProyectos">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Solicitudes</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a onclick="Menu.loadFormSolicitudHoras()"><i class="fa fa-clock-o" aria-hidden="true"></i>FO-IN-04 HORAS DE INVESTIGACIÓN</a>
-                            </li>
-                            <li>
-                                <a onclick="Menu.loadFormCumplimientoProductos()"><i class="fa fa-clock-o" aria-hidden="true"></i>FO-IN-08 CUMPLIMIENTO PRODUCTOS</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li id="menuActividades">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label">Informacion Complementaria</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.listadoActividades()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Actividades</a>
-                            </li>
-                                <li><a onclick="Menu.listadoAlumnos()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Alumnos</a>
-                            </li>
-                               <li><a onclick="Menu.listadoPares()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Pares</a>
-                            </li>
-                             <li><a onclick="Menu.listadoProyectos_t()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Terminados</a>
-                            </li>
-                            <li><a onclick="Menu.listadoProyectos_e()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>En Ejecucion</a>
-                            </li>
-                        </ul>
-                         
-                    </li>
-               
-               
-                    <li id="menuFacultades">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label">Gestion Facultades</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.listadoFacultades()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Facultades</a>
-                            </li>
-                        </ul>
-                   
-                    </li>
-              
-            
-                    <li id="menuProyectos">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                class="nav-label">Adm Semillero</span> <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.listadoSemilleros_p()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>Pendiente</a>
-                            </li>
-                            <li><a onclick="Menu.listadoProyectos_e()"><i
-                                        class="fa fa-circle-o-notch" aria-hidden="true"></i>En Ejecucion</a>
-                            </li>
-                        </ul>
-                    </li>
+            .card-header {
+                color: #FFFFFF;
+                background-color: #aa1916;
+                border-color: #e7eaec;
+            }
+            .btn-link
+            .btn-link:hover,
+            .btn-link:focus,
+            .btn-link:active
+            {
+                color: #ffffff !important;
+            }
+        </style>
 
-          
-                    
+    </head>
 
-                </ul>
+    <body>
+        <div id="wrapper">
+            <nav class="navbar-default navbar-static-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav metismenu" id="side-menu">
+                        <li class="nav-header">
+                            <div class="dropdown profile-element" align=center> <span>
+                                    <img alt="image" class="img" width="100%" heigh="100%" src="../img/logo.png" /><br><br>
+                                    <!--   <h3 style="color: black"></h3>-->
+                                </span>
 
-            </div>
-        </nav>
+                            </div>
+                            <div class="logo-element">
+                                <img alt="logo" width="40px" src="../img/logollama.png" /><br>
+                                <h3 style="color: black">UFPS</h3>
 
-        <div id="page-wrapper" class="gray-bg">
-            <div class="row border-bottom">
-                <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-                    <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-menu " href="#"><i
-                                class="fa fa-bars"></i> </a>
-
-                    </div>
-                    <ul class="nav navbar-top-links navbar-right">
-
-                        <li style="color:#ffffff ">
-                            <span class="m-r-sm text-muted welcome-message">Bienvenid@</span> <span class="nombre-usuario"><b><label id="nombreUsuario"></label ></b></span>
+                            </div>
                         </li>
 
-                        <li class="dropdown">
 
-                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                                <i class="fa fa-user-circle-o"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-alerts">
-                                <!-- <li id="li_ver_perfil">
-                                    <a onclick="Menu.abrirPanelPerfil()" class="dropdown-item text-center">
-                                        <div class="row align-items-center justify-content-center">
-                                            <div class="col-7">
-                                                <span>Ver perfil</span>
-                                            </div>
-                                            <div class="col-2">
-                                                <i class="fa fa-edit"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li> 
-                                <li class="dropdown-divider"></li>-->
+                        <li id="menuOrdenes">
+                            <a><i class="fa fa-users" aria-hidden="true"></i> <span
+                                    class="nav-label">Semillero</span> <span class="fa arrow"></span></a>
+
+                            <ul class="nav nav-second-level collapse">
                                 <li>
-                                    <a onclick="Utilitario.cerrarSesion()" class="dropdown-item text-center">
-                                        <div class="row align-items-center justify-content-center">
-                                            <div class="col-7">
-                                                <span>Cerrar sesión</span>
-                                            </div>
-                                            <div class="col-2">
-                                                <i style="color: red" class="fa fa-power-off"></i>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <a href="#">Informacion Adicional <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a onclick="Menu.MonstrarPerfilSemillero()">Datos Basicos</a>
+                                        </li>
+                                        <li>
+                                            <a onclick="Menu.listadoCapacitaciones()">Capacitaciones</a>
+                                        </li>
+                                        <li>
+                                            <a onclick="Menu.listadoPonencias()">Ponencias</a>
+                                        </li>
+                                        <li>
+                                            <a onclick="Menu.listadoPublicaciones()">Publicaciones</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li><a onclick="Menu.MonstrarEstadoSemillero()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>Estado</a>
+                                </li>
+                                <li><a onclick="Menu.MonstrarRegistrarSemillero()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>FO-IN-03 Inscripcion de Semilleros</a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+
+                        <li id="menuProyectos">
+                            <a><i class="fa fa-users" aria-hidden="true"></i> <span
+                                    class="nav-label">Plan de Accion</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a onclick="Menu.añadirPlan()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>FO-IN-19 PLAN DE ACCIÓN SEMILLEROS V1</a>
                                 </li>
                             </ul>
                         </li>
 
+                        <li id="menuProyectos">
+                            <a><i class="fa fa-users" aria-hidden="true"></i> <span
+                                    class="nav-label">Informe de Gestion</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a onclick="Menu.listadoInformes()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>FO-IN-14 INFORME DE GESTIÓN DE SEMILLEROS</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                  
+                        <li id="menuProyectos">
+                            <a><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Solicitudes</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a onclick="Menu.loadFormSolicitudHoras()"><i class="fa fa-clock-o" aria-hidden="true"></i>FO-IN-04 HORAS DE INVESTIGACIÓN</a>
+                                </li>
+                                <li>
+                                    <a onclick="Menu.loadFormCumplimientoProductos()"><i class="fa fa-clock-o" aria-hidden="true"></i>FO-IN-08 CUMPLIMIENTO PRODUCTOS</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menuActividades">
+                            <a><i class="fa fa-users" aria-hidden="true"></i> <span
+                                    class="nav-label">Informacion Complementaria</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a onclick="Menu.listadoActividades()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Actividades</a>
+                                </li>
+                                <li><a onclick="Menu.listadoAlumnos()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Alumnos</a>
+                                </li>
+                                <li><a onclick="Menu.listadoPares()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>Listado Pares</a>
+                                </li>
+                                <li><a onclick="Menu.listadoProyectos_t()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>Terminados</a>
+                                </li>
+                                <li><a onclick="Menu.listadoProyectos_e()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>En Ejecucion</a>
+                                </li>
+                            </ul>
+
+                        </li>
+
+
+                        <li id="menuFacultades">
+                            <a><i class="fa fa-users" aria-hidden="true"></i> <span
+                                    class="nav-label">Gestion Facultades</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a onclick="Menu.listadoFacultades()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>Facultades</a>
+                                </li>
+                            </ul>
+
+                        </li>
+
+
+                        <li id="menuProyectos">
+                            <a><i class="fa fa-users" aria-hidden="true"></i> <span
+                                    class="nav-label">Adm Semillero</span> <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a onclick="Menu.listadoSemilleros_p()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>Pendiente</a>
+                                </li>
+                                <li><a onclick="Menu.listadoProyectos_e()"><i
+                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>En Ejecucion</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+
+
                     </ul>
 
-                </nav>
-            </div>
-            <input type="hidden" id="idUser" value="">
-            <div class="wrapper wrapper-content" style="background: #f3f3f4">
+                </div>
+            </nav>
 
-                <!-------------Inicio pintar --------------------->
-                <div id="mostrarcontenido">
+            <div id="page-wrapper" class="gray-bg">
+                <div class="row border-bottom">
+                    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                        <div class="navbar-header">
+                            <a class="navbar-minimalize minimalize-styl-2 btn btn-menu " href="#"><i
+                                    class="fa fa-bars"></i> </a>
 
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="ibox ">
-                                <div class="ibox-title">
-                                    <span class="label label-success float-right">Monthly</span>
-                                    <h5>Income</h5>
-                                </div>
-                                <div class="ibox-content">
-                                    <h1 class="no-margins">40 886,200</h1>
-                                    <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
-                                    <small>Total income</small>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col-lg-3">
-                            <div class="ibox ">
-                                <div class="ibox-title">
-                                    <span class="label label-info float-right">Annual</span>
-                                    <h5>Orders</h5>
-                                </div>
-                                <div class="ibox-content">
-                                    <h1 class="no-margins">275,800</h1>
-                                    <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
-                                    <small>New orders</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="ibox ">
-                                <div class="ibox-title">
-                                    <span class="label label-primary float-right">Today</span>
-                                    <h5>visits</h5>
-                                </div>
-                                <div class="ibox-content">
-                                    <h1 class="no-margins">106,120</h1>
-                                    <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
-                                    <small>New visits</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="ibox ">
-                                <div class="ibox-title">
-                                    <span class="label label-danger float-right">Low value</span>
-                                    <h5>User activity</h5>
-                                </div>
-                                <div class="ibox-content">
-                                    <h1 class="no-margins">80,600</h1>
-                                    <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
-                                    <small>In first month</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <ul class="nav navbar-top-links navbar-right">
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="ibox-content">
-                                <div class="row">
-                                    <div class="col-lg-9">
-                                        <div class="flot-chart">
-                                            <div class="flot-chart-content" id="flot-dashboard-chart" style="padding: 0px; position: relative;"><canvas class="flot-base" width="767" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 767.25px; height: 200px;"></canvas>
-                                                <div class="flot-text" style="position: absolute; inset: 0px; font-size: smaller; color: rgb(84, 84, 84);">
-                                                    <div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; inset: 0px;">
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 63px; text-align: center;">Jan 03</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 133px; text-align: center;">Jan 06</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 203px; text-align: center;">Jan 09</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 273px; text-align: center;">Jan 12</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 343px; text-align: center;">Jan 15</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 413px; text-align: center;">Jan 18</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 483px; text-align: center;">Jan 21</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 553px; text-align: center;">Jan 24</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 623px; text-align: center;">Jan 27</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 693px; text-align: center;">Jan 30</div>
+                            <li style="color:#ffffff ">
+                                <span class="m-r-sm text-muted welcome-message">Bienvenid@</span> <span class="nombre-usuario"><b><label id="nombreUsuario"></label ></b></span>
+                            </li>
+
+                            <li class="dropdown">
+
+                                <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-user-circle-o"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-alerts">
+                                    <!-- <li id="li_ver_perfil">
+                                        <a onclick="Menu.abrirPanelPerfil()" class="dropdown-item text-center">
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-7">
+                                                    <span>Ver perfil</span>
+                                                </div>
+                                                <div class="col-2">
+                                                    <i class="fa fa-edit"></i>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li> 
+                                    <li class="dropdown-divider"></li>-->
+                                    <li>
+                                        <a onclick="Utilitario.cerrarSesion()" class="dropdown-item text-center">
+                                            <div class="row align-items-center justify-content-center">
+                                                <div class="col-7">
+                                                    <span>Cerrar sesión</span>
+                                                </div>
+                                                <div class="col-2">
+                                                    <i style="color: red" class="fa fa-power-off"></i>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+                </div>
+                <input type="hidden" id="idUser" value="">
+                <div class="wrapper wrapper-content" style="background: #f3f3f4">
+
+                    <!-------------Inicio pintar --------------------->
+                    <div id="mostrarcontenido">
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="ibox ">
+                                    <div class="ibox-title">
+                                        <span class="label label-success float-right">Monthly</span>
+                                        <h5>Income</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <h1 class="no-margins">40 886,200</h1>
+                                        <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
+                                        <small>Total income</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="ibox ">
+                                    <div class="ibox-title">
+                                        <span class="label label-info float-right">Annual</span>
+                                        <h5>Orders</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <h1 class="no-margins">275,800</h1>
+                                        <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
+                                        <small>New orders</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="ibox ">
+                                    <div class="ibox-title">
+                                        <span class="label label-primary float-right">Today</span>
+                                        <h5>visits</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <h1 class="no-margins">106,120</h1>
+                                        <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
+                                        <small>New visits</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="ibox ">
+                                    <div class="ibox-title">
+                                        <span class="label label-danger float-right">Low value</span>
+                                        <h5>User activity</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <h1 class="no-margins">80,600</h1>
+                                        <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
+                                        <small>In first month</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="ibox-content">
+                                    <div class="row">
+                                        <div class="col-lg-9">
+                                            <div class="flot-chart">
+                                                <div class="flot-chart-content" id="flot-dashboard-chart" style="padding: 0px; position: relative;"><canvas class="flot-base" width="767" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 767.25px; height: 200px;"></canvas>
+                                                    <div class="flot-text" style="position: absolute; inset: 0px; font-size: smaller; color: rgb(84, 84, 84);">
+                                                        <div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; inset: 0px;">
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 63px; text-align: center;">Jan 03</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 133px; text-align: center;">Jan 06</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 203px; text-align: center;">Jan 09</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 273px; text-align: center;">Jan 12</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 343px; text-align: center;">Jan 15</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 413px; text-align: center;">Jan 18</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 483px; text-align: center;">Jan 21</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 553px; text-align: center;">Jan 24</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 623px; text-align: center;">Jan 27</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 63px; top: 184px; left: 693px; text-align: center;">Jan 30</div>
+                                                        </div>
+                                                        <div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; inset: 0px;">
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 171px; left: 18px; text-align: right;">0</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 131px; left: 6px; text-align: right;">250</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 91px; left: 6px; text-align: right;">500</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 51px; left: 6px; text-align: right;">750</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 11px; left: 0px; text-align: right;">1000</div>
+                                                        </div>
+                                                        <div class="flot-y-axis flot-y2-axis yAxis y2Axis" style="position: absolute; inset: 0px;">
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 171px; left: 755px;">0</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 143px; left: 755px;">5</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 114px; left: 755px;">10</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 86px; left: 755px;">15</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 57px; left: 755px;">20</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 29px; left: 755px;">25</div>
+                                                            <div class="flot-tick-label tickLabel" style="position: absolute; top: 0px; left: 755px;">30</div>
+                                                        </div>
+                                                    </div><canvas class="flot-overlay" width="767" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 767.25px; height: 200px;"></canvas>
+                                                    <div class="legend">
+                                                        <div style="position: absolute; width: 107px; height: 36px; top: 13px; left: 35px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div>
+                                                        <table style="position:absolute;top:13px;left:35px;;font-size:smaller;color:#545454">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="legendColorBox">
+                                                                        <div style="border:1px solid #000000;padding:1px">
+                                                                            <div style="width:4px;height:0;border:5px solid #1ab394;overflow:hidden"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="legendLabel">Number of orders</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="legendColorBox">
+                                                                        <div style="border:1px solid #000000;padding:1px">
+                                                                            <div style="width:4px;height:0;border:5px solid #1C84C6;overflow:hidden"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="legendLabel">Payments</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
-                                                    <div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; inset: 0px;">
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 171px; left: 18px; text-align: right;">0</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 131px; left: 6px; text-align: right;">250</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 91px; left: 6px; text-align: right;">500</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 51px; left: 6px; text-align: right;">750</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 11px; left: 0px; text-align: right;">1000</div>
-                                                    </div>
-                                                    <div class="flot-y-axis flot-y2-axis yAxis y2Axis" style="position: absolute; inset: 0px;">
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 171px; left: 755px;">0</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 143px; left: 755px;">5</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 114px; left: 755px;">10</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 86px; left: 755px;">15</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 57px; left: 755px;">20</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 29px; left: 755px;">25</div>
-                                                        <div class="flot-tick-label tickLabel" style="position: absolute; top: 0px; left: 755px;">30</div>
-                                                    </div>
-                                                </div><canvas class="flot-overlay" width="767" height="200" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 767.25px; height: 200px;"></canvas>
-                                                <div class="legend">
-                                                    <div style="position: absolute; width: 107px; height: 36px; top: 13px; left: 35px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div>
-                                                    <table style="position:absolute;top:13px;left:35px;;font-size:smaller;color:#545454">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="legendColorBox">
-                                                                    <div style="border:1px solid #000000;padding:1px">
-                                                                        <div style="width:4px;height:0;border:5px solid #1ab394;overflow:hidden"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="legendLabel">Number of orders</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="legendColorBox">
-                                                                    <div style="border:1px solid #000000;padding:1px">
-                                                                        <div style="width:4px;height:0;border:5px solid #1C84C6;overflow:hidden"></div>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="legendLabel">Payments</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <ul class="stat-list">
-                                            <li>
-                                                <h2 class="no-margins">2,346</h2>
-                                                <small>Total orders in period</small>
-                                                <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
-                                                <div class="progress progress-mini">
-                                                    <div style="width: 48%;" class="progress-bar"></div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <h2 class="no-margins ">4,422</h2>
-                                                <small>Orders in last month</small>
-                                                <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i></div>
-                                                <div class="progress progress-mini">
-                                                    <div style="width: 60%;" class="progress-bar"></div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <h2 class="no-margins ">9,180</h2>
-                                                <small>Monthly income from orders</small>
-                                                <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
-                                                <div class="progress progress-mini">
-                                                    <div style="width: 22%;" class="progress-bar"></div>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                        <div class="col-lg-3">
+                                            <ul class="stat-list">
+                                                <li>
+                                                    <h2 class="no-margins">2,346</h2>
+                                                    <small>Total orders in period</small>
+                                                    <div class="stat-percent">48% <i class="fa fa-level-up text-navy"></i></div>
+                                                    <div class="progress progress-mini">
+                                                        <div style="width: 48%;" class="progress-bar"></div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <h2 class="no-margins ">4,422</h2>
+                                                    <small>Orders in last month</small>
+                                                    <div class="stat-percent">60% <i class="fa fa-level-down text-navy"></i></div>
+                                                    <div class="progress progress-mini">
+                                                        <div style="width: 60%;" class="progress-bar"></div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <h2 class="no-margins ">9,180</h2>
+                                                    <small>Monthly income from orders</small>
+                                                    <div class="stat-percent">22% <i class="fa fa-bolt text-navy"></i></div>
+                                                    <div class="progress progress-mini">
+                                                        <div style="width: 22%;" class="progress-bar"></div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+                <!-------------fin  pintar --------------------->
 
             </div>
-            <!-------------fin  pintar --------------------->
 
         </div>
 
-    </div>
-
-    <!-- Custom and plugin javascript -->
+        <!-- Custom and plugin javascript -->
 
 
 
 
-    <!-- Mainly scripts --------------->
-    <script src="../js/utils/jquery-3.5.1.min.js"></script>
-    <script src="../js/utils/popper.min.js"></script>
-    <script src="../js/utils/bootstrap.js"></script>
-    <!-- JS para el Menu  -->
-    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <!-- Mainly scripts --------------->
+        <script src="../js/utils/jquery-3.5.1.min.js"></script>
+        <script src="../js/utils/popper.min.js"></script>
+        <script src="../js/utils/bootstrap.js"></script>
+        <!-- JS para el Menu  -->
+        <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <script src="../js/plugins/sweetalert/sweetalert.min.js"></script>
-    <script src="../js/core/Mensaje.js"></script>
-    <script src="../js/core/Utilitario.js"></script>
+        <script src="../js/plugins/sweetalert/sweetalert.min.js"></script>
+        <script src="../js/core/Mensaje.js"></script>
+        <script src="../js/core/Utilitario.js"></script>
 
-    <!-- Custom and plugin javascript -->
-    <script src="../js/utils/inspinia.js"></script>
-    <script src="../js/plugins/dataTables/datatables.min.js"></script>
-    <script src="../js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
-    <!--  <script src="../libs/summernote/lang/summernote-es-ES.min.js"></script> -->
-    <script src="../js/plugins/select2/select2.full.min.js"></script>
- 
-    <!-- Bootstrap Tour -->
-    <link href="../css/plugins/bootstrapTour/bootstrap-tour.min.css" rel="stylesheet">
-    <!-- Bootstrap Tour -->
-    <script src="../js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
+        <!-- Custom and plugin javascript -->
+        <script src="../js/utils/inspinia.js"></script>
+        <script src="../js/plugins/dataTables/datatables.min.js"></script>
+        <script src="../js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+        <!--  <script src="../libs/summernote/lang/summernote-es-ES.min.js"></script> -->
+        <script src="../js/plugins/select2/select2.full.min.js"></script>
 
-    <!-- Bootstrap Tour -->
-    <script src="../js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
+        <!-- Bootstrap Tour -->
+        <link href="../css/plugins/bootstrapTour/bootstrap-tour.min.css" rel="stylesheet">
+        <!-- Bootstrap Tour -->
+        <script src="../js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <!--<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>-->
+        <!-- Bootstrap Tour -->
+        <script src="../js/plugins/bootstrapTour/bootstrap-tour.min.js"></script>
 
-    <!-- Date range use moment.js same as full calendar plugin -->
-    <script src="../js/plugins/fullcalendar/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <!--<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>-->
 
-    <!-- Date range picker -->
-    <script src="../js/plugins/daterangepicker/daterangepicker.js"></script>
-    <script src="../libs/summernote/summernote-bs4.js"></script>
-    <script src="../js/plugins/pace/pace.min.js"></script>
+        <!-- Date range use moment.js same as full calendar plugin -->
+        <script src="../js/plugins/fullcalendar/moment.min.js"></script>
 
-    <!-- Steps -->
-    <script src="../js/plugins/steps/jquery.steps.min.js"></script>
+        <!-- Date range picker -->
+        <script src="../js/plugins/daterangepicker/daterangepicker.js"></script>
+        <script src="../libs/summernote/summernote-bs4.js"></script>
+        <script src="../js/plugins/pace/pace.min.js"></script>
 
-    <!-- Jquery Validate -->
-    <script src="../js/plugins/validate/jquery.validate.min.js"></script>
-    
-       <script src="../js/menu/Menu.js"></script>
-    <script src="../js/gabo/Gabo.js"></script>
-    <script>
-        Menu.cargarMenu();
-        //Utilitario.desactivarBotones();
-        //Utilitario.notificacion();
-    </script>
+        <!-- Steps -->
+        <script src="../js/plugins/steps/jquery.steps.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $("#wizard").steps();
-            $("#form").steps({
-                bodyTag: "fieldset",
-                onStepChanging: function(event, currentIndex, newIndex) {
-                    // Always allow going backward even if the current step contains invalid fields!
-                    if (currentIndex > newIndex) {
-                        return true;
+        <!-- Jquery Validate -->
+        <script src="../js/plugins/validate/jquery.validate.min.js"></script>
+
+        <script src="../js/menu/Menu.js"></script>
+        <script src="../js/gabo/Gabo.js"></script>
+        <script>
+                                            Menu.cargarMenu();
+                                            //Utilitario.desactivarBotones();
+                                            //Utilitario.notificacion();
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $("#wizard").steps();
+                $("#form").steps({
+                    bodyTag: "fieldset",
+                    onStepChanging: function (event, currentIndex, newIndex) {
+                        // Always allow going backward even if the current step contains invalid fields!
+                        if (currentIndex > newIndex) {
+                            return true;
+                        }
+
+                        // Forbid suppressing "Warning" step if the user is to young
+                        if (newIndex === 3 && Number($("#age").val()) < 18) {
+                            return false;
+                        }
+
+                        var form = $(this);
+
+                        // Clean up if user went backward before
+                        if (currentIndex < newIndex) {
+                            // To remove error styles
+                            $(".body:eq(" + newIndex + ") label.error", form).remove();
+                            $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                        }
+
+                        // Disable validation on fields that are disabled or hidden.
+                        form.validate().settings.ignore = ":disabled,:hidden";
+
+                        // Start validation; Prevent going forward if false
+                        return form.valid();
+                    },
+                    onStepChanged: function (event, currentIndex, priorIndex) {
+                        // Suppress (skip) "Warning" step if the user is old enough.
+                        if (currentIndex === 2 && Number($("#age").val()) >= 18) {
+                            $(this).steps("next");
+                        }
+
+                        // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                        if (currentIndex === 2 && priorIndex === 3) {
+                            $(this).steps("previous");
+                        }
+                    },
+                    onFinishing: function (event, currentIndex) {
+                        var form = $(this);
+
+                        // Disable validation on fields that are disabled.
+                        // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                        form.validate().settings.ignore = ":disabled";
+
+                        // Start validation; Prevent form submission if false
+                        return form.valid();
+                    },
+                    onFinished: function (event, currentIndex) {
+                        var form = $(this);
+
+                        // Submit form input
+                        form.submit();
                     }
-
-                    // Forbid suppressing "Warning" step if the user is to young
-                    if (newIndex === 3 && Number($("#age").val()) < 18) {
-                        return false;
+                }).validate({
+                    errorPlacement: function (error, element) {
+                        element.before(error);
+                    },
+                    rules: {
+                        confirm: {
+                            equalTo: "#password"
+                        }
                     }
-
-                    var form = $(this);
-
-                    // Clean up if user went backward before
-                    if (currentIndex < newIndex) {
-                        // To remove error styles
-                        $(".body:eq(" + newIndex + ") label.error", form).remove();
-                        $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
-                    }
-
-                    // Disable validation on fields that are disabled or hidden.
-                    form.validate().settings.ignore = ":disabled,:hidden";
-
-                    // Start validation; Prevent going forward if false
-                    return form.valid();
-                },
-                onStepChanged: function(event, currentIndex, priorIndex) {
-                    // Suppress (skip) "Warning" step if the user is old enough.
-                    if (currentIndex === 2 && Number($("#age").val()) >= 18) {
-                        $(this).steps("next");
-                    }
-
-                    // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
-                    if (currentIndex === 2 && priorIndex === 3) {
-                        $(this).steps("previous");
-                    }
-                },
-                onFinishing: function(event, currentIndex) {
-                    var form = $(this);
-
-                    // Disable validation on fields that are disabled.
-                    // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
-                    form.validate().settings.ignore = ":disabled";
-
-                    // Start validation; Prevent form submission if false
-                    return form.valid();
-                },
-                onFinished: function(event, currentIndex) {
-                    var form = $(this);
-
-                    // Submit form input
-                    form.submit();
-                }
-            }).validate({
-                errorPlacement: function(error, element) {
-                    element.before(error);
-                },
-                rules: {
-                    confirm: {
-                        equalTo: "#password"
-                    }
-                }
+                });
             });
-        });
-    </script>
+        </script>
 
 
 
 
-</body>
+    </body>
 
 </html>

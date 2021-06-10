@@ -287,10 +287,22 @@
                     </fieldset>
                     <h1>Alumnos y Pares</h1>
                     <fieldset>
-                        <h2 style="color: black"></h2>
+                  
+                      
+                         <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne4">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne4" aria-expanded="true" aria-controls="collapseOne4">
+                                                <b>ALUMNOS</b>
+                                            </button>
+                                        </h5>
+                                    </div>
 
-                        <div class="ibox-content">
-                            <h2 style="color: black">Estudiantes</h2>
+                                    <div id="collapseOne4" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                          <div class="ibox-content">
+                         
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" onclick="showModalRegisEstu()">
                                     Registrar
@@ -317,9 +329,22 @@
                                 </table>
                             </div>
                         </div>
-                        <br />
-                        <div class="ibox-content">
-                            <h2 style="color: black">Pares Academicos</h2>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo4">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo4" aria-expanded="false" aria-controls="collapseTwo4">
+                                                <b>PARES ACADEMICOS</b>
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                          <div class="ibox-content">
+                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" onclick="showModalRegisPares()">
                                     Registrar
@@ -344,6 +369,15 @@
                                 </table>
                             </div>
                         </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                      
+                        <br />
+                    
                     </fieldset>
 
                     <h1>Projectos Terminado</h1>

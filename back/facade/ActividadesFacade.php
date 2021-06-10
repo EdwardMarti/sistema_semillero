@@ -36,9 +36,9 @@ class ActividadesFacade {
    * @param descripcion
    * @param proyectos_id
    */
-  public static function insert( $id,  $descripcion,  $proyectos_id){
+  public static function insert(  $descripcion,  $proyectos_id){
       $actividades = new Actividades();
-      $actividades->setId($id); 
+//      $actividades->setId($id); 
       $actividades->setDescripcion($descripcion); 
       $actividades->setProyectos_id($proyectos_id); 
 
@@ -108,6 +108,13 @@ class ActividadesFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $actividadesDao =$FactoryDao->getactividadesDao(self::getDataBaseDefault());
      $result = $actividadesDao->listAll();
+     $actividadesDao->close();
+     return $result;
+  }
+  public static function listAll_proyectos($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $actividadesDao =$FactoryDao->getactividadesDao(self::getDataBaseDefault());
+     $result = $actividadesDao->listAll_proyectos($id);
      $actividadesDao->close();
      return $result;
   }

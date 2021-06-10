@@ -46,16 +46,6 @@ $objetivo=$capacitaciones->getObjetivo();
       }
   }
   
-  public function insertCap($tema,  $docente,  $fecha,  $cant_capacitados,  $semillero_id){
-    
-      try {
-          $sql= "INSERT INTO `capacitaciones`( `tema`, `docente`, `fecha`, `cant_capacitados`, `semillero_id`) VALUES  ('$tema','$docente','$fecha','$cant_capacitados','$semillero_id')";
-    
-          return $this->insertarConsulta($sql);
-      } catch (SQLException $e) {
-          throw new Exception('Primary key is null');
-      }
-  }
 
     /**
      * Busca un objeto Capacitaciones en la base de datos.
