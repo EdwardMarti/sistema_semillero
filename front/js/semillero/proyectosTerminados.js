@@ -3,14 +3,33 @@ $(document).ready(function() {
     $("#btnLnActC").hide();
     $("#btnLnRegU").hide();
     $("#btnLnActU").hide();
+    $("#btnLnRegF").hide();
+    $("#btnLnActF").hide();
+    //--------Btn off antes insert----------------
+    let idP = $('#id_proyecto').val()
+    if (idP === "") {
+        $('#btn_coinvestigadores').hide()
+        $('#btn_usuarios').hide()
+        $('#btn_otros').hide()
+        $('#btn_objetivos').hide()
+        $('#btn_fuentes').hide()
+    } else {
+        $('#btn_coinvestigadores').show()
+        $('#btn_usuarios').show()
+        $('#btn_otros').show()
+        $('#btn_objetivos').show()
+        $('#btn_fuentes').show()
+    }
+
+    //--------Tablas----------------
     iniciarTablaUsuario();
     iniciarTablaCooinvestigadores();
     iniciarTablaFuentes();
-    //------------------------
+    //--------Data Tablas----------------
     obtenerDatosUsuario();
     obtenerDatosCooinvestigadores();
     obtenerDatosFuentes();
-    //------------------------
+    //--------Data Select----------------
     obtenerDatosSelectLineas();
 });
 
@@ -488,7 +507,7 @@ function selectLineas(lineas) {
     input.append(opcion);
     for (let index = 0; index < lineas.length; index++) {
         let lineaInv = lineas[index],
-            opcion = new Option(lineaInv.id, lineaInv.linea);
+            opcion = new Option(lineaInv.linea, lineaInv.id);
         $(opcion).html(lineaInv.linea);
         input.append(opcion);
     }
@@ -522,8 +541,300 @@ function RegistrarData() {
             return response.json();
         })
         .then(function(data) {
-            $('#id_proyecto').val(data.id);
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
+            $('#id_proyecto').val(data.id);
+            $('#btn_coinvestigadores').show();
+            $('#btn_usuarios').show();
+            $('#btn_otros').show();
+            $('#btn_objetivos').show();
+            $('#btn_fuentes').show();
+
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+};
+
+/**
+ * @method actualizarParte1
+ */
+
+function RegistrarDataOtros() {
+
+    let data = {
+        parte: 1,
+        id: $('#id_proyecto').val(),
+        linea_investigacion: $('#linea_investigacion').val(),
+        t_ejecucion: $('#t_ejecucion').val(),
+        fecha_ini: $('#fecha_ini').val(),
+        fecha_fin: $('#fecha_fin').val(),
+        resumen: $('#resumen').val(),
+    }
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/ProyectosController_Update.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw response;
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            Mensaje.mostrarMsjExito("Actualizacion Exitosa", data.mensaje);
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+};
+
+/**
+ * @method actualizarParte2
+ */
+
+function RegistrarDataObj() {
+
+    let data = {
+        parte: 2,
+        id: $('#id_proyecto').val(),
+        obj_general: $('#obj_general').val(),
+        obj_especifico: $('#obj_especifico').val(),
+        resultados: $('#resultados').val(),
+        costo: $('#costo').val(),
+    }
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/ProyectosController_Update.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw response;
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            Mensaje.mostrarMsjExito("Actualizacion Exitosa", data.mensaje);
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+};
+
+
+//----------------------------------Insert Coinvestigadores----------------------------------
+/**
+ * @method registrarCooinvestigadores
+ */
+
+function registrarCooinvestigadores() {
+
+    let data = {
+        nombre: $('#primer_input').val(),
+        codigo: $('#segundo_input').val(),
+        tipo: 2,
+        id_proyecto: $('#id_proyecto').val(),
+    }
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/ColaboradorController_Insert.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw response;
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            $('#ModalUsuarios').modal('hide');
+            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje, obtenerDatosCooinvestigadores());
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+};
+
+//----------------------------------Insert Estudiantes----------------------------------
+/**
+ * @method registrarUsuarios
+ */
+
+function registrarUsuarios() {
+
+    let data = {
+        nombre: $('#primer_input').val(),
+        codigo: $('#segundo_input').val(),
+        proyecto_id: $('#id_proyecto').val(),
+    }
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/Estudiante_proyectoController_Insert.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw response;
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            $('#ModalUsuarios').modal('hide');
+            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje, obtenerDatosUsuario());
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+};
+
+//----------------------------------Insert Fuentes----------------------------------
+
+/**
+ * @method registrarFuentes
+ */
+
+function registrarFuentes() {
+
+    let data = {
+        fuente: $('#primer_input').val(),
+        valor: $('#segundo_input').val(),
+        proyecto_id: $('#id_proyecto').val(),
+    }
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/Fuente_financiacionController_Insert.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw response;
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            $('#ModalUsuarios').modal('hide');
+            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje, obtenerDatosFuentes());
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -552,17 +863,30 @@ function RegistrarData() {
 
 //----------------------------------HELPERS----------------------------------
 
-function mostrarModalUsuarios(btn) {
+function mostrarModalUsuarios(btn, pi, si) {
     $('#ModalUsuarios').modal({ show: true });
 
     if (btn === 'cooinvestigadores') {
         $("#btnLnRegC").show();
         $("#btnLnRegU").hide();
+        $("#btnLnRegF").hide();
         $("#btnLnActC").hide();
-    } else {
+        $("#primer_inp").text(pi);
+        $("#segundo_inp").text(si);
+    } else if (btn === 'estudiantes') {
         $("#btnLnRegU").show();
         $("#btnLnRegC").hide();
+        $("#btnLnRegF").hide();
         $("#btnLnActU").hide();
+        $("#primer_inp").text(pi);
+        $("#segundo_inp").text(si);
+    } else {
+        $("#btnLnRegF").show();
+        $("#btnLnRegC").hide();
+        $("#btnLnRegU").hide();
+        $("#btnLnActF").hide();
+        $("#primer_inp").text(pi);
+        $("#segundo_inp").text(si);
     }
 }
 

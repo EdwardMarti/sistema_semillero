@@ -16,6 +16,7 @@ cargarSelectLineas(semille);
     
     $("#ModalDatosPlan").hide();
     $("#ModalTablaplan2").hide();
+    $("#collapseFour").hide();
     $("#ModalTablaRegistroPlan").show();
     
         
@@ -370,7 +371,7 @@ function AgregarPlan() {
             Mensaje.mostrarMsjExito("Registro Exitoso", "Se ha Iniciado Un Plan de Accion");
           
                 SiguienteActividades(data.id,proyectos_id)
-
+                 $("#collapseFour").show();
         })
         .catch(function(promise) {
             if (promise.json) {

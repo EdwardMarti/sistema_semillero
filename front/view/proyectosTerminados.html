@@ -47,7 +47,7 @@
             <div class="card-header" id="headingTwo">
                 <h5 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <b>COOINVESTIGADORES</b> 
+            <b>COINVESTIGADORES</b> 
         </button>
                 </h5>
             </div>
@@ -61,7 +61,7 @@
                             <div class='table'>
                                 <div class="modal-footer">
 
-                                    <h5 class="label label-successE"> <a onclick="mostrarModalUsuarios('cooinvestigadores')" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                    <h5 class="label label-successE" id="btn_coinvestigadores"> <a onclick="mostrarModalUsuarios('cooinvestigadores','Código','Nombre')" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
                                 </div>
                                 <table class='table table-striped' id='listadoTablaCooinvestigadores'>
                                     <thead>
@@ -101,7 +101,7 @@
                             <div class='table'>
                                 <div class="modal-footer">
 
-                                    <h5 class="label label-successE"> <a onclick="mostrarModalUsuarios('estudiantes')" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                    <h5 class="label label-successE" id="btn_usuarios"> <a onclick="mostrarModalUsuarios('estudiantes','Código','Nombre')" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
                                 </div>
                                 <table class='table table-striped' id='listadoTablaEstudiantes'>
                                     <thead>
@@ -174,6 +174,12 @@
                                 <textarea class="form-control" name="resumen" id="resumen" cols="5" rows="5"></textarea>
                             </div>
 
+                            <div class="modal-footer" id="btn_otros">
+                                <h5 class="label label-successE">
+                                    <a onclick="RegistrarDataOtros()" style="background-color: #243747;display: inline !important;" class="btn btn-primary">Registrar</a>
+                                </h5>
+                            </div>
+
                         </div>
 
                     </div>
@@ -217,10 +223,19 @@
 
                             <div class="form-group">
                                 <label for="formGroupExampleInput">Resultados Obtenidos: </label>
-                                <textarea class="form-control" name="resumen" id="resumen" cols="5" rows="5"></textarea>
+                                <textarea class="form-control" name="resultados" id="resultados" cols="5" rows="5"></textarea>
                             </div>
 
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Costo Total del Proyecto: </label>
+                                <input type="text" style="background: white;" class="form-control" name="costo" id="costo" required>
+                            </div>
 
+                            <div class="modal-footer" id="btn_objetivos">
+                                <h5 class="label label-successE">
+                                    <a onclick="RegistrarDataObj()" style="background-color: #243747;display: inline !important;" class="btn btn-primary">Registrar</a>
+                                </h5>
+                            </div>
 
                         </div>
 
@@ -233,7 +248,7 @@
             <div class="card-header" id="headingsix">
                 <h5 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-            <b>COSTO</b> 
+            <b>FUENTES DE FINANCIACION</b> 
         </button>
                 </h5>
             </div>
@@ -242,15 +257,10 @@
                     <div class="col-lg-12">
                         <div class="ibox ">
 
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Costo Total del Proyecto: </label>
-                                <input type="text" style="background: white;" class="form-control" name="costo" id="costo" required>
-                            </div>
-
                             <div class='table'>
                                 <div class="modal-footer">
 
-                                    <h5 class="label label-successE"> <a onclick="mostrarModalCostos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                    <h5 class="label label-successE" id="btn_fuentes"> <a onclick="mostrarModalUsuarios('fuentes','Fuente','Valor')" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
                                 </div>
                                 <table class='table table-striped' id='listadoTablaFuentes'>
                                     <thead>
@@ -275,27 +285,7 @@
 
 </div>
 
-<div class="modal inmodal" id="ModalLoadData" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content animated bounceInRight">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="text-center">
-                    <label title="Upload image file" for="fileUpload" class="btn btn-primary">
-                        <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" name="fileUpload" id="fileUpload" style="display:none">
-                        Upload image
-                    </label>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                <button type="button" onclick="loadDataxls()" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <div class="modal inmodal" id="ModalUsuarios" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
@@ -307,13 +297,13 @@
                 <form role="form" id="Linea_investigacionInsert">
 
                     <div class="form-group">
-                        <label for="Inputid">Código</label>
-                        <input class="form-control" type="text" name="codigo" id="codigo">
+                        <label for="Inputid" id="primer_inp"></label>
+                        <input class="form-control" type="text" name="primer_input" id="primer_input">
                     </div>
 
                     <div class="form-group">
-                        <label for="Inputid">Nombre</label>
-                        <input class="form-control" type="text" name="codigo" id="codigo">
+                        <label for="Inputid" id="segundo_inp"></label>
+                        <input class="form-control" type="text" name="segundo_input" id="segundo_input">
                     </div>
 
                 </form>
@@ -321,9 +311,12 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btnLnActC" onclick="actualizarCooinvestigadores()">Actualizar</button>
                 <button type="button" class="btn btn-primary" id="btnLnRegC" onclick="registrarCooinvestigadores()">Registrar</button>
-
+                <!-- Usuarios -->
                 <button type="button" class="btn btn-primary" id="btnLnActU" onclick="actualizarUsuarios()">Actualizar</button>
                 <button type="button" class="btn btn-primary" id="btnLnRegU" onclick="registrarUsuarios()">Registrar</button>
+                <!-- Fuentes   -->
+                <button type="button" class="btn btn-primary" id="btnLnActF" onclick="actualizarFuentes()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnLnRegF" onclick="registrarFuentes()">Registrar</button>
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
             </div>
@@ -331,43 +324,5 @@
         </div>
     </div>
 </div>
-
-
-<div class="modal inmodal" id="ModalTitulos" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content animated bounceInRight">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <form role="form">
-                    <div class="form-group">
-
-                        <label for="formGroupExampleInput">Descripcion </label>
-                        <input type="text" style="background: white;" class="form-control" name="descripcionD" id="descripcionD" required>
-
-                    </div>
-                    <div class="form-group">
-
-                        <label for="formGroupExampleInput">Universidad </label>
-                        <input type="text" style="background: white;" class="form-control" name="universidad" id="universidad" required>
-
-                    </div>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarTitulos()">Registrar</button>
-                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-
 
 <script type="text/javascript" src="../js/semillero/proyectosTerminados.js"></script>
