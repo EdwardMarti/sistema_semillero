@@ -40,10 +40,9 @@ class Fuente_financiacionFacade
      * @param valor
      * @param proyectos_terminados_id
      */
-    public static function insert($id,  $fuente,  $valor,  $proyectos_terminados_id)
+    public static function insert($fuente,  $valor,  $proyectos_terminados_id)
     {
         $fuente_financiacion = new Fuente_financiacion();
-        $fuente_financiacion->setId($id);
         $fuente_financiacion->setFuente($fuente);
         $fuente_financiacion->setValor($valor);
         $fuente_financiacion->setProyectos_terminados_id($proyectos_terminados_id);

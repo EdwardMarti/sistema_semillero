@@ -1,8 +1,9 @@
 $(document).ready(function() {
 
-    sem_id = '2';
-    p_idPersona = '2';
+    sem_id =  Utilitario.getLocal('id_semillero');
+    p_idPersona =  Utilitario.getLocal('id');
 
+  
     cargarSelectgrupos_investigacion();
     cargarSelectFacultades();
     cargarSelectArea();
@@ -1300,29 +1301,14 @@ function ActualizarDataDocente() {
 
 
 
-function DeleteOrder(id, data) {
-
-
-    swal({
-        title: "Are you sure?",
-        text: "You will not be able to recover this imaginary file!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, delete it!",
-        closeOnConfirm: false
-    }, function() {
-        eliminarLn(id, data);
-        swal("Deleted!", "Your imaginary file has been deleted.", "success");
-    });
-
-    //    Mensaje.mostrarMsjConfirmacionBorrar(
-    //        'Eliminar Orden',
-    //        'Este proceso es irreversible , ¿esta seguro que desea eliminar este Registro?',
-    //        function() {
-    //            eliminarLn(id,data);
-    //        }
-    //    );
+function DeleteOrder(id) {
+    Mensaje.mostrarMsjConfirmacion(
+        'Eliminar Registro',
+        'Este proceso es irreversible , ¿esta seguro que desea eliminar la Orden?',
+        function() {
+            eliminarLn(id);
+        }
+    );
 }
 
 
@@ -1330,9 +1316,10 @@ function DeleteOrder(id, data) {
  * @method AlumnoEliminar
  * Método que se encarga de eliminar el estudiante de todas la bd
  */
-function eliminarLn(id, datos) {
+function eliminarLn(id) {
 
-
+ var sem =  Utilitario.getLocal('id_semillero');
+    
     let data = {
         id: id,
 
@@ -1343,7 +1330,7 @@ function eliminarLn(id, datos) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
 
@@ -1357,11 +1344,10 @@ function eliminarLn(id, datos) {
         })
         .then(function(data) {
 
-
             Mensaje.mostrarMsjExito("Borrado Exitoso", data.mensaje);
-
-            //            ocultarModalOrdenes()();
-            obtenerDatosS(varSemi);
+            obtenerDatosS(sem);
+            ocultarModalOrdenes();
+             
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1377,10 +1363,10 @@ function eliminarLn(id, datos) {
                     }
                 });
             } else {
-                Mensaje.mostrarMsjError(
-                    "Error",
-                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-                );
+//                Mensaje.mostrarMsjError(
+//                    "Error",
+//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+//                );
             }
         })
         .finally(function() {
@@ -1523,27 +1509,13 @@ function listadoTitulos(titulos) {
 
 function DeleteTitulo(id) {
 
-    swal({
-        title: "Are you sure?",
-        text: "You will not be able to recover this imaginary file!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, delete it!",
-        closeOnConfirm: false
-    }, function() {
-        eliminarTitulos(id);
-        swal("Deleted!", "Your imaginary file has been deleted.", "success");
-    });
-
-
-    //    Mensaje.mostrarMsjConfirmacionBorrar(
-    //        'Eliminar Registro',
-    //        'Este proceso es irreversible , ¿esta seguro que desea eliminar este Registro?',
-    //        function() {
-    //            eliminarTitulos(id);
-    //        }
-    //    );
+    Mensaje.mostrarMsjConfirmacion(
+        'Eliminar Orden',
+        'Este proceso es irreversible , ¿esta seguro que desea eliminar la Orden?',
+        function() {
+            eliminarTitulos(id);
+        }
+    );
 }
 
 function eliminarTitulos(id) {
@@ -1558,7 +1530,7 @@ function eliminarTitulos(id) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
 
@@ -1591,10 +1563,10 @@ function eliminarTitulos(id) {
                     }
                 });
             } else {
-                Mensaje.mostrarMsjError(
-                    "Error",
-                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-                );
+//                Mensaje.mostrarMsjError(
+//                    "Error",
+//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+//                );
             }
         })
         .finally(function() {

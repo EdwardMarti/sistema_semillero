@@ -38,9 +38,8 @@ class ColaboradorFacade {
    * @param tp_colaborador
    * @param proyectos_id
    */
-  public static function insert( $id,  $nombre,  $codigo,  $tp_colaborador,  $proyectos_id){
+  public static function insert($nombre,  $codigo,  $tp_colaborador,  $proyectos_id){
       $colaborador = new Colaborador();
-      $colaborador->setId($id); 
       $colaborador->setNombre($nombre); 
       $colaborador->setCodigo($codigo); 
       $colaborador->setTp_colaborador($tp_colaborador); 

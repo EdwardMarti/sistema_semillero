@@ -10,6 +10,7 @@ include_once realpath('../facade/SemilleroFacade.php');
 include_once realpath('../facade/PersonaFacade.php');
 include_once realpath('../facade/DocenteFacade.php');
 include_once realpath('../facade/Persona_has_semilleroFacade.php');
+include_once realpath('../facade/UsuariosFacade.php');
 
 $JSONData = file_get_contents("php://input");
 $dataObject = json_decode($JSONData);
@@ -53,8 +54,10 @@ $dataObject = json_decode($JSONData);
 //        $ubicacion = strip_tags($dataObject->ubicacion);
         $ubicacion = "NO APLICA";
         DocenteFacade::insert($persona, $password, $tipo_vinculacion, $ubicacion);
-//            
-//            
+//       
+   
+        UsuariosFacade::insert( $Persona_id, $password);
+        
         $Persona_id =  $rptaP;
         $persona= new Persona();
         $persona->setId($Persona_id);

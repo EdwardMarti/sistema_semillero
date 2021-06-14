@@ -31,7 +31,7 @@ private $cn;
 public function insert($estudiante_proyecto){
     $codigo=$estudiante_proyecto->getCodigo();
     $nombre=$estudiante_proyecto->getNombre();
-    $proyectos_id=$estudiante_proyecto->setNombre();
+    $proyectos_id=$estudiante_proyecto->getProyecto_id();
    
 
     try {

@@ -32,14 +32,13 @@ class Fuente_financiacionDao implements IFuente_financiacionDao
      */
     public function insert($fuente_financiacion)
     {
-        $id = $fuente_financiacion->getId();
         $fuente = $fuente_financiacion->getFuente();
         $valor = $fuente_financiacion->getValor();
         $proyectos_terminados_id = $fuente_financiacion->getProyectos_terminados_id()->getId();
 
         try {
-            $sql = "INSERT INTO `fuente_financiacion`( `id`, `fuente`, `valor`, `proyectos_terminados_id`)"
-                . "VALUES ('$id','$fuente','$valor','$proyectos_terminados_id')";
+            $sql = "INSERT INTO `fuente_financiacion`(`fuente`, `valor`, `proyectos_terminados_id`)"
+                . "VALUES ('$fuente','$valor','$proyectos_terminados_id')";
             return $this->insertarConsulta($sql);
         } catch (SQLException $e) {
             throw new Exception('Primary key is null');
