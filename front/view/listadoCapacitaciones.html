@@ -1,10 +1,11 @@
+<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
 <div class="modal inmodal fade" id="myModalCapacitaciones" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Modal title</h4>
-                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                <h4 class="modal-title">Agregar Capacitacion</h4>
+<!--                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>-->
             </div>
             <div class="modal-body">
                 <div class="ibox-content">
@@ -16,22 +17,22 @@
                                     <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Inputtema">tema</label>
-                                    <input type="text" name="tema" class="form-control" id="tema" placeholder="tema">
+                                    <label for="Inputtema">Tema</label>
+                                    <input type="text" name="tema" class="form-control" id="tema" placeholder="Tema de la capacitacion">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Inputdocente">docente</label>
+                                    <label for="Inputdocente">Docente</label>
                                     <input type="text" name="docente" class="form-control" id="docente" placeholder="docente">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="Inputfecha">fecha</label>
-                                    <input type="date" name="fecha" class="form-control" id="fecha" placeholder="fecha">
+                                    <label for="Inputfecha">Fecha</label>
+                                    <input type="date" name="fecha" class="form-control" id="fecha" placeholder="f  echa">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Inputcant_capacitados">cant_capacitados</label>
-                                    <input type="number" name="cant_capacitados" class="form-control" id="cant_capacitados" placeholder="cant_capacitados">
+                                    <label for="Inputcant_capacitados">Cantidad de Capacitados</label>
+                                    <input type="number" name="cant_capacitados" class="form-control" id="cant_capacitados" placeholder="cantidad de capacitados">
                                 </div>
                             </div>
                         </div>
@@ -44,7 +45,7 @@
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-white" onclick="cerrarModalCapacitaciones()">Close</button>
+                <button type="button" class="btn btn-white" onclick="cerrarModalCapacitaciones()">Cerrar</button>
                 <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdateOrder()">Actualizar</button>
                 <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarCapacitacion()">Registrar</button>
             </div>
@@ -55,7 +56,7 @@
 <!-- Tabla de Usuarios -->
 <div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
 
-    <div class="row">
+    <div class="row" id="step_1_tour">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title row">
@@ -87,3 +88,4 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
 <script type="text/javascript" src="../js/capacitaciones/capacitaciones.js"></script>
+<script type="text/javascript" src="../js/tours/semillero/capacitaciones.js"></script>

@@ -394,6 +394,6 @@ class LoginView {
     static cambiarClave() {
         let nuevaclave = $("#clavenueva").val();
         let token = Utilitario.getLocal("tokenChange");
-        UsuarioController.cambiarClave(token, nuevaclave);
+        LoginController.cambiarClave(token, nuevaclave);
     }
 }

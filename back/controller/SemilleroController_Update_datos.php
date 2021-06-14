@@ -23,12 +23,13 @@ $dataObject = json_decode($JSONData);
         $departamento = strip_tags($dataObject->departamentos);
         $facultad = strip_tags($dataObject->facultades);
         $plan_estudios = strip_tags($dataObject->p_estudio);
+        $ubicacion = strip_tags($dataObject->ubicacion);
       
        
       
        
              try {
-    $rptaS = SemilleroFacade::update_Data($id, $nombre, $sigla, $fecha_creacion, $Grupo_investigacion_id, $departamento, $facultad, $plan_estudios);
+    $rptaS = SemilleroFacade::update_Data($id, $nombre, $sigla, $fecha_creacion, $Grupo_investigacion_id, $departamento, $facultad, $plan_estudios, $ubicacion );
     if ($rptaS > 0) {
         http_response_code(200);
         echo "{\"mensaje\":\"Se ha Actualizado exitosamente\"}";

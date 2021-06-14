@@ -18,7 +18,7 @@ cargarSelectLineas(semille);
     $("#ModalTablaplan2").hide();
     $("#collapseFour").hide();
     $("#ModalTablaRegistroPlan").show();
-    
+    $("#mostrarModalRegistro").hide();
         
 
 
@@ -403,11 +403,13 @@ function AgregarPlan() {
 
 function gestionarItemPlan() {
    
-   
+      
+//    $("#mostrarModalRegistro").hide();
+    $("#ModalTablaplan2").hide();
    
     $("#ModalTablaRegistroPlan").hide();
     $("#ModalDatosPlan").hide();
-    $("#ModalTablaplan2").show();
+    $("#mostrarModalRegistro").show();
     
       
     }
@@ -416,8 +418,8 @@ function gestionarItemPlanLineas(plan_id) {
    
   
    
-    $("#ModalTablaRegistroPlan").hide();
-    $("#ModalDatosPlan").show();
+    $("#mostrarModalRegistro").hide();
+    $("#ModalTablaplan2").show();
 //    $("#ModalTablaplan2").show();
     
     
@@ -463,21 +465,19 @@ function RegustrarItemPlanLineas(plan_id) {
     
 //</editor-fold>
 
-
-
-
 //<editor-fold defaultstate="collapsed" desc="Registro de Actividades ">
 
 function registrarActividades() {
   
  var   proyec=$('#proyecto_linea2').val();
  var   planss=$('#id_planReg').val();
-     
+ 
+   
       
     let ordenes = {
         descripcionAct: $('#descripcionA').val(),
         proyectos_id: proyec,
-        id_planReg:  planss,
+        id_planReg:  $('#id_planReg').val(),
       
       
     };
@@ -608,6 +608,7 @@ function mostrarModalActividades2() {
  
 }
 function cerrarModalActividades2() {
+    
      $('#ModalActividades').modal('hide');
 }
 function SiguienteActividades(mensaje,proyectos_id) {
@@ -617,8 +618,13 @@ function SiguienteActividades(mensaje,proyectos_id) {
    
  $('#btnAgregarActividades').prop('disabled', false);
  $('#acor1').prop('disabled', false);
+ $('#uno').prop('disabled', false);
+ $('#dos').prop('disabled', false);
+ $('#tres').prop('disabled', false);
+ $('#cuatro').prop('disabled', false);
 
     MostrarDatosActividadesP(mensaje,proyectos_id);
+    
 }
 function SiguienteCapacitaciones() {
 //    limpiarcampos();
@@ -781,6 +787,13 @@ function cerrarModalCapacitaciones() {
   $('#ModalCapacitaciones').modal('hide');
  
 }
+function cerrarModalActividades() {
+   
+   
+  $('#ModalCapacitaciones').modal('hide');
+  $('#ModalCapacitaciones').modal('hide');
+ 
+}
 
 function obtenerDatosCapacitaciones() {
     
@@ -929,10 +942,6 @@ function registrarCapacitaciones() {
 function obtenerDatosLineas_has_proyectos() {
     
 
-    
-    id_Proyect=$('#proyecto_linea2').val();
-    id_PlanR=$('#id_planReg').val();
-    id_LineaR=$('#lineas_investigacion2').val();
  
     let order = {
         plan:id_PlanR,
@@ -1054,8 +1063,11 @@ function registrarLineas_semilleros() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-                obtenerDatosLineas_has_proyectos();
-                cerrarModalCapacitaciones();
+              
+                cerrarModalActividades()();
+                console.log("exitoso");
+                
+                  obtenerDatosLineas_has_proyectos();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1095,7 +1107,20 @@ function mostrarModalOtrasCapacitaciones() {
  * Método que se encarga de cerrar el modal para registro o actualizacion
  */
 function cerrarModalActividades () {
-       $('#myModalActividades').modal('hide');
+       $("#mostrarModalRegistro").hide();
+    $("#ModalTablaplan2").hide();
+   
+    $("#ModalTablaRegistroPlan").hide();
+    $("#ModalDatosPlan").hide();
+   
+    $("#mostrarModalRegistro").show();
+     $("#OtrasACtividades").show();
+    
+      
+       
+     
+
+
 }
 
 
@@ -1486,14 +1511,16 @@ function DeleteActividades(id,proy_id) {
  */
 function eliminarActividad(id, id_proCap) {
 
-
+  
+ var   proyec=$('#proyecto_linea2').val();
+ var   planss=$('#id_planReg').val();
    
     let data = {
         id: id,
 
     };
     Utilitario.agregarMascara();
-    fetch("../../back/controller/Capacitaciones_ProyectosController_Delete.php", {
+    fetch("../../back/controller/ActividadesController_Delete.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -1515,7 +1542,7 @@ function eliminarActividad(id, id_proCap) {
             Mensaje.mostrarMsjExito("Borrado Exitoso", data.mensaje);
 
 
-                obtenerDatosCapacitaciones();
+               MostrarDatosActividadesP(planss,proyec);
                 cerrarModalCapacitaciones();
         })
         .catch(function(promise) {
@@ -1789,3 +1816,11 @@ function construirSelectlineas(linea_sem) {
 
 
 //</editor-fold>
+
+
+function mostrarModalRegistro() {
+//    limpiarcampos();
+   $('#myModalPublicaciones').modal({show: true});
+    $("#btnOrderReg").show();
+    $("#btnOrderAct").hide();
+}

@@ -5,12 +5,19 @@ include_once realpath('../facade/Persona_has_semilleroFacade.php');
 $JSONData = file_get_contents("php://input");
 $dataObject = json_decode($JSONData);
 $idSolicitud = strip_tags($dataObject->id);
-
 $key = hash("ripemd160", $idSolicitud);
 
 $solicitud = Solicitud_horasFacade::select($idSolicitud);
-$list = Persona_has_semilleroFacade::listAll_todo(2) [0];
+http_response_code(200);
+echo json_encode(["key" => $solicitud]);
+die();
+$list = Persona_has_semilleroFacade::listAll_todo($idSolicitud);
+
+http_response_code(200);
+var_dump($solicitud);
+die();
 $semillero = $list->getSemillero_id();
+//$semillero=4;
 $grupoInvestigacion = $semillero->getGrupo_investigacion_id();
 $persona = $list->getPersona_id();
 

@@ -1,15 +1,9 @@
-<?php
-/*
-              -------Creado por-------
-             \(x.x )/ Anarchy \( x.x)/
-              ------------------------
- */
+  <?php
 
-//    ¡Me han encontrado! ¡No sé cómo pero me han encontrado!  \\
 include_once realpath('../facade/PonenciasFacade.php');
 
      $JSONData = file_get_contents("php://input");
-$dataObject = json_decode($JSONData);
+     $dataObject = json_decode($JSONData);
 
 
 //$id = '2';

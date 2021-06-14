@@ -1,15 +1,18 @@
+<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
 <!-- Tabla de Usuarios -->
-    <link href="css/plugins/summernote/summernote-bs4.css" rel="stylesheet">
+<link href="css/plugins/summernote/summernote-bs4.css" rel="stylesheet">
 <!-- Tabla de Usuarios -->
 <div class="wrapper wrapper-content animated fadeInRight" id="ModalTablaRegistroPlan">
 
-    <div class="row">
+    <div class="row" id="step_1_tour">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title row">
-                    <h5 class="text-white col">Listado Plan de Estudios</h5>
-                    <h5 class="label label-successE"> <a onclick="gestionarItemPlan()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
-                            Agregar</a></h5>
+                    <h5 class="text-white col">Listado Plan de Gestion</h5>
+                    <h5 class="label label-successE"><a onclick="gestionarItemPlan()"
+                                                        style="background-color: #243747 ;display: inline !important"
+                                                        class="btn btn-primary">+
+                        Agregar</a></h5>
 
                 </div>
                 <div class="ibox-content">
@@ -18,17 +21,17 @@
                                  
                        
                             <thead>
-                                <tr class="ufps-tabl">
+                            <tr class="ufps-tabl">
 
-                                    <th>ID</th>
-                                    <th>SEMESTRE</th>
-                                    <th>AÑO</th>
-                                    <th>VBO DIR. SEMILLERO</th>
-                                    <th>VBO DIR. GRUPO INVESTIGACION</th>
-                                    <th>VBO DOC FACULTA INVESTIGACION</th>
-                                    <th>ESTADO</th>
-                                    <th>ACCIONES</th>
-                                </tr>
+                                <th>ID</th>
+                                <th>SEMESTRE</th>
+                                <th>AÑO</th>
+                                <th>VBO DIR. SEMILLERO</th>
+                                <th>VBO DIR. GRUPO INVESTIGACION</th>
+                                <th>VBO DOC FACULTA INVESTIGACION</th>
+                                <th>ESTADO</th>
+                                <th>ACCIONES</th>
+                            </tr>
                             </thead>
                         </table>
                     </div>
@@ -38,57 +41,46 @@
     </div>
 </div>
 <!-- Fin Tabla de Usuarios -->
-
-
-
-
-
-
-
-<!------------------------------------------------------------------------->
-
-
 <div class="wrapper wrapper-content animated fadeInRight" id="ModalTablaplan2">
-    <div class="ibox-content">       
-        <div class="alert alert-warning">
-                                <h4 style="color: black;"><i class="fa fa-warning"></i> Nota Importante !</h4>
-        
-        <p style="text-align: justify">Se debe diligenciar la plantilla por cada proyecto de investigación que el semillero espera desarrollar y que se encuentre asociado a la línea de investigación. (*) Los productos de investigación deben ser como mínimo acorde con los
-            enunciados en el Acuerdo Nº 056 de 2012, artículo 26: Actualización permanente de la información del Semillero de Investigación en los sistemas de información de la universidad – CGIS, El Semillero debe contar con mínimo un (1) proyecto en
-            la modalidad de formación o de investigación formativa, haber desarrollado o coordinado como mínimo (4) capacitaciones, haber participado en las capacitaciones y espacios de socialización que son organizadas desde la Vicerrectoría Asistente
-            de Investigación y Extensión.</p>
-        <ul>
-            <li>Los numerales 1 y 2, se deben diligenciar por cada línea de investigación perteneciente al semillero.
-            </li>
-            <li>Actividades de Investigación: Espacios de socialización, Foros, Reuniones, Elaboración de documentos, entre otros.</li>
+        <div class="ibox-content">
+       <div class="alert alert-warning">
+            <h4 style="color: black;"><i class="fa fa-warning"></i> Nota Importante !</h4>
 
-        </ul>
+            <p style="text-align: justify">Se debe diligenciar la plantilla por cada proyecto de investigación que el
+                semillero espera desarrollar y que se encuentre asociado a la línea de investigación. (*) Los productos
+                de investigación deben ser como mínimo acorde con los
+                enunciados en el Acuerdo Nº 056 de 2012, artículo 26: Actualización permanente de la información del
+                Semillero de Investigación en los sistemas de información de la universidad – CGIS, El Semillero debe
+                contar con mínimo un (1) proyecto en
+                la modalidad de formación o de investigación formativa, haber desarrollado o coordinado como mínimo (4)
+                capacitaciones, haber participado en las capacitaciones y espacios de socialización que son organizadas
+                desde la Vicerrectoría Asistente
+                de Investigación y Extensión.</p>
+            <ul>
+                <li>Los numerales 1 y 2, se deben diligenciar por cada línea de investigación perteneciente al
+                    semillero.
+                </li>
+                <li>Actividades de Investigación: Espacios de socialización, Foros, Reuniones, Elaboración de
+                    documentos, entre otros.
+                </li>
+
+            </ul>
 
         </div>
-        <hr style="background: red">  
-        
-<div class="wrapper wrapper-content animated fadeInRight" id="ModalDatosPlan">
-
-
-    <div class="ibox-content">
-        
-          <hr style="background: red">  
-        <center><H2><b><u style="background: #ae2623">PLAN DE ACCIÓN SEMILLEROS DE INVESTIGACIÓN</u></b></H2> 
-</center>
-    
-            <hr style="background: red">  
-            <div class="row">
-
-                              <div class="col-6">
-                                        <div class="form-group">
-
-                                        <label for="formGroupExampleInput">Año </label>
-                                        <input class="form-control" type="number" id="anio" placeholder="YYYY" min="1900" max="2100" onkeypress="validarAño()">
-
-                                    </div>
-                              </div>
-                              <div class="col-6">
-                                           <div class="form-group">
+            <br>
+            
+      <center><H2><b><u style="background: #ae2623">PLAN DE ACCIÓN SEMILLEROS DE INVESTIGACIÓN</u></b></H2>
+                </center>
+              <br>
+              <br>
+               <div class="form-group" style="display: none">
+                                    <label for="formGroupExampleInput">persona_Id </label>
+                                    <input type="text" style="background: white;" class="form-control" name="persona_Id"
+                                           id="persona_Id" required>
+                                </div>
+                    <div class="row" >
+                    <div class="col-4">  
+                         <div class="form-group">
                                         <label for="Inputdescripcion">Semestre</label>
                                         <select class="form-control" name="semestre" id="semestre">
                                             <option value="-1">SELECCIONE</option>
@@ -97,307 +89,329 @@
                                         </select>
 
                                     </div>
-                              </div>
-                              </div>
+                        <div class="form-group">
+                                    <label for="Inputdescripcion" style="color: #ae2623"><b>Linea de Investigacion
+                                        (*)</b></label>
+                                    <select onchange="cargarSelectProyectos(this.value);" class="form-control"
+                                            name="lineas_investigacion2" id="lineas_investigacion2">
+                                        <option value="">SELECCIONE</option>
+                                    </select>
+                                </div>  
                         
-                        <hr style="background-color: #ae2623 ;  height: 2px;">
-                       
-            
-                        <input class="form-control" type="text" id="id_planReg" name="id_planReg"  style="display: none">
-        
-        <!--------------------------------------Selec de lineas------------------------------------------->
-                    <div class="card-body">
-
-                        <form role="form">
-  <div class="ibox-title">
-                            <h5>1. PROYECTOS DE INVESTIGACION</h5>
-
-                        </div>
-                            <br>
-                            <br>
-                            <div class="row">
-
-                                <div class="col-4">
-
-
-                                    <div class="form-group">
-                                        <label for="Inputdescripcion" style="color: #ae2623"><b>Linea de Investigacion (*)</b></label>
-                                        <select onchange="cargarSelectProyectos(this.value);" class="form-control" name="lineas_investigacion2" id="lineas_investigacion2">
-                                            <option value="">SELECCIONE</option>
-
-
-                                        </select>
-
-                                    </div>
-                                    <hr style="background:  #ae2623">
-                                    <!--style="display: none"-->
-                                    <div class="form-group" style="display: none">
-
-                                        <label for="formGroupExampleInput">persona_Id </label>
-                                        <input type="text" style="background: white;" class="form-control" name="persona_Id" id="persona_Id" required>
-
-                                    </div>
-
-                                    <div class="form-group">
-
-                                        <label for="formGroupExampleInput">Responsable del Proyecto </label>
-                                        <input type="text" style="background: white;" class="form-control" name="investigador" id="investigador" readonly="">
-
-                                    </div>
-                                      <div class="form-group">
-                                        <label for="formGroupExampleInput">Fecha de Terminación </label>
-                                        <input type="text" style="background: white;" class="form-control" name="fecha_fin" id="fecha_fin" required>
-
-                                    </div>
-
-                                </div>
-                                <div class="col-4">
-
-                                    <div class="form-group">
-
-                                        <label for="formGroupExampleInput">Responsable </label>
-                                        <input type="text" style="background: white;" class="form-control" name="responsable" id="responsable" required>
-
-                                    </div>
-                                    <hr style="background: #ae2623">
-                                       <div class="form-group">
-
-                                        <label for="formGroupExampleInput">Objetivo General </label>
-                                        <textarea  style="background: white;" class="form-control" name="objetivoG" id="objetivoG" readonly=""></textarea>
-
-                                    </div>
-                                
-                               
-                                 
-                                </div>
-                                <div class="col-4">
-                                    
-                                    <div class="form-group">
-                                        <label for="Inputdescripcion" style="color: #ae2623"><b>Proyecto a Ejecutar (*)</b></label>
-                                        <select onchange="cargarSelectProyectos2(this.value);" class="form-control" name="proyecto_linea2" id="proyecto_linea2">
-                                            <option value="">SELECCIONE</option>
-
-
-                                        </select>
-
-                                    </div>
-                                    <hr style="background: #ae2623">
-                                        <div class="form-group">
-
-                                        <label for="formGroupExampleInput">Fecha de Inicio </label>
-                                        <input type="text" style="background: white;" class="form-control" name="fecha_ini" id="fecha_ini" readonly="">
-
-                                    </div>
-                               
-                                    
-                                </div>
-                                
-                                    <div class="form-group">
-                                        <label for="formGroupExampleInput"><b>Producto (*)</b> </label>
-                    
-
-                                    </div>
-                                   <div class="ibox-content no-padding col-lg-12" >
-
-                                       <div class="summernote" id="producto">
-                           
-                        </div>
-
+                        
                     </div>
-                                     
-                                       <div class="modal-footer">
-                                           <button type="button" class="btn btn-w-m btn-primary collapsed" onclick="AgregarPlan()" id="btnContinuarActividades"   data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" disabled="disabled">+ Continuar</button>
-                                       
+                    <div class="col-4">
+                        
+                         <div class="form-group">
+
+                                        <label for="formGroupExampleInput">Año </label>
+                                        <input class="form-control" type="number" id="anio" placeholder="YYYY" min="1900" max="2100" onkeypress="validarAño()">
+
                                     </div>
-                            </div>
-                        </form>
+                        
+                                     <div class="form-group">
+                                    <label for="Inputdescripcion" style="color: #ae2623">Proyecto a Ejecutar (*)</label>
+                                    <select onchange="cargarSelectProyectos2(this.value);" class="form-control"
+                                            name="proyecto_linea2" id="proyecto_linea2">
+                                        <option value="">SELECCIONE</option>
 
+
+                                    </select>
+
+                                </div>
                     </div>
-        <!-------------------------------------------------------------------------------------->
- 
-        <div class="accordion" id="accordionExampleLinea">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="acor1" disabled="disabled"  >
-                            <b>1.1 ACTIVIDADES DEL PROYECTO</b>
-                        </button>
-                    </h5>
-                </div>
-
-                <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
-                
-                              <div class="card-body">
-                        <div class="col-lg-12">
-                            <div class="ibox ">
-
-
-                                <div class='table mt-4 mb-4'>
+                        <div class="col-4">
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-w-m btn-primary  collapsed" onclick="mostrarModalActividades2()" id="btnAgregarActividades"  disabled="disabled"   data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" >+ Agregar</button>
-                                     
-                                    </div>
-                                    <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaAct'>
-                                        <thead>
-                                            <tr class="ufps-tabl">
-
-                                                <th>DESCRIPCIOON</th>
-                                                <th>ACCIONES</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-
+                                <button type="button" class="btn btn-w-m btn-primary collapsed" onclick="AgregarPlan()"
+                                        id="btnContinuarActividades" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne" disabled="disabled">Iniciar
+                                </button>
 
                             </div>
                         </div>
-                    </div>
-                    
-                          <div class="modal-footer">
- <button type="button" class="btn btn-w-m btn-primary collapsed" onclick="SiguienteCapacitaciones()" id="btnContinuarActividades"   data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">+ Continuar</button>
-                                       
-                                    </div>
-                    
                 </div>
+              
+
+    </div>
+    
+    <input class="form-control" type="hidden" id="id_planReg" name="id_planReg" >
+    
+    <div class="ibox-content">
+            <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"  disabled="disabled" id="uno">
+                        <b>1. LÍNEAS DE INVESTIGACIÓN</b>
+                    </button>
+                </h5>
             </div>
 
-            <div class="card">
-                <div class="card-header" id="headingTwo">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="acor2"  disabled="disabled" >
-                            <b>2. CAPACITACIONES</b>
-                        </button>
-                    </h5>
+            <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body" id="step1w">
+                      <div class="card-body">
+
+                    <form role="form">
+
+                        <div class="row">
+
+                            <div class="col-4">
+
+                                <div class="form-group" style="display: none">
+                                    <label for="formGroupExampleInput">persona_Id </label>
+                                    <input type="text" style="background: white;" class="form-control" name="persona_Id"
+                                           id="persona_Id" required>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="formGroupExampleInput">Responsable del Proyecto </label>
+                                    <input type="text" style="background: white;" class="form-control"
+                                           name="investigador" id="investigador" readonly="">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Fecha de Terminación </label>
+                                    <input type="text" style="background: white;" class="form-control" name="fecha_fin"
+                                           id="fecha_fin" required>
+
+                                </div>
+
+                            </div>
+                            <div class="col-4">
+
+                                <div class="form-group">
+
+                                    <label for="formGroupExampleInput">Responsable </label>
+                                    <input type="text" style="background: white;" class="form-control"
+                                           name="responsable" id="responsable" required>
+
+                                </div>
+                                
+                                <div class="form-group">
+
+                                    <label for="formGroupExampleInput">Objetivo General </label>
+                                    <textarea style="background: white;" class="form-control" name="objetivoG"
+                                              id="objetivoG" readonly=""></textarea>
+
+                                </div>
+
+
+                            </div>
+                            <div class="col-4">
+
+                          
+                              
+                                <div class="form-group">
+
+                                    <label for="formGroupExampleInput">Fecha de Inicio </label>
+                                    <input type="text" style="background: white;" class="form-control" name="fecha_ini"
+                                           id="fecha_ini" readonly="">
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="formGroupExampleInput"><b>Productos </b> </label>
+
+
+                            </div>
+                            <div class="ibox-content no-padding col-lg-12">
+
+                                <div class="summernote" id="producto">
+
+                                </div>
+
+                            </div>
+
+                            <div class="modal-footer" style="display: none">
+                                <button type="button" class="btn btn-w-m btn-primary collapsed" onclick="AgregarPlan()"
+                                        id="btnContinuarActividades" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne" disabled="disabled">+ Continuar
+                                </button>
+
+                            </div>
+                        </div>
+                 
+
                 </div>
-                <div id="collapseTwo" class="collapse " aria-labelledby="headingTwo" data-parent="#accordionExample">
-          
-                       <div class="card-body">
-                        <div class="col-lg-12">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" disabled="disabled" id="dos">
+                            <b>1. ACTIVIDADES</b>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
                             <div class="ibox ">
 
-                                <div class="col-lg-12">
-                                    <div class="ibox ">
-                                        <div class="modal-footer">
-  <button type="button" class="btn btn-w-m btn-primary" onclick="mostrarModalCapacitaciones()" id="btnAgregarCapacitaciones"  disabled="disabled"  >+ Agregar</button>
-                                         
-                                        </div>
-                                        <div class='table mt-4 mb-4'>
-                                            <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaCap'>
-                                                <thead>
-                                                    <tr class="ufps-tabl">
 
-                                                        <th>NOMBRE DE LA CAPACITACION</th>
-                                                        <th>ORADOR</th>
-                                                        <th>OBJETIVO</th>
-                                                        <th>FECHA DE REALIZACION</th>
-                                                        <th>Nº DE ASISTENTES</th>
-                                                        <th>ACCIONES</th>
-                                                    </tr>
+                                        <div class='table mt-4 mb-4'>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-w-m btn-primary  collapsed"
+                                                        onclick="mostrarModalActividades2()" id="btnAgregarActividades"
+                                                        disabled="disabled" >+ Agregar
+                                                </button>
+
+                                            </div>
+                                            <table class='table table-striped mt-4 mb-4 centradito'
+                                                   id='listadoTablaAct'>
+                                                <thead>
+                                                <tr class="ufps-tabl">
+
+                                                    <th>DESCRIPCIOON</th>
+                                                    <th>ACCIONES</th>
+                                                </tr>
                                                 </thead>
                                             </table>
                                         </div>
-                                    </div>
-                                </div>
+
+       <div class="modal-footer">
+                                <button type="button" class="btn btn-w-m btn-primary collapsed"
+                                        onclick="SiguienteCapacitaciones()" id="btnContinuarActividades"
+                                        data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                                        aria-controls="collapseTwo">+ Continuar
+                                </button>
 
                             </div>
-                                 <div class="modal-footer">
- <button type="button" class="btn btn-w-m btn-primary collapsed" onclick="registrarLineas_semilleros()" id="btnContinuarActividades"   data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">+ Registrar</button>
-                                       
-                                    </div>
-                        </div>
-                    </div>
-                    
-                    
+                                 
                 </div>
             </div>
-
-       
-
-
-     
-
         </div>
-        </div>
-   </div>
-        <hr style="background: #ae2623">  
-        <center><H2><b><u style="background: #ae2623">LISTA LÍNEAS DE INVESTIGACIÓN</u></b></H2> 
-</center>
-    <div class='table mt-4 mb-4'>
-                                <div class="modal-footer">
 
-                                            <h5 class="label label-successE"> <a onclick="gestionarItemPlanLineas()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" disabled="disabled" id="tres">
+                         <b>*  CAPACITACIONES</b>
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  
+               <div class="col-lg-12">
+                                            <div class="ibox ">
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-w-m btn-primary"
+                                                            onclick="mostrarModalCapacitaciones()"
+                                                            id="btnAgregarCapacitaciones" disabled="disabled">+ Agregar
+                                                    </button>
+
+                                                </div>
+                                                <div class='table mt-4 mb-4'>
+                                                    <table class='table table-striped mt-4 mb-4 centradito'
+                                                           id='listadoTablaCap'>
+                                                        <thead>
+                                                        <tr class="ufps-tabl">
+
+                                                            <th>NOMBRE DE LA CAPACITACION</th>
+                                                            <th>ORADOR</th>
+                                                            <th>OBJETIVO</th>
+                                                            <th>FECHA DE REALIZACION</th>
+                                                            <th>Nº DE ASISTENTES</th>
+                                                            <th>ACCIONES</th>
+                                                        </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
-                                    <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablalinea_pro'>
-                                        <thead>
-                                            <tr class="ufps-tabl">
+                   
+                         <div class="modal-footer">
+                                        <button type="button" class="btn btn-w-m btn-primary collapsed"
+                                                onclick="registrarLineas_semilleros()" id="btnContinuarActividades"
+                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                                                aria-controls="collapseTwo">+ Registrar Linea
+                                        </button>
 
-                                                <th>LINEA</th>
-                                                <th>PROYECTO</th>
-                                                <th>ACCIONES</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-
-        
- 
-
-
-<hr style="background: red ">
-       <div class="card">
-                <div class="card-header" id="headingFour">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"  disabled="disabled">
-                            <b>3. OTRAS ACTIVIDADES DE INVESTIGACION (*) </b>
-                        </button>
-                    </h5>
+                                    </div>
                 </div>
-                <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <div class="col-lg-12">
-                            <div class="ibox ">
+            </div>
+        </div>
 
-                                <div class="col-lg-12">
-                                    <div class="ibox ">
-                                        <div class="modal-footer">
 
-                                            <h5 class="label label-successE"> <a onclick="ModalOtrasCapacitaciones()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
-                                        </div>
-                                       <div class="ibox-content">
-                    <div class='table mt-4 mb-4'><br>
-                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaOtrasCap' style='width: 100%'>   
+
+    </div>
+    </div>
+    
+        <div class="ibox-content" id="OtrasACtividades">
+       <div class="ibox-title row">
+                    <h5 class="text-white col"> <b>3. OTRAS ACTIVIDADES DE INVESTIGACION (*) </b></h5>
+                   
+                    <button class="btn btn-link collapsed" type="button"  onclick="ModalOtrasCapacitaciones()" disabled="disabled" id="cuatro"  style="background: white">
+                        <b style="color: black">*  Agregar</b>
+                    </button>
+
+                </div> 
+             <div class='table mt-4 mb-4'><br>
+             <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaOtrasCap' style='width: 100%'>   
                                         
                
                                                 <thead>
-                                                    <tr class="ufps-tabl">
+                                                <tr class="ufps-tabl">
 
-                                                        <th>NOMBRE DEL PROYECTO</th>
-                                                        <th>NOMBRE ACTIVIDAD</th>
-                                                        <th>MODALIDAD DE PARTICIPACION</th>
-                                                        <th>RESPONSABLE</th>
-                                                        <th>FECHA DE REALIZACION</th>
-                                                        <th>PRODUCTO(PONENCIA/ARTICULO)</th>
-                                                        <th>ACCIONES</th>
-                                                    </tr>
+                                                    <th>NOMBRE DEL PROYECTO</th>
+                                                    <th>NOMBRE ACTIVIDAD</th>
+                                                    <th>MODALIDAD DE PARTICIPACION</th>
+                                                    <th>RESPONSABLE</th>
+                                                    <th>FECHA DE REALIZACION</th>
+                                                    <th>PRODUCTO(PONENCIA/ARTICULO)</th>
+                                                    <th>ACCIONES</th>
+                                                </tr>
                                                 </thead>
                                             </table>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            
+            
             </div>
-
-
+            </div>
+        
+        
+        
+        
+        
 </div>
+  </div>   
+    
+<div class="wrapper wrapper-content animated fadeInRight" id="mostrarModalRegistro">
+        <div class="ibox-content">
+  
+         <hr style="background: #ae2623">
+        <center><H2><b><u style="background: #ae2623">LISTA LÍNEAS DE INVESTIGACIÓN</u></b></H2>
+        </center>
+        <div class='table mt-4 mb-4' id="step_3_tour">
+            <div class="modal-footer">
 
-</div>
-</div>
+                <h5 class="label label-successE"><a onclick="gestionarItemPlanLineas()"
+                                                    style="background-color: #243747 ;display: inline !important"
+                                                    class="btn btn-primary">+ Agregar</a></h5>
+            </div>
+            <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablalinea_pro'>
+                <thead>
+                <tr class="ufps-tabl">
+
+                    <th>LINEA</th>
+                    <th>PROYECTO</th>
+                    <th>ACCIONES</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+   </div>
+   </div>
+
+    
+<!------------------------------------------------------------------------->
 <!---------------------------------------        Modales    ----------------------->
-
 
 
 <div class="modal inmodal" id="ModalActividades" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
@@ -415,15 +429,20 @@
                     </div>
                     <div class="form-group">
                         <label for="Inputdescripcion">descripcion</label>
-                        <input type="text" name="descripcionA" class="form-control" id="descripcionA" placeholder="descripcion">
+                        <input type="text" name="descripcionA" class="form-control" id="descripcionA"
+                               placeholder="descripcion">
                     </div>
 
 
-                </form>
+            
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnRegAct" onclick="actualizarActividades()">Actualizar</button>
-                <button type="button" class="btn btn-primary" id="btnRegReg" onclick="registrarActividades()">Registrar</button>
+                <button type="button" class="btn btn-primary" id="btnRegAct" onclick="actualizarActividades()">
+                    Actualizar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnRegReg" onclick="registrarActividades()">
+                    Registrar
+                </button>
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
             </div>
@@ -433,7 +452,8 @@
 </div>
 
 
-<div class="modal inmodal" id="ModalCapacitaciones" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+<div class="modal inmodal" id="ModalCapacitaciones" tabindex="-1" role="dialog" style="display: none;"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content animated bounceInRight">
             <div class="modal-header">
@@ -441,49 +461,57 @@
                         class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
-             <form role="form" id="CapacitacionesInsert">
-                 <div class="row">
-                     <div class="col-6">
-                         <div class="form-group" style="display: none">
-                          <label for="Inputid">id</label>
-                          <input type="text" name="idCap" class="form-control" id="idCap" placeholder="id" required>
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputtema">tema</label>
-                          <textarea name="temaCap" class="form-control" id="temaCap" placeholder="tema" rows="3"></textarea>
-                         
-                       </div>
-                             <div class="form-group">
-                          <label for="Inputobjetivo">objetivo</label>
-                          <textarea name="objetivoCap" class="form-control" id="objetivoCap" placeholder="objetivoCap" rows="3"></textarea>
-                         
-                       </div>
-                         
-                    
-                     </div>
-                     <div class="col-6">
-                           <div class="form-group">
-                          <label for="Inputdocente">docente</label>
-                          <input type="text" name="docenteCap" class="form-control" id="docenteCap" placeholder="docente">
-                       </div>  
-                           <div class="form-group">
-                          <label for="Inputfecha">fecha</label>
-                          <input type="date" name="fechaCap" class="form-control" id="fechaCap" placeholder="fecha">
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputcant_capacitados">cant_capacitados</label>
-                          <input type="number" name="cant_capacitadosCap" class="form-control" id="cant_capacitadosCap" placeholder="cant_capacitados">
-                       </div>
-                     </div>
-                 </div>
+                <form role="form" id="CapacitacionesInsert">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group" style="display: none">
+                                <label for="Inputid">id</label>
+                                <input type="text" name="idCap" class="form-control" id="idCap" placeholder="id"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Inputtema">tema</label>
+                                <textarea name="temaCap" class="form-control" id="temaCap" placeholder="tema"
+                                          rows="3"></textarea>
 
-                  
-                      
-                   </form>
+                            </div>
+                            <div class="form-group">
+                                <label for="Inputobjetivo">objetivo</label>
+                                <textarea name="objetivoCap" class="form-control" id="objetivoCap"
+                                          placeholder="objetivoCap" rows="3"></textarea>
+
+                            </div>
+
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="Inputdocente">docente</label>
+                                <input type="text" name="docenteCap" class="form-control" id="docenteCap"
+                                       placeholder="docente">
+                            </div>
+                            <div class="form-group">
+                                <label for="Inputfecha">fecha</label>
+                                <input type="date" name="fechaCap" class="form-control" id="fechaCap"
+                                       placeholder="fecha">
+                            </div>
+                            <div class="form-group">
+                                <label for="Inputcant_capacitados">cant_capacitados</label>
+                                <input type="number" name="cant_capacitadosCap" class="form-control"
+                                       id="cant_capacitadosCap" placeholder="cant_capacitados">
+                            </div>
+                        </div>
+                    </div>
+
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnCapacitacionesAct" onclick="actualizarActividades()">Actualizar</button>
-                <button type="button" class="btn btn-primary" id="btnCapacitacionesReg" onclick="registrarCapacitaciones()">Registrar</button>
+                <button type="button" class="btn btn-primary" id="btnCapacitacionesAct"
+                        onclick="actualizarActividades()">Actualizar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnCapacitacionesReg"
+                        onclick="registrarCapacitaciones()">Registrar
+                </button>
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
             </div>
@@ -543,8 +571,7 @@
                           <textarea  name="productoO" class="form-control" id="productoO" placeholder="producto"></textarea>
                        </div>
                    
-                     
-                   </form>
+                 
             </div>
              <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btnCapacitacionesAct2" onclick="AgregarOtrasCapcitaciones2()">Actualizar</button>
@@ -556,14 +583,16 @@
     </div>
 </div>
 
+
 <script type="text/javascript" src="../js/plan/plan.js"></script>
+<script type="text/javascript" src="../js/tours/plan_de_accion/plan_de_accion_semilleros.js"></script>
 
-  <script src="js/plugins/summernote/summernote-bs4.js"></script>
+<script src="js/plugins/summernote/summernote-bs4.js"></script>
 
-    <script>
-        $(document).ready(function(){
+<script>
+    $(document).ready(function () {
 
-            $('.summernote').summernote();
+        $('.summernote').summernote();
 
-       });
-    </script>
+    });
+</script>

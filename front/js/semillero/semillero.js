@@ -1604,9 +1604,9 @@ function cerrarModalPares() {
 
 function obtenerDatosProjectos() {
     let semi = {
-        docente_id: 2,
+       id:Utilitario.getLocal('id_semillero'),
     };
-    fetch("../../back/controller/ProyectosControllerList.php", {
+      fetch("../../back/controller/ProyectosController_List_id.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",

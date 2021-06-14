@@ -148,11 +148,11 @@ $unidad_academica=$semillero->getUnidad_academica();
           throw new Exception('Primary key is null');
       }
   }
-  public function update_Data($id, $nombre, $sigla, $fecha_creacion, $Grupo_investigacion_id, $departamento, $facultad, $plan_estudios){
+  public function update_Data($id, $nombre, $sigla, $fecha_creacion, $Grupo_investigacion_id, $departamento, $facultad, $plan_estudios, $ubicacion ){
 
 
       try {
-          $sql= "UPDATE `semillero` SET `nombre`='$nombre' ,`sigla`='$sigla' ,`fecha_creacion`='$fecha_creacion' ,`grupo_investigacion_id`='$Grupo_investigacion_id' , `departamento`='$departamento' , `facultad`='$facultad' , `plan_estudios`='$plan_estudios'  WHERE `id`='$id' ";
+          $sql= "UPDATE `semillero` SET `nombre`='$nombre' ,`sigla`='$sigla' ,`fecha_creacion`='$fecha_creacion' ,`grupo_investigacion_id`='$Grupo_investigacion_id' , `departamento`='$departamento' , `facultad`='$facultad' , `plan_estudios`='$plan_estudios', `ubicacion` = '$ubicacion'   WHERE `id`='$id' ";
          return $this->updateConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
