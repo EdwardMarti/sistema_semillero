@@ -2,7 +2,7 @@
  * Clase encargada de realizar las interacciones necesarias con la vista de Menu.
  *
  **/
- class Menu {
+class Menu {
 
     /**
      * @method cargarMenu
@@ -52,49 +52,51 @@
      * Metodo que se encarga de mostrar los usuarios registrados
      */
     static listadoUsuarios() {
-            const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
-            Utilitario.agregarMascara();
-            fetch("listadoUsuarios.html", {
-                    method: "GET",
-                })
-                .then(function(response) {
-                    return response.text();
-                })
-                .then(function(vista) {
-                    (usuario.rol === 3 || usuario.rol === 2) ?
-                    window.location.href = "principal.html": $("#mostrarcontenido").html(vista);
-                })
-                .finally(function() {
-                    Utilitario.quitarMascara();
-                });
-        }
-        /**
-         * @method listadoOrdenes
-         * Metodo que se encarga de mostrar las ordenes registradas
-         */
+        const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+        Utilitario.agregarMascara();
+        fetch("listadoUsuarios.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                (usuario.rol === 3 || usuario.rol === 2) ?
+                window.location.href = "principal.html": $("#mostrarcontenido").html(vista);
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    /**
+     * @method listadoOrdenes
+     * Metodo que se encarga de mostrar las ordenes registradas
+     */
     static listadoOrdenes() {
-            console.log('ordenes');
-            const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
-            Utilitario.agregarMascara();
-            fetch("listadoOrdenes.html", {
-                    method: "GET",
-                })
-                .then(function(response) {
-                    return response.text();
-                })
-                .then(function(vista) {
-                    $("#mostrarcontenido").html(vista);
-                    /*(usuario.rol == = 1 || usuario.rol === 2) ?
-                    window.location.href = "principal.html": $("#mostrarcontenido").html(vista); */
-                })
-                .finally(function() {
-                    Utilitario.quitarMascara();
-                });
-        }
-        /**
-         * @method listadoFacultades
-         * Metodo que se encarga de mostrar las ordenes registradas
-         */
+        console.log('ordenes');
+        const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+        Utilitario.agregarMascara();
+        fetch("listadoOrdenes.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+                /*(usuario.rol == = 1 || usuario.rol === 2) ?
+                window.location.href = "principal.html": $("#mostrarcontenido").html(vista); */
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    /**
+     * @method listadoFacultades
+     * Metodo que se encarga de mostrar las ordenes registradas
+     */
     static listadoFacultades() {
         const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
         Utilitario.agregarMascara();
@@ -113,6 +115,7 @@
                 Utilitario.quitarMascara();
             });
     }
+
     static listadoProyectos_t() {
 
         Utilitario.agregarMascara();
@@ -130,6 +133,7 @@
                 Utilitario.quitarMascara();
             });
     }
+
     static listadoProyectos_e() {
 
         Utilitario.agregarMascara();
@@ -147,6 +151,7 @@
                 Utilitario.quitarMascara();
             });
     }
+
     static listadoCapacitaciones() {
 
         Utilitario.agregarMascara();
@@ -164,7 +169,7 @@
                 Utilitario.quitarMascara();
             });
     }
-    
+
     static listadoPonencias() {
 
         Utilitario.agregarMascara();
@@ -182,7 +187,7 @@
                 Utilitario.quitarMascara();
             });
     }
-    
+
     static listadoActividades() {
 
         Utilitario.agregarMascara();
@@ -200,7 +205,7 @@
                 Utilitario.quitarMascara();
             });
     }
-    
+
     static listadoInformes() {
 
         Utilitario.agregarMascara();
@@ -218,8 +223,8 @@
                 Utilitario.quitarMascara();
             });
     }
-    
-    
+
+
     static formatoInformes() {
 
         Utilitario.agregarMascara();
@@ -348,43 +353,45 @@
 
     static listadoSemilleros_p() {
 
-            Utilitario.agregarMascara();
-            fetch("listadoSemillero_p.html", {
-                    method: "GET",
-                })
-                .then(function(response) {
-                    return response.text();
-                })
-                .then(function(vista) {
-                    $("#mostrarcontenido").html(vista);
+        Utilitario.agregarMascara();
+        fetch("listadoSemillero_p.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
 
-                })
-                .finally(function() {
-                    Utilitario.quitarMascara();
-                });
-        }
-        //<editor-fold defaultstate="collapsed" desc="Actas">
-        /**
-         * 
-         * @return {undefined}
-         */
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="Actas">
+    /**
+     *
+     * @return {undefined}
+     */
     static mostrarRangos() {
 
-            Utilitario.agregarMascara();
-            fetch("listadoRangos.html", {
-                    method: "GET",
-                })
-                .then(function(response) {
-                    return response.text();
-                })
-                .then(function(vista) {
-                    $("#mostrarcontenido").html(vista);
-                })
-                .finally(function() {
-                    Utilitario.quitarMascara();
-                });
-        }
-        //</editor-fold>
+        Utilitario.agregarMascara();
+        fetch("listadoRangos.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Actas Danadas">
     static mostrarDanadas() {
@@ -405,7 +412,63 @@
     }
 
     //</editor-fold>
+
+
     static añadirPlan() {
+
+            Utilitario.agregarMascara();
+            fetch("añadirPlanAccion.html", {
+                    method: "GET",
+                })
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(vista) {
+                    $("#mostrarcontenido").html(vista);
+                })
+                .finally(function() {
+                    Utilitario.quitarMascara();
+                });
+        }
+        /**
+         * carga en la vista principal el formulario para registrar las horas
+         * de investigacion para directores de semillero
+         */
+    static loadFormSolicitudHoras() {
+
+        Utilitario.agregarMascara();
+        fetch("formRegistroHorasInvestigacion.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    static proyectosTerminados() {
+
+        Utilitario.agregarMascara();
+        fetch("proyectosTerminados.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+
+    static proyectosEjecucion() {
 
         Utilitario.agregarMascara();
         fetch("añadirPlanAccion.html", {
@@ -421,24 +484,24 @@
                 Utilitario.quitarMascara();
             });
     }
-/**
+
+    /**
      * carga en la vista principal el formulario para registrar las horas
      * de investigacion para directores de semillero
      */
- static loadFormSolicitudHoras() {
-
-    Utilitario.agregarMascara();
-    fetch("formRegistroHorasInvestigacion.html", {
-            method: "GET",
-        })
-        .then(function(response) {
-            return response.text();
-        })
-        .then(function(vista) {
-            $("#mostrarcontenido").html(vista);
-        })
-        .finally(function() {
-            Utilitario.quitarMascara();
-        });
-}
+    static loadFormCumplimientoProductos() {
+        Utilitario.agregarMascara();
+        fetch("formRegistroCumplimientoProductos.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
 }

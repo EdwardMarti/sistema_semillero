@@ -1,317 +1,343 @@
-
 <div class="ibox-content">
 
-     
-<div class="ibox-content">
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <b>1. Proyectos de Investigación</b> 
-        </button>
-      </h5>
-    </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-          <p style="color: black">registrar sólo las actividades contempladas del semestre actual</p>
-              
-                      <div class='table mt-4 mb-4'>
-                             <div class="modal-footer">
+    <div class="ibox-content">
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <b>1. Proyectos de Investigación</b>
+                        </button>
+                    </h5>
+                </div>
 
-                              <h5 class="label label-successE"> <a onclick="mostrarModalLineas()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <p style="color: black">registrar sólo las actividades contempladas del semestre actual</p>
+
+                        <div class='table mt-4 mb-4'>
+                            <div class="modal-footer">
+
+                                <h5 class="label label-successE"> <a onclick="mostrarModalLineas()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a>
+                                </h5>
                             </div>
-                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablal' >
-                            <thead>
-                                <tr class="ufps-tabl">
-                                   
-                                    <th>Nombre Proyecto</th>
-                                    <th>Actividades</th>
-                                    <th>Fecha de Inicio</th>
-                                    <th>Fecha de Terminación</th>
-                                    <th>% de Cumplimiento</th>
-                                    <th>Ejecutor(Autores)o</th>
-                                    <th>Responsable(Director)</th>
-                                </tr>
-                            </thead>
-                        </table>
+                            <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablal'>
+                                <thead>
+                                    <tr class="ufps-tabl">
+
+                                        <th>Nombre Proyecto</th>
+                                        <th>Actividades</th>
+                                        <th>Fecha de Inicio</th>
+                                        <th>Fecha de Terminación</th>
+                                        <th>% de Cumplimiento</th>
+                                        <th>Ejecutor(Autores)o</th>
+                                        <th>Responsable(Director)</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
                     </div>
-              
-      </div>
-    </div>
-  </div>
-    
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <b>2. Capacitaciones</b> 
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-      <div class="card-body">
-           <div class="col-lg-12">
-            <div class="ibox ">
-             
-                     
-                    
-                      <div class='table mt-4 mb-4'>
-                             <div class="modal-footer">
-
-                              <h5 class="label label-successE"> <a onclick="mostrarModalLineas()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
-                            </div>
-                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablal' >
-                            <thead>
-                                <tr class="ufps-tabl">
-                                   
-                                    <th>Nombre de la Capacitación</th>
-                                    <th>Objetivo</th>
-                                    <th>Fecha de realización</th>
-                                    <th>% de Cumplimiento</th>
-                                    <th>Responsable (Orador)</th>
-                                    <th>ACCIONES</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-              
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            <b>3. Otras Actividades de Investigación (*)</b> 
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-        <div class="card-body">
-          <div class='table mt-4 mb-4'>
-                             <div class="modal-footer">
-
-                              <h5 class="label label-successE"> <a onclick="mostrarModalLineas()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
-                            </div>
-                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablal' >
-                            <thead>
-                                <tr class="ufps-tabl">
-                                   
-                                    <th>Nombre Actividad/Proyecto</th>
-                                    <th>Tipo de Actividad</th>
-                                    <th>Ponente/Asistente</th>
-                                    <th>Fecha de realización</th>
-                                    <th>% de Cumplimiento</th>
-                                    <th>Responsable</th>
-                                    <th>ACCIONES</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-        </div>
-    </div>
-  </div>
-    
-    
-     <div class="card">
-    <div class="card-header" id="headingFour">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-            <b>4. Datos adicionales fuera de registro</b> 
-        </button>
-      </h5>
-    </div>
-    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-      <div class="card-body">
-           <div class="col-lg-12">
-            <div class="ibox ">
-             
-                    <div class="col-lg-12">
-            <div class="ibox ">
-               <div class="modal-footer">
-
-                              <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
-                            </div>
-                      <div class='table mt-4 mb-4'>
-                                              <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaTitulos' >
-                            <thead>
-                                <tr class="ufps-tabl">
-                                   
-                                    <th>DESCRIPCION</th>
-                                    <th>UNIVERSIDAD</th>
-                                    <th>ACCIONES</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>       
-                    </div>       
-                    </div>  
-              
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    
-     <div class="card">
-    <div class="card-header" id="headingFive">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-            <b>5. Relación estudiantes del semillero en el semestre académico actual </b> 
-        </button>
-      </h5>
-    </div>
-    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-      <div class="card-body">
-           <div class="col-lg-12">
-            <div class="ibox ">
-             
-                    <div class="col-lg-12">
-            <div class="ibox ">
-               <div class="modal-footer">
-
-                              <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
-                            </div>
-                      <div class='table mt-4 mb-4'>
-                                              <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaTitulos' >
-                            <thead>
-                                <tr class="ufps-tabl">
-                                   
-                                    <th>N°</th>
-                                    <th>NOMBRE</th>
-                                    <th>NOMBRE</th>
-                                    <th>IDENTIFICACIÓN c.c. o T.I.</th>
-                                    <th>PROGRAMA ACADÉMICO</th>
-                                    <th>SEMESTRE ACTUAL</th>
-                                    <th>E-MAIL</th>
-                                    <th>TELÉFONO</th>
-                                    <th>ACCIONES</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>       
-                    </div>       
-                    </div>  
-              
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-    
-</div>
-
-</div>
-
-<div class="modal inmodal" id="ModalLoadData" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content animated bounceInRight">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <div class="text-center">
-                    <label title="Upload image file" for="fileUpload" class="btn btn-primary">
-                        <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" name="fileUpload" id="fileUpload" style="display:none">
-                        Upload image
-                    </label>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                <button type="button" onclick="loadDataxls()" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="modal inmodal" id="ModalLineas" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content animated bounceInRight">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-               <form role="form" id="Linea_investigacionInsert">
-                      <div class="form-group">
-                          <label for="Inputid">Area</label>
-                          <select class="form-control"   onchange="cargarSelectDisciplina(this.value)" name="area" id="area" >
-                                      
-
-                                  </select>
-                       </div>
-                      <div class="form-group">
-                          <label for="Inputdisciplina_id">Disciplina</label>
-                           <select class="form-control" name="disciplina" id="disciplina" onchange="cargarSelectLineas(this.value)" >
-                                  <option value="-1">SELECCIONE</option>
-                           </select>
-                      </div>
-                      <div class="form-group">
-                          <label for="Inputdescripcion">Linea de Investigacion</label>
-                          <select class="form-control" name="lineas_investigacion" id="lineas_investigacion" >
-                                      <option value="-1">SELECCIONE</option>
-                                     
-
-                                  </select>
-              
-                      </div>
-                       
-                   </form>
-            </div>
-            <div class="modal-footer">
-                   <button type="button" class="btn btn-primary" id="btnLnAct" onclick="actualizarRango()">Actualizar</button>
-                <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarLn()">Registrar</button>
-                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-
-            </div>
-         
-        </div>
-    </div>
-</div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <b>2. Capacitaciones</b>
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="col-lg-12">
+                            <div class="ibox ">
 
 
-<div class="modal inmodal" id="ModalTitulos" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content animated bounceInRight">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <form role="form" >
-                  <div class="form-group">
 
-                        <label for="formGroupExampleInput">Descripcion </label>
-                        <input type="text" style="background: white;" class="form-control" name="descripcionD" id="descripcionD"  required>
+                                <div class='table mt-4 mb-4'>
+                                    <div class="modal-footer">
 
+                                        <h5 class="label label-successE"> <a onclick="mostrarModalLineas()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
+                                                Agregar</a></h5>
+                                    </div>
+                                    <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablal'>
+                                        <thead>
+                                            <tr class="ufps-tabl">
+
+                                                <th>Nombre de la Capacitación</th>
+                                                <th>Objetivo</th>
+                                                <th>Fecha de realización</th>
+                                                <th>% de Cumplimiento</th>
+                                                <th>Responsable (Orador)</th>
+                                                <th>ACCIONES</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                  <div class="form-group">
+                </div>
+            </div>
 
-                        <label for="formGroupExampleInput">Universidad </label>
-                        <input type="text" style="background: white;" class="form-control" name="universidad" id="universidad"  required>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <b>3. Otras Actividades de Investigación (*)</b>
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class='table mt-4 mb-4'>
+                            <div class="modal-footer">
 
+                                <h5 class="label label-successE"> <a onclick="mostrarModalLineas()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a>
+                                </h5>
+                            </div>
+                            <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablal'>
+                                <thead>
+                                    <tr class="ufps-tabl">
+
+                                        <th>Nombre Actividad/Proyecto</th>
+                                        <th>Tipo de Actividad</th>
+                                        <th>Ponente/Asistente</th>
+                                        <th>Fecha de realización</th>
+                                        <th>% de Cumplimiento</th>
+                                        <th>Responsable</th>
+                                        <th>ACCIONES</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
-                  
-            </form>
+                </div>
             </div>
-            <div class="modal-footer">
-               
-                <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarTitulos()">Registrar</button>
-                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
+
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <b>4. Datos adicionales fuera de registro</b>
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="col-lg-12">
+                            <div class="ibox ">
+
+                                <div class="col-lg-12">
+                                    <div class="ibox ">
+                                        <div class="modal-footer">
+
+                                            <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
+                                                    Agregar</a></h5>
+                                        </div>
+                                        <div class='table mt-4 mb-4'>
+                                            <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaDatosAdicionales'>
+                                                <thead>
+                                                    <tr class="ufps-tabl">
+                                                        <th>PRODUCTO</th>
+                                                        <th>DESCRIPCIÓN</th>
+                                                        <th>RESPONSABLE</th>
+                                                        <th>FECHA</th>
+                                                        <th>ACCIONES</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-         
+
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <b>5. Relación estudiantes del semillero en el semestre académico actual </b>
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="col-lg-12">
+                            <div class="ibox ">
+
+                                <div class="col-lg-12">
+                                    <div class="ibox ">
+                                        <div class="modal-footer">
+
+                                            <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
+                                                    Agregar</a></h5>
+                                        </div>
+                                        <div class='table mt-4 mb-4'>
+                                            <!-- <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaTitulos'>
+                                                <thead>
+                                                    <tr class="ufps-tabl">
+                                                        <th>N°</th>
+                                                        <th>NOMBRE</th>
+                                                        <th>IDENTIFICACIÓN c.c. o T.I.</th>
+                                                        <th>PROGRAMA ACADÉMICO</th>
+                                                        <th>CODIGO</th>
+                                                        <th>SEMESTRE ACTUAL</th>
+                                                        <th>E-MAIL</th>
+                                                        <th>TELÉFONO</th>
+                                                        <th>ACCIONES</th>
+                                                    </tr>
+                                                </thead>
+                                            </table> -->
+                                            <table class="table table-striped mt-4 mb-4 centradito" id="listadoEstudiantesTabla2" style="width: 100%">
+                                                <thead>
+                                                    <tr class="ufps-tabl">
+                                                        <th>id</th>
+                                                        <th>Nombre</th>
+                                                        <th>persona_id_id</th>
+                                                        <th>Identificacion</th>
+                                                        <th>Programa Academico</th>
+                                                        <th>Codigo</th>
+                                                        <th>Semestre</th>
+                                                        <th>Correo</th>
+                                                        <th>telefono</th>
+                                                        <th>tipo_docuemnto_id_id</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal inmodal" id="ModalLoadData" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <label title="Upload image file" for="fileUpload" class="btn btn-primary">
+                            <input type="file"
+                                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                name="fileUpload" id="fileUpload" style="display:none">
+                            Upload image
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="loadDataxls()" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="modal inmodal" id="ModalLineas" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="Linea_investigacionInsert">
+                        <div class="form-group">
+                            <label for="Inputid">Area</label>
+                            <select class="form-control" onchange="cargarSelectDisciplina(this.value)" name="area" id="area">
 
 
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputdisciplina_id">Disciplina</label>
+                            <select class="form-control" name="disciplina" id="disciplina" onchange="cargarSelectLineas(this.value)">
+                                <option value="">SELECCIONE</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputdescripcion">Linea de Investigacion</label>
+                            <select class="form-control" name="lineas_investigacion" id="lineas_investigacion">
+                                <option value="">SELECCIONE</option>
 
- 
-    
-    
+
+                            </select>
+
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnLnAct" onclick="actualizarRango()">Actualizar</button>
+                    <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarLn()">Registrar</button>
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+
+                </div>
+
+            </div>
+        </div>
     </div>
+
+
+    <div class="modal inmodal" id="ModalTitulos" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+
+                            <label for="formGroupExampleInput">Descripcion </label>
+                            <input type="text" style="background: white;" class="form-control" name="descripcionD" id="descripcionD" required>
+
+                        </div>
+                        <div class="form-group">
+
+                            <label for="formGroupExampleInput">Universidad </label>
+                            <input type="text" style="background: white;" class="form-control" name="universidad" id="universidad" required>
+
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarTitulos()">Registrar</button>
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="../js/semillero/semillero.js"></script>
+
+
+
+
+</div>

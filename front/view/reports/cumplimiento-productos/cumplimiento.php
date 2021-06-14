@@ -1,7 +1,10 @@
 <?php
 require_once "../../../../vendor/autoload.php";
 require_once('./styles.css');
-
+/**
+de Gestión presentado por el (Grupo) de Investigación la vaca loa
+de Gestión presentado por el (Semillero__) de Investigación yo quiero asado
+ */
 $key = $_GET["token"];
 
 session_start();
@@ -19,15 +22,16 @@ $mpdf->SetHTMLHeader($htmlHeader);
 $mpdf->SetHTMLFooter(getFooter());
 
 $htmlBody = getBody();
-$htmlBody = str_replace("_horas_catedra", $data["horas_catedra"] , $htmlBody);
-$htmlBody = str_replace("_horas_planta", $data["horas_planta"] , $htmlBody);
+$htmlBody = str_replace("_porcentaje", $data["porcentaje"] , $htmlBody);
+$htmlBody = str_replace("_cumple_requisitos", $data["acepta_dos_id"] == 1 ? "si" : "no" , $htmlBody);
+$htmlBody = str_replace("_recomendacion_horas", $data["acepta_uno_id"] == 1 ? "si" : "no" , $htmlBody);
 $htmlBody = str_replace("_semestre", $data["semestre"] , $htmlBody);
-$htmlBody = str_replace("_grupo_investigacion", $data["grupo_investigacion"] , $htmlBody);
+$htmlBody = str_replace("_grupo", $data["descripcion"] , $htmlBody);
 $htmlBody = str_replace("_semillero", $data["semillero"] , $htmlBody);
 $htmlBody = str_replace("_anio", $data["anio"] , $htmlBody);
-$htmlBody = str_replace("_docente", $data["docente"] , $htmlBody);
-$htmlBody = str_replace("_horas_solicitadas", $data["horas_solicitadas"] , $htmlBody);  
-$htmlBody = str_replace("_facultad", "INGENIERIAS" , $htmlBody);  
+$htmlBody = str_replace("_productos", $data["productos"] , $htmlBody);
+//$htmlBody = str_replace("_horas_solicitadas", $data["horas_solicitadas"] , $htmlBody);
+//$htmlBody = str_replace("_facultad", "INGENIERIAS" , $htmlBody);
 
 
 $mpdf->WriteHTML(file_get_contents('styles.css'), \Mpdf\HTMLParserMode::HEADER_CSS);
@@ -105,8 +109,8 @@ function getBody(){
     <tr>
         <td style='text-align:justify'>
             <p>
-            Por medio de la presente me permito informar que he revisado el Informe de Gestión presentado por el (Grupo__/Semillero__) de Investigación NOMBRE SEMILLERO, el cual ha cumplido con el ____% de los productos previstos en el Plan de Acción del _____ Semestre del Año ________, los cuales son (_________________), por lo tanto   (SI__/NO__) recomiendo las horas de investigación solicitadas.
-De igual manera informo que el Plan de Acción presentado para el próximo semestre académico (SI__/NO__) cumple con los productos mínimos exigidos en el artículo 25 del Acuerdo 056 de 2012.
+            Por medio de la presente me permito informar que he revisado el Informe de Gestión presentado por el semillero <strong>_semillero</strong> del grupo  de Investigación <strong>_grupo</strong>, el cual ha cumplido con el <strong>_porcentaje % </strong> de los productos previstos en el Plan de Acción del <strong>_semestre</strong> Semestre del Año <strong>_anio</strong> , los cuales son (_productos), por lo tanto   <strong>_recomendacion_horas</strong> recomiendo las horas de investigación solicitadas.
+<br><br><br>De igual manera informo que el Plan de Acción presentado para el próximo semestre académico <strong>_cumple_requisitos</strong> cumple con los productos mínimos exigidos en el artículo 25 del Acuerdo 056 de 2012.
             </p>       
         </td>
     </tr><br>

@@ -34,14 +34,13 @@ class LoginController {
             })
             .then(function(data) {
                 let usuario = data.usuario;
-                console.log(usuario);
-                Utilitario.setLocal("sesionId", data.token);
-                Utilitario.setLocal("rol", usuario.rol);
-                Utilitario.setLocal("id", usuario.id);
-                Utilitario.setLocal("nombre", usuario.nombre);
-                Utilitario.setLocal("id_semillero", usuario.id_semillero);
-                Utilitario.setLocal("semillero", usuario.semillero);
-                Utilitario.setLocal("correo", usuario.correo);
+                Utilitario.setLocal("sesionId", usuario[0].token);
+                Utilitario.setLocal("rol", usuario[0].rol);
+                Utilitario.setLocal("id", usuario[0].id);
+                Utilitario.setLocal("nombre", usuario[0].nombre);
+                Utilitario.setLocal("id_semillero", usuario[0].id_semillero);
+                Utilitario.setLocal("semillero", usuario[0].semillero);
+                Utilitario.setLocal("correo", usuario[0].correo);
                 window.location.href = "principal.html";
             })
             .catch(function(promise) {

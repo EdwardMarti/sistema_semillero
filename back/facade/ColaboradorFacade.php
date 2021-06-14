@@ -119,6 +119,19 @@ class ColaboradorFacade {
      $colaboradorDao->close();
      return $result;
   }
+  
+  /**
+   * Lista todos los objetos Colaborador de la base de datos.
+   * Puede recibir NullPointerException desde los métodos del Dao
+   * @return $result Array con los objetos Colaborador en base de datos o Null
+   */
+  public static function listAll_Id($id,$tipo){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $colaboradorDao =$FactoryDao->getcolaboradorDao(self::getDataBaseDefault());
+     $result = $colaboradorDao->listAll_Id($id,$tipo);
+     $colaboradorDao->close();
+     return $result;
+  }
 
 
 }

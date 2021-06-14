@@ -13,6 +13,7 @@ include_once realpath('../dao/entities/Capacitaciones_ProyectosDao.php');
 include_once realpath('../dao/entities/ColaboradorDao.php');
 include_once realpath('../dao/entities/DepartamentoDao.php');
 include_once realpath('../dao/entities/DocenteDao.php');
+include_once realpath('../dao/entities/Datos_adicionalesSDao.php');
 include_once realpath('../dao/entities/Estado_proyectoDao.php');
 include_once realpath('../dao/entities/EstudianteDao.php');
 include_once realpath('../dao/entities/Estudiante_proyectoDao.php');
@@ -83,6 +84,10 @@ interface IFactoryDao {
      public function getCapacitacionesDao($dbName);
      
      public function getCapacitaciones_ProyectosDao($dbName);
+     
+     
+     
+     public function getDatos_adicionalesSDao($dbName);
      /**
      * Devuelve una instancia de ColaboradorDao con una conexiÃ³n que depende del gestor de base de datos
      * @param dbName Nombre o identificador de la base de datos a conectar

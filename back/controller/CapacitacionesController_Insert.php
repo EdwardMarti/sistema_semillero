@@ -12,14 +12,25 @@ include_once realpath('../facade/CapacitacionesFacade.php');
 $dataObject = json_decode($JSONData);
 
        
-        $id = strip_tags($dataObject->id);
+ 
+        $tema = strip_tags($dataObject->tema);
         $docente = strip_tags($dataObject->docente);
+        $objetivo = strip_tags($dataObject->objetivo);        
         $fecha = strip_tags($dataObject->fecha);
         $cant_capacitados = strip_tags($dataObject->cant_capacitados);
-//        $Semillero_id = strip_tags($dataObject->semillero_id);
-        $Semillero_id = '2';
+        $Semillero_id = strip_tags($dataObject->semillero_id);
+        $linea_id = strip_tags($dataObject->linea_id);
+        $proy_id = strip_tags($dataObject->proy_id);
+        $plan_accion_id = strip_tags($dataObject->plan_accion_id);
+       
    
-       $rpta= CapacitacionesFacade::insertCap($tema, $docente, $fecha, $cant_capacitados, $Semillero_id);
+        if($linea_id=="" and $proy_id=="" and $plan_accion_id =="" ){
+           $linea_id = "";
+           $proy_id = "";
+           $plan_accion_id = "";
+        }
+        
+        $rpta= CapacitacionesFacade::insertCap($tema, $docente,$objetivo, $fecha, $cant_capacitados, $Semillero_id,$linea_id,$proy_id,$plan_accion_id);
        try {
     if ($rpta > 0) {
         http_response_code(200);

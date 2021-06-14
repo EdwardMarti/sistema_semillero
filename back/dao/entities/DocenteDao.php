@@ -162,14 +162,13 @@ $ubicacion=$docente->getUbicacion();
       $lista = array();
       try {
           $sql ="SELECT  persona.nombre, persona.correo,  persona.telefono, tp.descripcion   , s.`semillero_id`
-FROM `persona_has_semillero` s
-INNER JOIN persona
-ON persona.id=s.persona_id
-INNER JOIN docente 
-on persona.id=docente.persona_id
-INNER JOIN tipo_vinculacion as tp
-on docente.tipo_vinculacion_id=tp.id`"
-          ."WHERE 1";
+                FROM `persona_has_semillero` s
+                INNER JOIN persona
+                ON persona.id=s.persona_id
+                INNER JOIN docente 
+                on persona.id=docente.persona_id
+                INNER JOIN tipo_vinculacion as tp
+                on docente.tipo_vinculacion_id=tp.id WHERE 1";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $docente= new Docente();
@@ -208,14 +207,18 @@ on docente.tipo_vinculacion_id=tp.id`"
           return $data;
     }
     
-        public function updateConsulta($sql)
+    public function updateConsulta($sql)
     {
-        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sentencia = $this->cn->prepare($sql);
-        $sentencia->execute();
-        $rta = $sentencia->rowCount();
-        $sentencia = null;
-        return $rta;
+        try {
+            $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sentencia = $this->cn->prepare($sql);
+            $sentencia->execute();
+            $rta = 1;
+            $sentencia = null;
+            return $rta;
+        } catch (Exception $e) {
+            return 0;
+        }
     }
     /**
      * Cierra la conexión actual a la base de datos

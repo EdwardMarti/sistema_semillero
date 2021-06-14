@@ -44,8 +44,7 @@ class CumplimientoFacade {
    */
   public static function insert(   $dirigido_id,  $descripcion,  $ano,  $productos,  $semestre,  $acepta_uno,  $acepta_dos,  $porcentaje){
       $cumplimiento = new Cumplimiento();
-//      $cumplimiento->setId($id); 
-      $cumplimiento->setDirigido_id($dirigido_id); 
+      $cumplimiento->setDirigido_id($dirigido_id);
       $cumplimiento->setDescripcion($descripcion); 
       $cumplimiento->setAno($ano); 
       $cumplimiento->setProductos($productos); 

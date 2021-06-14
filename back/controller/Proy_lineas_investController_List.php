@@ -18,7 +18,7 @@ $id = strip_tags($dataObject->id);
         $list=Proy_lineas_investFacade::listAll_Linea($id);
         $rta="";
         foreach ($list as $obj => $Proy_lineas_invest) {	
-	       $rta.="{
+	       $rta.="{  
 	    \"id\":\"{$Proy_lineas_invest->getid()}\",
 	    \"proyectos_id\":\"{$Proy_lineas_invest->getproyectos_id()->getid()}\",
 	    \"titulo\":\"{$Proy_lineas_invest->getproyectos_id()->getTitulo()}\",

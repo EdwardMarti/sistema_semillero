@@ -44,7 +44,6 @@ function cargarHorasBySemillero() {
         });
 }
 function loadTabla({ horas }) {
-
     let tabla = $("#listadoHorasTabla").DataTable();
     tabla.data().clear();
     tabla.rows.add(horas).draw();
@@ -307,6 +306,7 @@ function deleteSolicitud(id) {
         })
         .then(function (data) {
             Mensaje.mostrarMsjExito("Removido Correctamente", data.mensaje);
+            cargarHorasBySemillero();
         })
         .catch(function (promise) {
 

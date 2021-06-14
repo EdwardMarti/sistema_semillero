@@ -9,14 +9,19 @@
 include_once realpath('../facade/Otras_actividadesFacade.php');
 
 
-        $id = strip_tags($_POST['id']);
-        $nombre_proyecto = strip_tags($_POST['nombre_proyecto']);
-        $nombre_actividad = strip_tags($_POST['nombre_actividad']);
-        $modalidad_participacion = strip_tags($_POST['modalidad_participacion']);
-        $responsable = strip_tags($_POST['responsable']);
-        $fecha_realizacion = strip_tags($_POST['fecha_realizacion']);
-        $producto = strip_tags($_POST['producto']);
-        $Semillero_id = strip_tags($_POST['semillero_id']);
+$JSONData = file_get_contents("php://input");
+$dataObject = json_decode($JSONData);
+
+
+
+        $id = strip_tags($dataObject->id);
+        $nombre_proyecto = strip_tags($dataObject->nombre_proyecto);
+        $nombre_actividad = strip_tags($dataObject->nombre_actividad);
+        $modalidad_participacion = strip_tags($dataObject->modalidad_participacion);
+        $responsable = strip_tags($dataObject->responsable);
+        $fecha_realizacion = strip_tags($dataObject->fecha_realizacion);
+        $producto = strip_tags($dataObject->producto);
+        $Semillero_id = strip_tags($dataObject->semillero_id);
         $semillero= new Semillero();
         $semillero->setId($Semillero_id);
        

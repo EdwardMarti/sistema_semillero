@@ -49,6 +49,16 @@ class Proy_lineas_investFacade {
      $proy_lineas_investDao->close();
      return $rtn;
   }
+  
+  public static function insert2( $id, $proyectos, $linea_investigacion,$semestre,$anio){
+    
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $proy_lineas_investDao =$FactoryDao->getproy_lineas_investDao(self::getDataBaseDefault());
+     $rtn = $proy_lineas_investDao->insert2($id, $proyectos, $linea_investigacion,$semestre,$anio);
+     $proy_lineas_investDao->close();
+     return $rtn;
+  }
 
   /**
    * Selecciona un objeto Proy_lineas_invest de la base de datos a partir de su(s) llave(s) primaria(s).

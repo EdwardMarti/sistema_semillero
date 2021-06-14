@@ -42,6 +42,18 @@ $linea_investigacion_id=$proy_lineas_invest->getLinea_investigacion_id()->getId(
           throw new Exception('Primary key is null');
       }
   }
+  
+   public function insert2($id, $proyectos, $linea_investigacion,$semestre,$anio){
+
+
+      try {
+          $sql= "INSERT INTO `plan_accion_has_proyectos`( `plan_accion_id`, `proyectos_id`, `linea`, `semestre`, `ano`) "
+          ."VALUES ('$id','$proyectos','$linea_investigacion','$semestre','$anio')";
+          return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
 
     /**
      * Busca un objeto Proy_lineas_invest en la base de datos.

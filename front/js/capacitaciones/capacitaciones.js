@@ -1,11 +1,11 @@
 $(document).ready(function() {
- id_Semil='2';
+    id_Semil = '2';
     iniciarTablaC();
     obtenerDatosC(id_Semil);
-   
-//  
-//    $("#btnOrderAct").hide();
-//    $("#btnOrderReg").hide();
+
+    //  
+    //    $("#btnOrderAct").hide();
+    //    $("#btnOrderReg").hide();
 });
 
 //----------------------------------TABLA----------------------------------
@@ -47,19 +47,19 @@ function iniciarTablaC() {
                 className: "text-center",
                 orderable: true,
             },
-         
+
 
             {
                 data: "fecha",
                 className: "text-center",
                 orderable: true,
             },
-               {
+            {
                 data: "cant_capacitados",
                 className: "text-center",
                 orderable: true,
             },
-           
+
             {
                 orderable: false,
                 defaultContent: [
@@ -124,9 +124,9 @@ function iniciarTablaC() {
 
 function obtenerDatosC(id) {
 
-      let semillero = {
+    let semillero = {
         id: id,
-  
+
     };
     Utilitario.agregarMascara();
     fetch("../../back/controller/CapacitacionesController_List_Semillero.php", {
@@ -134,10 +134,10 @@ function obtenerDatosC(id) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                //                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
-                  body: JSON.stringify(semillero),
+            body: JSON.stringify(semillero),
         })
         .then(function(response) {
             if (response.ok) {
@@ -194,8 +194,8 @@ function listadoTCap(capacitaciones) {
 //<editor-fold defaultstate="collapsed" desc="Modal Capacitaciones">
 
 function mostrarModalCapacitaciones() {
-//    limpiarcampos();
-   $('#myModalCapacitaciones').modal({show: true});
+    //    limpiarcampos();
+    $('#myModalCapacitaciones').modal({ show: true });
     $("#btnOrderReg").show();
     $("#btnOrderAct").hide();
 }
@@ -205,7 +205,7 @@ function mostrarModalCapacitaciones() {
  * Método que se encarga de cerrar el modal para registro o actualizacion
  */
 function cerrarModalCapacitaciones() {
-     $('#myModalCapacitaciones').modal('hide');
+    $('#myModalCapacitaciones').modal('hide');
 }
 
 //</editor-fold>
@@ -220,17 +220,21 @@ function registrarCapacitacion() {
         docente: $('#docente').val(),
         fecha: $('#fecha').val(),
         cant_capacitados: $('#cant_capacitados').val(),
-       
+
     };
-    
+
+    if (Utilitario.validForm(['tema', 'docente', 'fecha', 'cant_capacitados'])) {
+        Mensaje.mostrarMsjError("Error", 'parametros incompletos');
+        return false;
+    }
     Utilitario.agregarMascara();
     fetch("../../back/controller/CapacitacionesController_Insert.php", {
- 
+
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                //                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
             body: JSON.stringify(capacitacion),
@@ -274,44 +278,44 @@ function registrarCapacitacion() {
 
 
 function gestionarItem(id_order) {
-    
-   
+
+
     cargarInfoTablaLn(id_order);
 
-   
+
 }
 
 function cargarInfoTablaLn(id_order) {
 
     let semillero = {
         id: id_order,
-  
+
     };
     fetch("../../back/controller/SemilleroController_Perfil_Semillero.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                 Plataform: "web",
+                Plataform: "web",
             },
             body: JSON.stringify(semillero),
         })
         .then(function(response) {
-//            console.log(response.ok);
+            //            console.log(response.ok);
             if (response.ok) {
                 return response.json();
             }
             throw response;
         })
         .then(function(data) {
-//            console.log(data.semilleroPer,'data  semillero');
+            //            console.log(data.semilleroPer,'data  semillero');
             dataItemTablaLn(data.semilleroPer);
         })
         .catch(function(promise) {
-            console.log("ptomridsf" ,promise.json);
+            console.log("ptomridsf", promise.json);
             if (promise.json) {
                 promise.json().then(function(response) {
-                      console.log("respsada" ,response);
+                    console.log("respsada", response);
                     let status = promise.status,
                         mensaje = response ? response.mensaje : "";
                     if (status === 401 && mensaje) {
@@ -323,14 +327,15 @@ function cargarInfoTablaLn(id_order) {
                     }
                 });
             } else {
-//                Mensaje.mostrarMsjError(
-//                    "Error",
-//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor. aa"
-//                );
+                //                Mensaje.mostrarMsjError(
+                //                    "Error",
+                //                    "Ocurrió un error inesperado. Intentelo nuevamente por favor. aa"
+                //                );
             }
         });
 }
-function dataItemTablaLn( data) {
+
+function dataItemTablaLn(data) {
 
 
     $('#id_semillero').val(data[0].id);
@@ -339,25 +344,25 @@ function dataItemTablaLn( data) {
     $('#grupo_investigacion').val(data[0].grupo_investigacion_id);
     $('#departamentos').val(data[0].departamento);
     $('#facultades').val(data[0].facultad);
-    var rptaFa=data[0].departamento;
+    var rptaFa = data[0].departamento;
     cargarSelectDepartamentosRpta(rptaFa);
     $('#p_estudio').val(data[0].p_estudio);
-   var pRpta=data[0].p_estudio;
+    var pRpta = data[0].p_estudio;
     cargarSelectPlanRpta(pRpta);
     $('#fecha').val(data[0].fecha_creacion);
     $('#nombreD').val(data[0].nombreD);
     $('#correoD').val(data[0].correoD);
     $('#telefonoD').val(data[0].telefonoD);
     $('#tp_vinculacion').val(data[0].tp_vinculacion);
-//    $('#fecha').val(data.inspector).change();
+    //    $('#fecha').val(data.inspector).change();
 
- mostrarModalP();
+    mostrarModalP();
 }
 
 
 function ActualizarData() {
 
-     let semillero = {
+    let semillero = {
         id: $('#id_semillero').val(),
         nombre: $('#nombre').val(),
         sigla: $('#sigla').val(),
@@ -366,8 +371,8 @@ function ActualizarData() {
         departamentos: $('#departamentos').val(),
         facultades: $('#facultades').val(),
         p_estudio: $('#p_estudio').val(),
-       
-       
+
+
     };
     Utilitario.agregarMascara();
     fetch("../../back/controller/SemilleroController_Update_datos.php", {
@@ -375,7 +380,7 @@ function ActualizarData() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                
+
                 Plataform: "web",
             },
             body: JSON.stringify(semillero),
@@ -389,8 +394,8 @@ function ActualizarData() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Datos Actualizados", data.mensaje);
-//            obtenerDatos();
-//            ocultarModalOrdenes();
+            //            obtenerDatos();
+            //            ocultarModalOrdenes();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -418,65 +423,7 @@ function ActualizarData() {
 
 }
 
-function ActualizarDataDocente() {
 
-     let semillero = {
-        persona_Id: $('#persona_Id').val(),
-        nombreD: $('#nombreD').val(),
-        telefonoD: $('#telefonoD').val(),
-        correoD: $('#correoD').val(),
-        ubicacionD: $('#ubicacionD').val(),
-        tp_vinculacion: $('#tp_vinculacion').val(),
-
-    };
-    Utilitario.agregarMascara();
-    fetch("../../back/controller/DocenteController_Semillero_Update.php", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                
-                Plataform: "web",
-            },
-            body: JSON.stringify(semillero),
-        })
-        .then(function(response) {
-            if (response.ok) {
-                return response.json();
-            }
-            throw response;
-        })
-        .then(function(data) {
-                console.log(data.mensaje);
-            Mensaje.mostrarMsjExito("Datos Actualizados", data.mensaje);
-//            obtenerDatos();
-//            ocultarModalOrdenes();
-        })
-        .catch(function(promise) {
-            if (promise.json) {
-                promise.json().then(function(response) {
-                    let status = promise.status,
-                        mensaje = response ? response.mensaje : "";
-                    if (status === 401 && mensaje) {
-                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
-                            Utilitario.cerrarSesion();
-                        });
-                    } else if (mensaje) {
-                        Mensaje.mostrarMsjError("Error", mensaje);
-                    }
-                });
-            } else {
-                Mensaje.mostrarMsjError(
-                    "Error",
-                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-                );
-            }
-        })
-        .finally(function() {
-            Utilitario.quitarMascara();
-        });
-
-}
 
 
 function DeleteCap(id) {
@@ -506,7 +453,7 @@ function eliminarCapacitacion(id) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                //                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
 
@@ -521,9 +468,9 @@ function eliminarCapacitacion(id) {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Borrado Exitoso", data.mensaje);
-             
+
             obtenerDatosC(id_Semil);
-           
+
         })
         .catch(function(promise) {
             if (promise.json) {

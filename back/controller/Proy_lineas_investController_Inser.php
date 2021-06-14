@@ -11,7 +11,7 @@ include_once realpath('../facade/Proy_lineas_investFacade.php');
 $JSONData = file_get_contents("php://input");
 $dataObject = json_decode($JSONData);
 
-$descripcion = strip_tags($dataObject->descripcion);
+
 
         $id = strip_tags($dataObject->id);
         $Proyectos_id = strip_tags($dataObject->proyectos_id);

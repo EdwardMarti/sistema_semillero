@@ -40,7 +40,7 @@ $acepta_dos=$cumplimiento->getAcepta_dos();
 $porcentaje=$cumplimiento->getPorcentaje();
 
       try {
-          $sql= "INSERT INTO `ponencias`( `dirigido_id`, `descripcion`, `ano`, `productos`, `semestre`, `acepta_uno`, `acepta_dos`, `porcentaje`)"
+          $sql= "INSERT INTO `cumplimiento`( `dirigido_id`, `descripcion`, `ano`, `productos`, `semestre`, `acepta_uno`, `acepta_dos`, `porcentaje`)"
           ."VALUES ( '$dirigido_id','$descripcion','$ano','$productos','$semestre','$acepta_uno','$acepta_dos','$porcentaje')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
@@ -142,8 +142,8 @@ $porcentaje=$cumplimiento->getPorcentaje();
       $id=$cumplimiento->getId();
 
       try {
-          $sql ="DELETE FROM `ponencias` WHERE `id`='$id'";
-          return $this->insertarConsulta($sql);
+          $sql ="DELETE FROM `cumplimiento` WHERE `id`='$id'";
+          return $this->updateConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       }
@@ -158,7 +158,7 @@ $porcentaje=$cumplimiento->getPorcentaje();
       $lista = array();
       try {
           $sql ="SELECT `id`, `dirigido_id`, `descripcion`, `ano`, `productos`, `semestre`, `acepta_uno`, `acepta_dos`, `porcentaje`"
-          ."FROM `ponencias`"
+          ."FROM `cumplimiento`"
           ."WHERE 1";
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
@@ -253,7 +253,7 @@ $porcentaje=$cumplimiento->getPorcentaje();
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $sentencia=$this->cn->prepare($sql);
-          $sentencia->execute(); 
+          $sentencia->execute();
           $sentencia = null;
           return $this->cn->lastInsertId();
     }
@@ -269,12 +269,16 @@ $porcentaje=$cumplimiento->getPorcentaje();
         
     public function updateConsulta($sql)
     {
-        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sentencia = $this->cn->prepare($sql);
-        $sentencia->execute();
-        $rta = $sentencia->rowCount();
-        $sentencia = null;
-        return $rta;
+        try {
+            $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sentencia = $this->cn->prepare($sql);
+            $sentencia->execute();
+            $rta = 1;
+            $sentencia = null;
+            return $rta;
+        } catch (Exception $e) {
+            return 0;
+        }
     }
     /**
      * Cierra la conexión actual a la base de datos

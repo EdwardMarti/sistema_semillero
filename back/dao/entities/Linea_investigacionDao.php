@@ -162,6 +162,36 @@ $disciplina_id=$linea_investigacion->getDisciplina_id()->getId();
       return null;
       }
   }
+  
+  
+  public function listAll_id_linea($plan,$linea){
+      $lista = array();
+      try {
+          $sql ="SELECT lpp.`id`, lpp.`linea_id`,linea_investigacion.descripcion, lpp.`plan_id` , lpp.`proy_id`, proyectos.titulo FROM `linea_proyecto_plan` lpp INNER JOIN linea_investigacion ON linea_investigacion.id=`lpp`.`linea_id`  INNER JOIN proyectos ON lpp.proy_id=proyectos.id WHERE `linea_id` = '$linea' AND `plan_id` = '$plan' ";
+//          var_dump($sql);
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $linea_investigacion= new Linea_investigacion();
+          $linea_investigacion->setId($data[$i]['id']);
+          $linea_investigacion->setDescripcion($data[$i]['descripcion']);  
+           $linea_investigacion->setLider($data[$i]['plan_id']);
+           $disciplina = new Disciplina();
+           $disciplina->setId($data[$i]['titulo']);
+           $disciplina->setArea_id($data[$i]['proy_id']);
+           $disciplina->setDescripcion($data[$i]['linea_id']);
+           $linea_investigacion->setDisciplina_id($disciplina);
+
+           
+           
+         
+          array_push($lista,$linea_investigacion);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
