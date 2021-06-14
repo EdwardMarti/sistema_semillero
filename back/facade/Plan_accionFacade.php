@@ -65,6 +65,15 @@ class Plan_accionFacade {
      $plan_accionDao->close();
      return $rtn;
   }
+  public static function insert2( $Semillero_id,$anio,$semestre){
+    
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $plan_accionDao =$FactoryDao->getplan_accionDao(self::getDataBaseDefault());
+     $rtn = $plan_accionDao->insert2($Semillero_id,$anio,$semestre);
+     $plan_accionDao->close();
+     return $rtn;
+  }
 
   /**
    * Selecciona un objeto Plan_accion de la base de datos a partir de su(s) llave(s) primaria(s).
@@ -139,6 +148,13 @@ class Plan_accionFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $plan_accionDao =$FactoryDao->getplan_accionDao(self::getDataBaseDefault());
      $result = $plan_accionDao->listAll();
+     $plan_accionDao->close();
+     return $result;
+  }
+  public static function listAll_plan(){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $plan_accionDao =$FactoryDao->getplan_accionDao(self::getDataBaseDefault());
+     $result = $plan_accionDao->listAll_plan();
      $plan_accionDao->close();
      return $result;
   }

@@ -14,8 +14,7 @@ $JSONData = file_get_contents("php://input");
 $dataObject = json_decode($JSONData);
 
 
-//$id = strip_tags($dataObject->id);
-$id = '2';
+$id = strip_tags($dataObject->id);
 
         $list=Sem_linea_investigacionFacade::listAll_Semillero($id);
         $rta="";

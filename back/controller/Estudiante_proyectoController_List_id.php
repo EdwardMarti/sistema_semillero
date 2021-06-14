@@ -23,7 +23,6 @@ $id = strip_tags($dataObject->id);
 	    \"codigo\":\"{$Estudiante_proyecto->getcodigo()}\",
 	    \"nombre\":\"{$Estudiante_proyecto->getnombre()}\",
 	    \"proyecto_id\":\"{$Estudiante_proyecto->getproyecto_id()}\"
-	   
 	       },";
         }
 

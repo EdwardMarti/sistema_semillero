@@ -190,12 +190,16 @@ $update=$solicitud_horas->getHoras_solicitadas();
     }
     public function updateConsulta($sql)
     {
-        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sentencia = $this->cn->prepare($sql);
-        $sentencia->execute();
-        $rta = $sentencia->rowCount();
-        $sentencia = null;
-        return $rta;
+        try {
+            $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sentencia = $this->cn->prepare($sql);
+            $sentencia->execute();
+            $rta = 1;
+            $sentencia = null;
+            return $rta;
+        } catch (Exception $e) {
+            return 0;
+        }
     }
 
     /**

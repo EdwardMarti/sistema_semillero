@@ -1,8 +1,8 @@
 $(document).ready(function() {
-     id_Semil='2';
+    id_Semil = '2';
     iniciarTablaPu();
     obtenerDatosPu(id_Semil);
-//    cargarSelectInspector();
+    //    cargarSelectInspector();
     $("#btnOrderReg").show();
     $("#btnOrderAct").hide();
 
@@ -63,12 +63,12 @@ function iniciarTablaPu() {
                 className: "text-center",
                 orderable: true,
             },
-          
+
             {
                 orderable: false,
                 defaultContent: [
                     "<div class='text-center'>",
-                    "<a class='personalizado actualizar' title='Gestionar'><i class='fa fa-edit'></i>&nbsp; &nbsp;  &nbsp;</a>",
+                    "<a class='personalizado actualizarpubli' title='Gestionar'><i class='fa fa-edit'></i>&nbsp; &nbsp;  &nbsp;</a>",
                     "<a class='personalizado eliminar' title='eliminar'><i class='fa fa-trash'></i></a>",
                     "</div>",
                 ].join(""),
@@ -77,8 +77,8 @@ function iniciarTablaPu() {
         rowCallback: function(row, data, index) {
             var id_order = data.id
 
-            $(".actualizar", row).click(function() {
-                gestionarItem(id_order, data, index);
+            $(".actualizarpubli", row).click(function() {
+                gestionarItempubli(id_order, data, index);
             });
             $(".eliminar", row).click(function() {
                 DeleteOrder(id_order, data);
@@ -128,22 +128,22 @@ function iniciarTablaPu() {
  */
 
 function obtenerDatosPu(id) {
- 
-      let semillero = {
+
+    let semillero = {
         id: id,
-  
+
     };
-    
+
     Utilitario.agregarMascara();
     fetch("../../back/controller/PublicacionesController_List_Id.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                //                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
-                   body: JSON.stringify(semillero),
+            body: JSON.stringify(semillero),
         })
         .then(function(response) {
             if (response.ok) {
@@ -203,9 +203,9 @@ function listadoPublicaciones(publicaciones) {
  * @param {Object} btn id de la fila que se desea visualizar.
  */
 
-function gestionarItem(id_order, data, index) {
- 
-            
+function gestionarItempubli(id_order, data, index) {
+
+
     $('#id').val(data.id);
     $('#autor').val(data.autor);
     $('#titulo').val(data.titulo);
@@ -221,11 +221,11 @@ function gestionarItem(id_order, data, index) {
 
 
 
-    $("#btnOrderAct").show();
-    $("#btnOrderReg").hide();
+    $("#btnPubAct").show();
+    $("#btnPubReg").hide();
 
-   
-    mostrarModalPublicaciones();
+
+    $('#myModalPublicaciones').modal({ show: true });
 }
 
 /**
@@ -233,9 +233,11 @@ function gestionarItem(id_order, data, index) {
  * Método que se encarga de abrir el modal para registro o actualizacion
  */
 function mostrarModalPublicaciones() {
-//    limpiarcampos();
-   $('#myModalPublicaciones').modal({show: true});
-  
+    //    limpiarcampos();
+    $("#btnPubReg").show();
+    $("#btnPubAct").hide();
+    $('#myModalPublicaciones').modal({ show: true });
+
 }
 
 
@@ -244,7 +246,7 @@ function mostrarModalPublicaciones() {
  * Método que se encarga de cerrar el modal para registro o actualizacion
  */
 function cerrarModalPublicaciones() {
-     $('#myModalPublicaciones').modal('hide');
+    $('#myModalPublicaciones').modal('hide');
 }
 
 /**
@@ -260,7 +262,7 @@ function UpdatePublicacion() {
 
     let order = {
         id: $('#id').val(),
-         autor: $('#autor').val(),
+        autor: $('#autor').val(),
         titulo: $('#titulo').val(),
         nombre_medio: $('#nombre_medio').val(),
         issn: $('#issn').val(),
@@ -273,13 +275,18 @@ function UpdatePublicacion() {
         semillero_id: id_Semil,
         //        pensum_id: '1',
     };
+
+    if (Utilitario.validForm(['autor', 'titulo', 'nombre_medio', 'issn', 'editorial', 'volumen', 'cant_pag', 'fecha', 'ciudad', 'tipo_publicaciones_id'])) {
+        Mensaje.mostrarMsjError("Error", 'parametros incompletos');
+        return false;
+    }
+
     Utilitario.agregarMascara();
     fetch("../../back/controller/PublicacionesController_Update.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
             body: JSON.stringify(order),
@@ -294,7 +301,7 @@ function UpdatePublicacion() {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
             obtenerDatosPu(id_Semil);
-                cerrarModalPublicaciones();
+            cerrarModalPublicaciones();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -323,9 +330,9 @@ function UpdatePublicacion() {
 }
 
 function registrarPublicacion() {
-   $("#btnOrderReg").show();
-    $("#btnOrderAct").hide();
-    
+    $("#btnPubAct").show();
+    $("#btnPubAct").hide();
+
     let ordenes = {
         autor: $('#autor').val(),
         titulo: $('#titulo').val(),
@@ -338,8 +345,13 @@ function registrarPublicacion() {
         ciudad: $("#ciudad").val(),
         tipo_publicaciones_id: $('#tipo_publicaciones_id').val(),
         semillero_id: id_Semil,
-      
+
     };
+
+    if (Utilitario.validForm(['autor', 'titulo', 'nombre_medio', 'issn', 'editorial', 'volumen', 'cant_pag', 'fecha', 'ciudad', 'tipo_publicaciones_id'])) {
+        Mensaje.mostrarMsjError("Error", 'parametros incompletos');
+        return false;
+    }
 
     Utilitario.agregarMascara();
     fetch("../../back/controller/PublicacionesController_Insert.php", {
@@ -347,7 +359,7 @@ function registrarPublicacion() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                //                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
             body: JSON.stringify(ordenes),
@@ -361,8 +373,8 @@ function registrarPublicacion() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-           obtenerDatosPu(id_Semil);
-                cerrarModalPublicaciones();
+            obtenerDatosPu(id_Semil);
+            cerrarModalPublicaciones();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -378,10 +390,10 @@ function registrarPublicacion() {
                     }
                 });
             } else {
-//                Mensaje.mostrarMsjError(
-//                    "Error",
-//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-//                );
+                //                Mensaje.mostrarMsjError(
+                //                    "Error",
+                //                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                //                );
             }
         })
         .finally(function() {
@@ -392,12 +404,12 @@ function registrarPublicacion() {
 
 
 
-function DeleteOrder(id,data) {
+function DeleteOrder(id, data) {
     Mensaje.mostrarMsjConfirmacion(
         'Eliminar Registro',
         'Este proceso es irreversible , ¿esta seguro que desea eliminar El Registro?',
         function() {
-                eliminarPublicaciones(id,data);
+            eliminarPublicaciones(id, data);
         }
     );
 }
@@ -419,7 +431,7 @@ function eliminarPublicaciones(id) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                //                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
 
@@ -435,8 +447,8 @@ function eliminarPublicaciones(id) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
 
-           obtenerDatosPu(id_Semil);
-                cerrarModalPublicaciones();
+            obtenerDatosPu(id_Semil);
+            cerrarModalPublicaciones();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -467,4 +479,3 @@ function eliminarPublicaciones(id) {
 
 
 //</editor-fold>
-

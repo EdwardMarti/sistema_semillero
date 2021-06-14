@@ -58,11 +58,19 @@ class CapacitacionesFacade {
   }
   
   
-  public static function insertCap(  $tema,  $docente,  $fecha,  $cant_capacitados,  $semillero_id){
+  public static function insertCap( $tema, $docente,$objetivo, $fecha, $cant_capacitados, $Semillero_id,$linea_id,$proy_id,$plan_accion_id){
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $capacitacionesDao =$FactoryDao->getcapacitacionesDao(self::getDataBaseDefault());
-     $rtn = $capacitacionesDao->insertCap($tema,  $docente,  $fecha,  $cant_capacitados,  $semillero_id);
+     $rtn = $capacitacionesDao->insertCap($tema, $docente,$objetivo, $fecha, $cant_capacitados, $Semillero_id,$linea_id,$proy_id,$plan_accion_id);
+     $capacitacionesDao->close();
+     return $rtn;
+  }
+  public static function insertCap2($semestre, $anio, $Semillero_id,$linea_id,$proy_id,$plan_accion_id){
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $capacitacionesDao =$FactoryDao->getcapacitacionesDao(self::getDataBaseDefault());
+     $rtn = $capacitacionesDao->insertCap2($semestre, $anio, $Semillero_id,$linea_id,$proy_id,$plan_accion_id);
      $capacitacionesDao->close();
      return $rtn;
   }
@@ -163,6 +171,14 @@ class CapacitacionesFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $capacitacionesDao =$FactoryDao->getcapacitacionesDao(self::getDataBaseDefault());
      $result = $capacitacionesDao->listAll_id_Semillero($id);
+     $capacitacionesDao->close();
+     return $result;
+  }
+  
+  public static function listAll_id_SemilleroPlan($plan,$linea_id,$proyecto,$semillero){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $capacitacionesDao =$FactoryDao->getcapacitacionesDao(self::getDataBaseDefault());
+     $result = $capacitacionesDao->listAll_id_SemilleroPlan($plan,$linea_id,$proyecto,$semillero);
      $capacitacionesDao->close();
      return $result;
   }

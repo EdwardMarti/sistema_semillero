@@ -205,7 +205,7 @@ function cargarSelectgrupos_investigacion() {
 function construirSelectgrupo_investigacion(gp_i) {
     $("#grupo_investigacion").empty();
     let input = $("#grupo_investigacion");
-    let opcion = new Option("SELECCIONE", "-1");
+    let opcion = new Option("SELECCIONE", "");
     $(opcion).html("SELECCIONE");
     input.append(opcion);
     for (let index = 0; index < gp_i.length; index++) {
@@ -271,7 +271,7 @@ function cargarSelectFacultades() {
 function construirSelectfalcultades(falcultades) {
     $("#facultades").empty();
     let input = $("#facultades");
-    let opcion = new Option("SELECCIONE", "-1");
+    let opcion = new Option("SELECCIONE", "");
     $(opcion).html("SELECCIONE");
     input.append(opcion);
     for (let index = 0; index < falcultades.length; index++) {
@@ -336,7 +336,7 @@ function cargarSelectTp_vin() {
 function construirSelecttp_vinculacion(tp_vinculacion) {
     $("#tp_vinculacion").empty();
     let input = $("#tp_vinculacion");
-    let opcion = new Option("SELECCIONE", "-1");
+    let opcion = new Option("SELECCIONE", "");
     $(opcion).html("SELECCIONE");
     input.append(opcion);
     for (let index = 0; index < tp_vinculacion.length; index++) {
@@ -455,7 +455,7 @@ function cargarSelectDepartamentosRpta(facultad) {
 function construirSelectDepartamentos(departamento) {
     $("#departamentos").empty();
     let input = $("#departamentos");
-    let opcion = new Option("SELECCIONE", "-1");
+    let opcion = new Option("SELECCIONE", "");
     $(opcion).html("SELECCIONE");
     input.append(opcion);
     for (let index = 0; index < departamento.length; index++) {
@@ -471,9 +471,6 @@ function construirSelectDepartamentos(departamento) {
 function construirSelectDepartamentos2(departamento) {
     $("#departamentos").empty();
     let input = $("#departamentos");
-    //     let opcion = new Option("SELECCIONE", "-1");
-    //        $(opcion).html("SELECCIONE");
-    //        input.append(opcion);
     for (let index = 0; index < departamento.length; index++) {
         let dpto = departamento[index],
             opcion = new Option(dpto.descripcion, dpto.id);
@@ -584,7 +581,7 @@ function cargarSelectPlanRpta(dpto) {
 function construirSelectPlan(planes) {
     $("#p_estudio").empty();
     let input = $("#p_estudio");
-    let opcion = new Option("SELECCIONE", "-1");
+    let opcion = new Option("SELECCIONE", "");
     $(opcion).html("SELECCIONE");
     input.append(opcion);
     for (let index = 0; index < planes.length; index++) {
@@ -600,9 +597,6 @@ function construirSelectPlan(planes) {
 function construirSelectPlan2(planes) {
     $("#p_estudio").empty();
     let input = $("#p_estudio");
-    //         let opcion = new Option("SELECCIONE", "-1");
-    //        $(opcion).html("SELECCIONE");
-    //        input.append(opcion);
     for (let index = 0; index < planes.length; index++) {
         let plan = planes[index],
             opcion = new Option(plan.descripcion, plan.id);
@@ -665,7 +659,7 @@ function cargarSelectLinea_inv() {
 function construirSelectLinea_inv(li_inv) {
     $("#linea_i").empty();
     let input = $("#linea_i");
-    let opcion = new Option("SELECCIONE", "-1");
+    let opcion = new Option("SELECCIONE", "");
     $(opcion).html("SELECCIONE");
     input.append(opcion);
     for (let index = 0; index < li_inv.length; index++) {
@@ -730,7 +724,7 @@ function cargarSelectArea() {
 function construirSelectArea(area) {
     $("#area").empty();
     let input = $("#area");
-    let opcion = new Option("SELECCIONE", "-1");
+    let opcion = new Option("SELECCIONE", "");
     $(opcion).html("SELECCIONE");
     input.append(opcion);
 
@@ -802,7 +796,7 @@ function cargarSelectDisciplina(area) {
 function construirSelectDisciplina(disciplina) {
     $("#disciplina").empty();
     let input = $("#disciplina");
-    let opcion = new Option("SELECCIONE", "-1");
+    let opcion = new Option("SELECCIONE", "");
     $(opcion).html("SELECCIONE");
     input.append(opcion);
 
@@ -870,7 +864,7 @@ function cargarSelectLineas(dpto) {
 function construirSelectlineas(li_inv) {
     $("#lineas_investigacion").empty();
     let input = $("#lineas_investigacion");
-    let opcion = new Option("SELECCIONE", "-1");
+    let opcion = new Option("SELECCIONE", "");
     $(opcion).html("SELECCIONE");
     input.append(opcion);
 
@@ -1034,6 +1028,10 @@ function registrarLn() {
         ln: $('#lineas_investigacion').val(),
 
     };
+    if (Utilitario.validForm(['id_semillero', 'lineas_investigacion'])) {
+        Mensaje.mostrarMsjError("Error", 'parametros incompletos');
+        return false;
+    }
 
     Utilitario.agregarMascara();
     fetch("../../back/controller/Sem_linea_investigacionController_Insert.php", {
@@ -1168,7 +1166,7 @@ function dataItemTablaLn(data) {
 }
 
 
-function ActualizarData() {
+function ActualizarDatasemi() {
 
     let semillero = {
         id: $('#id_semillero').val(),
@@ -1182,6 +1180,10 @@ function ActualizarData() {
 
 
     };
+    if (Utilitario.validForm(['nombre', 'sigla', 'fecha', 'grupo_investigacion', 'departamentos', 'facultades', 'p_estudio'])) {
+        Mensaje.mostrarMsjError("Error", 'parametros incompletos');
+        return false;
+    }
     Utilitario.agregarMascara();
     fetch("../../back/controller/SemilleroController_Update_datos.php", {
             method: "POST",
@@ -1242,6 +1244,11 @@ function ActualizarDataDocente() {
         tp_vinculacion: $('#tp_vinculacion').val(),
 
     };
+    if (Utilitario.validForm(['persona_Id', 'nombreD', 'telefonoD', 'ubicacionD', 'tp_vinculacion'])) {
+        Mensaje.mostrarMsjError("Error", 'parametros incompletos');
+        return false;
+    }
+
     Utilitario.agregarMascara();
     fetch("../../back/controller/DocenteController_Semillero_Update.php", {
             method: "POST",
@@ -1608,6 +1615,10 @@ function registrarTitulos() {
         id_docente: $('#id_docente').val(),
 
     };
+    if (Utilitario.validForm(['descripcionD', 'universidad', 'id_docente'])) {
+        Mensaje.mostrarMsjError("Error", 'parametros incompletos');
+        return false;
+    }
 
     Utilitario.agregarMascara();
     fetch("../../back/controller/TitulosController_Insert_Docente.php", {

@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  
+
 
 
 });
@@ -11,14 +11,14 @@ $(document).ready(function() {
  * Método que se encarga de abrir el modal para registro o actualizacion
  */
 function mostrarModalRegistro() {
-//    limpiarcampos();
+    //    limpiarcampos();
     cargarSelectgrupos_investigacion();
     cargarSelectFacultades();
     cargarSelectLinea_inv();
     cargarSelectTp_vin();
-   $('#myModalRegistro').modal({show: true});
-//    $("#btnOrderReg").show();
-//    $("#btnOrderAct").hide();
+    $('#myModalRegistro').modal({ show: true });
+    //    $("#btnOrderReg").show();
+    //    $("#btnOrderAct").hide();
 }
 
 /**
@@ -26,7 +26,7 @@ function mostrarModalRegistro() {
  * Método que se encarga de cerrar el modal para registro o actualizacion
  */
 function cerrarModalRegistro() {
-     $('#myModalRegistro').modal('hide');
+    $('#myModalRegistro').modal('hide');
 }
 //<editor-fold defaultstate="collapsed" desc="Select Grupos de Investigacion">
 function cargarSelectgrupos_investigacion() {
@@ -36,7 +36,7 @@ function cargarSelectgrupos_investigacion() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                 Plataform: "web",
+                Plataform: "web",
             },
         })
         .then(function(response) {
@@ -46,7 +46,7 @@ function cargarSelectgrupos_investigacion() {
             throw response;
         })
         .then(function(data) {
-           construirSelectgrupo_investigacion(data.gp_i);
+            construirSelectgrupo_investigacion(data.gp_i);
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -77,9 +77,9 @@ function cargarSelectgrupos_investigacion() {
 function construirSelectgrupo_investigacion(gp_i) {
     $("#grupo_investigacion").empty();
     let input = $("#grupo_investigacion");
-       let opcion = new Option("SELECCIONE", "-1");
-        $(opcion).html("SELECCIONE");
-        input.append(opcion);
+    let opcion = new Option("SELECCIONE", "");
+    $(opcion).html("SELECCIONE");
+    input.append(opcion);
     for (let index = 0; index < gp_i.length; index++) {
         let gpI = gp_i[index],
             opcion = new Option(gpI.nombre, gpI.id);
@@ -100,7 +100,7 @@ function cargarSelectFacultades() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-//                Authorization: JSON.parse(Utilitario2.getLocal("user")).token,
+                //                Authorization: JSON.parse(Utilitario2.getLocal("user")).token,
                 Plataform: "web",
             },
         })
@@ -142,9 +142,9 @@ function cargarSelectFacultades() {
 function construirSelectfalcultades(falcultades) {
     $("#facultades").empty();
     let input = $("#facultades");
-     let opcion = new Option("SELECCIONE", "-1");
-        $(opcion).html("SELECCIONE");
-        input.append(opcion);
+    let opcion = new Option("SELECCIONE", "");
+    $(opcion).html("SELECCIONE");
+    input.append(opcion);
     for (let index = 0; index < falcultades.length; index++) {
         let falcultad = falcultades[index],
             opcion = new Option(falcultad.descripcion, falcultad.id);
@@ -159,18 +159,18 @@ function construirSelectfalcultades(falcultades) {
 
 //<editor-fold defaultstate="collapsed" desc="Select Departaentos">
 function cargarSelectDepartamentos(facultad) {
-    
-//    alert($facultad);
+
+    //    alert($facultad);
     let facultades = {
         facultad: facultad,
-  
+
     };
     fetch("../../../back/controller/DepartamentoController_List_id.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                 Plataform: "web",
+                Plataform: "web",
             },
             body: JSON.stringify(facultades),
         })
@@ -181,7 +181,7 @@ function cargarSelectDepartamentos(facultad) {
             throw response;
         })
         .then(function(data) {
-                       
+
             construirSelectDepartamentos(data.departamento);
         })
         .catch(function(promise) {
@@ -213,9 +213,9 @@ function cargarSelectDepartamentos(facultad) {
 function construirSelectDepartamentos(departamento) {
     $("#departamentos").empty();
     let input = $("#departamentos");
-     let opcion = new Option("SELECCIONE", "-1");
-        $(opcion).html("SELECCIONE");
-        input.append(opcion);
+    let opcion = new Option("SELECCIONE", "");
+    $(opcion).html("SELECCIONE");
+    input.append(opcion);
     for (let index = 0; index < departamento.length; index++) {
         let dpto = departamento[index],
             opcion = new Option(dpto.descripcion, dpto.id);
@@ -230,18 +230,18 @@ function construirSelectDepartamentos(departamento) {
 
 //<editor-fold defaultstate="collapsed" desc="Select plan de estudio">
 function cargarSelectPlan(dpto) {
-  let departamento = {
+    let departamento = {
         dptos: dpto,
-  
+
     };
     fetch("../../../back/controller/Plan_estudiosController_List.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                 Plataform: "web",
+                Plataform: "web",
             },
-               body: JSON.stringify(departamento),
+            body: JSON.stringify(departamento),
         })
         .then(function(response) {
             if (response.ok) {
@@ -281,9 +281,9 @@ function cargarSelectPlan(dpto) {
 function construirSelectPlan(planes) {
     $("#p_estudio").empty();
     let input = $("#p_estudio");
-         let opcion = new Option("SELECCIONE", "-1");
-        $(opcion).html("SELECCIONE");
-        input.append(opcion);
+    let opcion = new Option("SELECCIONE", "");
+    $(opcion).html("SELECCIONE");
+    input.append(opcion);
     for (let index = 0; index < planes.length; index++) {
         let plan = planes[index],
             opcion = new Option(plan.descripcion, plan.id);
@@ -298,15 +298,15 @@ function construirSelectPlan(planes) {
 //
 //<editor-fold defaultstate="collapsed" desc="Select Lineas de Investigacion">
 function cargarSelectLinea_inv() {
- 
+
     fetch("../../../back/controller/Linea_investigacionController_Lis.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                 Plataform: "web",
+                Plataform: "web",
             },
-              
+
         })
         .then(function(response) {
             if (response.ok) {
@@ -346,9 +346,9 @@ function cargarSelectLinea_inv() {
 function construirSelectLinea_inv(li_inv) {
     $("#linea_i").empty();
     let input = $("#linea_i");
-         let opcion = new Option("SELECCIONE", "-1");
-        $(opcion).html("SELECCIONE");
-        input.append(opcion);
+    let opcion = new Option("SELECCIONE", "");
+    $(opcion).html("SELECCIONE");
+    input.append(opcion);
     for (let index = 0; index < li_inv.length; index++) {
         let plan = li_inv[index],
             opcion = new Option(plan.descripcion, plan.id);
@@ -363,15 +363,15 @@ function construirSelectLinea_inv(li_inv) {
 //
 //<editor-fold defaultstate="collapsed" desc="Select Tipo Vinculacion">
 function cargarSelectTp_vin() {
- 
+
     fetch("../../../back/controller/Tipo_vinculacionController_List.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                 Plataform: "web",
+                Plataform: "web",
             },
-              
+
         })
         .then(function(response) {
             if (response.ok) {
@@ -411,9 +411,9 @@ function cargarSelectTp_vin() {
 function construirSelecttp_vinculacion(tp_vinculacion) {
     $("#tp_vinculacion").empty();
     let input = $("#tp_vinculacion");
-         let opcion = new Option("SELECCIONE", "-1");
-        $(opcion).html("SELECCIONE");
-        input.append(opcion);
+    let opcion = new Option("SELECCIONE", "");
+    $(opcion).html("SELECCIONE");
+    input.append(opcion);
     for (let index = 0; index < tp_vinculacion.length; index++) {
         let tp_v = tp_vinculacion[index],
             opcion = new Option(tp_v.descripcion, tp_v.id);
@@ -441,7 +441,7 @@ function registrarSemillero() {
         telefonoD: $('#telefonoD').val(),
         correoD: $('#correoD').val(),
         tp_vinculacion: $('#tp_vinculacion').val(),
-       
+
     };
 
     Utilitario2.agregarMascara();
@@ -450,7 +450,7 @@ function registrarSemillero() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-//                Authorization: JSON.parse(Utilitario2.getLocal("user")).token,
+                //                Authorization: JSON.parse(Utilitario2.getLocal("user")).token,
                 Plataform: "web",
             },
             body: JSON.stringify(semillero),
@@ -464,7 +464,7 @@ function registrarSemillero() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-//            obtenerDatos();
+            //            obtenerDatos();
             cerrarModalRegistro();
         })
         .catch(function(promise) {

@@ -42,6 +42,20 @@ $proyectos_id=$actividades->getProyectos_id()->getId();
           throw new Exception('Primary key is null');
       }
   }
+  public function insert2( $descripcion, $pro_id, $plan_id ){
+
+
+    
+       try {
+          $sql= "INSERT INTO `actividades`( `descripcion`, `proyectos_id`, `ano`) VALUES ('$descripcion','$pro_id','$plan_id')";
+        
+          return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+      
+      
+  }
 
     /**
      * Busca un objeto Actividades en la base de datos.
@@ -142,6 +156,29 @@ $proyectos_id=$actividades->getProyectos_id()->getId();
           $sql ="SELECT `id`, `descripcion`, `proyectos_id`"
           ."FROM `actividades`"
           ."WHERE `proyectos_id` = '$id' ";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $actividades= new Actividades();
+          $actividades->setId($data[$i]['id']);
+          $actividades->setDescripcion($data[$i]['descripcion']);
+           $proyectos = new Proyectos();
+           $proyectos->setId($data[$i]['proyectos_id']);
+           $actividades->setProyectos_id($proyectos);
+
+          array_push($lista,$actividades);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  public function listAll_proyectos2($id,$plan){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `descripcion`, `proyectos_id`  FROM `actividades` WHERE `proyectos_id` = '$id' and `ano` = '$plan' ";
+         
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $actividades= new Actividades();

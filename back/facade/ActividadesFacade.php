@@ -48,6 +48,15 @@ class ActividadesFacade {
      $actividadesDao->close();
      return $rtn;
   }
+  public static function insert2( $descripcion, $proyectos,$plan_id){
+   
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $actividadesDao =$FactoryDao->getactividadesDao(self::getDataBaseDefault());
+     $rtn = $actividadesDao->insert2( $descripcion, $proyectos,$plan_id);
+//     $rtn = $actividadesDao->listAll();
+     $actividadesDao->close();
+     return $rtn;
+  }
 
   /**
    * Selecciona un objeto Actividades de la base de datos a partir de su(s) llave(s) primaria(s).
@@ -115,6 +124,13 @@ class ActividadesFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $actividadesDao =$FactoryDao->getactividadesDao(self::getDataBaseDefault());
      $result = $actividadesDao->listAll_proyectos($id);
+     $actividadesDao->close();
+     return $result;
+  }
+  public static function listAll_proyectos2($proyecto,$plan){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $actividadesDao =$FactoryDao->getactividadesDao(self::getDataBaseDefault());
+     $result = $actividadesDao->listAll_proyectos2($proyecto,$plan);
      $actividadesDao->close();
      return $result;
   }

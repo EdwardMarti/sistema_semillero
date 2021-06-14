@@ -51,6 +51,18 @@ $otras_actividades_id=$plan_accion->getOtras_actividades_id()->getId();
           throw new Exception('Primary key is null');
       }
   }
+  
+  public function insert2($Semillero_id,$anio,$semestre){
+
+
+      try {
+          $sql= "INSERT INTO `plan_accion`( `semillero_id`,`semestre`, `ano`)"
+          ."VALUES ('$Semillero_id','$semestre' ,'$anio')";
+          return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
 
     /**
      * Busca un objeto Plan_accion en la base de datos.
@@ -169,6 +181,77 @@ $otras_actividades_id=$plan_accion->getOtras_actividades_id()->getId();
            $otras_actividades->setId($data[$i]['otras_actividades_id']);
            $plan_accion->setOtras_actividades_id($otras_actividades);
 
+          array_push($lista,$plan_accion);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  public function listAll_plan(){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `semestre`, `ano`, `vbo_dirSemillero`, `vbo_dirGinvestigacion`, `vbo_facultaInv`, `semillero_id`  FROM `plan_accion`";
+         
+     
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $plan_accion= new Plan_accion();
+          $plan_accion->setId($data[$i]['id']);
+        
+          $vbo_dirSemillero=$data[$i]['vbo_dirSemillero'];
+          if($vbo_dirSemillero==0){
+              $vbo_dirsem="En Revision";
+          }
+          if($vbo_dirSemillero==1){
+              $vbo_dirsem="Rechazado";
+          }
+          if($vbo_dirSemillero==2){
+              $vbo_dirSemillero="Aprobado";
+          }
+          $plan_accion->setSemestre($vbo_dirsem);
+        
+          /************************************************************/
+            $vbo_dirGinvestigacion=$data[$i]['vbo_dirGinvestigacion'];
+          if($vbo_dirGinvestigacion==0){
+              $vbo_dirGinvestigacion="En Revision";
+          }
+          if($vbo_dirGinvestigacion==1){
+              $vbo_dirGinvestigacion="Rechazado";
+          }
+          if($vbo_dirGinvestigacion==2){
+              $vbo_dirGinvestigacion="Aprobado";
+          }
+            $plan_accion->setAno($vbo_dirGinvestigacion);
+          /************************************************************/
+          $vbo_facultaInv=$data[$i]['vbo_facultaInv'];
+            if($vbo_dirsem==0){
+              $vbo_facultaInv="En Revision";
+          }
+          if($vbo_dirsem==1){
+              $vbo_facultaInv="Rechazado";
+          } if($vbo_dirsem==2){
+              $vbo_facultaInv="Aprobado";
+          }
+          $plan_accion->setVbo_dirSemillero($vbo_facultaInv);
+          
+          /*****************************semestrre***********/
+           $semestre=$data[$i]['semestre'];
+            if($semestre==1){
+              $semestre="Primer";
+          }
+           
+            if($semestre==2){
+              $semestre="Segundo";
+          }
+          $plan_accion->setVbo_dirGinvestigacion($semestre);
+          $plan_accion->setVbo_facultaInv($data[$i]['ano']);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $plan_accion->setSemillero_id($semillero);
+         
           array_push($lista,$plan_accion);
           }
       return $lista;

@@ -51,6 +51,14 @@ class FactoryDao implements IFactoryDao{
      * @param dbName Nombre o identificador de la base de datos a conectar
      * @return instancia de AreaDao
      */
+     public function getDatos_adicionalesSDao($dbName){
+        return new Datos_adicionalesSDao($this->conn->obtener($dbName));
+    }
+     /**
+     * Devuelve una instancia de AreaDao con una conexiÃ³n que depende del gestor de base de datos
+     * @param dbName Nombre o identificador de la base de datos a conectar
+     * @return instancia de AreaDao
+     */
      public function getCumplimientoDao($dbName){
         return new CumplimientoDao($this->conn->obtener($dbName));
     }

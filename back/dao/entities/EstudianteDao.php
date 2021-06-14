@@ -189,6 +189,37 @@ public function insert($estudiante){
       return null;
       }
   }
+  public function list_adicionales($id){
+      $lista = array();
+      try {
+          $sql = " SELECT `id`, `nombre`, `num_documento`,`programa_academico`,`codigo`, `semestre`,`correo`,`telefono`,  `persona_id`, `tipo_docuemnto_id`"
+          ." FROM `estudiante_semi` "
+          ." WHERE `semillero_id` = '$id' ";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $estudiante = new Estudiante();
+                $estudiante->setId($data[$i]['id']);
+                $estudiante->setNum_documento($data[$i]['num_documento']);
+                $estudiante->setPrograma_academico($data[$i]['programa_academico']);
+                $estudiante->setCodigo($data[$i]['codigo']);
+                $estudiante->setSemestre($data[$i]['semestre']);
+                $persona = new Persona();
+                $persona->setId($data[$i]['persona_id']);
+                $persona->setNombre($data[$i]['nombre']);
+                $persona->setCorreo($data[$i]['correo']);
+                $persona->setTelefono($data[$i]['telefono']);
+                $estudiante->setPersona_id($persona);
+                $tipo_docuemnto = new Tipo_docuemnto();
+                $tipo_docuemnto->setId($data[$i]['tipo_docuemnto_id']);
+                $estudiante->setTipo_docuemnto_id($tipo_docuemnto);
+                array_push($lista,$estudiante);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -208,11 +239,16 @@ public function insert($estudiante){
       
     public function updateConsulta($sql)
     {
-        $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sentencia = $this->cn->prepare($sql);
-        $sentencia->execute();
-        $sentencia = null;
-        return true;
+        try {
+            $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sentencia = $this->cn->prepare($sql);
+            $sentencia->execute();
+            $rta = 1;
+            $sentencia = null;
+            return $rta;
+        } catch (Exception $e) {
+            return 0;
+        }
     }
     /**
      * Cierra la conexión actual a la base de datos

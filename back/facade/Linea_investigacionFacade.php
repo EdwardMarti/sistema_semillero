@@ -119,7 +119,14 @@ class Linea_investigacionFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $linea_investigacionDao =$FactoryDao->getlinea_investigacionDao(self::getDataBaseDefault());
      $result = $linea_investigacionDao->listAll_id($id);
-     $linea_investigacionDao->close($id);
+     $linea_investigacionDao->close();
+     return $result;
+  }
+  public static function listAll_id_linea($plan,$linea){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $linea_investigacionDao =$FactoryDao->getlinea_investigacionDao(self::getDataBaseDefault());
+     $result = $linea_investigacionDao->listAll_id_linea($plan,$linea);
+     $linea_investigacionDao->close();
      return $result;
   }
 

@@ -136,6 +136,13 @@ class EstudianteFacade {
      $estudianteDao->close();
      return $result;
   }
+  public static function list_adicionales($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $estudianteDao =$FactoryDao->getestudianteDao(self::getDataBaseDefault());
+     $result = $estudianteDao->list_adicionales($id);
+     $estudianteDao->close();
+     return $result;
+  }
 
 
 }

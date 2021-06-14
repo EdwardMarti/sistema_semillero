@@ -16,9 +16,11 @@ $dataObject = json_decode($JSONData);
 
         $descripcion = strip_tags($dataObject->descripcionAct);
         $Proyectos_id = strip_tags($dataObject->proyectos_id);
-        $proyectos= new Proyectos();
-        $proyectos->setId($Proyectos_id);
-        $rpta=  ActividadesFacade::insert( $descripcion, $proyectos);
+        $plan_id = strip_tags($dataObject->id_planReg);
+
+        
+          
+        $rpta=  ActividadesFacade::insert2( $descripcion, $Proyectos_id,$plan_id);
 
     
                 try {
