@@ -46,6 +46,20 @@ $semillero_id=$otras_actividades->getSemillero_id()->getId();
           throw new Exception('Primary key is null');
       }
   }
+  
+  public function insert2($nombre_proyecto, $nombre_actividad, $modalidad_participacion, $responsable, $fecha_realizacion, $producto, $Semillero_id,$linea_investigacion_id,$proyectos_id,$plan_accion_id){
+   
+
+
+      try {
+          $sql= "INSERT INTO `otras_actividades`(  `nombre_proyecto`, `nombre_actividad`, `modalidad_participacion`, `responsable`, `fecha_realizacion`, `producto`, `semillero_id`, `plan_accion_id`, `linea_id`, `proy_id` )"
+          ."VALUES ('$nombre_proyecto', '$nombre_actividad', '$modalidad_participacion', '$responsable', '$fecha_realizacion', '$producto', '$Semillero_id','$linea_investigacion_id','$proyectos_id','$plan_accion_id')";
+//  var_dump($sql);
+          return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
 
     /**
      * Busca un objeto Otras_actividades en la base de datos.
@@ -127,6 +141,35 @@ $semillero_id=$otras_actividades->getSemillero_id()->getId();
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function listAll(){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `nombre_proyecto`, `nombre_actividad`, `modalidad_participacion`, `responsable`, `fecha_realizacion`, `producto`, `semillero_id`"
+          ."FROM `otras_actividades`"
+          ."WHERE 1";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $otras_actividades= new Otras_actividades();
+          $otras_actividades->setId($data[$i]['id']);
+          $otras_actividades->setNombre_proyecto($data[$i]['nombre_proyecto']);
+          $otras_actividades->setNombre_actividad($data[$i]['nombre_actividad']);
+          $otras_actividades->setModalidad_participacion($data[$i]['modalidad_participacion']);
+          $otras_actividades->setResponsable($data[$i]['responsable']);
+          $otras_actividades->setFecha_realizacion($data[$i]['fecha_realizacion']);
+          $otras_actividades->setProducto($data[$i]['producto']);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $otras_actividades->setSemillero_id($semillero);
+
+          array_push($lista,$otras_actividades);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  public function listAll_plan($semillero_id,$plan){
       $lista = array();
       try {
           $sql ="SELECT `id`, `nombre_proyecto`, `nombre_actividad`, `modalidad_participacion`, `responsable`, `fecha_realizacion`, `producto`, `semillero_id`"

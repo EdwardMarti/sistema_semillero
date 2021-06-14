@@ -58,6 +58,16 @@ class Otras_actividadesFacade {
      $otras_actividadesDao->close();
      return $rtn;
   }
+  
+  
+  public static function insert2( $nombre_proyecto, $nombre_actividad, $modalidad_participacion, $responsable, $fecha_realizacion, $producto, $Semillero_id,$linea_investigacion_id,$proyectos_id,$plan_accion_id){
+   
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $otras_actividadesDao =$FactoryDao->getotras_actividadesDao(self::getDataBaseDefault());
+     $rtn = $otras_actividadesDao->insert2($nombre_proyecto, $nombre_actividad, $modalidad_participacion, $responsable, $fecha_realizacion, $producto, $Semillero_id,$linea_investigacion_id,$proyectos_id,$plan_accion_id);
+     $otras_actividadesDao->close();
+     return $rtn;
+  }
 
   /**
    * Selecciona un objeto Otras_actividades de la base de datos a partir de su(s) llave(s) primaria(s).
@@ -128,6 +138,13 @@ class Otras_actividadesFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $otras_actividadesDao =$FactoryDao->getotras_actividadesDao(self::getDataBaseDefault());
      $result = $otras_actividadesDao->listAll();
+     $otras_actividadesDao->close();
+     return $result;
+  }
+  public static function listAll_plan($semillero_id,$plan){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $otras_actividadesDao =$FactoryDao->getotras_actividadesDao(self::getDataBaseDefault());
+     $result = $otras_actividadesDao->listAll_plan($semillero_id,$plan);
      $otras_actividadesDao->close();
      return $result;
   }

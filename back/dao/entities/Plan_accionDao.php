@@ -193,7 +193,7 @@ $otras_actividades_id=$plan_accion->getOtras_actividades_id()->getId();
   public function listAll_plan(){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `semestre`, `ano`, `vbo_dirSemillero`, `vbo_dirGinvestigacion`, `vbo_facultaInv`, `semillero_id`  FROM `plan_accion`";
+          $sql ="SELECT `id`, `semestre`, `ano`, `vbo_dirSemillero`, `vbo_dirGinvestigacion`, `vbo_facultaInv`, `semillero_id`  FROM `plan_accion` WHERE `dele` = '0' " ;
          
      
           $data = $this->ejecutarConsulta($sql);

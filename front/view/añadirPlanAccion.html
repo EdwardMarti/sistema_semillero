@@ -14,7 +14,9 @@
                 </div>
                 <div class="ibox-content">
                     <div class='table mt-4 mb-4'><br>
-                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaPlanesS' style='width: 100%'>
+                          <table class='table table-striped mt-4 mb-4 centradito table-hover' id='listadoTablaPlanesS'   style='width: 100%'>
+                                 
+                       
                             <thead>
                                 <tr class="ufps-tabl">
 
@@ -101,13 +103,18 @@
                         <hr style="background-color: #ae2623 ;  height: 2px;">
                        
             
-        <input class="form-control" type="text" id="id_planReg" name="id_planReg" >
+                        <input class="form-control" type="text" id="id_planReg" name="id_planReg"  style="display: none">
         
         <!--------------------------------------Selec de lineas------------------------------------------->
                     <div class="card-body">
 
                         <form role="form">
+  <div class="ibox-title">
+                            <h5>1. PROYECTOS DE INVESTIGACION</h5>
 
+                        </div>
+                            <br>
+                            <br>
                             <div class="row">
 
                                 <div class="col-4">
@@ -166,7 +173,7 @@
                                 <div class="col-4">
                                     
                                     <div class="form-group">
-                                        <label for="Inputdescripcion" style="color: #ae2623">Proyecto a Ejecutar (*)</label>
+                                        <label for="Inputdescripcion" style="color: #ae2623"><b>Proyecto a Ejecutar (*)</b></label>
                                         <select onchange="cargarSelectProyectos2(this.value);" class="form-control" name="proyecto_linea2" id="proyecto_linea2">
                                             <option value="">SELECCIONE</option>
 
@@ -186,7 +193,7 @@
                                 </div>
                                 
                                     <div class="form-group">
-                                        <label for="formGroupExampleInput">Producto </label>
+                                        <label for="formGroupExampleInput"><b>Producto (*)</b> </label>
                     
 
                                     </div>
@@ -213,7 +220,7 @@
                 <div class="card-header" id="headingOne">
                     <h5 class="mb-0">
                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="acor1" disabled="disabled"  >
-                            <b>1. ACTIVIDADES</b>
+                            <b>1.1 ACTIVIDADES DEL PROYECTO</b>
                         </button>
                     </h5>
                 </div>
@@ -354,7 +361,7 @@
                                     <div class="ibox ">
                                         <div class="modal-footer">
 
-                                            <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                            <h5 class="label label-successE"> <a onclick="ModalOtrasCapacitaciones()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
                                         </div>
                                        <div class="ibox-content">
                     <div class='table mt-4 mb-4'><br>
@@ -485,7 +492,7 @@
     </div>
 </div>
 
-<div class="modal inmodal" id="ModalCapacitaciones" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+<div class="modal inmodal" id="ModalOtrasCapacitaciones" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content animated bounceInRight">
             <div class="modal-header">
@@ -493,55 +500,58 @@
                         class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
-                <form role="form" id="CapacitacionesInsert">
-                    <div class="form-group">
-                        <label for="Inputtema">tema</label>
-                        <textarea name="temaCap" class="form-control" id="temaCap" placeholder="tema"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="Inputdocente">docente</label>
-                        <input type="text" name="docenteCap" class="form-control" id="docenteCap" placeholder="docente">
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group" style="display: none">
-                                <label for="Inputid">id</label>
-                                <input type="text" name="idCap" class="form-control" id="idCap" placeholder="id" required>
-                            </div>
+              <form role="form" id="Otras_actividadesInsert">
+                     <div class="form-group">
+                          <label for="Inputnombre_proyecto">nombre_proyecto</label>
+                          <textarea  name="nombre_proyectoO" class="form-control" id="nombre_proyectoO" placeholder="nombre_proyecto"></textarea>
+                       </div>
+                  
+                  
+                  <div class="row">
+                      
+                      <div class="col-6">
+                          <div class="form-group" style="display: none">
+                          <label for="Inputid">id</label>
+                          <input type="text" name="idO" class="form-control" id="idO" placeholder="id" required>
+                       </div>
+                 
+                      <div class="form-group">
+                          <label for="Inputnombre_actividad">nombre_actividad</label>
+                          <input type="text" name="nombre_actividadO" class="form-control" id="nombre_actividadO" placeholder="nombre_actividadO">
+                       </div>
                             <div class="form-group">
-                                <label for="Inputcant_capacitados">cant_capacitados</label>
-                                <input type="number" name="cant_capacitadosCap" class="form-control" id="cant_capacitadosCap" placeholder="cant_capacitados">
-                            </div>
-
-
-                        </div>
-                        <div class="col-6">
-
-
-                            <div class="form-group">
-                                <label for="Inputfecha">fecha</label>
-                                <input type="date" name="fechaCap" class="form-control" id="fechaCap" placeholder="fecha">
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Inputobjetivo">objetivo</label>
-                        <textarea name="objetivoCap" class="form-control" id="objetivoCap" placeholder="objetivo"></textarea>
-                    </div>
-
-
-                </form>
+                          <label for="Inputfecha_realizacion">fecha_realizacion</label>
+                          <input type="text" name="fecha_realizacionO" class="form-control" id="fecha_realizacionO" placeholder="fecha_realizacion">
+                       </div>
+                      </div>
+                      <div class="col-6">
+                                    <div class="form-group">
+                          <label for="Inputmodalidad_participacion">modalidad_participacion</label>
+                          <input type="text" name="modalidad_participacionO" class="form-control" id="modalidad_participacionO" placeholder="modalidad_participacion">
+                       </div>
+                      <div class="form-group">
+                          <label for="Inputresponsable">responsable</label>
+                          <input type="text" name="responsableO" class="form-control" id="responsableO" placeholder="responsable">
+                       </div>
+                    
+                      </div>
+                  </div>
+                   
+            
+                      <div class="form-group">
+                          <label for="Inputproducto">producto</label>
+                          <textarea  name="productoO" class="form-control" id="productoO" placeholder="producto"></textarea>
+                       </div>
+                   
+                     
+                   </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnCapacitacionesAct" onclick="actualizarActividades()">Actualizar</button>
-                <button type="button" class="btn btn-primary" id="btnCapacitacionesReg" onclick="registrarCapacitaciones()">Registrar</button>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnCapacitacionesAct2" onclick="AgregarOtrasCapcitaciones2()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnCapacitacionesReg2" onclick="AgregarOtrasCapcitaciones()">Registrar</button>
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
             </div>
-
         </div>
     </div>
 </div>
