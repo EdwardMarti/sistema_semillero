@@ -11,12 +11,14 @@ session_start();
 
 $data = $_SESSION[$key];
 
-$mpdf = new \Mpdf\Mpdf(['tempDir' => '/tmp','setAutoBottomMargin' => 'stretch','setAutoTopMargin' => 'stretch']);
+//$mpdf = new \Mpdf\Mpdf(['tempDir' => '/tmp','setAutoBottomMargin' => 'stretch','setAutoTopMargin' => 'stretch']);
+$mpdf = new \Mpdf\Mpdf(['setAutoBottomMargin' => 'stretch','setAutoTopMargin' => 'stretch']);
 
 $htmlHeader = getHeader();
 $htmlHeader = str_replace("_codigo", $data['codigo'] , $htmlHeader);
 $htmlHeader = str_replace("_version", $data['version'] , $htmlHeader);
 $htmlHeader = str_replace("_fecha", $data["fecha"] , $htmlHeader);
+
 
 $mpdf->SetHTMLHeader($htmlHeader);
 $mpdf->SetHTMLFooter(getFooter());

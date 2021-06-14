@@ -33,11 +33,17 @@ function iniciarlistadoTablaPlanesS() {
 
     //tabla de alumnos
     $("#listadoTablaPlanesS").DataTable({
-        responsive: false,
-        ordering: false,
-        paging: false,
-        searching: false,
-        info: false,
+//        responsive: false,
+//        ordering: false,
+//        paging: false,
+//        searching: false,
+//        info: false,
+//        lengthChange: false,
+        responsive: true,
+        ordering: true,
+        paging: true,
+        searching: true,
+        info: true,
         lengthChange: false,
         language: {
             emptyTable: "Sin  Planes de Gestion...",
@@ -112,7 +118,39 @@ function iniciarlistadoTablaPlanesS() {
                 DeleteCapacitacionesP(id_order, id_proCap);
             });
         },
-
+            dom: '<"html5buttons"B>lTfgitp',
+        buttons: [{
+            extend: "copy",
+            className: "btn btn-primary glyphicon glyphicon-duplicate"
+        },
+        {
+            extend: "csv",
+            title: "semillero",
+            className: "btn btn-primary glyphicon glyphicon-save-file"
+        },
+        {
+            extend: "excel",
+            title: "semillero",
+            className: "btn btn-primary glyphicon glyphicon-list-alt"
+        },
+        {
+            extend: "pdf",
+            title: "semillero",
+            className: "btn btn-primary glyphicon glyphicon-file"
+        },
+        {
+            extend: "print",
+            className: "btn btn-primary glyphicon glyphicon-print",
+            customize: function (win) {
+                $(win.document.body).addClass("white-bg");
+                $(win.document.body).css("font-size", "10px");
+                $(win.document.body)
+                    .find("table")
+                    .addClass("compact")
+                    .css("font-size", "inherit");
+            },
+        },
+        ],
     });
 
 }
@@ -329,7 +367,7 @@ function AgregarPlan() {
         })
         .then(function(data) {
 
-            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
+            Mensaje.mostrarMsjExito("Registro Exitoso", "Se ha Iniciado Un Plan de Accion");
           
                 SiguienteActividades(data.id,proyectos_id)
 
@@ -394,9 +432,7 @@ function cerrarItemPlanLineas(plan_id) {
     }
     
 function RegustrarItemPlanLineas(plan_id) {
-   
-  ModalDatosPlan
-   
+      
 //    $("#ModalTablaRegistroPlan").show();
     $("#ModalDatosPlan").hide()();
 //    $("#ModalTablaplan2").show();
@@ -740,7 +776,8 @@ function mostrarModalCapacitaciones() {
 }
 
 function cerrarModalCapacitaciones() {
-     $('#ModalCapacitaciones').modal('hide');
+   
+  $('#ModalCapacitaciones').modal('hide');
  
 }
 
@@ -1045,6 +1082,21 @@ function registrarLineas_semilleros() {
 
 }
 
+function mostrarModalOtrasCapacitaciones() {
+//    limpiarcampos();
+   $('#myModalActividades').modal({show: true});
+    $("#btnOrderReg").show();
+    $("#btnOrderAct").hide();
+}
+
+/**
+ * @method ocultarModalOrdenes
+ * Método que se encarga de cerrar el modal para registro o actualizacion
+ */
+function cerrarModalActividades () {
+       $('#myModalActividades').modal('hide');
+}
+
 
 
 /**
@@ -1117,7 +1169,7 @@ function eliminarCapacitacionesP(id,proy_id) {
 
 //<editor-fold defaultstate="collapsed" desc="Registro de Otras  Actividades">
 
-function iniciarTablaOtrasCapacitaciones() {
+function iniciarTablaOtrasCapacitaciones() {  /** tabla de otras actividades*/
 
     //tabla de alumnos
     $("#listadoTablaOtrasCap").DataTable({
@@ -1128,7 +1180,7 @@ function iniciarTablaOtrasCapacitaciones() {
         info: false,
         lengthChange: false,
         language: {
-            emptyTable: "Sin  Otras Capacitaciones...",
+            emptyTable: "Sin  Otras Actividades...",
             search: "Buscar:",
             info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
             infoEmpty: "Ningun registro 0 de 0",
@@ -1196,9 +1248,11 @@ function iniciarTablaOtrasCapacitaciones() {
 
 
 
-function MostrarDatosOtrasCap(semille) {
+function  MostrarDatosOtrasCap($semillero_id,$id_planReg) {
+    
       let order = {
-        id:semille,
+        semillero_id:$semillero_id,
+        plan:$id_planReg,
  
     };
     Utilitario.agregarMascara();
@@ -1252,6 +1306,97 @@ function listadoOtrasCap(OtrasCap) {
     tabla.data().clear();
     tabla.rows.add(OtrasCap).draw();
 }
+
+
+function AgregarOtrasCapcitaciones() {
+  
+
+    $semillero_id = Utilitario.getLocal('id_semillero');
+    $id_planReg = $('#id_planReg').val();
+//    
+//    nombre_actividadO = $("#nombre_actividadO").val();
+//    modalidad_participacionO = $("#modalidad_participacionO").val();
+//    fecha_realizacionO = $("#fecha_realizacionO").val();
+//    productoO = $("#productoO").val();
+//    responsableO = $("#responsableO").val();
+//
+//    semillero_id = Utilitario.getLocal('id_semillero');
+//    anio = $("#anio").val();
+//    semestre = $("#semestre").val();
+//    linea_investigacion_id = $("#lineas_investigacion2").val();
+//    proyectos_id = $("#proyecto_linea2").val();
+//    plan_accion_id: $('#id_planReg').val(),
+//
+//      
+    let ordenes = {
+    nombre_proyectoO : $("#nombre_proyectoO").val(),
+    nombre_actividadO : $("#nombre_actividadO").val(),
+    modalidad_participacionO : $("#modalidad_participacionO").val(),
+    fecha_realizacionO :$("#fecha_realizacionO").val(),
+    productoO : $("#productoO").val(),
+    responsableO :$("#responsableO").val(),
+
+    semillero_id : Utilitario.getLocal('id_semillero'),
+    anio : $("#anio").val(),
+    semestre : $("#semestre").val(),
+    linea_investigacion_id : $("#lineas_investigacion2").val(),
+    proyectos_id :$("#proyecto_linea2").val(),
+    plan_accion_id: $('#id_planReg').val(),
+    
+    };
+
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/Otras_actividadesController_Insert.php", {
+          method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+             
+                Plataform: "web",
+            },
+            body: JSON.stringify(ordenes),
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+
+            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
+                MostrarDatosOtrasCap($semillero_id,$id_planReg);
+//                SiguienteActividades(data.id,proyectos_id)
+
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+//                Mensaje.mostrarMsjError(
+//                    "Error",
+//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+//                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+
+
+}
+
+
 
 
 //</editor-fold>
@@ -1320,6 +1465,7 @@ function listadoActividades(actividades) {
     tabla.data().clear();
     tabla.rows.add(actividades).draw();
 }
+
 
 
 function DeleteActividades(id,proy_id) {
@@ -1406,19 +1552,19 @@ function eliminarActividad(id, id_proCap) {
 //<editor-fold defaultstate="collapsed" desc="Modales">
 
 
-function mostrarModalLineas() {
+function ModalOtrasCapacitaciones() {
     
-   $('#ModalLineas').modal({show: true});
-    $("#btnLnReg").show();
-    $("#btnLnAct").hide();
+   $('#ModalOtrasCapacitaciones').modal({show: true});
+    $("#btnCapacitacionesReg2").show();
+    $("#btnCapacitacionesAct2").hide();
 }
 
 /**
  * @method ocultarModalOrdenes
  * Método que se encarga de cerrar el modal para registro o actualizacion
  */
-function cerrarModalLineas() {
-     $('#ModalLineas').modal('hide');
+function CerrarOtrasCapacitaciones() {
+     $('#ModalOtrasCapacitaciones').modal('hide');
 }
 
 
