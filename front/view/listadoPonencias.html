@@ -1,12 +1,13 @@
+<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
 <div class="modal inmodal fade" id="myModalPonencias" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Close</span></button>
-                <h4 class="modal-title">Modal title</h4>
-                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting
-                    industry.</small>
+                <h4 class="modal-title">Gestion Ponencias</h4>
+<!--                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting-->
+<!--                    industry.</small>-->
             </div>
             <div class="modal-body">
                 <div class="ibox-content">
@@ -19,7 +20,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Inputnombre_po">Nombre de la Ponencia</label>
-                                    <input type="text" name="nombre_po" class="form-control" id="nombre_po" placeholder="nombre_po">
+                                    <input type="text" name="nombre_po" class="form-control" id="nombre_po"
+                                           placeholder="Nombre de la ponencia">
                                 </div>
                                 <div class="form-group">
                                     <label for="Inputfecha">Fecha de la Presentación</label>
@@ -27,24 +29,25 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Inputnombre_eve">Nombre del Evento</label>
-                                    <input type="text" name="nombre_eve" class="form-control" id="nombre_eve" placeholder="nombre_eve">
+                                    <input type="text" name="nombre_eve" class="form-control" id="nombre_eve"
+                                           placeholder="Nombre del evento">
                                 </div>
                                 <div class="form-group">
                                     <label for="Inputinstitucion">Institución Promotora</label>
-                                    <input type="text" name="institucion" class="form-control" id="institucion" placeholder="institucion">
+                                    <input type="text" name="institucion" class="form-control" id="institucion"
+                                           placeholder="Institucion">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="Inputciudad">Ciudad donde se Desarrolló</label>
-                                    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="ciudad">
+                                    <input type="text" name="ciudad" class="form-control" id="ciudad"
+                                           placeholder="Ciudad">
                                 </div>
                                 <div class="form-group">
                                     <label for="Inputlugar">Lugar donde se Desarrolló</label>
-                                    <input type="text" name="lugar" class="form-control" id="lugar" placeholder="lugar">
+                                    <input type="text" name="lugar" class="form-control" id="lugar" placeholder="Lugar">
                                 </div>
-
-
 
 
                                 <div class="form-group">
@@ -66,16 +69,18 @@
                         </div>
 
 
-
                     </form>
                 </div>
             </div>
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-white" onclick="cerrarModalPonencias()">Close</button>
-                <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="ActualizarDataPo()">Actualizar</button>
-                <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarPonencias()">Registrar</button>
+                <button type="button" class="btn btn-white" onclick="cerrarModalPonencias()">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="ActualizarDataPo()">Actualizar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarPonencias()">
+                    Registrar
+                </button>
             </div>
         </div>
     </div>
@@ -84,30 +89,33 @@
 <!-- Tabla de Usuarios -->
 <div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
 
-    <div class="row">
+    <div class="row" id="step_1_tour">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title row">
                     <h5 class="text-white col">Listado Ponencias</h5>
-                    <h5 class="label label-successE"> <a onclick="mostrarModalPonencias()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
-                            Agregar</a></h5>
+                    <h5 class="label label-successE"><a onclick="mostrarModalPonencias()"
+                                                        style="background-color: #243747 ;display: inline !important"
+                                                        class="btn btn-primary">+
+                        Agregar</a></h5>
 
                 </div>
                 <div class="ibox-content">
                     <div class='table mt-4 mb-4'><br>
-                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoPonenciasTabla' style='width: 100%'>
+                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoPonenciasTabla'
+                               style='width: 100%'>
                             <thead>
-                                <tr class="ufps-tabl">
+                            <tr class="ufps-tabl">
 
-                                    <th>NOMBRE</th>
-                                    <th>FECHA</th>
-                                    <th>NOMBRE EVENTO</th>
-                                    <th>INSTITUCION PROMOTORA</th>
-                                    <th>CIUDAD</th>
-                                    <th>LUGAR</th>
-                                    <th>TIPO/CLASE</th>
-                                    <th>ACCIONES</th>
-                                </tr>
+                                <th>NOMBRE</th>
+                                <th>FECHA</th>
+                                <th>NOMBRE EVENTO</th>
+                                <th>INSTITUCION PROMOTORA</th>
+                                <th>CIUDAD</th>
+                                <th>LUGAR</th>
+                                <th>TIPO/CLASE</th>
+                                <th>ACCIONES</th>
+                            </tr>
                             </thead>
                         </table>
                     </div>
@@ -117,5 +125,6 @@
     </div>
 </div>
 <!-- Fin Tabla de Usuarios -->
-
 <script type="text/javascript" src="../js/ponencias/ponencias.js"></script>
+<script type="text/javascript" src="../js/tours/semillero/tour_ponencias.js"></script>
+

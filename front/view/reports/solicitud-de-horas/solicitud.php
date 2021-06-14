@@ -8,7 +8,12 @@ session_start();
 
 $data = $_SESSION[$key];
 
-$mpdf = new \Mpdf\Mpdf(['tempDir' => '/tmp','setAutoBottomMargin' => 'stretch','setAutoTopMargin' => 'stretch']);
+if(strtoupper(substr(PHP_OS, 0, 3))== "WIN"){
+    $mpdf = new \Mpdf\Mpdf(['setAutoBottomMargin' => 'stretch','setAutoTopMargin' => 'stretch']);
+}else{
+    $mpdf = new \Mpdf\Mpdf(['tempDir' => '/tmp','setAutoBottomMargin' => 'stretch','setAutoTopMargin' => 'stretch']);
+}
+//
 
 $htmlHeader = getHeader();
 $htmlHeader = str_replace("_codigo", $data['codigo'] , $htmlHeader);

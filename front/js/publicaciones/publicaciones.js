@@ -25,7 +25,7 @@ function iniciarTablaPu() {
         info: true,
         lengthChange: false,
         language: {
-            emptyTable: "Sin Ordenes...",
+            emptyTable: "No hay publicaciones para mostrar...",
             search: "Buscar:",
             info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
             infoEmpty: "Ningun registro 0 de 0",

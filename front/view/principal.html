@@ -78,7 +78,7 @@
 
 
                     <li id="menuOrdenes">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Semillero</span> <span
+                        <a id="_menuSemilleroTour"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Semillero</span> <span
                                 class="fa arrow"></span></a>
 
                         <ul class="nav nav-second-level collapse">
@@ -113,7 +113,7 @@
 
 
                     <li id="menuProyectos">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Plan de Accion</span>
+                        <a id="_menuPlanDeAccionTour"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Plan de Accion</span>
                             <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a onclick="Menu.añadirPlan()"><i class="fa fa-circle-o-notch"
@@ -121,18 +121,20 @@
                             </li>
                         </ul>
                     </li>
-
-                    <li id="menuActividades">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
-                                    class="nav-label"></span>Informe de Gestion <span class="fa arrow"></span></a>
+                    
+                    <li id="menuInformes">
+                        <a id="_menuPlanDeAccionTour"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Informe de Gestion</span>
+                            <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a onclick="Menu.listadoInformes()"><i
-                                            class="fa fa-circle-o-notch" aria-hidden="true"></i>FO-IN-14 INFORME DE GESTIÓN DE SEMILLEROS</a>
+                            <li><a onclick="Menu.listadoInformes()"><i class="fa fa-circle-o-notch"
+                                        aria-hidden="true"></i>FO-IN-14 INFORME DE GESTIÓN DE SEMILLEROS</a>
                             </li>
                         </ul>
                     </li>
+
+                  
                     <li id="menuProyectos">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Solicitudes</span> <span class="fa arrow"></span></a>
+                        <a id="_menuSolicitudesTour"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Solicitudes</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a onclick="Menu.loadFormSolicitudHoras()"><i class="fa fa-clock-o" aria-hidden="true"></i>FO-IN-04 HORAS DE INVESTIGACIÓN</a>
@@ -143,7 +145,7 @@
                         </ul>
                     </li>
                     <li id="menuActividades">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
+                        <a id="_menuActividadesTour"><i class="fa fa-users" aria-hidden="true"></i> <span
                                     class="nav-label">Informacion Complementaria</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a onclick="Menu.listadoActividades()"><i
@@ -167,7 +169,7 @@
 
 
                     <li id="menuFacultades">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
+                        <a id="_menuGestionFacultadesTour"><i class="fa fa-users" aria-hidden="true"></i> <span
                                     class="nav-label">Gestion Facultades</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a onclick="Menu.listadoFacultades()"><i
@@ -179,7 +181,7 @@
 
 
                     <li id="menuProyectos">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
+                        <a id="_menuAdmSemilleroTour"><i class="fa fa-users" aria-hidden="true"></i> <span
                                     class="nav-label">Adm Semillero</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a onclick="Menu.listadoSemilleros_p()"><i
@@ -192,7 +194,7 @@
                     </li>
 
                     <li id="menuProyectos">
-                        <a><i class="fa fa-users" aria-hidden="true"></i> <span
+                        <a id="_fo_in_03"><i class="fa fa-users" aria-hidden="true"></i> <span
                                     class="nav-label">FO-IN-03</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a onclick="Menu.proyectosTerminados()"><i

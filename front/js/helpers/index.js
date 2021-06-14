@@ -8,11 +8,7 @@ options = (method, data) => ({
     body: JSON.stringify(data),
     headers: headers(),
 });
-<<<<<<< HEAD
 //GET = (data) => (options("GET", data));
-=======
-GET = () => ({ method: "GET", headers: headers(), });
->>>>>>> f499e18e6791704d34ae07716f57b284b41f3635
 PUT = (data) => (options("PUT", data));
 DELETE = (data) => (options("DELETE", data));
 POST = (data) => (options("POST", data));

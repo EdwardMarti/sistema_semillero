@@ -66,7 +66,7 @@ loadSelectSemilleros = () => {
 
 
 function cargarCumplimientoProductos() {
-    fetch("../../back/controller/CumplimientoController.php", GET({id:2}))
+    fetch("../../back/controller/CumplimientoController.php", GET())
         .then(function (response) {
             if (response.ok) {
                 return response.json();
@@ -117,7 +117,7 @@ function iniciarTabla() {
         info: true,
         lengthChange: false,
         language: {
-            emptyTable: "Sin Solicitudes...",
+            emptyTable: "No hay solicitudes de cumplimiento para mostrar...",
             search: "Buscar:",
             info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
             infoEmpty: "Ningun registro 0 de 0",

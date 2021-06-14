@@ -1,3 +1,4 @@
+<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
 <div class="ibox-content">
     <div class="accordion" id="accordionExample">
         <div class="card">
@@ -10,7 +11,7 @@
             </div>
 
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
+                <div class="card-body" id="step1w">
                     <div class="row">
 
                         <div class="col-6">
@@ -18,7 +19,8 @@
                             <div class="form-group">
 
                                 <label for="formGroupExampleInput">Nombre: </label>
-                                <input type="text" style="background: white;" class="form-control" name="nombre" id="nombre" required>
+                                <input type="text" style="background: white;" class="form-control" name="nombre"
+                                       id="nombre" required>
 
                             </div>
 
@@ -43,12 +45,14 @@
                             <div class="form-group" style="display: none">
 
                                 <label for="formGroupExampleInput">Id Semillero </label>
-                                <input type="text" style="background: white;" class="form-control" name="id_semillero" id="id_semillero" required>
+                                <input type="text" style="background: white;" class="form-control" name="id_semillero"
+                                       id="id_semillero" required>
 
                             </div>
                             <div class="form-group">
                                 <label for="formGroupExampleInput">Fecha de Creacion </label>
-                                <input type="date" style="background: white;" class="form-control" name="fecha" id="fecha">
+                                <input type="date" style="background: white;" class="form-control" name="fecha"
+                                       id="fecha">
 
                             </div>
 
@@ -58,7 +62,8 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="formGroupExampleInput">Sigla </label>
-                                <input type="text" style="background: white;" class="form-control" name="sigla" id="sigla">
+                                <input type="text" style="background: white;" class="form-control" name="sigla"
+                                       id="sigla">
 
                             </div>
                             <div class="form-group">
@@ -80,7 +85,8 @@
                             <div class="form-group">
 
                                 <label for="formGroupExampleInput">Ubicacion </label>
-                                <input type="text" style="background: white;" class="form-control" name="ubicacion" id="ubicacion" required>
+                                <input type="text" style="background: white;" class="form-control" name="ubicacion"
+                                       id="ubicacion" required>
 
                             </div>
                             <div class="modal-footer">
@@ -108,21 +114,22 @@
                         <div class="ibox ">
 
 
-
                             <div class='table mt-4 mb-4'>
                                 <div class="modal-footer">
 
-                                    <h5 class="label label-successE"> <a onclick="mostrarModalLineas()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                    <h5 class="label label-successE"><a onclick="mostrarModalLineas()"
+                                                                        style="background-color: #243747 ;display: inline !important"
+                                                                        class="btn btn-primary">+ Agregar</a></h5>
                                 </div>
                                 <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablal'>
                                     <thead>
-                                        <tr class="ufps-tabl">
+                                    <tr class="ufps-tabl">
 
-                                            <th>LINEA DE INVESTIGACION</th>
-                                            <th>DISCIPLINA</th>
-                                            <th>AREA</th>
-                                            <th>ACCIONES</th>
-                                        </tr>
+                                        <th>LINEA DE INVESTIGACION</th>
+                                        <th>DISCIPLINA</th>
+                                        <th>AREA</th>
+                                        <th>ACCIONES</th>
+                                    </tr>
                                     </thead>
                                 </table>
                             </div>
@@ -151,31 +158,36 @@
                                 <div class="form-group">
 
                                     <label for="formGroupExampleInput">persona_Id </label>
-                                    <input type="text" style="background: white;" class="form-control" name="persona_Id" id="persona_Id" required>
+                                    <input type="text" style="background: white;" class="form-control" name="persona_Id"
+                                           id="persona_Id" required>
 
                                 </div>
                                 <div class="form-group">
 
                                     <label for="formGroupExampleInput">Nombre </label>
-                                    <input type="text" style="background: white;" class="form-control" name="nombreD" id="nombreD" required>
+                                    <input type="text" style="background: white;" class="form-control" name="nombreD"
+                                           id="nombreD" required>
 
                                 </div>
                                 <div class="form-group">
 
                                     <label for="formGroupExampleInput">Telefono </label>
-                                    <input type="text" style="background: white;" class="form-control" name="telefonoD" id="telefonoD" required>
+                                    <input type="text" style="background: white;" class="form-control" name="telefonoD"
+                                           id="telefonoD" required>
 
                                 </div>
                                 <div class="form-group">
 
                                     <label for="formGroupExampleInput">Ubicacion </label>
-                                    <input type="text" style="background: white;" class="form-control" name="ubicacionD" id="ubicacionD" required>
+                                    <input type="text" style="background: white;" class="form-control" name="ubicacionD"
+                                           id="ubicacionD" required>
 
                                 </div>
                                 <div class="form-group" style="display: none">
 
                                     <label for="formGroupExampleInput">id_docente </label>
-                                    <input type="text" style="background: white;" class="form-control" name="id_docente" id="id_docente" required>
+                                    <input type="text" style="background: white;" class="form-control" name="id_docente"
+                                           id="id_docente" required>
 
                                 </div>
                             </div>
@@ -184,7 +196,8 @@
                                 <div class="form-group">
 
                                     <label for="formGroupExampleInput">Correo </label>
-                                    <input type="text" style="background: white;" class="form-control" name="correoD" id="correoD" required>
+                                    <input type="text" style="background: white;" class="form-control" name="correoD"
+                                           id="correoD" required>
 
                                 </div>
                                 <div class="form-group">
@@ -197,7 +210,9 @@
                                 </div>
                                 <div class="modal-footer">
 
-                                    <h5 class="label label-successE"> <a onclick="ActualizarDataDocente()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">Actualizar</a></h5>
+                                    <h5 class="label label-successE"><a onclick="ActualizarDataDocente()"
+                                                                        style="background-color: #243747 ;display: inline !important"
+                                                                        class="btn btn-primary">Actualizar</a></h5>
                                 </div>
                             </div>
 
@@ -212,7 +227,7 @@
             <div class="card-header" id="headingFour">
                 <h5 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        <b>* Titulos Obtenidos </b>
+                        <b>* TITULOS OBTENIDOS </b>
                     </button>
                 </h5>
             </div>
@@ -225,17 +240,20 @@
                                 <div class="ibox ">
                                     <div class="modal-footer">
 
-                                        <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                        <h5 class="label label-successE"><a onclick="mostrarModalTitulos()"
+                                                                            style="background-color: #243747 ;display: inline !important"
+                                                                            class="btn btn-primary">+ Agregar</a></h5>
                                     </div>
                                     <div class='table mt-4 mb-4'>
-                                        <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaTitulos'>
+                                        <table class='table table-striped mt-4 mb-4 centradito'
+                                               id='listadoTablaTitulos'>
                                             <thead>
-                                                <tr class="ufps-tabl">
+                                            <tr class="ufps-tabl">
 
-                                                    <th>DESCRIPCION</th>
-                                                    <th>UNIVERSIDAD</th>
-                                                    <th>ACCIONES</th>
-                                                </tr>
+                                                <th>DESCRIPCION</th>
+                                                <th>UNIVERSIDAD</th>
+                                                <th>ACCIONES</th>
+                                            </tr>
                                             </thead>
                                         </table>
                                     </div>
@@ -312,7 +330,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnLnAct" onclick="actualizarRango()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnLnAct" onclick="actualizarRango()">Actualizar
+                </button>
                 <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarLn()">Registrar</button>
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
@@ -335,13 +354,15 @@
                     <div class="form-group">
 
                         <label for="formGroupExampleInput">Descripcion </label>
-                        <input type="text" style="background: white;" class="form-control" name="descripcionD" id="descripcionD" required>
+                        <input type="text" style="background: white;" class="form-control" name="descripcionD"
+                               id="descripcionD" required>
 
                     </div>
                     <div class="form-group">
 
                         <label for="formGroupExampleInput">Universidad </label>
-                        <input type="text" style="background: white;" class="form-control" name="universidad" id="universidad" required>
+                        <input type="text" style="background: white;" class="form-control" name="universidad"
+                               id="universidad" required>
 
                     </div>
 
@@ -349,7 +370,8 @@
             </div>
             <div class="modal-footer">
 
-                <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarTitulos()">Registrar</button>
+                <button type="button" class="btn btn-primary" id="btnLnReg" onclick="registrarTitulos()">Registrar
+                </button>
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 
             </div>
@@ -359,6 +381,5 @@
 </div>
 
 
-
-
 <script type="text/javascript" src="../js/semillero/semillero_perfil.js"></script>
+<script type="text/javascript" src="../js/tours/semillero/datos_basicos.js"></script>

@@ -1,9 +1,10 @@
+<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
 <div class="modal inmodal fade" id="myModalPublicaciones" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                        class="sr-only">Close</span></button>
+                        class="sr-only">Cerrar</span></button>
                 <h4 class="modal-title">5. PUBLICACIONES EN REVISTAS Y/O PERIODICOS DE NOTICIAS</h4>
 
             </div>
@@ -12,49 +13,49 @@
                 <div class="ibox-content">
                     <form role="form" id="PublicacionesInsert">
                         <div class="form-group">
-                            <label for="Inputid">id</label>
-                            <input type="text" name="id" class="form-control" id="id" placeholder="id" required>
+                            <label for="Inputid">Id</label>
+                            <input type="text" name="id" class="form-control" id="id" placeholder="Id" required>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="Inputautor">autor</label>
-                                    <input type="text" name="autor" class="form-control" id="autor" placeholder="autor">
+                                    <label for="Inputautor">Autor</label>
+                                    <input type="text" name="autor" class="form-control" id="autor" placeholder="Autor de la publicacion">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Inputtitulo">titulo</label>
-                                    <input type="text" name="titulo" class="form-control" id="titulo" placeholder="titulo">
+                                    <label for="Inputtitulo">Titulo</label>
+                                    <input type="text" name="titulo" class="form-control" id="titulo" placeholder="Titulo">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Inputnombre_medio">nombre_medio</label>
-                                    <input type="text" name="nombre_medio" class="form-control" id="nombre_medio" placeholder="nombre_medio">
+                                    <label for="Inputnombre_medio">Medio de Publicacion</label>
+                                    <input type="text" name="nombre_medio" class="form-control" id="nombre_medio" placeholder="Nombre del medio de publicacion">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Inputissn">issn</label>
-                                    <input type="text" name="issn" class="form-control" id="issn" placeholder="issn">
+                                    <label for="Inputissn">Issn</label>
+                                    <input type="text" name="issn" class="form-control" id="issn" placeholder="Issn">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Inputeditorial">editorial</label>
-                                    <input type="text" name="editorial" class="form-control" id="editorial" placeholder="editorial">
+                                    <label for="Inputeditorial">Editorial</label>
+                                    <input type="text" name="editorial" class="form-control" id="editorial" placeholder="Editorial">
                                 </div>
                             </div>
                             <div class="col-6">
 
                                 <div class="form-group">
-                                    <label for="Inputvolumen">volumen</label>
-                                    <input type="text" name="volumen" class="form-control" id="volumen" placeholder="volumen">
+                                    <label for="Inputvolumen">Volumen</label>
+                                    <input type="text" name="volumen" class="form-control" id="volumen" placeholder="Volumen">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Inputcant_pag">cant_pag</label>
-                                    <input type="number" name="cant_pag" class="form-control" id="cant_pag" placeholder="cant_pag">
+                                    <label for="Inputcant_pag">Paginas</label>
+                                    <input type="number" name="cant_pag" class="form-control" id="cant_pag" placeholder="Cantidad de paginas">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Inputfecha">fecha</label>
+                                    <label for="Inputfecha">Fecha</label>
                                     <input type="date" name="fecha" class="form-control" id="fecha" placeholder="fecha">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Inputciudad">ciudad</label>
-                                    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="ciudad">
+                                    <label for="Inputciudad">Ciudad</label>
+                                    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="Ciudad">
                                 </div>
                                 <div class="form-group">
                                     <label for="Inputtipo_publicaciones_id">Modalidad de Publicación</label>
@@ -81,7 +82,7 @@
 
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-white" onclick="cerrarModalPublicaciones()">Close</button>
+                <button type="button" class="btn btn-white" onclick="cerrarModalPublicaciones()">Cerrar</button>
                 <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdatePublicacion()">Actualizar</button>
                 <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarPublicacion()">Registrar</button>
             </div>
@@ -92,7 +93,7 @@
 <!-- Tabla de Usuarios -->
 <div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
 
-    <div class="row">
+    <div class="row" id="step_1_tour">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title row">
@@ -125,3 +126,4 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
 <script type="text/javascript" src="../js/publicaciones/publicaciones.js"></script>
+<script type="text/javascript" src="../js/tours/semillero/publicaciones.js"></script>

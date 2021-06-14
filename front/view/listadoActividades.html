@@ -1,3 +1,4 @@
+<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
 
 
 <div class="modal inmodal" id="ModalLoadData" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
@@ -38,15 +39,15 @@
                           <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
                        </div>
                           <div class="form-group">
-                          <label for="Inputproyectos_id">proyectos_id</label>
+                          <label for="Inputproyectos_id">Proyectos Id</label>
                          
                           <select class="form-control" name="proyectos_id" id="Inputproyectos_id" >
                           <option>Seleccione</option>
                           </select> 
                        </div>                             
                       <div class="form-group">
-                          <label for="Inputdescripcion">descripcion</label>
-                          <textarea class="form-control" placeholder="Message" name="descripcion" ></textarea>
+                          <label for="Inputdescripcion">Descripcion</label>
+                          <textarea class="form-control" placeholder="Mensaje" name="descripcion" ></textarea>
            
                        </div>
                   
@@ -57,7 +58,7 @@
        
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-white" onclick="cerrarModalActividades()">Close</button>
+                                            <button type="button" class="btn btn-white" onclick="cerrarModalActividades()">Cerrar</button>
                                             <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdateOrder()">Actualizar</button>
                 <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarOrder()">Registrar</button>
                                         </div>
@@ -68,7 +69,7 @@
 <!-- Tabla de Usuarios -->
 <div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
             
-    <div class="row">
+    <div class="row" id="step_1_tour">
         <div class="col-lg-12">
             
             <div class="ibox ">
@@ -110,3 +111,4 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
 <script type="text/javascript" src="../js/actividades/actividades.js"></script>
+<script type="text/javascript" src="../js/tours/informacion_complementaria/actividades.js"></script>
