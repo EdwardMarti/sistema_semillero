@@ -7,7 +7,7 @@ $dataObject = json_decode($JSONData);
 
 $correo = strip_tags($dataObject->correo);
 $clave = strip_tags($dataObject->clave);
-/* $correo = 'edward22069@gmail.com';
+/* $correo = 'shirleypaolanv@ufps.edu.co';
 $clave = 'password'; */
 //$clave = md5($clave);
 $rpta = 0;

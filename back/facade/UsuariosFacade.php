@@ -39,10 +39,10 @@ class UsuariosFacade
      * @param persona_id
      * @param password
      */
-    public static function insert($id,  $persona_id,  $password)
+    public static function insert(  $persona_id,  $password)
     {
         $usuarios = new Usuarios();
-        $usuarios->setId($id);
+//        $usuarios->setId($id);
         $usuarios->setPersona_id($persona_id);
         $usuarios->setPassword($password);
 

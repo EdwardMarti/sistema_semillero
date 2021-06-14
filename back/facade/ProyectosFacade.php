@@ -151,6 +151,45 @@ class ProyectosFacade
     }
 
     /**
+     * Modifica los atributos de un objeto Proyectos  ya existente en base de datos.
+     * Puede recibir NullPointerException desde los métodos del Dao
+     */
+    public static function updateParte1($id, $tiempo_ejecucion, $fecha_ini, $resumen, $linea_investigacion, $fecha_fin)
+    {
+        $proyectos = self::select($id);
+        $proyectos->setTiempo_ejecucion($tiempo_ejecucion);
+        $proyectos->setFecha_ini($fecha_ini);
+        $proyectos->setResumen($resumen);
+        $proyectos->setObj_general($linea_investigacion);
+        $proyectos->setobj_especifico($fecha_fin);
+
+        $FactoryDao = new FactoryDao(self::getGestorDefault());
+        $proyectosDao = $FactoryDao->getproyectosDao(self::getDataBaseDefault());
+        $rpta = $proyectosDao->updateParte1($proyectos);
+        $proyectosDao->close();
+        return $rpta;
+    }
+
+    /**
+     * Modifica los atributos de un objeto Proyectos  ya existente en base de datos.
+     * Puede recibir NullPointerException desde los métodos del Dao
+     */
+    public static function updateParte2($id, $tiempo_ejecucion, $fecha_ini, $resumen, $linea_investigacion)
+    {
+        $proyectos = self::select($id);
+        $proyectos->setTiempo_ejecucion($tiempo_ejecucion);
+        $proyectos->setFecha_ini($fecha_ini);
+        $proyectos->setResumen($resumen);
+        $proyectos->setObj_general($linea_investigacion);
+
+        $FactoryDao = new FactoryDao(self::getGestorDefault());
+        $proyectosDao = $FactoryDao->getproyectosDao(self::getDataBaseDefault());
+        $rpta = $proyectosDao->updateParte2($proyectos);
+        $proyectosDao->close();
+        return $rpta;
+    }
+
+    /**
      * Elimina un objeto Proyectos de la base de datos a partir de su(s) llave(s) primaria(s).
      * Puede recibir NullPointerException desde los métodos del Dao
      * @param id

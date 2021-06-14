@@ -32,15 +32,14 @@ class ColaboradorDao implements IColaboradorDao
      */
     public function insert($colaborador)
     {
-        $id = $colaborador->getId();
         $nombre = $colaborador->getNombre();
         $codigo = $colaborador->getCodigo();
         $tp_colaborador = $colaborador->getTp_colaborador();
         $proyectos_id = $colaborador->getProyectos_id()->getId();
 
         try {
-            $sql = "INSERT INTO `colaborador`( `id`, `nombre`, `codigo`, `tp_colaborador`, `proyectos_id`)"
-                . "VALUES ('$id','$nombre','$codigo','$tp_colaborador','$proyectos_id')";
+            $sql = "INSERT INTO `colaborador`( `nombre`, `codigo`, `tp_colaborador`, `proyectos_id`)"
+                . "VALUES ('$nombre','$codigo','$tp_colaborador','$proyectos_id')";
             return $this->insertarConsulta($sql);
         } catch (SQLException $e) {
             throw new Exception('Primary key is null');

@@ -146,6 +146,51 @@ class ProyectosDao implements IProyectosDao
             throw new Exception('Primary key is null');
         }
     }
+        
+    /**
+     * Modifica un objeto Proyectos en la base de datos.
+     * @param proyectos objeto con la información a modificar
+     * @return  Valor de la llave primaria 
+     * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
+     */
+    public function updateParte1($proyectos)
+    {
+        $id = $proyectos->getId();
+        $tiempo_ejecucion = $proyectos->getTiempo_ejecucion();
+        $fecha_ini = $proyectos->getFecha_ini();
+        $resumen = $proyectos->getResumen();
+        $linea_investigacion = $proyectos->getObj_general();
+        $fecha_fin = $proyectos->getobj_especifico();
+
+        try {
+            $sql = "UPDATE `proyectos` SET `tiempo_ejecucion`='$tiempo_ejecucion' ,`fecha_ini`='$fecha_ini' ,`resumen`='$resumen' ,`linea_inv_id`='$linea_investigacion' ,`fecha_fin`='$fecha_fin' WHERE `id`='$id' ";
+            return $this->updateConsulta($sql);
+        } catch (SQLException $e) {
+            throw new Exception('Primary key is null');
+        }
+    }
+
+    /**
+     * Modifica un objeto Proyectos en la base de datos.
+     * @param proyectos objeto con la información a modificar
+     * @return  Valor de la llave primaria 
+     * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
+     */
+    public function updateParte2($proyectos)
+    {
+        $id = $proyectos->getId();
+        $obj_general = $proyectos->getTiempo_ejecucion();
+        $obj_especifico = $proyectos->getFecha_ini();
+        $resultados = $proyectos->getResumen();
+        $costo = $proyectos->getObj_general();
+
+        try {
+            $sql = "UPDATE `proyectos` SET `obj_general`='$obj_general' ,`obj_especifico`='$obj_especifico' ,`resultados`='$resultados' ,`costo_valor`='$costo' WHERE `id`='$id' ";
+            return $this->updateConsulta($sql);
+        } catch (SQLException $e) {
+            throw new Exception('Primary key is null');
+        }
+    }
 
     /**
      * Elimina un objeto Proyectos en la base de datos.
@@ -258,6 +303,20 @@ class ProyectosDao implements IProyectosDao
         $data = $sentencia->fetchAll();
         $sentencia = null;
         return $data;
+    }
+
+    public function updateConsulta($sql)
+    {
+        try {
+            $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sentencia = $this->cn->prepare($sql);
+            $sentencia->execute();
+            $rta = 1;
+            $sentencia = null;
+            return $rta;
+        } catch (Exception $e) {
+            return 0;
+        }
     }
     /**
      * Cierra la conexión actual a la base de datos

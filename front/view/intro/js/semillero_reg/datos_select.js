@@ -92,6 +92,20 @@ function construirSelectgrupo_investigacion(gp_i) {
 
 //</editor-fold>
 
+ function limpiar(){
+         $('#nombre').val("");
+    $('#sigla').val();
+     $('#fecha').val(""),
+    $('#grupo_investigacion').val("");
+   $('#departamentos').val("");
+  $('#facultades').val("");
+       $('#p_estudio').val("");
+$('#nombreD').val("");
+        $('#telefonoD').val("");
+   $('#correoD').val("");
+       $('#tp_vinculacion').val("");
+ }
+
 //<editor-fold defaultstate="collapsed" desc="Select Facultades">
 function cargarSelectFacultades() {
 
@@ -466,6 +480,7 @@ function registrarSemillero() {
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
             //            obtenerDatos();
             cerrarModalRegistro();
+                limpiar();
         })
         .catch(function(promise) {
             if (promise.json) {
