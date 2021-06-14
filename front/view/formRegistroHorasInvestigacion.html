@@ -1,3 +1,4 @@
+<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
 <div class="modal inmodal fade" id="modalRegistroHoras" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -9,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <!--  padding: 5px 5px;-->
-                <div class="ibox-content">
+                <div class="">
                     <div class="row">
                         <div class="col-6">
                             <input type="hidden" id="id">
@@ -66,8 +67,6 @@
     </div>
 </div>
 
-
-
 <!-- Tabla de Usuarios -->
 <div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
 
@@ -75,15 +74,12 @@
         <div class="col-lg-12">
 
             <div class="ibox ">
-
-                <div class="ibox-title row">
-                    <h5 class="text-white col">Solicitud Horas</h5>
-                    <h5 class="label label-successE"> <a onclick="openModalRegistroHoras()"
-                            style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
+                    <div class="ibox-title row" id="descripcion_menu">
+                        <h5 class="text-white col">Solicitud Horas</h5>
+                        <h5 class="label label-successE"> <a onclick="openModalRegistroHoras()"
+                                                             style="background-color: #243747 ;display: inline !important" class="btn btn-primary" id="agregar">+
                             Agregar</a></h5>
-                </div>
-
-
+                    </div>
 
                 <div class="ibox-content">
 
@@ -111,3 +107,4 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
 <script type="text/javascript" src="../js/solicitudes/horasInvestigacion.js"></script>
+<script type="text/javascript" src="../js/tours/solicitudes/horas_investigacion_tour.js"></script>

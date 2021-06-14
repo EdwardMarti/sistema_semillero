@@ -463,9 +463,6 @@ function RegustrarItemPlanLineas(plan_id) {
     
 //</editor-fold>
 
-
-
-
 //<editor-fold defaultstate="collapsed" desc="Registro de Actividades ">
 
 function registrarActividades() {

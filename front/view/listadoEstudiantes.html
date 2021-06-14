@@ -1,3 +1,4 @@
+<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
 
 
 <div class="modal inmodal" id="ModalLoadData" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
@@ -34,32 +35,32 @@
                                             <div class="ibox-content">
                                             <form role="form" id="EstudianteInsert">
                       <div class="form-group">
-                          <label for="Inputid">id</label>
-                          <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
+                          <label for="Inputid">Id</label>
+                          <input type="text" name="id" class="form-control" id="Inputid" placeholder="Id" required>
                        </div>
                       <div class="form-group">
-                          <label for="Inputcodigo">codigo</label>
-                          <input type="text" name="codigo" class="form-control" id="Inputcodigo" placeholder="codigo">
+                          <label for="Inputcodigo">Codigo</label>
+                          <input type="text" name="codigo" class="form-control" id="Inputcodigo" placeholder="Codigo">
                        </div>
                       <div class="form-group">
-                          <label for="Inputsemestre">semestre</label>
-                          <input type="text" name="semestre" class="form-control" id="Inputsemestre" placeholder="semestre">
+                          <label for="Inputsemestre">Semestre</label>
+                          <input type="text" name="semestre" class="form-control" id="Inputsemestre" placeholder="Semestre">
                        </div>
                       <div class="form-group">
-                          <label for="Inputprograma_academico">programa_academico</label>
-                          <input type="text" name="programa_academico" class="form-control" id="Inputprograma_academico" placeholder="programa_academico">
+                          <label for="Inputprograma_academico">Programa Academico</label>
+                          <input type="text" name="programa_academico" class="form-control" id="Inputprograma_academico" placeholder="Programa Academico">
                        </div>
                       <div class="form-group">
-                          <label for="Inputpersona_id">persona_id</label>
-                          <input type="text" name="persona_id" class="form-control" id="Inputpersona_id" placeholder="persona_id">
+                          <label for="Inputpersona_id">Persona Id</label>
+                          <input type="text" name="persona_id" class="form-control" id="Inputpersona_id" placeholder="Persona Id">
                        </div>
                       <div class="form-group">
-                          <label for="Inputnum_documento">num_documento</label>
-                          <input type="text" name="num_documento" class="form-control" id="Inputnum_documento" placeholder="num_documento">
+                          <label for="Inputnum_documento">Documento</label>
+                          <input type="text" name="num_documento" class="form-control" id="Inputnum_documento" placeholder="Numero de documento">
                        </div>
                       <div class="form-group">
-                          <label for="Inputtipo_docuemnto_id">tipo_docuemnto_id</label>
-                          <input type="text" name="tipo_docuemnto_id" class="form-control" id="Inputtipo_docuemnto_id" placeholder="tipo_docuemnto_id">
+                          <label for="Inputtipo_docuemnto_id">Tipo documento id</label>
+                          <input type="text" name="tipo_docuemnto_id" class="form-control" id="Inputtipo_docuemnto_id" placeholder="Tipo de documento">
                        </div>
                         <a href="javascript:preEstudianteInsert('EstudianteInsert')" class="btn btn-warning">Registrar</a>
                    </form>
@@ -68,7 +69,7 @@
        
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-white" onclick="cerrarModalEstudiantes()">Close</button>
+                                            <button type="button" class="btn btn-white" onclick="cerrarModalEstudiantes()">Cerrar</button>
                                             <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdateOrder()">Actualizar</button>
                 <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarOrder()">Registrar</button>
                                         </div>
@@ -79,7 +80,7 @@
 <!-- Tabla de Usuarios -->
 <div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
 
-    <div class="row">
+    <div class="row" id="step_1_tour">
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title row">
@@ -109,3 +110,4 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
 <script type="text/javascript" src="../js/estudiantes/estudiantes.js"></script>
+<script type="text/javascript" src="../js/tours/informacion_complementaria/alumnos.js"></script>

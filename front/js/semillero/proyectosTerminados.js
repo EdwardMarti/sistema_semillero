@@ -50,7 +50,7 @@ function iniciarTablaUsuario() {
         info: true,
         lengthChange: false,
         language: {
-            emptyTable: "Sin Estudiantes...",
+            emptyTable: "No hay estudiantes para mostrar...",
             search: "Buscar:",
             info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
             infoEmpty: "Ningun registro 0 de 0",
@@ -185,7 +185,7 @@ function iniciarTablaCooinvestigadores() {
         info: true,
         lengthChange: false,
         language: {
-            emptyTable: "Sin Cooinvestigadores...",
+            emptyTable: "No hay cooinvestigadores para mostrar...",
             search: "Buscar:",
             info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
             infoEmpty: "Ningun registro 0 de 0",
@@ -326,7 +326,7 @@ function iniciarTablaFuentes() {
         info: true,
         lengthChange: false,
         language: {
-            emptyTable: "Sin Fuentes...",
+            emptyTable: "No hay fuentes para mostrar...",
             search: "Buscar:",
             info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
             infoEmpty: "Ningun registro 0 de 0",
