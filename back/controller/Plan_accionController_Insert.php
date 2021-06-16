@@ -18,17 +18,27 @@ $Semillero_id = strip_tags($dataObject->semillero_id);
 $anio = strip_tags($dataObject->anio);
 $semestre = strip_tags($dataObject->semestre);
 
- 
-
-$rpta1 = Plan_accionFacade::insert2($Semillero_id,$anio,$semestre);
+$ok=Plan_accionFacade::select_ano_semes($anio , $semestre);
+if($ok){
+    http_response_code(400);
+        echo "{\"mensaje\":\"Ya Existe Un Plan de Accion\"}";
+        
+} else {
+    
+ if($Semillero_id=="" || $anio =="" || $semestre=="" ){
+       http_response_code(400);
+        echo "{\"mensaje\":\"Complete todos los campos\"}";
+     
+ }else{
+     $rpta1 = Plan_accionFacade::insert2($Semillero_id,$anio,$semestre);
 
 
 
         $id = $rpta1;
-        $Proyectos_id = strip_tags($dataObject->proyectos_id);
-        $Linea_investigacion_id = strip_tags($dataObject->linea_investigacion_id);
-        Proy_lineas_investFacade::insert2($id, $Proyectos_id, $Linea_investigacion_id,$semestre,$anio);
-   
+//        $Proyectos_id = strip_tags($dataObject->proyectos_id);
+//        $Linea_investigacion_id = strip_tags($dataObject->linea_investigacion_id);
+//        Proy_lineas_investFacade::insert2($id, $Proyectos_id, $Linea_investigacion_id,$semestre,$anio);
+//   
 
  try {
         if ($rpta1 > 0) {
@@ -42,4 +52,9 @@ $rpta1 = Plan_accionFacade::insert2($Semillero_id,$anio,$semestre);
         http_response_code(500);
         echo "{\"mensaje\":\"Error al registrar \"}";
     }
+ }
+
+}
+
+
 

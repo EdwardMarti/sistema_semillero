@@ -1,25 +1,27 @@
 $(document).ready(function() {
-    semille= Utilitario.getLocal('id_semillero');
-    acti="";
-    var_regPlan="";
+    semille = Utilitario.getLocal('id_semillero');
+    acti = "";
+    var_regPlan = "";
     Utilitario
     iniciarlistadoTablaPlanesS();
     obtenerDatosPrincipales();
-    
-    
+
+
     iniciarTabla();
     iniciarTablaCapacitaciones();
     iniciarTablaOtrasCapacitaciones();
     iniciarTablalineas_proyectos_plan();
-   
-cargarSelectLineas(semille);
-    
+
+    cargarSelectLineas(semille);
+
     $("#ModalDatosPlan").hide();
     $("#ModalTablaplan2").hide();
     $("#collapseFour").hide();
     $("#ModalTablaRegistroPlan").show();
-    
-        
+    $("#mostrarModalRegistro").hide();
+    $("#inicio_del_plan").hide();
+    $("#tabladeAcordeon").hide(); /** acordeones*/
+
 
 
 
@@ -34,12 +36,12 @@ function iniciarlistadoTablaPlanesS() {
 
     //tabla de alumnos
     $("#listadoTablaPlanesS").DataTable({
-//        responsive: false,
-//        ordering: false,
-//        paging: false,
-//        searching: false,
-//        info: false,
-//        lengthChange: false,
+        //        responsive: false,
+        //        ordering: false,
+        //        paging: false,
+        //        searching: false,
+        //        info: false,
+        //        lengthChange: false,
         responsive: true,
         ordering: true,
         paging: true,
@@ -59,11 +61,11 @@ function iniciarlistadoTablaPlanesS() {
                 last: "Ultimo"
             }
         },
-        columns: [   {
+        columns: [{
                 data: "id_plan_Ac",
                 className: "text-center",
                 orderable: false,
-            },  {
+            }, {
                 data: "semestre",
                 className: "text-center",
                 orderable: false,
@@ -73,7 +75,7 @@ function iniciarlistadoTablaPlanesS() {
                 className: "text-center",
                 orderable: false,
             },
-          
+
             {
                 data: "titulo",
                 className: "text-center",
@@ -84,21 +86,21 @@ function iniciarlistadoTablaPlanesS() {
                 className: "text-center",
                 orderable: false,
             },
-              {
+            {
                 data: "nombre",
                 className: "text-center",
                 orderable: false,
-                
+
             },
-         
+
             {
                 data: "estado",
                 className: "text-center",
                 orderable: false,
-                visible:false,
+                visible: false,
             },
-         
-               {
+
+            {
                 orderable: false,
                 defaultContent: [
                     "<div class='text-center'>",
@@ -119,56 +121,59 @@ function iniciarlistadoTablaPlanesS() {
                 DeleteCapacitacionesP(id_order, id_proCap);
             });
         },
-            dom: '<"html5buttons"B>lTfgitp',
+        dom: '<"html5buttons"B>lTfgitp',
         buttons: [{
-            extend: "copy",
-            className: "btn btn-primary glyphicon glyphicon-duplicate"
-        },
-        {
-            extend: "csv",
-            title: "semillero",
-            className: "btn btn-primary glyphicon glyphicon-save-file"
-        },
-        {
-            extend: "excel",
-            title: "semillero",
-            className: "btn btn-primary glyphicon glyphicon-list-alt"
-        },
-        {
-            extend: "pdf",
-            title: "semillero",
-            className: "btn btn-primary glyphicon glyphicon-file"
-        },
-        {
-            extend: "print",
-            className: "btn btn-primary glyphicon glyphicon-print",
-            customize: function (win) {
-                $(win.document.body).addClass("white-bg");
-                $(win.document.body).css("font-size", "10px");
-                $(win.document.body)
-                    .find("table")
-                    .addClass("compact")
-                    .css("font-size", "inherit");
+                extend: "copy",
+                className: "btn btn-primary glyphicon glyphicon-duplicate"
             },
-        },
+            {
+                extend: "csv",
+                title: "semillero",
+                className: "btn btn-primary glyphicon glyphicon-save-file"
+            },
+            {
+                extend: "excel",
+                title: "semillero",
+                className: "btn btn-primary glyphicon glyphicon-list-alt"
+            },
+            {
+                extend: "pdf",
+                title: "semillero",
+                className: "btn btn-primary glyphicon glyphicon-file"
+            },
+            {
+                extend: "print",
+                className: "btn btn-primary glyphicon glyphicon-print",
+                customize: function(win) {
+                    $(win.document.body).addClass("white-bg");
+                    $(win.document.body).css("font-size", "10px");
+                    $(win.document.body)
+                        .find("table")
+                        .addClass("compact")
+                        .css("font-size", "inherit");
+                },
+            },
         ],
     });
 
 }
 
 function obtenerDatosPrincipales() {
-    
-  
+    semille = Utilitario.getLocal('id_semillero');
+    let order = {
+        id: semille,
+
+    };
     Utilitario.agregarMascara();
-    fetch("../../back/controller/Plan_accionController_List.php", {
+    fetch("../../back/controller/Plan_accionController_List_Semillero.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-               
+
                 Plataform: "web",
             },
-             
+            body: JSON.stringify(order),
         })
         .then(function(response) {
             if (response.ok) {
@@ -244,12 +249,12 @@ function iniciarTabla() {
                 className: "text-center",
                 orderable: true,
             },
-          
+
             {
                 orderable: false,
                 defaultContent: [
                     "<div class='text-center'>",
-                  
+
                     "<a class='personalizado eliminar' title='eliminar'><i class='fa fa-trash'></i></a>",
                     "</div>",
                 ].join(""),
@@ -312,8 +317,8 @@ function iniciarTabla() {
  * Método que se encarga de abrir el modal para registro o actualizacion
  */
 function mostrarModalPublicaciones() {
-//    limpiarcampos();
-   $('#myModalPublicaciones').modal({show: true});
+    //    limpiarcampos();
+    $('#myModalPublicaciones').modal({ show: true });
     $("#btnOrderReg").show();
     $("#btnOrderAct").hide();
 }
@@ -323,39 +328,40 @@ function mostrarModalPublicaciones() {
  * Método que se encarga de cerrar el modal para registro o actualizacion
  */
 function cerrarModalPublicaciones() {
-     $('#myModalPublicaciones').modal('hide');
+    $('#myModalPublicaciones').modal('hide');
 }
 
 
 //<editor-fold defaultstate="collapsed" desc="Plan_intro">
 
 function AgregarPlan() {
-  
-    
-    semillero_id=Utilitario.getLocal('id_semillero');
-    anio= $("#anio").val();
-    semestre=$("#semestre").val();
-    linea_investigacion_id= $("#lineas_investigacion2").val();
-    proyectos_id=$("#proyecto_linea2").val();
-    
-      
+
+   $('#cuatro').prop('disabled', false);
+
+    semillero_id = Utilitario.getLocal('id_semillero');
+    anio = $("#anio").val();
+    semestre = $("#semestre").val();
+//    linea_investigacion_id = $("#lineas_investigacion2").val();
+//    proyectos_id = $("#proyecto_linea2").val();
+
+
     let ordenes = {
         semillero_id: semillero_id,
         anio: anio,
         semestre: semestre,
-        linea_investigacion_id: linea_investigacion_id,
-        proyectos_id: proyectos_id,
-      
-      
+//        linea_investigacion_id: linea_investigacion_id,
+//        proyectos_id: proyectos_id,
+
+
     };
 
     Utilitario.agregarMascara();
     fetch("../../back/controller/Plan_accionController_Insert.php", {
-          method: "POST",
+            method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-             
+
                 Plataform: "web",
             },
             body: JSON.stringify(ordenes),
@@ -369,9 +375,9 @@ function AgregarPlan() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", "Se ha Iniciado Un Plan de Accion");
+
+            SiguienteActividades(data.id)
           
-                SiguienteActividades(data.id,proyectos_id)
-                 $("#collapseFour").show();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -387,10 +393,10 @@ function AgregarPlan() {
                     }
                 });
             } else {
-//                Mensaje.mostrarMsjError(
-//                    "Error",
-//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-//                );
+                                Mensaje.mostrarMsjError(
+                                    "Error",
+                                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                                );
             }
         })
         .finally(function() {
@@ -402,81 +408,93 @@ function AgregarPlan() {
 
 
 function gestionarItemPlan() {
-   
-   
-   
+
+
+    //    $("#mostrarModalRegistro").hide();
+    $("#ModalTablaplan2").hide();
+
     $("#ModalTablaRegistroPlan").hide();
     $("#ModalDatosPlan").hide();
-    $("#ModalTablaplan2").show();
-    
-      
-    }
-    
+    $("#mostrarModalRegistro").hide();
+    $("#inicio_del_plan").show();
+
+
+}
+
 function gestionarItemPlanLineas(plan_id) {
+
    
+
+   
+    $("#botonTerminar").hide();
+    $("#ocultarTablaLineas").hide();
+        $("#ModalTablaplan2").show();
+
+   $('#btnAgregarActividades').prop('disabled', false);
+    $('#acor1').prop('disabled', false);
+    $('#uno').prop('disabled', false);
+    $('#dos').prop('disabled', false);
+//    $('#tres').prop('disabled', false);
   
-   
-    $("#ModalTablaRegistroPlan").hide();
-    $("#ModalDatosPlan").show();
-//    $("#ModalTablaplan2").show();
     
-    
-    }
+}
+
 function cerrarItemPlanLineas(plan_id) {
-   
-  
-    
+
+
+
     $("#ModalDatosPlan").hide();
-//    $("#ModalTablaRegistroPlan").show();
-    
-    
-    }
-    
+    //    $("#ModalTablaRegistroPlan").show();
+
+
+}
+
 function RegustrarItemPlanLineas(plan_id) {
-      
-//    $("#ModalTablaRegistroPlan").show();
+
+    //    $("#ModalTablaRegistroPlan").show();
     $("#ModalDatosPlan").hide()();
-//    $("#ModalTablaplan2").show();
-    
-      $('#id_planReg').val(plan_id[0].id);
-    }
+    //    $("#ModalTablaplan2").show();
 
-   function añadirPlan() {
+    $('#id_planReg').val(plan_id[0].id);
+}
 
-        Utilitario.agregarMascara();
-        fetch("añadirPlanAccion.html", {
+function añadirPlan() {
+
+    Utilitario.agregarMascara();
+    fetch("añadirPlanAccion.html", {
             method: "GET",
         })
-            .then(function (response) {
-                return response.text();
-            })
-            .then(function (vista) {
-                $("#mostrarcontenido").html(vista);
-            })
-            .finally(function () {
-                Utilitario.quitarMascara();
-            });
-            
-           
-    }
-    
-    
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(vista) {
+            $("#mostrarcontenido").html(vista);
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+
+
+}
+
+
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="Registro de Actividades ">
 
 function registrarActividades() {
-  
- var   proyec=$('#proyecto_linea2').val();
- var   planss=$('#id_planReg').val();
-     
-      
+
+    var proyec = $('#proyecto_linea2').val();
+    var planss = $('#id_planReg').val();
+
+
+
     let ordenes = {
         descripcionAct: $('#descripcionA').val(),
         proyectos_id: proyec,
-        id_planReg:  planss,
-      
-      
+        id_planReg: $('#id_planReg').val(),
+
+
     };
 
     Utilitario.agregarMascara();
@@ -485,7 +503,7 @@ function registrarActividades() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-          
+
                 Plataform: "web",
             },
             body: JSON.stringify(ordenes),
@@ -499,9 +517,9 @@ function registrarActividades() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-    /***********************plan y protecto**/
-                MostrarDatosActividadesP(planss,proyec);
-                cerrarModalActividades2();
+            /***********************plan y protecto**/
+            MostrarDatosActividadesP(planss, proyec);
+            cerrarModalActividades2();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -517,10 +535,10 @@ function registrarActividades() {
                     }
                 });
             } else {
-//                Mensaje.mostrarMsjError(
-//                    "Error",
-//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-//                );
+                //                Mensaje.mostrarMsjError(
+                //                    "Error",
+                //                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                //                );
             }
         })
         .finally(function() {
@@ -531,15 +549,15 @@ function registrarActividades() {
 
 
 
-function MostrarDatosActividadesP(plans,proyecto) {
-    
-  
-    var proyec= proyecto;
-    var plan2=plans;
-      let order = {
-        id:proyec,
-        plan:plan2,
- 
+function MostrarDatosActividadesP(plans, proyecto) {
+
+
+    var proyec = proyecto;
+    var plan2 = plans;
+    let order = {
+        id: proyec,
+        plan: plan2,
+
     };
     Utilitario.agregarMascara();
     fetch("../../back/controller/ActividadesController_ListId_Plan.php", {
@@ -547,10 +565,10 @@ function MostrarDatosActividadesP(plans,proyecto) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-               
+
                 Plataform: "web",
             },
-                  body: JSON.stringify(order),
+            body: JSON.stringify(order),
         })
         .then(function(response) {
             if (response.ok) {
@@ -596,32 +614,37 @@ function listadoActividades(actividades) {
 
 
 function mostrarModalActividades2() {
-//    limpiarcampos();
+    //    limpiarcampos();
 
-   $('#ModalActividades').modal({show: true});
-     $("#btnRegAct").hide();
+    $('#ModalActividades').modal({ show: true });
+    $("#btnRegAct").hide();
     $("#btnRegReg").show();
-  
- 
+
+
 }
+
 function cerrarModalActividades2() {
-     $('#ModalActividades').modal('hide');
+
+    $('#ModalActividades').modal('hide');
 }
-function SiguienteActividades(mensaje,proyectos_id) {
-    
+
+function SiguienteActividades(mensaje) {
+
+
+  $("#mostrarModalRegistro").show();
+  $("#inicio_del_plan").hide();
+  $('#btnIniciar').prop('disabled', false);
   
     $('#id_planReg').val(mensaje);
-   
- $('#btnAgregarActividades').prop('disabled', false);
- $('#acor1').prop('disabled', false);
 
-    MostrarDatosActividadesP(mensaje,proyectos_id);
 }
-function SiguienteCapacitaciones() {
-//    limpiarcampos();
- $('#btnAgregarCapacitaciones').prop('disabled', false);
 
- obtenerDatosCapacitaciones();
+function SiguienteCapacitaciones() {
+    //    limpiarcampos();
+    $('#tres').prop('disabled', false);
+    $('#btnAgregarCapacitaciones').prop('disabled', false);
+
+//    obtenerDatosCapacitaciones();
 }
 
 
@@ -669,7 +692,7 @@ function iniciarTablaCapacitaciones() {
                 className: "text-center",
                 orderable: false,
             },
-              {
+            {
                 data: "fecha",
                 className: "text-center",
                 orderable: false,
@@ -679,8 +702,8 @@ function iniciarTablaCapacitaciones() {
                 className: "text-center",
                 orderable: false,
             },
-         
-               {
+
+            {
                 orderable: false,
                 defaultContent: [
                     "<div class='text-center'>",
@@ -739,8 +762,8 @@ function iniciarTablalineas_proyectos_plan() {
                 className: "text-center",
                 orderable: false,
             },
-            
-               {
+
+            {
                 orderable: false,
                 defaultContent: [
                     "<div class='text-center'>",
@@ -767,32 +790,40 @@ function iniciarTablalineas_proyectos_plan() {
 }
 
 function mostrarModalCapacitaciones() {
-//    limpiarcampos();
-   $('#ModalCapacitaciones').modal({show: true});
+    //    limpiarcampos();
+    $('#ModalCapacitaciones').modal({ show: true });
     $("#btnCapacitacionesReg").show();
     $("#btnCapacitacionesAct").hide();
 }
 
 function cerrarModalCapacitaciones() {
-   
-  $('#ModalCapacitaciones').modal('hide');
- 
+
+    $('#ModalCapacitaciones').modal('hide');
+
+}
+
+function cerrarModalActividades() {
+
+
+    $('#ModalCapacitaciones').modal('hide');
+    $('#ModalCapacitaciones').modal('hide');
+
 }
 
 function obtenerDatosCapacitaciones() {
-    
 
-    id_Sem1=Utilitario.getLocal('id_semillero');
-    id_Proyect=$('#proyecto_linea2').val();
-    id_PlanR=$('#id_planReg').val();
-    id_LineaR=$('#lineas_investigacion2').val();
- 
+
+    id_Sem1 = Utilitario.getLocal('id_semillero');
+    id_Proyect = $('#proyecto_linea2').val();
+    id_PlanR = $('#id_planReg').val();
+    id_LineaR = $('#lineas_investigacion2').val();
+
     let order = {
-        plan:id_PlanR,
-        linea:id_LineaR,
-        proyecto:id_Proyect,
-        semillero:id_Sem1,
- 
+        plan: id_PlanR,
+        linea: id_LineaR,
+        proyecto: id_Proyect,
+        semillero: id_Sem1,
+
     };
     Utilitario.agregarMascara();
     fetch("../../back/controller/CapacitacionesController_List_Plan.php", {
@@ -800,10 +831,10 @@ function obtenerDatosCapacitaciones() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-               
+
                 Plataform: "web",
             },
-                  body: JSON.stringify(order),
+            body: JSON.stringify(order),
         })
         .then(function(response) {
             if (response.ok) {
@@ -813,7 +844,7 @@ function obtenerDatosCapacitaciones() {
         })
         .then(function(data) {
             listadoCapacitaciones(data.capacitaciones2);
-                cerrarModalCapacitaciones();
+            cerrarModalCapacitaciones();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -829,10 +860,10 @@ function obtenerDatosCapacitaciones() {
                     }
                 });
             } else {
-//                Mensaje.mostrarMsjError(
-//                    "Error",
-//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-//                );
+                //                Mensaje.mostrarMsjError(
+                //                    "Error",
+                //                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                //                );
             }
         })
         .finally(function() {
@@ -851,13 +882,13 @@ function listadoCapacitaciones(capacitaciones2) {
 
 
 function registrarCapacitaciones() {
-  
-   
-    id_Sem1=Utilitario.getLocal('id_semillero');
-    id_Proyect=$('#proyecto_linea2').val();
-    id_PlanR=$('#id_planReg').val();
-    id_LineaR=$('#lineas_investigacion2').val();
-      
+
+
+    id_Sem1 = Utilitario.getLocal('id_semillero');
+    id_Proyect = $('#proyecto_linea2').val();
+    id_PlanR = $('#id_planReg').val();
+    id_LineaR = $('#lineas_investigacion2').val();
+
     let ordenes = {
         tema: $('#temaCap').val(),
         docente: $('#docenteCap').val(),
@@ -868,9 +899,9 @@ function registrarCapacitaciones() {
         linea_id: id_LineaR,
         plan_accion_id: id_PlanR,
         proy_id: id_Proyect,
-      
-    
-      
+
+
+
     };
 
     Utilitario.agregarMascara();
@@ -879,7 +910,7 @@ function registrarCapacitaciones() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-          
+
                 Plataform: "web",
             },
             body: JSON.stringify(ordenes),
@@ -893,8 +924,8 @@ function registrarCapacitaciones() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-                obtenerDatosCapacitaciones();
-                cerrarItemPlanLineas;
+            obtenerDatosCapacitaciones();
+            cerrarItemPlanLineas;
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -910,10 +941,10 @@ function registrarCapacitaciones() {
                     }
                 });
             } else {
-//                Mensaje.mostrarMsjError(
-//                    "Error",
-//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-//                );
+                //                Mensaje.mostrarMsjError(
+                //                    "Error",
+                //                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                //                );
             }
         })
         .finally(function() {
@@ -924,19 +955,15 @@ function registrarCapacitaciones() {
 
 
 function obtenerDatosLineas_has_proyectos() {
-    
 
-    
-    id_Proyect=$('#proyecto_linea2').val();
-    id_PlanR=$('#id_planReg').val();
-    id_LineaR=$('#lineas_investigacion2').val();
  
+
     let order = {
-        plan:id_PlanR,
-        linea:id_LineaR,
-        proyecto:id_Proyect,
-   
- 
+        plan: id_PlanR,
+        linea: id_LineaR,
+        proyecto: id_Proyect,
+
+
     };
     Utilitario.agregarMascara();
     fetch("../../back/controller/Lineas_Poryectos_PlanController_ListId_1.php", {
@@ -944,10 +971,10 @@ function obtenerDatosLineas_has_proyectos() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-               
+
                 Plataform: "web",
             },
-                  body: JSON.stringify(order),
+            body: JSON.stringify(order),
         })
         .then(function(response) {
             if (response.ok) {
@@ -972,10 +999,10 @@ function obtenerDatosLineas_has_proyectos() {
                     }
                 });
             } else {
-//                Mensaje.mostrarMsjError(
-//                    "Error",
-//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-//                );
+                //                Mensaje.mostrarMsjError(
+                //                    "Error",
+                //                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                //                );
             }
         })
         .finally(function() {
@@ -1009,26 +1036,27 @@ function DeleteCapacitacionesP(id_order, id_proCap) {
  */
 
 function registrarLineas_semilleros() {
-  
-   
-    id_Sem1=Utilitario.getLocal('id_semillero');
-//    id_Proyect=$('#proyecto_linea2').val();
-//    id_PlanR=$('#id_planReg').val();
-//    id_LineaR=$('#lineas_investigacion2').val();
-//    id_LineaR=$('#anio').val();
-//    id_LineaR=$('#lineas_investigacion2').val();
-      
+
+ cerrarModalFinalizar();
+
+    id_Sem1 = Utilitario.getLocal('id_semillero');
+    //    id_Proyect=$('#proyecto_linea2').val();
+    //    id_PlanR=$('#id_planReg').val();
+    //    id_LineaR=$('#lineas_investigacion2').val();
+    //    id_LineaR=$('#anio').val();
+    //    id_LineaR=$('#lineas_investigacion2').val();
+
     let ordenes = {
-       
+
         anio: $('#anio').val(),
         semestre: $('#semestre').val(),
         semillero_id: id_Sem1,
-        linea_id:$('#lineas_investigacion2').val(),
+        linea_id: $('#lineas_investigacion2').val(),
         plan_accion_id: $('#id_planReg').val(),
         proy_id: $('#proyecto_linea2').val(),
-      
-    
-      
+
+
+
     };
 
     Utilitario.agregarMascara();
@@ -1037,7 +1065,7 @@ function registrarLineas_semilleros() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-          
+
                 Plataform: "web",
             },
             body: JSON.stringify(ordenes),
@@ -1051,8 +1079,13 @@ function registrarLineas_semilleros() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-                obtenerDatosLineas_has_proyectos();
-                cerrarModalCapacitaciones();
+
+            obtenerDatosLineas_has_proyectos();
+            
+            cerrarModalActividades()();
+            console.log("exitoso");
+
+            
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1068,10 +1101,10 @@ function registrarLineas_semilleros() {
                     }
                 });
             } else {
-//                Mensaje.mostrarMsjError(
-//                    "Error",
-//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-//                );
+                //                Mensaje.mostrarMsjError(
+                //                    "Error",
+                //                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                //                );
             }
         })
         .finally(function() {
@@ -1081,8 +1114,8 @@ function registrarLineas_semilleros() {
 }
 
 function mostrarModalOtrasCapacitaciones() {
-//    limpiarcampos();
-   $('#myModalActividades').modal({show: true});
+    //    limpiarcampos();
+    $('#myModalActividades').modal({ show: true });
     $("#btnOrderReg").show();
     $("#btnOrderAct").hide();
 }
@@ -1091,8 +1124,36 @@ function mostrarModalOtrasCapacitaciones() {
  * @method ocultarModalOrdenes
  * Método que se encarga de cerrar el modal para registro o actualizacion
  */
-function cerrarModalActividades () {
-       $('#myModalActividades').modal('hide');
+function cerrarModalActividades() {
+    $("#mostrarModalRegistro").hide();
+    $("#ModalTablaplan2").hide();
+
+    $("#ModalTablaRegistroPlan").hide();
+    $("#ModalDatosPlan").hide();
+
+    $("#mostrarModalRegistro").show();
+
+}
+function cerrarModalFinalizar() {
+    $("#ModalTablaplan2").hide();
+    $("#ModalTablaplan2").hide();
+    $("#ocultarTablaLineas").show();
+
+
+}
+
+function cerrarTerminar() {
+    
+   obtenerDatosPrincipales();
+
+
+    $("#ModalDatosPlan").hide();
+    $("#ModalTablaplan2").hide();
+    $("#collapseFour").hide();
+    $("#ModalTablaRegistroPlan").show();
+    $("#mostrarModalRegistro").hide();
+    $("#inicio_del_plan").hide();
+    $("#tabladeAcordeon").hide(); /** acordeones*/
 }
 
 
@@ -1101,7 +1162,7 @@ function cerrarModalActividades () {
  * @method AlumnoEliminar
  * Método que se encarga de eliminar el estudiante de todas la bd
  */
-function eliminarCapacitacionesP(id,proy_id) {
+function eliminarCapacitacionesP(id, proy_id) {
 
 
     let data = {
@@ -1114,7 +1175,7 @@ function eliminarCapacitacionesP(id,proy_id) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-            
+
                 Plataform: "web",
             },
 
@@ -1131,8 +1192,8 @@ function eliminarCapacitacionesP(id,proy_id) {
             Mensaje.mostrarMsjExito("Borrado Exitoso", data.mensaje);
 
 
-                MostrarDatosActividadesP(proy_id);
-                cerrarModalActividades();
+            MostrarDatosActividadesP(proy_id);
+            cerrarModalActividades();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1167,7 +1228,7 @@ function eliminarCapacitacionesP(id,proy_id) {
 
 //<editor-fold defaultstate="collapsed" desc="Registro de Otras  Actividades">
 
-function iniciarTablaOtrasCapacitaciones() {  /** tabla de otras actividades*/
+function iniciarTablaOtrasCapacitaciones() { /** tabla de otras actividades*/
 
     //tabla de alumnos
     $("#listadoTablaOtrasCap").DataTable({
@@ -1205,7 +1266,7 @@ function iniciarTablaOtrasCapacitaciones() {  /** tabla de otras actividades*/
                 className: "text-center",
                 orderable: false,
             },
-              {
+            {
                 data: "fecha",
                 className: "text-center",
                 orderable: false,
@@ -1215,8 +1276,8 @@ function iniciarTablaOtrasCapacitaciones() {  /** tabla de otras actividades*/
                 className: "text-center",
                 orderable: false,
             },
-         
-               {
+
+            {
                 orderable: false,
                 defaultContent: [
                     "<div class='text-center'>",
@@ -1246,12 +1307,12 @@ function iniciarTablaOtrasCapacitaciones() {  /** tabla de otras actividades*/
 
 
 
-function  MostrarDatosOtrasCap($semillero_id,$id_planReg) {
-    
-      let order = {
-        semillero_id:$semillero_id,
-        plan:$id_planReg,
- 
+function MostrarDatosOtrasCap(semillero_id, id_planReg) {
+
+    let order = {
+        semillero_id: semillero_id,
+        plan: $id_planReg,
+
     };
     Utilitario.agregarMascara();
     fetch("../../back/controller/Otras_actividadesController_List.php", {
@@ -1259,10 +1320,10 @@ function  MostrarDatosOtrasCap($semillero_id,$id_planReg) {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-               
+
                 Plataform: "web",
             },
-                  body: JSON.stringify(order),
+            body: JSON.stringify(order),
         })
         .then(function(response) {
             if (response.ok) {
@@ -1307,49 +1368,49 @@ function listadoOtrasCap(OtrasCap) {
 
 
 function AgregarOtrasCapcitaciones() {
-  
 
-    $semillero_id = Utilitario.getLocal('id_semillero');
-    $id_planReg = $('#id_planReg').val();
-//    
-//    nombre_actividadO = $("#nombre_actividadO").val();
-//    modalidad_participacionO = $("#modalidad_participacionO").val();
-//    fecha_realizacionO = $("#fecha_realizacionO").val();
-//    productoO = $("#productoO").val();
-//    responsableO = $("#responsableO").val();
-//
-//    semillero_id = Utilitario.getLocal('id_semillero');
-//    anio = $("#anio").val();
-//    semestre = $("#semestre").val();
-//    linea_investigacion_id = $("#lineas_investigacion2").val();
-//    proyectos_id = $("#proyecto_linea2").val();
-//    plan_accion_id: $('#id_planReg').val(),
-//
-//      
+
+    semillero_id = Utilitario.getLocal('id_semillero');
+    id_planReg = $('#id_planReg').val();
+    //    
+    //    nombre_actividadO = $("#nombre_actividadO").val();
+    //    modalidad_participacionO = $("#modalidad_participacionO").val();
+    //    fecha_realizacionO = $("#fecha_realizacionO").val();
+    //    productoO = $("#productoO").val();
+    //    responsableO = $("#responsableO").val();
+    //
+    //    semillero_id = Utilitario.getLocal('id_semillero');
+    //    anio = $("#anio").val();
+    //    semestre = $("#semestre").val();
+    //    linea_investigacion_id = $("#lineas_investigacion2").val();
+    //    proyectos_id = $("#proyecto_linea2").val();
+    //    plan_accion_id: $('#id_planReg').val(),
+    //
+    //      
     let ordenes = {
-    nombre_proyectoO : $("#nombre_proyectoO").val(),
-    nombre_actividadO : $("#nombre_actividadO").val(),
-    modalidad_participacionO : $("#modalidad_participacionO").val(),
-    fecha_realizacionO :$("#fecha_realizacionO").val(),
-    productoO : $("#productoO").val(),
-    responsableO :$("#responsableO").val(),
+        nombre_proyectoO: $("#nombre_proyectoO").val(),
+        nombre_actividadO: $("#nombre_actividadO").val(),
+        modalidad_participacionO: $("#modalidad_participacionO").val(),
+        fecha_realizacionO: $("#fecha_realizacionO").val(),
+        productoO: $("#productoO").val(),
+        responsableO: $("#responsableO").val(),
 
-    semillero_id : Utilitario.getLocal('id_semillero'),
-    anio : $("#anio").val(),
-    semestre : $("#semestre").val(),
-    linea_investigacion_id : $("#lineas_investigacion2").val(),
-    proyectos_id :$("#proyecto_linea2").val(),
-    plan_accion_id: $('#id_planReg').val(),
-    
+        semillero_id: Utilitario.getLocal('id_semillero'),
+        anio: $("#anio").val(),
+        semestre: $("#semestre").val(),
+        linea_investigacion_id: $("#lineas_investigacion2").val(),
+        proyectos_id: $("#proyecto_linea2").val(),
+        plan_accion_id: $('#id_planReg').val(),
+
     };
 
     Utilitario.agregarMascara();
     fetch("../../back/controller/Otras_actividadesController_Insert.php", {
-          method: "POST",
+            method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-             
+
                 Plataform: "web",
             },
             body: JSON.stringify(ordenes),
@@ -1363,8 +1424,9 @@ function AgregarOtrasCapcitaciones() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-                MostrarDatosOtrasCap($semillero_id,$id_planReg);
-//                SiguienteActividades(data.id,proyectos_id)
+              $('#ModalOtrasCapacitaciones').modal('hide');
+            MostrarDatosOtrasCap($semillero_id, $id_planReg);
+            //                SiguienteActividades(data.id,proyectos_id)
 
         })
         .catch(function(promise) {
@@ -1381,10 +1443,10 @@ function AgregarOtrasCapcitaciones() {
                     }
                 });
             } else {
-//                Mensaje.mostrarMsjError(
-//                    "Error",
-//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-//                );
+                //                Mensaje.mostrarMsjError(
+                //                    "Error",
+                //                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                //                );
             }
         })
         .finally(function() {
@@ -1404,8 +1466,7 @@ function UpdateOrder() {
 
     let order = {
         id: $('#idOrder').val(),
-       
-        //        pensum_id: '1',
+
     };
     Utilitario.agregarMascara();
     fetch("../../back/controller/OrdenesController_update.php", {
@@ -1413,7 +1474,7 @@ function UpdateOrder() {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-//                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
+                //                Authorization: JSON.parse(Utilitario.getLocal("user")).token,
                 Plataform: "web",
             },
             body: JSON.stringify(order),
@@ -1466,12 +1527,12 @@ function listadoActividades(actividades) {
 
 
 
-function DeleteActividades(id,proy_id) {
+function DeleteActividades(id, proy_id) {
     Mensaje.mostrarMsjConfirmacion(
         'Eliminar Registros',
         'Este proceso es irreversible , ¿esta seguro que desea eliminar este Registro?',
         function() {
-            eliminarActividad(id,proy_id);
+            eliminarActividad(id, proy_id);
         }
     );
 }
@@ -1484,18 +1545,20 @@ function DeleteActividades(id,proy_id) {
 function eliminarActividad(id, id_proCap) {
 
 
-   
+    var proyec = $('#proyecto_linea2').val();
+    var planss = $('#id_planReg').val();
+
     let data = {
         id: id,
 
     };
     Utilitario.agregarMascara();
-    fetch("../../back/controller/Capacitaciones_ProyectosController_Delete.php", {
+    fetch("../../back/controller/ActividadesController_Delete.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-            
+
                 Plataform: "web",
             },
 
@@ -1512,8 +1575,8 @@ function eliminarActividad(id, id_proCap) {
             Mensaje.mostrarMsjExito("Borrado Exitoso", data.mensaje);
 
 
-                obtenerDatosCapacitaciones();
-                cerrarModalCapacitaciones();
+            MostrarDatosActividadesP(planss, proyec);
+            cerrarModalCapacitaciones();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1551,8 +1614,8 @@ function eliminarActividad(id, id_proCap) {
 
 
 function ModalOtrasCapacitaciones() {
-    
-   $('#ModalOtrasCapacitaciones').modal({show: true});
+
+    $('#ModalOtrasCapacitaciones').modal({ show: true });
     $("#btnCapacitacionesReg2").show();
     $("#btnCapacitacionesAct2").hide();
 }
@@ -1562,7 +1625,7 @@ function ModalOtrasCapacitaciones() {
  * Método que se encarga de cerrar el modal para registro o actualizacion
  */
 function CerrarOtrasCapacitaciones() {
-     $('#ModalOtrasCapacitaciones').modal('hide');
+    $('#ModalOtrasCapacitaciones').modal('hide');
 }
 
 
@@ -1574,17 +1637,17 @@ function CerrarOtrasCapacitaciones() {
 
 //<editor-fold defaultstate="collapsed" desc="Select Disciplina">
 function cargarSelectProyectos(area) {
- 
+
     let disciplina = {
         id: area,
-  
+
     };
     fetch("../../back/controller/Proy_lineas_investController_List.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                 Plataform: "web",
+                Plataform: "web",
             },
             body: JSON.stringify(disciplina),
         })
@@ -1595,8 +1658,8 @@ function cargarSelectProyectos(area) {
             throw response;
         })
         .then(function(data) {
-//            console.log(data.disciplina);
-           
+            //            console.log(data.disciplina);
+
             construirSelecProy_linea(data.proy_linea);
         })
         .catch(function(promise) {
@@ -1622,28 +1685,29 @@ function cargarSelectProyectos(area) {
 }
 
 function cargarSelectProyectos2(area) {
-     
-    
-   
-    
-   $('#btnContinuarActividades').prop('disabled', false);
-   
+
+
+
+
+    $('#btnContinuarActividades').prop('disabled', false);
+
     cargarDatosProyectosLineasI2(area);
 }
+
 function cargarDatosProyectosLineasI2(area) {
-  
- 
-//    MostrarDatosOtrasCap(area);
+
+
+    //    MostrarDatosOtrasCap(area);
     let disciplina = {
         id: area,
-  
+
     };
     fetch("../../back/controller/Proy_lineas_investController_List2.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                 Plataform: "web",
+                Plataform: "web",
             },
             body: JSON.stringify(disciplina),
         })
@@ -1654,9 +1718,9 @@ function cargarDatosProyectosLineasI2(area) {
             throw response;
         })
         .then(function(data) {
-//            console.log(data.disciplina);
+            //            console.log(data.disciplina);
             gestionarItem(data.proy_linea);
-          
+
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1685,11 +1749,11 @@ function cargarDatosProyectosLineasI2(area) {
  * construye y agrega los tipos al contenedor
  */
 function construirSelecProy_linea(proy_linea) {
-        $("#proyecto_linea2").empty();
+    $("#proyecto_linea2").empty();
     let input = $("#proyecto_linea2");
-     let opcion = new Option("SELECCIONE", "-1");
-        $(opcion).html("SELECCIONE");
-        input.append(opcion);
+    let opcion = new Option("SELECCIONE", "-1");
+    $(opcion).html("SELECCIONE");
+    input.append(opcion);
 
     for (let index = 0; index < proy_linea.length; index++) {
         let disciplinas = proy_linea[index],
@@ -1702,29 +1766,29 @@ function construirSelecProy_linea(proy_linea) {
 }
 
 function gestionarItem(proy_linea) {
-   
+
     $('#investigador').val(proy_linea[0].investigador);
     $('#objetivoG').val(proy_linea[0].objetivoG);
     $('#fecha_ini').val(proy_linea[0].fecha_ini);
     $('#fecha_fin').val(proy_linea[0].fecha_fin);
     $('#producto').val(proy_linea[0].producto);
-    
-    }
+
+}
 //</editor-fold>
 
 //<editor-fold defaultstate="collapsed" desc="Select Lineas de Investigacion">
 function cargarSelectLineas(dpto) {
-   
+
     let dptos = {
         id: dpto,
-      };
-      
+    };
+
     fetch("../../back/controller/Sem_linea_investigacionController_ListId.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                 Plataform: "web",
+                Plataform: "web",
             },
             body: JSON.stringify(dptos),
         })
@@ -1752,10 +1816,10 @@ function cargarSelectLineas(dpto) {
                     }
                 });
             } else {
-//                Mensaje.mostrarMsjError(
-//                    "Error",
-//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-//                );
+                //                Mensaje.mostrarMsjError(
+                //                    "Error",
+                //                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                //                );
             }
         });
 }
@@ -1765,13 +1829,13 @@ function cargarSelectLineas(dpto) {
  * construye y agrega los tipos al contenedor
  */
 function construirSelectlineas(linea_sem) {
-            $("#lineas_investigacion2").empty();
+    $("#lineas_investigacion2").empty();
     let input = $("#lineas_investigacion2");
-     let opcion = new Option("SELECCIONE", " ");
-        $(opcion).html("SELECCIONE");
-        input.append(opcion);
-    
-  
+    let opcion = new Option("SELECCIONE", " ");
+    $(opcion).html("SELECCIONE");
+    input.append(opcion);
+
+
     for (let index = 0; index < linea_sem.length; index++) {
         let li_invs = linea_sem[index],
             opcion = new Option(li_invs.linea, li_invs.descripcion);
@@ -1786,3 +1850,11 @@ function construirSelectlineas(linea_sem) {
 
 
 //</editor-fold>
+
+
+function mostrarModalRegistro() {
+    //    limpiarcampos();
+    $('#myModalPublicaciones').modal({ show: true });
+    $("#btnOrderReg").show();
+    $("#btnOrderAct").hide();
+}

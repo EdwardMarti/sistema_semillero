@@ -14,12 +14,13 @@ $dataObject = json_decode($JSONData);
 
 $titulo = strip_tags($dataObject->titulo);
 $investigador = strip_tags($dataObject->investigador);
+$id_semillero = strip_tags($dataObject->id_semillero);
 
-if ($titulo == "" || $investigador == "") {
+if ($titulo == "" || $investigador == "" || $id_semillero == "") {
     http_response_code(400);
     echo "{\"mensaje\":\"Complete todos los campos \"}";
 } else {
-    $rpta = ProyectosFacade::insertBasico($titulo, $investigador);
+    $rpta = ProyectosFacade::insertBasico($titulo, $investigador, $id_semillero);
 
     try {
         if ($rpta > 0) {

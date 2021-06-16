@@ -16,10 +16,7 @@ $list=Pares_academicosFacade::delete($par_id);
 $list=PersonaFacade::delete($persona_id);
 $list_pares=Persona_has_semilleroFacade::deletecustom($par_id,$persona_id);
 
-if ($list == "") {
-   http_response_code(400);
-   echo "{\"mensaje\":\"Complete todos los campos\"}";
-} else {
+
    try {
        if ($list == 0) {
            http_response_code(200);
@@ -29,4 +26,3 @@ if ($list == "") {
        http_response_code(500);
        echo "{\"mensaje\":\"Error al eliminar el par academico\"}";
    }
-}

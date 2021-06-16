@@ -9,11 +9,16 @@
 include_once realpath('../facade/ProyectosFacade.php');
 
 
+$JSONData = file_get_contents("php://input");
+$dataObject = json_decode($JSONData);
+
+
+$id = strip_tags($dataObject->id);
+//$id = 20;
 
 
 
-
-        $list=ProyectosFacade::listAll();
+        $list=ProyectosFacade::listAll_id($id);
         $rta="";
         foreach ($list as $obj => $Proyectos) {	
 	       $rta.="{
@@ -33,3 +38,10 @@ include_once realpath('../facade/ProyectosFacade.php');
 	       },";
         }
 
+if ($rta != "" ) {
+    $rta = substr($rta, 0, -1);
+    http_response_code(200);
+    echo "{ \"projectos\":[{$rta}] }";
+ } else {
+    echo "{\"projectos\":[]}";
+ }

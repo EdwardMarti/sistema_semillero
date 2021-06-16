@@ -135,7 +135,7 @@ function dataItem(data) {
     var pRpta = data[0].p_estudio;
     cargarSelectPlanRpta(pRpta);
     $('#fecha').val(data[0].fecha_creacion);
-    $('#ubicacion').val(data[0].ubicacion);
+    $('#ubicacionS').val(data[0].ubicacion);
     $('#persona_Id').val(data[0].persona_Id);
     var rpDocen = data[0].persona_Id;
     obtenerDatosTitulos(rpDocen)
@@ -1178,6 +1178,7 @@ function ActualizarDatasemi() {
         departamentos: $('#departamentos').val(),
         facultades: $('#facultades').val(),
         p_estudio: $('#p_estudio').val(),
+        ubicacion: $('#ubicacionS').val(),
 
 
     };

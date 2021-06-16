@@ -52,9 +52,9 @@ $semillero_id=$otras_actividades->getSemillero_id()->getId();
 
 
       try {
-          $sql= "INSERT INTO `otras_actividades`(  `nombre_proyecto`, `nombre_actividad`, `modalidad_participacion`, `responsable`, `fecha_realizacion`, `producto`, `semillero_id`, `plan_accion_id`, `linea_id`, `proy_id` )"
-          ."VALUES ('$nombre_proyecto', '$nombre_actividad', '$modalidad_participacion', '$responsable', '$fecha_realizacion', '$producto', '$Semillero_id','$linea_investigacion_id','$proyectos_id','$plan_accion_id')";
-//  var_dump($sql);
+          $sql= "INSERT INTO `otras_actividades`(  `nombre_proyecto`, `nombre_actividad`, `modalidad_participacion`, `responsable`, `fecha_realizacion`, `producto`, `semillero_id`, `proy_id` )"
+          ."VALUES ('$nombre_proyecto', '$nombre_actividad', '$modalidad_participacion', '$responsable', '$fecha_realizacion', '$producto', '$Semillero_id','$plan_accion_id')";
+
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');

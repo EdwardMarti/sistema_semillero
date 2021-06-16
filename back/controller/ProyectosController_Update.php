@@ -1,7 +1,7 @@
 <?php
 
 include_once realpath('../facade/ProyectosFacade.php');
-
+include_once realpath('../facade/Proy_lineas_investFacade.php');
 
 $JSONData = file_get_contents("php://input");
 $dataObject = json_decode($JSONData);
@@ -25,6 +25,7 @@ if ($parte == 1) {
 }
 
 if ($parte == 1) {
+    Proy_lineas_investFacade::insertByProject($id,$linea_investigacion);
     $rpta = ProyectosFacade::updateParte1($id, $tiempo_ejecucion, $fecha_ini, $resumen, $linea_investigacion, $fecha_fin);
 } else if ($parte == 2) {
     $rpta = ProyectosFacade::updateParte2($id, $tiempo_ejecucion, $fecha_ini, $resumen, $linea_investigacion);

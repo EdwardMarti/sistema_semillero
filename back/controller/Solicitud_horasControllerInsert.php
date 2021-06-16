@@ -9,7 +9,7 @@ $semestre = strip_tags($dataObject->semestre);
 $horasCatedra = strip_tags($dataObject->horas_catedra);
 $horasPlanta = strip_tags($dataObject->horas_planta);
 $horasSolicitadas= strip_tags($dataObject->horas_solicitadas);
-$idSemillero = 2;
+$idSemillero = strip_tags($dataObject->idSemillero);
 
 $response = Solicitud_horasFacade::insert($anio,  $semestre,  $horasCatedra,  $horasPlanta,  $horasSolicitadas, $idSemillero);
 try {

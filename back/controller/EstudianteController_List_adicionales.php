@@ -19,29 +19,24 @@ $id = strip_tags($dataObject->semillero_id);
 
 $list=Datos_adicionalesSSFacade::list_adicionales($id);
 $rta="";
-$rta_pares="";
 
-foreach ($list as $obj => $Estudiante) {	
+foreach ($list as $obj => $datos_adicionalesS) {	
    $rta.="{
-   \"id\":\"{$Estudiante->getid()}\",
-   \"nombre\":\"{$Estudiante->getpersona_id()->getNombre()}\",
-   \"num_documento\":\"{$Estudiante->getnum_documento()}\",   
-   \"programa_academico\":\"{$Estudiante->getprograma_academico()}\",     
-   \"codigo\":\"{$Estudiante->getcodigo()}\",
-   \"semestre\":\"{$Estudiante->getsemestre()}\",
-   \"correo\":\"{$Estudiante->getpersona_id()->getCorreo()}\",
-   \"telefono\":\"{$Estudiante->getpersona_id()->getTelefono()}\",
-   \"persona_id_id\":\"{$Estudiante->getpersona_id()->getid()}\",
-   \"tipo_docuemnto_id_id\":\"{$Estudiante->gettipo_docuemnto_id()->getid()}\"
+   \"id\":\"{$datos_adicionalesS->getid()}\",
+   \"producto\":\"{$datos_adicionalesS->getProducto()}\",
+   \"descripcion\":\"{$datos_adicionalesS->getDescripcion()}\",   
+   \"fecha\":\"{$datos_adicionalesS->getFecha()}\",     
+   \"calificacion\":\"{$datos_adicionalesS->getCalificacion()}\",
+   \"plan_id\":\"{$datos_adicionalesS->getId_plan()}\",
+   \"semillero_id\":\"{$datos_adicionalesS->getId_semillero()}\"
    },";
 }
 
 
-if ($rta != "" || $rta_pares != "") {
+if ($rta != "" ) {
    $rta = substr($rta, 0, -1);
-   $rta_pares = substr($rta_pares, 0, -1);
    http_response_code(200);
-   echo "{ \"semillero\":$rta_semi,\"estudiante\":[{$rta}],\"pares\":[{$rta_pares}] }";
+   echo "{\"datos_adicionales\":[{$rta}]}";
 } else {
-   echo "{\"estudiante\":[]}";
+   echo "{\"datos_adicionales\":[]}";
 }

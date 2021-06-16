@@ -15,6 +15,7 @@ $dataObject = json_decode($JSONData);
 
 
 $docente = strip_tags($dataObject->docente_id);
+$semillero_id = strip_tags($dataObject->semillero_id);
 $list = SemilleroFacade::listAll_docente($docente);
 $rta_semi="";
 $semillero_copy = $list[0];
@@ -33,8 +34,8 @@ foreach ($list as $obj => $Semillero) {
 }
 
 $id = strip_tags($semillero_copy->getid());
-$list=EstudianteFacade::listAll_Semillero($id);
-$list_pares=Pares_academicosFacade::listAll($id);
+$list=EstudianteFacade::listAll_Semillero($semillero_id);
+$list_pares=Pares_academicosFacade::listAll($semillero_id);
 $rta="";
 $rta_pares="";
 
@@ -57,9 +58,9 @@ foreach ($list_pares as $obj => $Pares_academicos) {
    $rta_pares.="{
       \"id\":\"{$Pares_academicos->getid()}\",
       \"inst_empresa\":\"{$Pares_academicos->getinst_empresa()}\",
-      \"nombre\":\"{$Estudiante->getPersona_id()->getNombre()}\",
-      \"correo\":\"{$Estudiante->getPersona_id()->getCorreo()}\",
-      \"telefono\":\"{$Estudiante->getPersona_id()->getTelefono()}\",
+      \"nombrep\":\"{$Pares_academicos->getPersona_id()->getNombre()}\",
+      \"correo\":\"{$Pares_academicos->getPersona_id()->getCorreo()}\",
+      \"telefono\":\"{$Pares_academicos->getPersona_id()->getTelefono()}\",
       \"persona_id_id\":\"{$Pares_academicos->getPersona_id()->getId()}\",
       \"numero_docuemnto\":\"{$Pares_academicos->getnumero_docuemnto()}\",
       \"tipo_docuemnto_id_id\":\"{$Pares_academicos->gettipo_docuemnto_id()->getid()}\"

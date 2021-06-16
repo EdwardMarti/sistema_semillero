@@ -51,6 +51,7 @@ $idSemillero = $solicitud_horas->getId_semillero();
      * @throws NullPointerException Si los objetos correspondientes a las llaves foraneas son null
      */
   public function select($solicitud_horas){
+
       $id=$solicitud_horas->getId();
 
       try {
@@ -58,16 +59,18 @@ $idSemillero = $solicitud_horas->getId_semillero();
           ."FROM `solicitud_horas`"
           ."WHERE `id`='$id'";
           $data = $this->ejecutarConsulta($sql);
-          for ($i=0; $i < count($data) ; $i++) {
-          //$solicitud_horas->setId($data[$i]['id']);
-          $solicitud_horas->setAnio($data[$i]['anio']);
-          $solicitud_horas->setSemestre($data[$i]['semestre']);
-          $solicitud_horas->setHoras_catedra($data[$i]['horas_catedra']);
-          $solicitud_horas->setHoras_planta($data[$i]['horas_planta']);
-          $solicitud_horas->setHoras_solicitadas($data[$i]['horas_solicitadas']);
-          $solicitud_horas->setId_semillero($data[$i]["id_semillero"]);
-          }
-      return $solicitud_horas;      } catch (SQLException $e) {
+          //return $data;
+          $solicitud_horas = new Solicitud_horas();
+          $solicitud_horas->setAnio($data[0]['anio']);
+          $solicitud_horas->setSemestre($data[0]['semestre']);
+          $solicitud_horas->setHoras_catedra($data[0]['horas_catedra']);
+          $solicitud_horas->setHoras_planta($data[0]['horas_planta']);
+          $solicitud_horas->setHoras_solicitadas($data[0]['horas_solicitadas']);
+          $solicitud_horas->setId_semillero($data[0]["id_semillero"]);
+
+
+          return $solicitud_horas;
+      } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       return null;
       }

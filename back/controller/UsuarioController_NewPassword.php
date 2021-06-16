@@ -1,6 +1,6 @@
 <?php
 
-include_once realpath('../facade/UsuarioFacade.php');
+include_once realpath('../facade/UsuariosFacade.php');
 
 $JSONData = file_get_contents("php://input");
 $dataObject = json_decode($JSONData);
@@ -14,7 +14,7 @@ if ($clave == "" || $token == "") {
     echo "{\"mensaje\":\"Complete todos los campos.\"}";
 } else {
 
-    $list = UsuarioFacade::newPass($clave, $token);
+    $list = UsuariosFacade::newPass($clave, $token);
     if ($list == null) {
         http_response_code(400);
         echo "{\"mensaje\":\"Debe generar un nuevo token este ya ha caducado.\"}";

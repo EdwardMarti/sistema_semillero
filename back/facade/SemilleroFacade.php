@@ -145,12 +145,12 @@ class SemilleroFacade {
      $semilleroDao->update($semillero);
      $semilleroDao->close();
   }
-  public static function update_Data($id, $nombre, $sigla, $fecha_creacion, $Grupo_investigacion_id, $departamento, $facultad, $plan_estudios){
+  public static function update_Data($id, $nombre, $sigla, $fecha_creacion, $Grupo_investigacion_id, $departamento, $facultad, $plan_estudios , $ubicacion ){
      
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $semilleroDao =$FactoryDao->getsemilleroDao(self::getDataBaseDefault());
-     $result =  $semilleroDao->update_Data($id, $nombre, $sigla, $fecha_creacion, $Grupo_investigacion_id, $departamento, $facultad, $plan_estudios);
+     $result =  $semilleroDao->update_Data($id, $nombre, $sigla, $fecha_creacion, $Grupo_investigacion_id, $departamento, $facultad, $plan_estudios , $ubicacion );
      $semilleroDao->close();
      return $result;
      

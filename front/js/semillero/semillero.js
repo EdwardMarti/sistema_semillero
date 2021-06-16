@@ -2,7 +2,7 @@ $(document).ready(function() {
     iniciarTablaEstudiantes();
     iniciarTablaPares();
     iniciarTablaProjectos();
-    obtenerDatosEstudiantes();
+    obtenerDatosEstudiantes2();
     //    cargarSelectInspector();
     //    ocultarModalOrdenes();
     /*     $("#btnOrderAct").hide();
@@ -20,9 +20,9 @@ function iniciarTablaEstudiantes() {
     //tabla de alumnos
     $("#listadoEstudiantesTabla").DataTable({
         responsive: true,
-        ordering: false,
-        paging: false,
-        searching: false,
+        ordering: true,
+        paging: true,
+        searching: true,
         info: true,
         lengthChange: false,
         language: {
@@ -159,9 +159,9 @@ function iniciarTablaPares() {
     //tabla de alumnos
     $("#listadoParesTabla").DataTable({
         responsive: true,
-        ordering: false,
-        paging: false,
-        searching: false,
+        ordering: true,
+        paging: true,
+        searching: true,
         info: true,
         lengthChange: false,
         language: {
@@ -183,7 +183,7 @@ function iniciarTablaPares() {
                 visible: false,
             },
             {
-                data: "nombre",
+                data: "nombrep",
                 className: "text-center",
                 orderable: true,
             },
@@ -284,10 +284,11 @@ function iniciarTablaPares() {
  * Método que se encarga de consumir el servicio que devuelve la data para la tabla de alumnos.
  */
 
-function obtenerDatosEstudiantes() {
+function obtenerDatosEstudiantes2() {
     let semi = {
         /*  id: $('#semi_id').val(), */
-        docente_id: 2,
+        docente_id: Utilitario.getLocal('id'),
+        semillero_id: Utilitario.getLocal('id_semillero'),
     };
     /*   Utilitario.agregarMascara(); */
     console.log(semi);
@@ -308,14 +309,15 @@ function obtenerDatosEstudiantes() {
             throw response;
         })
         .then(function(data) {
-
+            console.log(data)
             $("#semi_id").val(data.semillero.id);
             $("#semi_nombre").val(data.semillero.nombre);
             $("#semi_grupo").val(data.semillero.grupo_investigacion_id_id);
             $("#semi_sigla").val(data.semillero.sigla);
             $("#semi_inv").val(1);
-            if (data.estudiante.length > 0)
+            if (data.estudiante.length > 0) {
                 listadoEspecialEstudiantes(data.estudiante);
+            }
             if (data.pares.length > 0)
                 listadoEspecialPares(data.pares);
         })
@@ -1137,7 +1139,7 @@ function registrarEstu() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            obtenerDatosEstudiantes();
+            obtenerDatosEstudiantes2();
             cerrarModalEstu();
         })
         .catch(function(promise) {
@@ -1204,7 +1206,7 @@ function registrarPares() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            obtenerDatosEstudiantes();
+            obtenerDatosEstudiantes2();
             cerrarModalPares();
         })
         .catch(function(promise) {
@@ -1604,9 +1606,9 @@ function cerrarModalPares() {
 
 function obtenerDatosProjectos() {
     let semi = {
-        docente_id: 2,
+        id: Utilitario.getLocal('id_semillero'),
     };
-    fetch("../../back/controller/ProyectosControllerList.php", {
+    fetch("../../back/controller/ProyectosController_List_id.php", {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -1750,4 +1752,9 @@ function iniciarTablaProjectos() {
         ],
     });
 
+}
+
+
+function abrirModalRegistrP() {
+      $('#myModalRegistrP').modal({ show: true });
 }

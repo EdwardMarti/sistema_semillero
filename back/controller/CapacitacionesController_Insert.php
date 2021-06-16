@@ -23,14 +23,7 @@ $dataObject = json_decode($JSONData);
         $proy_id = strip_tags($dataObject->proy_id);
         $plan_accion_id = strip_tags($dataObject->plan_accion_id);
        
-   
-        if($linea_id=="" and $proy_id=="" and $plan_accion_id =="" ){
-           $linea_id = "";
-           $proy_id = "";
-           $plan_accion_id = "";
-        }
-        
-        $rpta= CapacitacionesFacade::insertCap($tema, $docente,$objetivo, $fecha, $cant_capacitados, $Semillero_id,$linea_id,$proy_id,$plan_accion_id);
+           $rpta= CapacitacionesFacade::insertCap($tema, $docente,$objetivo, $fecha, $cant_capacitados, $Semillero_id,$linea_id,$proy_id,$plan_accion_id);
        try {
     if ($rpta > 0) {
         http_response_code(200);

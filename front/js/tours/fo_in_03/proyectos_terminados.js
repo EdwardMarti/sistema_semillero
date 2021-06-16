@@ -1,9 +1,8 @@
-$(document).ready(function () {
+$(document).ready(function() {
     let msg_culminacion_tour = "Tour de proyectos terminados completado";
     var tour = new Tour({
         framework: "bootstrap4",
-        steps: [
-            {
+        steps: [{
                 element: "#accordionExample",
                 title: "Proyectos Terminados",
                 content: "Cada item de este menu le permitira modificar los datos relacionados a un proyecto.",
@@ -13,7 +12,7 @@ $(document).ready(function () {
                     document.getElementById("_fo_in_03").click();
                     $("#collapseOne").toggle();
                 },
-                onHide:()=>{
+                onHide: () => {
                     $("#collapseOne").toggle();
                 }
             },
@@ -38,7 +37,7 @@ $(document).ready(function () {
                     $("#collapseTwo").toggle();
                     $("#collapseThree").toggle();
                 },
-            },{
+            }, {
                 element: "#collapseThree",
                 title: "Estudiantes",
                 content: "En esta seccion podras ver los estudiantes relacionados al proyecto ademas de poder <strong>agregar</strong> o <strong>eliminar</strong> cuando lo requieras.",
@@ -59,7 +58,7 @@ $(document).ready(function () {
                     $("#collapseFour").toggle();
                     $("#collapseFive").toggle();
                 },
-            },{
+            }, {
                 element: "#collapseFive",
                 title: "Objetivos",
                 content: "Agrege los datos requeridos y guarde los cambios dando click en el boton <strong>Actualizar</strong>.",
@@ -69,9 +68,9 @@ $(document).ready(function () {
                     $("#collapseSix").toggle();
                     $("#collapseFive").toggle();
                 },
-            },{
+            }, {
                 element: "#collapseSix",
-                title: "Costos",
+                title: "Fuentes",
                 content: "En esta seccion podras ver las fuentes relacionados al proyecto ademas de poder <strong>agregar</strong> o <strong>eliminar</strong> cuando lo requieras.",
                 placement: "top",
                 backdrop: true,
@@ -91,7 +90,7 @@ $(document).ready(function () {
     tour._options["template"] = tour._options["template"].replace("Prev", "Anterior");
     tour._options["template"] = tour._options["template"].replace("End tour", "Finalizar");
 
-    $(".startTour").click(function () {
+    $(".startTour").click(function() {
         tour.restart();
     });
 });

@@ -471,7 +471,7 @@ class Menu {
     static proyectosEjecucion() {
 
         Utilitario.agregarMascara();
-        fetch("añadirPlanAccion.html", {
+        fetch("proyectosEjecucion.html", {
                 method: "GET",
             })
             .then(function(response) {

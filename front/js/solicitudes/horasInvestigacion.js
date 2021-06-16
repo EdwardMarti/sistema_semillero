@@ -4,9 +4,10 @@ $(document).ready(function () {
 });
 
 function cargarHorasBySemillero() {
+    console.log("id del semillero ", Utilitario.getLocal('id_semillero'))
     fetch("../../back/controller/Solicitud_horasControllerList.php", {
         method: "POST",
-        body: JSON.stringify({ id: 2 }),
+        body: JSON.stringify({ id: Utilitario.getLocal('id_semillero') }),
         headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -173,6 +174,7 @@ function registrarSolicitudHoras() {
     ]);
 
     let solicitudHora = {
+        idSemillero:Utilitario.getLocal('id_semillero'),
         anio: document.getElementById("anio").value,
         semestre: document.getElementById("semestre").value,
         horas_catedra: document.getElementById("horas_catedra").value,
@@ -343,6 +345,7 @@ function closeModalRegistroHoras() {
 }
 
 function makeSolicitudHorasPdf(id) {
+    console.log("id -> ", id)
     fetch("../../back/controller/Solicitud_horasControllerReporte.php", {
         method: "POST",
         body: JSON.stringify({"id":id}),

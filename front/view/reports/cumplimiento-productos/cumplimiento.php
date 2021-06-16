@@ -1,6 +1,6 @@
 <?php
 require_once "../../../../vendor/autoload.php";
-require_once('./styles.css');
+//require_once('./styles.css');
 /**
 de Gestión presentado por el (Grupo) de Investigación la vaca loa
 de Gestión presentado por el (Semillero__) de Investigación yo quiero asado
@@ -16,8 +16,6 @@ if(strtoupper(substr(PHP_OS, 0, 3))== "WIN"){
 }else{
     $mpdf = new \Mpdf\Mpdf(['tempDir' => '/tmp','setAutoBottomMargin' => 'stretch','setAutoTopMargin' => 'stretch']);
 }
-//
-
 
 $htmlHeader = getHeader();
 $htmlHeader = str_replace("_codigo", $data['codigo'] , $htmlHeader);

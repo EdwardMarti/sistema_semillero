@@ -1,0 +1,373 @@
+[14-Jun-2021 23:07:38 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`semillero`.`plan_accion_has_proyectos`, CONSTRAINT `fk_plan_accion_has_proyectos_proyectos1` FOREIGN KEY (`proyectos_id`) REFERENCES `proyectos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION) in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/Proy_lineas_investDao.php:228
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/Proy_lineas_investDao.php(228): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/Proy_lineas_investDao.php(55): Proy_lineas_investDao->insertarConsulta('INSERT INTO `pl...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/Proy_lineas_investFacade.php(62): Proy_lineas_investDao->insert2('67', '-1', '39', '1', '2022')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/Plan_accionController_Insert.php(30): Proy_lineas_investFacade::insert2('67', in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/Proy_lineas_investDao.php on line 228
+[14-Jun-2021 23:35:09 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[14-Jun-2021 23:35:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[14-Jun-2021 23:36:49 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[14-Jun-2021 23:36:49 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[14-Jun-2021 23:37:43 UTC] PHP Notice:  Undefined property: stdClass::$ubicacion in /home7/nortcodingdemos/public_html/semillero/back/controller/SemilleroController_Update_datos.php on line 26
+[14-Jun-2021 23:37:55 UTC] PHP Notice:  Undefined property: stdClass::$ubicacion in /home7/nortcodingdemos/public_html/semillero/back/controller/SemilleroController_Update_datos.php on line 26
+[14-Jun-2021 23:38:13 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[14-Jun-2021 23:38:13 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[14-Jun-2021 23:38:29 UTC] PHP Notice:  Undefined property: stdClass::$ubicacion in /home7/nortcodingdemos/public_html/semillero/back/controller/SemilleroController_Update_datos.php on line 26
+[14-Jun-2021 23:38:34 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[14-Jun-2021 23:38:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[14-Jun-2021 23:39:11 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[14-Jun-2021 23:39:11 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[14-Jun-2021 23:43:57 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:43:57 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:43:57 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:43:57 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:43:57 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:43:58 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-25', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(33): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-25', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:44:04 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:44:04 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:44:04 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:44:04 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:44:04 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:44:05 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-25', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(33): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-25', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:44:07 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:44:07 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:44:07 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:44:07 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:44:07 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:44:07 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:44:07 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:44:07 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:44:07 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:44:07 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:44:08 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-25', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(33): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-25', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:44:08 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-25', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(33): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-25', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:44:40 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:44:40 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:44:40 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:44:40 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:44:40 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:44:41 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-17', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(33): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-17', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:44:49 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:44:49 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:44:49 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:44:49 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:44:49 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:44:50 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-17', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(33): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-17', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:44:50 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:44:51 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-17', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(33): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-17', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:44:51 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-17', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(33): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-17', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:44:51 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-17', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(33): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-17', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:45:25 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:45:25 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:45:25 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:45:25 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:45:25 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:45:26 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-24', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(33): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-24', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:45:52 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:45:52 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:45:52 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:45:52 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:45:52 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:45:53 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gestion de Acti...', 'Andrew Janey', '', '2021-06-24', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(33): CapacitacionesFacade::insertCap('Gestion de Acti...', 'Andrew Janey', '', '2021-06-24', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:50:26 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:50:26 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:50:26 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:50:26 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:50:26 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:50:27 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gestion de Acti...', 'Andrew Janey', '', '2021-06-24', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(34): CapacitacionesFacade::insertCap('Gestion de Acti...', 'Andrew Janey', '', '2021-06-24', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:51:11 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:51:11 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:51:11 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:51:11 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:51:11 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:51:12 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-02', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(34): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-02', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:51:30 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:51:30 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:51:30 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:51:30 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:51:30 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:51:31 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-02', '50', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(34): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-02', '50', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[14-Jun-2021 23:52:08 UTC] PHP Notice:  Undefined property: stdClass::$objetivo in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 18
+[14-Jun-2021 23:52:08 UTC] PHP Notice:  Undefined property: stdClass::$semillero_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 21
+[14-Jun-2021 23:52:08 UTC] PHP Notice:  Undefined property: stdClass::$linea_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 22
+[14-Jun-2021 23:52:08 UTC] PHP Notice:  Undefined property: stdClass::$proy_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 23
+[14-Jun-2021 23:52:08 UTC] PHP Notice:  Undefined property: stdClass::$plan_accion_id in /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php on line 24
+[14-Jun-2021 23:52:09 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: '' for column `semillero`.`capacitaciones`.`semillero_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-15', '43', '', '', '', '')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(34): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Andrew Janey', '', '2021-06-15', '43', '', '', '', '')
+#4 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[15-Jun-2021 00:01:46 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'No Aplica' for column `semillero`.`capacitaciones`.`plan_accion_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Gesti\xC3\xB3n de Act...', 'No Aplica', '2021-06-10', '50', '4', 'No Aplica', 'No Aplica', 'No Aplica')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(26): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Gesti\xC3\xB3n de Act...', 'No Aplica', '2021-06-10', '50', in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[15-Jun-2021 00:05:57 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1366 Incorrect integer value: 'No Aplica' for column `semillero`.`capacitaciones`.`plan_accion_id` at row 1 in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php:283
+Stack trace:
+#0 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(283): PDOStatement->execute()
+#1 /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php(56): CapacitacionesDao->insertarConsulta('INSERT INTO `ca...')
+#2 /home7/nortcodingdemos/public_html/semillero/back/facade/CapacitacionesFacade.php(65): CapacitacionesDao->insertCap('Gesti\xC3\xB3n de Act...', 'Gesti\xC3\xB3n de Act...', 'No Aplica', '2021-06-10', '50', '4', 'No Aplica', 'No Aplica', 'No Aplica')
+#3 /home7/nortcodingdemos/public_html/semillero/back/controller/CapacitacionesController_Insert.php(26): CapacitacionesFacade::insertCap('Gesti\xC3\xB3n de Act...', 'Gesti\xC3\xB3n de Act...', 'No Aplica', '2021-06-10', '50', in /home7/nortcodingdemos/public_html/semillero/back/dao/entities/CapacitacionesDao.php on line 283
+[15-Jun-2021 00:12:28 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:12:28 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:25:58 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:25:58 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:30:03 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:30:03 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:30:39 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:30:39 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:30:56 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:30:56 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:32:48 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:32:48 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:32:57 UTC] PHP Notice:  Undefined property: stdClass::$ubicacion in /home7/nortcodingdemos/public_html/semillero/back/controller/SemilleroController_Update_datos.php on line 26
+[15-Jun-2021 00:33:05 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:33:05 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:33:32 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:33:32 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:33:39 UTC] PHP Notice:  Undefined property: stdClass::$ubicacion in /home7/nortcodingdemos/public_html/semillero/back/controller/SemilleroController_Update_datos.php on line 26
+[15-Jun-2021 00:38:29 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:38:29 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:43:05 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:43:05 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:44:33 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:44:33 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:47:01 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:47:01 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:47:06 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:47:06 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:48:10 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:48:10 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:48:27 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:48:27 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:50:40 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:50:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:51:17 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:51:17 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:51:33 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:51:33 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:51:53 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:51:53 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:52:04 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:52:04 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:52:22 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:52:22 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:52:44 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:52:44 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:53:16 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:53:16 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:53:29 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:53:29 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:54:02 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:54:02 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35
+[15-Jun-2021 00:54:17 UTC] PHP Notice:  Undefined offset: 0 in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 20
+[15-Jun-2021 00:54:17 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getid() on null in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php:35
+Stack trace:
+#0 {main}
+  thrown in /home7/nortcodingdemos/public_html/semillero/back/controller/EstudianteController_list_Semillero.php on line 35

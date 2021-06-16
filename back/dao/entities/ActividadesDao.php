@@ -47,7 +47,7 @@ $proyectos_id=$actividades->getProyectos_id()->getId();
 
     
        try {
-          $sql= "INSERT INTO `actividades`( `descripcion`, `proyectos_id`, `ano`) VALUES ('$descripcion','$pro_id','$plan_id')";
+          $sql= "INSERT INTO `actividades`( `descripcion`, `proyectos_id`, `ano` ) VALUES ('$descripcion','$pro_id','$plan_id')";
         
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {

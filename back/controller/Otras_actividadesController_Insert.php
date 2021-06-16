@@ -11,20 +11,8 @@ include_once realpath('../facade/Otras_actividadesFacade.php');
 
 $JSONData = file_get_contents("php://input");
 $dataObject = json_decode($JSONData);
-//
-//  nombre_proyectoO : $("#nombre_proyectoO").val(),
-//    nombre_actividadO : $("#nombre_actividadO").val(),
-//    modalidad_participacionO : $("#modalidad_participacionO").val(),
-//    fecha_realizacionO :$("#fecha_realizacionO").val(),
-//    productoO : $("#productoO").val(),
-//    responsableO :$("#responsableO").val(),
-//
-//    semillero_id : Utilitario.getLocal('id_semillero'),
-//    anio : $("#anio").val(),
-//    semestre : $("#semestre").val(),
-//    linea_investigacion_id : $("#lineas_investigacion2").val(),
-//    proyectos_id :$("#proyecto_linea2").val(),
-//    plan_accion_id: $('#id_planReg').val(),
+
+
  
         $nombre_proyecto = strip_tags($dataObject->nombre_proyectoO);
         $nombre_actividad = strip_tags($dataObject->nombre_actividadO);

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    id_Semil = '2';
+    id_Semil = Utilitario.getLocal('id_semillero');
     iniciarTablaC();
     obtenerDatosC(id_Semil);
 
@@ -216,6 +216,11 @@ function cerrarModalCapacitaciones() {
 function registrarCapacitacion() {
 
     let capacitacion = {
+        objetivo: "No Aplica",
+        semillero_id : Utilitario.getLocal('id_semillero'),
+        linea_id  : "0",
+        proy_id   : "0",
+        plan_accion_id    : "0",
         tema: $('#tema').val(),
         docente: $('#docente').val(),
         fecha: $('#fecha').val(),

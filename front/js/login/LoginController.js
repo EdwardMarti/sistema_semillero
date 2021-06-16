@@ -120,7 +120,7 @@ class LoginController {
      */
     static recuperarClave(correo) {
         Utilitario.agregarMascara();
-        fetch("../../../back/controller/UsuarioController_Recover.php", {
+        fetch("../../back/controller/UsuarioController_Recover.php", {
                 method: "POST",
                 headers: {
                     Accept: "application/json",
@@ -170,7 +170,7 @@ class LoginController {
      */
     static cambiarClave(token, clave) {
         Utilitario.agregarMascara();
-        fetch("../../../back/controller/UsuarioController_NewPassword.php", {
+        fetch("../../back/controller/UsuarioController_NewPassword.php", {
                 method: "POST",
                 headers: {
                     Accept: "application/json",
