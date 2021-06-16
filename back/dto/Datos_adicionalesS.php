@@ -14,6 +14,7 @@ class Datos_adicionalesS {
   private $producto;
   private $descripcion;
   private $fecha;
+  private $responsable;
   private $calificacion;
   private $id_plan;
   private $id_semillero;
@@ -82,6 +83,14 @@ class Datos_adicionalesS {
 
     function setId_semillero($id_semillero) {
         $this->id_semillero = $id_semillero;
+    }
+
+    function getResponsable() {
+        return $this->responsable;
+    }
+
+    function setResponsable($responsable) {
+        $this->responsable = $responsable;
     }
 
 

@@ -9,8 +9,8 @@
 
 require_once realpath('../facade/GlobalController.php');
 require_once realpath('../dao/interfaz/IFactoryDao.php');
-require_once realpath('../dto/Datos_adicionalesSS.php');
-require_once realpath('../dao/interfaz/IDatos_adicionalesSSDao.php');
+require_once realpath('../dto/Datos_adicionalesS.php');
+require_once realpath('../dao/interfaz/IDatos_adicionalesSDao.php');
 
 class Datos_adicionalesSSFacade {
 
@@ -41,12 +41,12 @@ class Datos_adicionalesSSFacade {
    * @param clas_colciencias
    * @param cate_colciencias
    */
-  public static function insert( $id,  $producto,  $descripcion,  $fecha,  $calificacion,  $id_plan,  $id_semillero,  $clas_colciencias,  $cate_colciencias){
+  public static function insert( $producto,  $descripcion, $responsable,  $fecha,  $calificacion,  $id_plan,  $id_semillero){
       $datos_adicionalesS = new Datos_adicionalesS();
-      $datos_adicionalesS->setId($id); 
       $datos_adicionalesS->setProducto($producto); 
       $datos_adicionalesS->setDescripcion($descripcion); 
       $datos_adicionalesS->setFecha($fecha); 
+      $datos_adicionalesS->setResponsable($responsable); 
       $datos_adicionalesS->setCalificacion($calificacion); 
       $datos_adicionalesS->setId_plan($id_plan); 
       $datos_adicionalesS->setId_semillero($id_semillero); 
@@ -77,11 +77,11 @@ class Datos_adicionalesSSFacade {
      return $result;
   }
   public static function list_adicionales($id){
-      $datos_adicionalesS = new Datos_adicionalesS();
-     $FactoryDao=new FactoryDao(self::getGestorDefault());
-     $datos_adicionalesSDao =$FactoryDao->getdatos_adicionalesDaoDao(self::getDataBaseDefault());
-     $result = $datos_adicionalesSDao->list_adicionales($id);
-     $datos_adicionalesSDao->close();
+        $datos_adicionalesS = new Datos_adicionalesS();
+        $FactoryDao=new FactoryDao(self::getGestorDefault());
+        $datos_adicionalesSDao =$FactoryDao->getdatos_adicionalesDaoDao(self::getDataBaseDefault());
+        $result = $datos_adicionalesSDao->list_adicionales($id);
+        $datos_adicionalesSDao->close();
      return $result;
   }
 
@@ -98,11 +98,12 @@ class Datos_adicionalesSSFacade {
    * @param clas_colciencias
    * @param cate_colciencias
    */
-  public static function update($id, $producto, $descripcion, $fecha, $calificacion, $id_plan, $id_semillero){
+  public static function update($id, $producto, $descripcion, $fecha, $responsable, $calificacion, $id_plan, $id_semillero){
       $datos_adicionalesS = self::select($id);
       $datos_adicionalesS->setProducto($producto); 
       $datos_adicionalesS->setDescripcion($descripcion); 
       $datos_adicionalesS->setFecha($fecha); 
+       $datos_adicionalesS->setResponsable($responsable); 
       $datos_adicionalesS->setCalificacion($calificacion); 
       $datos_adicionalesS->setId_plan($id_plan); 
       $datos_adicionalesS->setId_semillero($id_semillero); 

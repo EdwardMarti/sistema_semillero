@@ -1,20 +1,20 @@
 $(document).ready(function() {
-    iniciarTablaEstudiantes();
-    obtenerDatosEstudiantes();
-    id_Semil = '2';
-    iniciarTablaPDatosAdicionales();
-    obtenerDatosAdicionales(id_Semil);
+    iniciarTablaEstudiantes2();
+    obtenerDatosEstudiantes2();
+    // id_Semil = '2';
+    iniciarTablaDatosAdicionales();
+    obtenerDatosAdicionales();
 });
 
 //----------------------------------TABLA----------------------------------
 
 /**
- * @method iniciarTablaEstudiantes
+ * @method iniciarTablaEstudiantes2
  * Metodo para instanciar la DataTable
  */
-function iniciarTablaEstudiantes() {
+function iniciarTablaEstudiantes2() {
 
-    //tabla de alumnos
+    //tabla de adicionales
     $("#listadoEstudiantesTabla2").DataTable({
         responsive: true,
         ordering: false,
@@ -23,7 +23,7 @@ function iniciarTablaEstudiantes() {
         info: true,
         lengthChange: false,
         language: {
-            emptyTable: "Sin Ordenes...",
+            emptyTable: "Sin estudiantes...",
             search: "Buscar:",
             info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
             infoEmpty: "Ningun registro 0 de 0",
@@ -143,6 +143,7 @@ function iniciarTablaEstudiantes() {
             },
         ],
     });
+    console.log('asdfasdfas');
 
 }
 
@@ -155,10 +156,11 @@ function iniciarTablaEstudiantes() {
  * Método que se encarga de consumir el servicio que devuelve la data para la tabla de alumnos.
  */
 
-function obtenerDatosEstudiantes() {
+function obtenerDatosEstudiantes2() {
+    console.log('entgra')
     let semi = {
         /*  id: $('#semi_id').val(), */
-        docente_id: 2,
+        docente_id: Utilitario.getLocal('id'),
     };
     /*   Utilitario.agregarMascara(); */
     console.log(semi);
@@ -178,16 +180,59 @@ function obtenerDatosEstudiantes() {
             throw response;
         })
         .then(function(data) {
-
-            $("#semi_id").val(data.semillero.id);
-            $("#semi_nombre").val(data.semillero.nombre);
-            $("#semi_grupo").val(data.semillero.grupo_investigacion_id_id);
-            $("#semi_sigla").val(data.semillero.sigla);
-            $("#semi_inv").val(1);
             if (data.estudiante.length > 0)
                 listadoEspecialEstudiantes(data.estudiante);
-            if (data.pares.length > 0)
-                listadoEspecialPares(data.pares);
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+};
+
+function obtenerDatosAdicionales() {
+    let semi = {
+        /*  id: $('#semi_id').val(), */
+        docente_id: Utilitario.getLocal('id'),
+    };
+    /*   Utilitario.agregarMascara(); */
+    console.log(semi);
+    fetch("../../back/controller/EstudianteController_List_adicionales.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Plataform: "web",
+            },
+            body: JSON.stringify(semi),
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+            if (data.datos_adicionales.length > 0)
+                listadoDatosAdicionales(data.datos_adicionales);
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -225,6 +270,13 @@ function obtenerDatosEstudiantes() {
 
 
 function listadoEspecialEstudiantes(estudiantes) {
+
+    let tabla = $("#listadoEstudiantesTabla2").DataTable();
+    tabla.data().clear();
+    tabla.rows.add(estudiantes).draw();
+}
+
+function listadoDatosAdicionales(estudiantes) {
 
     let tabla = $("#listadoEstudiantesTabla2").DataTable();
     tabla.data().clear();
@@ -354,6 +406,17 @@ function mostrarModalProyectos_t() {
     $('#myModalProyectos_t').modal({ show: true });
     $("#btnOrderReg").show();
     $("#btnOrderAct").hide();
+
+
+}
+/**
+ * @method mostrarModalOrdenes
+ * Método que se encarga de abrir el modal para registro o actualizacion
+ */
+function mostrarModalDatosAd() {
+    //    limpiarcampos();
+    $('#myModalDatosAdd').modal({ show: true });
+    $("#btndataadReg").show();
 
 
 }
@@ -1387,167 +1450,14 @@ function cerrarModalPares() {
 }
 
 
-//----------------------------------CRUD----------------------------------
-/**
- * @method obtenerDatosProjectos
- * Método que se encarga de consumir el servicio que devuelve la data para la tabla de alumnos.
- */
 
-function obtenerDatosProjectos() {
-    let semi = {
-        docente_id: 2,
-    };
-    fetch("../../back/controller/ProyectosControllerList.php", {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                /*   Authorization: JSON.parse(Utilitario.getLocal("user")).token, */
-                Plataform: "web",
-            },
-            body: JSON.stringify(semi),
-        })
-        .then(function(response) {
-            if (response.ok) {
-                return response.json();
-            }
-            throw response;
-        })
-        .then(function(data) {
-            if (data.projectos.length > 0)
-                listadoEspecialProjectos(data.projectos);
-        })
-        .catch(function(promise) {
-            if (promise.json) {
-                promise.json().then(function(response) {
-                    let status = promise.status,
-                        mensaje = response ? response.mensaje : "";
-                    if (status === 401 && mensaje) {
-                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
-                            Utilitario.cerrarSesion();
-                        });
-                    } else if (mensaje) {
-                        Mensaje.mostrarMsjError("Error", mensaje);
-                    }
-                });
-            } else {
-                Mensaje.mostrarMsjError(
-                    "Error al traer projectos",
-                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-                );
-            }
-        })
-        .finally(function() {
-            Utilitario.quitarMascara();
-        });
-}
+
 
 /**
- * @method iniciarTablaProjectos
+ * @method iniciarTablaDatosAdicionales
  * Metodo para instanciar la DataTable
  */
-function iniciarTablaProjectos() {
-
-    //tabla de alumnos
-    $("#listadoProjectosTabla").DataTable({
-        responsive: true,
-        ordering: false,
-        paging: false,
-        searching: false,
-        info: true,
-        lengthChange: false,
-        language: {
-            emptyTable: "Sin Projectos...",
-            search: "Buscar:",
-            info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
-            infoEmpty: "Ningun registro 0 de 0",
-            infoFiltered: "(filtro de _MAX_ registros en total)",
-            paginate: {
-                first: "Primero",
-                previous: "Anterior",
-                next: "Siguiente",
-                last: "Ultimo"
-            }
-        },
-        columns: [{
-                data: "id",
-                className: "text-center",
-                visible: false,
-            },
-            {
-                data: "titulo",
-                className: "text-center",
-                orderable: true,
-            },
-            {
-                data: "investigador",
-                className: "text-center",
-                orderable: true,
-            },
-            {
-                orderable: false,
-                defaultContent: [
-                    "<div class='text-center'>",
-                    "<a class='personalizado actualizarestu' title='Gestionar'><i class='fa fa-edit'></i>&nbsp; &nbsp;  &nbsp;</a>",
-                    "<a class='personalizado eliminarestu' title='eliminar'><i class='fa fa-trash'></i></a>",
-                    "</div>",
-                ].join(""),
-            },
-        ],
-        rowCallback: function(row, data, index) {
-            var id_order = data.id
-            var persona_id_id = data.persona_id_id
-
-
-            $(".actualizarestu", row).click(function() {
-                gestionarEstu(id_order, data, index);
-            });
-            $(".eliminarestu", row).click(function() {
-                DeleteEstu(id_order, index, persona_id_id);
-            });
-        },
-        dom: '<"html5buttons"B>lTfgitp',
-        buttons: [{
-                extend: "copy",
-                className: "btn btn-primary glyphicon glyphicon-duplicate"
-            },
-            {
-                extend: "csv",
-                title: "listadoProjectos",
-                className: "btn btn-primary glyphicon glyphicon-save-file"
-            },
-            {
-                extend: "excel",
-                title: "listadoProjectos",
-                className: "btn btn-primary glyphicon glyphicon-list-alt"
-            },
-            {
-                extend: "pdf",
-                title: "listadoProjectos",
-                className: "btn btn-primary glyphicon glyphicon-file"
-            },
-            {
-                extend: "print",
-                className: "btn btn-primary glyphicon glyphicon-print",
-                customize: function(win) {
-                    $(win.document.body).addClass("white-bg");
-                    $(win.document.body).css("font-size", "10px");
-                    $(win.document.body)
-                        .find("table")
-                        .addClass("compact")
-                        .css("font-size", "inherit");
-                },
-            },
-        ],
-    });
-
-}
-
-/**
- * @method iniciarTablaEstudiantes
- * Metodo para instanciar la DataTable
- */
-function iniciarTablaEstudiantes() {
+function iniciarTablaDatosAdicionales() {
 
     //tabla de alumnos
     $("#listadoTablaDatosAdicionales").DataTable({
@@ -1600,7 +1510,7 @@ function iniciarTablaEstudiantes() {
                 orderable: false,
                 defaultContent: [
                     "<div class='text-center'>",
-                    "<a class='personalizado actualizardadicionales' title='Gestionar'><i class='fa fa-edit'></i>&nbsp; &nbsp;  &nbsp;</a>",
+                    // "<a class='personalizado actualizardadicionales' title='Gestionar'><i class='fa fa-edit'></i>&nbsp; &nbsp;  &nbsp;</a>",
                     "<a class='personalizado eliminaradicionales' title='eliminar'><i class='fa fa-trash'></i></a>",
                     "</div>",
                 ].join(""),
@@ -1611,9 +1521,9 @@ function iniciarTablaEstudiantes() {
             var persona_id_id = data.persona_id_id
 
 
-            $(".actualizarestu", row).click(function() {
-                actualizardadicionales(id_order, data, index);
-            });
+            // $(".actualizarestu", row).click(function() {
+            //     actualizardadicionales(id_order, data, index);
+            // });
             $(".eliminaradicionales", row).click(function() {
                 DeleteEstu(id_order, index, persona_id_id);
             });
@@ -1625,17 +1535,17 @@ function iniciarTablaEstudiantes() {
             },
             {
                 extend: "csv",
-                title: "listadoAlumnos",
+                title: "listadoadicionales",
                 className: "btn btn-primary glyphicon glyphicon-save-file"
             },
             {
                 extend: "excel",
-                title: "listadoAlumnos",
+                title: "listadoadicionales",
                 className: "btn btn-primary glyphicon glyphicon-list-alt"
             },
             {
                 extend: "pdf",
-                title: "listadoAlumnos",
+                title: "listadoadicionales",
                 className: "btn btn-primary glyphicon glyphicon-file"
             },
             {
@@ -1653,4 +1563,69 @@ function iniciarTablaEstudiantes() {
         ],
     });
 
+}
+
+function registrardatosadd() {
+    let ordenes = {
+        dataadd_producto: $('#dataadd_producto').val(),
+        dataadd_descripcion: $('#dataadd_descripcion').val(),
+        dataadd_responsable: $('#dataadd_responsable').val(),
+        dataadd_codigo: $('#dataadd_codigo').val(),
+        dataadd_fecha: $('#dataadd_fecha').val(),
+        semillero_id: Utilitario.getLocal('id_semillero'),
+    };
+
+    Utilitario.validForm(['dataadd_producto', 'dataadd_descripcion', 'dataadd_responsable',
+        'dataadd_codigo', 'dataadd_fecha'
+    ]);
+
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/DatosAdicionalesSInsert.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Plataform: "web",
+            },
+            body: JSON.stringify(ordenes),
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+
+            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
+            obtenerDatosAdicionales();
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+
+}
+
+function cerrarModalDatosadd() {
+    $('#myModalDatosAdd').modal('hide');
 }

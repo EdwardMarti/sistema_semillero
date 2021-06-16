@@ -160,6 +160,7 @@ $tipo_docuemnto_id=$pares_academicos->getTipo_docuemnto_id()->getId();
             $pares_academicos->setInst_empresa($data[$i]['inst_empresa']);
             $persona = new Persona();
             $persona->setId($data[$i]['persona_id']);
+            $persona->setNombre($data[$i]['nombre']);
             $persona->setCorreo($data[$i]['correo']);
             $persona->setTelefono($data[$i]['telefono']);
             $pares_academicos->setPersona_id($persona);

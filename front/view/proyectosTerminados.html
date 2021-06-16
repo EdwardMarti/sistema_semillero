@@ -1,292 +1,321 @@
-<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
-<div class="ibox-content my-2" id="step_1_tour">
-    <div class="accordion" id="accordionExample">
-        <div class="card">
-            <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+<div id="modalRegistro">
+    <a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
+    <div class="ibox-content my-2" id="step_1_tour">
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             <b>DATOS GENERALES</b> 
         </button>
-                </h5>
-            </div>
+                    </h5>
+                </div>
 
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                    <div class="row">
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
 
-                        <div class="col-12">
+                            <div class="col-12">
 
-                            <input type="hidden" id="id_proyecto">
-                            <div class="form-group">
+                                <input type="hidden" id="id_proyecto">
+                                <div class="form-group">
 
-                                <label for="formGroupExampleInput">Titulo: </label>
-                                <input type="text" style="background: white;" class="form-control" name="titulo" id="titulo" required>
+                                    <label for="formGroupExampleInput">Titulo: </label>
+                                    <input type="text" style="background: white;" class="form-control" name="titulo" id="titulo" required>
 
-                            </div>
+                                </div>
 
-                            <div class="form-group">
+                                <div class="form-group">
 
-                                <label for="formGroupExampleInput">Investigador principal: </label>
-                                <input type="text" style="background: white;" class="form-control" name="inv_principal" id="inv_principal" required>
+                                    <label for="formGroupExampleInput">Investigador principal: </label>
+                                    <input type="text" style="background: white;" class="form-control" name="inv_principal" id="inv_principal" required>
 
-                            </div>
+                                </div>
 
-                            <div class="modal-footer">
-                                <h5 class="label label-successE">
-                                    <a onclick="RegistrarData()" style="background-color: #243747;display: inline !important;" class="btn btn-primary">Registrar</a>
-                                </h5>
+                                <div class="modal-footer">
+                                    <h5 class="label label-successE">
+                                        <a onclick="RegistrarData()" style="background-color: #243747;display: inline !important;" class="btn btn-primary">Registrar</a>
+                                    </h5>
+                                </div>
+
                             </div>
 
                         </div>
-
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-header" id="headingTwo">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             <b>COINVESTIGADORES</b> 
         </button>
-                </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                <div class="card-body">
-                    <div class="col-lg-12">
-                        <div class="ibox ">
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="col-lg-12">
+                            <div class="ibox ">
 
 
 
-                            <div class='table'>
-                                <div class="modal-footer">
+                                <div class='table'>
+                                    <div class="modal-footer">
 
-                                    <h5 class="label label-successE" id="btn_coinvestigadores"> <a onclick="mostrarModalUsuarios('cooinvestigadores','Código','Nombre')" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                        <h5 class="label label-successE" id="btn_coinvestigadores"> <a onclick="mostrarModalUsuarios('cooinvestigadores','Código','Nombre')" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                    </div>
+
+                                    <div class='table mt-4 mb-4'><br>
+
+                                        <table style='width: 100%' class='table table-striped mt-4 mb-4 centradito table-hover' id='listadoTablaCooinvestigadores'>
+                                            <thead>
+                                                <tr class="ufps-tabl">
+                                                    <th>COD_COLABORADOR</th>
+                                                    <th>CÓDIGO</th>
+                                                    <th>NOMBRE</th>
+                                                    <th>TIPO_COLABORADOR</th>
+                                                    <th>COD_PROYECTO</th>
+                                                    <th>ACCIONES</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
                                 </div>
-                                <table class='table table-striped' id='listadoTablaCooinvestigadores'>
-                                    <thead>
-                                        <tr class="ufps-tabl">
-                                            <th>COD_COLABORADOR</th>
-                                            <th>CÓDIGO</th>
-                                            <th>NOMBRE</th>
-                                            <th>TIPO_COLABORADOR</th>
-                                            <th>COD_PROYECTO</th>
-                                            <th>ACCIONES</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
             <b>ESTUDIANTES</b> 
         </button>
-                </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                <div class="card-body">
-                    <div class="col-lg-12">
-                        <div class="ibox ">
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="col-lg-12">
+                            <div class="ibox ">
 
 
 
-                            <div class='table'>
-                                <div class="modal-footer">
+                                <div class='table'>
+                                    <div class="modal-footer">
 
-                                    <h5 class="label label-successE" id="btn_usuarios"> <a onclick="mostrarModalUsuarios('estudiantes','Código','Nombre')" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                        <h5 class="label label-successE" id="btn_usuarios"> <a onclick="mostrarModalUsuarios('estudiantes','Código','Nombre')" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                    </div>
+                                    <table style='width: 100%' class='table table-striped mt-4 mb-4 centradito table-hover' id='listadoTablaEstudiantes'>
+                                        <thead>
+                                            <tr class="ufps-tabl">
+                                                <th>COD_USER</th>
+                                                <th>CÓDIGO</th>
+                                                <th>NOMBRE</th>
+                                                <th>COD_PROYECTO</th>
+                                                <th>ACCIONES</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
-                                <table class='table table-striped' id='listadoTablaEstudiantes'>
-                                    <thead>
-                                        <tr class="ufps-tabl">
-                                            <th>COD_USER</th>
-                                            <th>CÓDIGO</th>
-                                            <th>NOMBRE</th>
-                                            <th>COD_PROYECTO</th>
-                                            <th>ACCIONES</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="card">
-            <div class="card-header" id="headingFour">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
             <b>OTROS DATOS</b> 
         </button>
-                </h5>
-            </div>
-            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                <div class="card-body">
-                    <div class="row">
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
 
-                        <div class="col-12">
+                            <div class="col-12">
 
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Linea de Investigacion </label>
-                                <select class="form-control" name="linea_investigacion" id="linea_investigacion">
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Linea de Investigacion </label>
+                                    <select class="form-control" name="linea_investigacion" id="linea_investigacion">
                                 </select>
-                            </div>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Tiempo de ejecución (en meses): </label>
-                                <input type="text" style="background: white;" class="form-control" name="t_ejecucion" id="t_ejecucion" required>
-                            </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Tiempo de ejecución (en meses): </label>
+                                    <input type="text" style="background: white;" class="form-control" name="t_ejecucion" id="t_ejecucion" required>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Fecha de Inicio (indicar mes y año): </label>
-                                <input type="text" style="background: white;" class="form-control" name="fecha_ini" id="fecha_ini" required>
-                            </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Fecha de Inicio (indicar mes y año): </label>
+                                    <input type="text" style="background: white;" class="form-control" name="fecha_ini" id="fecha_ini" required>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Fecha de Finalización(indicar mes y año): </label>
-                                <input type="text" style="background: white;" class="form-control" name="fecha_fin" id="fecha_fin" required>
-                            </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Fecha de Finalización(indicar mes y año): </label>
+                                    <input type="text" style="background: white;" class="form-control" name="fecha_fin" id="fecha_fin" required>
+                                </div>
 
-                            <hr>
+                                <hr>
 
-                            <div class="alert alert-warning">
-                                <h4 style="color: black;"><i class="fa fa-warning"></i> Nota</h4>
-                                <ul class="text-justify">
-                                    <li>
-                                        Hacer una breve descripción del proyecto, donde se describa el problema planteado, importancia del proyecto, metodología empleada y los resultados obtenidos- No debe exceder de 250 palabras
-                                    </li>
-                                </ul>
-                            </div>
+                                <div class="alert alert-warning">
+                                    <h4 style="color: black;"><i class="fa fa-warning"></i> Nota</h4>
+                                    <ul class="text-justify">
+                                        <li>
+                                            Hacer una breve descripción del proyecto, donde se describa el problema planteado, importancia del proyecto, metodología empleada y los resultados obtenidos- No debe exceder de 250 palabras
+                                        </li>
+                                    </ul>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Resumen: </label>
-                                <textarea class="form-control" name="resumen" id="resumen" cols="5" rows="5"></textarea>
-                            </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Resumen: </label>
+                                    <textarea class="form-control" name="resumen" id="resumen" cols="5" rows="5"></textarea>
+                                </div>
 
-                            <div class="modal-footer" id="btn_otros">
-                                <h5 class="label label-successE">
-                                    <a onclick="RegistrarDataOtros()" style="background-color: #243747;display: inline !important;" class="btn btn-primary">Registrar</a>
-                                </h5>
+                                <div class="modal-footer" id="btn_otros">
+                                    <h5 class="label label-successE">
+                                        <a onclick="RegistrarDataOtros()" style="background-color: #243747;display: inline !important;" class="btn btn-primary">Registrar</a>
+                                    </h5>
+                                </div>
+
                             </div>
 
                         </div>
-
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-header" id="headingFive">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
             <b>OBJETIVOS</b> 
         </button>
-                </h5>
-            </div>
-            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                <div class="card-body">
-                    <div class="row">
+                    </h5>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
 
-                        <div class="col-12">
+                            <div class="col-12">
 
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Objetivo General: </label>
-                                <input type="text" style="background: white;" class="form-control" name="obj_general" id="obj_general" required>
-                            </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Objetivo General: </label>
+                                    <input type="text" style="background: white;" class="form-control" name="obj_general" id="obj_general" required>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Objetivos Especificos: </label>
-                                <textarea class="form-control" name="obj_especifico" id="obj_especifico" cols="5" rows="5"></textarea>
-                            </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Objetivos Especificos: </label>
+                                    <textarea class="form-control" name="obj_especifico" id="obj_especifico" cols="5" rows="5"></textarea>
+                                </div>
 
-                            <div class="alert alert-warning">
-                                <h4 style="color: black;"><i class="fa fa-warning"></i> Nota</h4>
-                                <ul class="text-justify">
-                                    <li>
-                                        Indicar los resultados directos verificables que se alcanzaron con el desarrollo del proyecto mediante una breve descripción. Los resultados pueden ser: 1. Generación de nuevo conocimiento o desarrollo tecnológico – 2. Fortalecimiento de la capacidad
-                                        científica tecnológica – 3. Apropiación social de conocimiento- 4. Otros) – (No debe exceder de 500 palabras).
-                                    </li>
-                                </ul>
-                            </div>
+                                <div class="alert alert-warning">
+                                    <h4 style="color: black;"><i class="fa fa-warning"></i> Nota</h4>
+                                    <ul class="text-justify">
+                                        <li>
+                                            Indicar los resultados directos verificables que se alcanzaron con el desarrollo del proyecto mediante una breve descripción. Los resultados pueden ser: 1. Generación de nuevo conocimiento o desarrollo tecnológico – 2. Fortalecimiento de la capacidad
+                                            científica tecnológica – 3. Apropiación social de conocimiento- 4. Otros) – (No debe exceder de 500 palabras).
+                                        </li>
+                                    </ul>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Resultados Obtenidos: </label>
-                                <textarea class="form-control" name="resultados" id="resultados" cols="5" rows="5"></textarea>
-                            </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Resultados Obtenidos: </label>
+                                    <textarea class="form-control" name="resultados" id="resultados" cols="5" rows="5"></textarea>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="formGroupExampleInput">Costo Total del Proyecto: </label>
-                                <input type="text" style="background: white;" class="form-control" name="costo" id="costo" required>
-                            </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Costo Total del Proyecto: </label>
+                                    <input type="text" style="background: white;" class="form-control" name="costo" id="costo" required>
+                                </div>
 
-                            <div class="modal-footer" id="btn_objetivos">
-                                <h5 class="label label-successE">
-                                    <a onclick="RegistrarDataObj()" style="background-color: #243747;display: inline !important;" class="btn btn-primary">Registrar</a>
-                                </h5>
+                                <div class="modal-footer" id="btn_objetivos">
+                                    <h5 class="label label-successE">
+                                        <a onclick="RegistrarDataObj()" style="background-color: #243747;display: inline !important;" class="btn btn-primary">Registrar</a>
+                                    </h5>
+                                </div>
+
                             </div>
 
                         </div>
-
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-header" id="headingsix">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+            <div class="card">
+                <div class="card-header" id="headingsix">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
             <b>FUENTES DE FINANCIACION</b> 
         </button>
-                </h5>
-            </div>
-            <div id="collapseSix" class="collapse" aria-labelledby="headingsix" data-parent="#accordionExample">
-                <div class="card-body">
-                    <div class="col-lg-12">
-                        <div class="ibox ">
+                    </h5>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingsix" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="col-lg-12">
+                            <div class="ibox ">
 
-                            <div class='table'>
-                                <div class="modal-footer">
+                                <div class='table'>
+                                    <div class="modal-footer">
 
-                                    <h5 class="label label-successE" id="btn_fuentes"> <a onclick="mostrarModalUsuarios('fuentes','Fuente','Valor')" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                        <h5 class="label label-successE" id="btn_fuentes"> <a onclick="mostrarModalUsuarios('fuentes','Fuente','Valor')" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
+                                    </div>
+                                    <table style='width: 100%' class='table table-striped mt-4 mb-4 centradito table-hover' id='listadoTablaFuentes'>
+                                        <thead>
+                                            <tr class="ufps-tabl">
+                                                <th>COD_FUENTE</th>
+                                                <th>FUENTE</th>
+                                                <th>VALOR</th>
+                                                <th>COD_PROYECTO</th>
+                                                <th>ACCIONES</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
-                                <table class='table table-striped' id='listadoTablaFuentes'>
-                                    <thead>
-                                        <tr class="ufps-tabl">
-                                            <th>COD_FUENTE</th>
-                                            <th>FUENTE</th>
-                                            <th>VALOR</th>
-                                            <th>COD_PROYECTO</th>
-                                            <th>ACCIONES</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
 
 </div>
 
-
+<div id="ModalTablas">
+    <div class="ibox-content">
+        <h2 style="color: black">Projectos</h2>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="iniciarRegistro()">
+            Registrar
+        </button>
+        </div>
+        <div class="table mt-12 mb-12 table-responsive" id="tablaProjectos">
+            <br />
+            <table class="table table-striped mt-4 mb-4 centradito" id="listadoProjectosTabla" style="width: 100%">
+                <thead>
+                    <tr class="ufps-tabl">
+                        <th>Id</th>
+                        <th>Titulo</th>
+                        <th>Insvestigador Principal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
 
 <div class="modal inmodal" id="ModalUsuarios" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">

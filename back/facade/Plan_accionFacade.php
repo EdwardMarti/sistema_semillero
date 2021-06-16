@@ -74,6 +74,15 @@ class Plan_accionFacade {
      $plan_accionDao->close();
      return $rtn;
   }
+  public static function select_ano_semes($amo , $semestre){
+    
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $plan_accionDao =$FactoryDao->getplan_accionDao(self::getDataBaseDefault());
+     $rtn = $plan_accionDao-> select_ano_semes($amo , $semestre);
+     $plan_accionDao->close();
+     return $rtn;
+  }
 
   /**
    * Selecciona un objeto Plan_accion de la base de datos a partir de su(s) llave(s) primaria(s).
@@ -155,6 +164,14 @@ class Plan_accionFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $plan_accionDao =$FactoryDao->getplan_accionDao(self::getDataBaseDefault());
      $result = $plan_accionDao->listAll_plan();
+     $plan_accionDao->close();
+     return $result;
+  }
+  
+  public static function listAll_plan_sem($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $plan_accionDao =$FactoryDao->getplan_accionDao(self::getDataBaseDefault());
+     $result = $plan_accionDao->listAll_plan_sem($id);
      $plan_accionDao->close();
      return $result;
   }

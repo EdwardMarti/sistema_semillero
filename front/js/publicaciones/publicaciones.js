@@ -3,8 +3,10 @@ $(document).ready(function() {
     iniciarTablaPu();
     obtenerDatosPu(id_Semil);
     //    cargarSelectInspector();
-    $("#btnOrderReg").show();
-    $("#btnOrderAct").hide();
+    $("#btnPublReg").show();
+    $("#btnPublAct").hide();
+    
+   
 
 });
 
@@ -221,8 +223,8 @@ function gestionarItempubli(id_order, data, index) {
 
 
 
-    $("#btnPubAct").show();
-    $("#btnPubReg").hide();
+    $("#btnPublAct").show();
+    $("#btnPublReg").hide();
 
 
     $('#myModalPublicaciones').modal({ show: true });
@@ -234,8 +236,8 @@ function gestionarItempubli(id_order, data, index) {
  */
 function mostrarModalPublicaciones() {
     //    limpiarcampos();
-    $("#btnPubReg").show();
-    $("#btnPubAct").hide();
+   
+ limpiar();
     $('#myModalPublicaciones').modal({ show: true });
 
 }
@@ -247,6 +249,7 @@ function mostrarModalPublicaciones() {
  */
 function cerrarModalPublicaciones() {
     $('#myModalPublicaciones').modal('hide');
+    
 }
 
 /**
@@ -329,9 +332,33 @@ function UpdatePublicacion() {
 
 }
 
+
+
+
+function limpiar() {
+    $('#autor').val("");
+    $('#titulo').val("");
+    $('#nombre_medio').val("");
+    $('#issn').val("");
+    $('#editorial').val("");
+    $('#volumen').val("");
+    $('#cant_pag').val("");
+    $('#fecha').val(""),
+    $("#ciudad").val("");
+    $('#tipo_publicaciones_id').val("");
+    
+    
+    
+
+    
+}
 function registrarPublicacion() {
-    $("#btnPubAct").show();
-    $("#btnPubAct").hide();
+    
+   
+    
+   $("#btnPublAct").hide();
+    $("#btnPublReg").show();
+
 
     let ordenes = {
         autor: $('#autor').val(),

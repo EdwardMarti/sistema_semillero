@@ -45,6 +45,17 @@ class Proy_lineas_investDao implements IProy_lineas_investDao
         }
     }
 
+    public function insertByProject($proyectos_id,$linea_investigacion_id)
+    {
+        try {
+            $sql = "INSERT INTO `proy_lineas_invest`(`proyectos_id`, `linea_investigacion_id`)"
+                . "VALUES ($proyectos_id,$linea_investigacion_id)";
+            return $this->insertarConsulta($sql);
+        } catch (SQLException $e) {
+            throw new Exception('Primary key is null');
+        }
+    }
+
     public function insert2($id, $proyectos, $linea_investigacion, $semestre, $anio)
     {
 

@@ -1,15 +1,16 @@
-<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
-
 <div class="modal inmodal" id="ModalLoadData" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
-    <div class="modal-content animated bounceInRight">
+        <div class="modal-content animated bounceInRight">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
                 <div class="text-center">
                     <label title="Upload image file" for="fileUpload" class="btn btn-primary">
-                        <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" name="fileUpload" id="fileUpload" style="display:none">
+                        <input type="file"
+                            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                            name="fileUpload" id="fileUpload" style="display:none">
                         Upload image
                     </label>
                 </div>
@@ -22,73 +23,72 @@
     </div>
 </div>
 
- <div class="modal inmodal fade" id="myModalActividades" tabindex="-1" role="dialog"  aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                            <h4 class="modal-title">Registro Actividades</h4>
-                                          
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="ibox-content">
-                                               <form role="form" id="ActividadesInsert">
-                                                   <div class="form-group" style="display: none">
-                          <label for="Inputid">id</label>
-                          <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
-                       </div>
-                          <div class="form-group">
-                          <label for="Inputproyectos_id">proyectos_id</label>
-                         
-                          <select class="form-control" name="proyectos_id" id="Inputproyectos_id" >
-                          <option>Seleccione</option>
-                          </select> 
-                       </div>                             
-                      <div class="form-group">
-                          <label for="Inputdescripcion">descripcion</label>
-                          <textarea class="form-control" placeholder="Message" name="descripcion" ></textarea>
-           
-                       </div>
-                  
-                      
-                   </form>
-                                            </div>
-                                        </div>
-       
+<div class="modal inmodal fade" id="myModalActividades" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">Registro Actividades</h4>
 
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-white" onclick="cerrarModalActividades()">Close</button>
-                                            <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdateOrder()">Actualizar</button>
+            </div>
+            <div class="modal-body">
+                <div class="ibox-content">
+                    <form role="form" id="ActividadesInsert">
+                        <div class="form-group" style="display: none">
+                            <label for="Inputid">id</label>
+                            <input type="text" name="id" class="form-control" id="Inputid" placeholder="id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputproyectos_id">proyectos_id</label>
+
+                            <select class="form-control" name="proyectos_id" id="Inputproyectos_id">
+                                <option>Seleccione</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputdescripcion">descripcion</label>
+                            <textarea class="form-control" placeholder="Message" name="descripcion"></textarea>
+
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" onclick="cerrarModalActividades()">Close</button>
+                <button type="button" class="btn btn-primary" id="btnOrderAct" onclick="UpdateOrder()">Actualizar</button>
                 <button type="button" class="btn btn-primary" id="btnOrderReg" onclick="registrarOrder()">Registrar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- Tabla de Usuarios -->
+
 <div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
-            
+
     <div class="row" id="step_1_tour">
         <div class="col-lg-12">
-            
+
             <div class="ibox ">
-          
+
                 <div class="ibox-title row">
                     <h5 class="text-white col">Listado de Actividades</h5>
-                    <h5 class="label label-successE"> <a onclick="Menu.formatoInformes()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+ Agregar</a></h5>
-                   
-                </div>
-        
-                
-      
-                <div class="ibox-content">
-                            <div class="form-group row"><label class="col-lg-2 col-form-label">Proyecto</label>
+                    <h5 class="label label-successE"> <a onclick="Menu.formatoInformes()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
+                            Agregar</a></h5>
 
-                                    <div class="col-lg-10"> <select class="form-control" name="proyectos_id" id="Inputproyectos_id" >
-                    <option>Seleccione</option>
-                </select>  
-                                    </div>
-                                </div>
+                </div>
+
+
+
+                <div class="ibox-content">
+                    <div class="form-group row"><label class="col-lg-2 col-form-label">Proyecto</label>
+
+                
+                    </div>
                     <div class='table mt-4 mb-4'><br>
                         <table class='table table-striped mt-4 mb-4 centradito' id='listadoOrdenesTabla' style='width: 100%'>
                             <thead>
@@ -106,9 +106,4 @@
         </div>
     </div>
 </div>
-<!-- Fin Tabla de Usuarios -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
-<script type="text/javascript" src="../js/actividades/actividades.js"></script>
- <script src="../js/menu/Menu.js"></script>
 <script type="text/javascript" src="../js/tours/informe_de_gestion/informe_de_gestion.js"></script>

@@ -52,6 +52,15 @@ class Proy_lineas_investFacade
       $proy_lineas_investDao->close();
       return $rtn;
    }
+   
+   public static function insertByProject($proyectos_id,$linea_investigacion_id)
+   {
+      $FactoryDao = new FactoryDao(self::getGestorDefault());
+      $proy_lineas_investDao = $FactoryDao->getproy_lineas_investDao(self::getDataBaseDefault());
+      $rtn = $proy_lineas_investDao->insertByProject($proyectos_id,$linea_investigacion_id);
+      $proy_lineas_investDao->close();
+      return $rtn;
+   }
 
    public static function insert2($id, $proyectos, $linea_investigacion, $semestre, $anio)
    {

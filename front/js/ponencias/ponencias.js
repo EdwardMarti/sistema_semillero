@@ -4,8 +4,8 @@ $(document).ready(function() {
     obtenerDatosPo(id_Semil);
 
     //  
-    //    $("#btnOrderAct").hide();
-    //    $("#btnOrderReg").hide();
+        $("#btnPonenAct").hide();
+        $("#btnPonenReg").show();
 });
 
 //----------------------------------TABLA----------------------------------
@@ -63,16 +63,19 @@ function iniciarTablaPo() {
                 data: "ciudad",
                 className: "text-center",
                 orderable: true,
+                 visible:false,
             },
             {
                 data: "lugar",
                 className: "text-center",
                 orderable: true,
+                
             },
             {
                 data: "tipo_ponencias_id",
                 className: "text-center",
                 orderable: true,
+                visible:false,
             },
 
             {
@@ -209,19 +212,22 @@ function listadoTPo(ponencias) {
 
 //<editor-fold defaultstate="collapsed" desc="Modal Capacitaciones">
 
+
 function mostrarModalPonencias() {
-    //    limpiarcampos();
-    $('#myModalPonencias').modal({ show: true });
-    $("#btnPonenciaReg").show();
-    $("#btnPonenciaAct").hide();
+//    limpiarcampos();
+   $('#myModalPonencias').modal({show: true});
+    $("#btnOrderReg").show();
+    $("#btnOrderAct").hide();
 }
 
-function mostrarModalPonenciasU() {
-    //    limpiarcampos();
-    $('#myModalPonencias').modal({ show: true });
-    $("#btnPonenciaReg").hide();
-    $("#btnPonenciaAct").show();
+/**
+ * @method ocultarModalOrdenes
+ * Método que se encarga de cerrar el modal para registro o actualizacion
+ */
+function cerrarModalPonencias() {
+       $('#myModalPonencias').modal('hide');
 }
+
 
 /**
  * @method ocultarModalOrdenes
@@ -238,6 +244,8 @@ function cerrarModalPonencias() {
 
 function registrarPonencias() {
 
+        $("#btnPonenAct").hide();
+        $("#btnPonenReg").show();
 
 
     let ponencia = {
@@ -308,7 +316,10 @@ function registrarPonencias() {
 
 function gestionarItemPo(id_order) {
 
-
+   $('#myModalPonencias').modal({ show: true });
+        $("#btnPonenAct").show();
+        $("#btnPonenReg").hide(); 
+        
     cargarInfoTablaPo(id_order);
 
 
@@ -381,6 +392,8 @@ function dataItemTablaPon(data) {
 
 
 function ActualizarDataPo() {
+
+   
 
     let ponencia = {
         id: $('#id').val(),

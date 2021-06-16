@@ -137,13 +137,14 @@
                                     <div class="ibox ">
                                         <div class="modal-footer">
 
-                                            <h5 class="label label-successE"> <a onclick="mostrarModalTitulos()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
+                                            <h5 class="label label-successE"> <a onclick="mostrarModalDatosAd()" style="background-color: #243747 ;display: inline !important" class="btn btn-primary">+
                                                     Agregar</a></h5>
                                         </div>
                                         <div class='table mt-4 mb-4'>
-                                            <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaDatosAdicionales'>
+                                            <table  class='table table-striped mt-4 mb-4 centradito table-hover' style='width: 100%' id='listadoTablaDatosAdicionales'>
                                                 <thead>
                                                     <tr class="ufps-tabl">
+                                                        <th>id</th>
                                                         <th>PRODUCTO</th>
                                                         <th>DESCRIPCIÓN</th>
                                                         <th>RESPONSABLE</th>
@@ -183,22 +184,7 @@
                                                     Agregar</a></h5>
                                         </div>
                                         <div class='table mt-4 mb-4'>
-                                            <!-- <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaTitulos'>
-                                                <thead>
-                                                    <tr class="ufps-tabl">
-                                                        <th>N°</th>
-                                                        <th>NOMBRE</th>
-                                                        <th>IDENTIFICACIÓN c.c. o T.I.</th>
-                                                        <th>PROGRAMA ACADÉMICO</th>
-                                                        <th>CODIGO</th>
-                                                        <th>SEMESTRE ACTUAL</th>
-                                                        <th>E-MAIL</th>
-                                                        <th>TELÉFONO</th>
-                                                        <th>ACCIONES</th>
-                                                    </tr>
-                                                </thead>
-                                            </table> -->
-                                            <table class="table table-striped mt-4 mb-4 centradito" id="listadoEstudiantesTabla2" style="width: 100%">
+                                            <table class="table table-striped mt-4 mb-4 " id="listadoEstudiantesTabla2" style="width: 100%">
                                                 <thead>
                                                     <tr class="ufps-tabl">
                                                         <th>id</th>
@@ -335,9 +321,133 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="../js/semillero/semillero.js"></script>
+
 
 
 
 
 </div>
+
+
+<div class="modal inmodal fade" id="myModalEstudiantes" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Registro Estudiante</h4>
+            </div>
+            <div class="modal-body">
+                <div class="ibox-content">
+                    <form role="form" id="EstudianteInsert">
+                        <input type="hidden" name="estu_id" class="form-control" id="estu_id" placeholder="id" />
+                        <input type="hidden" name="estu_index" class="form-control" id="estu_index" placeholder="id" />
+                        <input type="hidden" name="estu_persona_id_id" class="form-control" id="estu_persona_id_id" placeholder="id" />
+                        <div class="form-group">
+                            <label for="Inputnombre">nombre</label>
+                            <input type="text" name="estu_nombre" class="form-control" id="estu_nombre" placeholder="nombre" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputtelefono">telefono</label>
+                            <input type="text" name="estu_telefono" class="form-control" id="estu_telefono" placeholder="telefono" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputcorreo">correo</label>
+                            <input type="email" name="estu_correo" class="form-control" id="estu_correo" placeholder="correo" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputcodigo">codigo</label>
+                            <input type="text" name="estu_codigo" class="form-control" id="estu_codigo" placeholder="codigo" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputsemestre">semestre</label>
+                            <input type="number" min="1" max="10" name="estu_semestre" class="form-control" id="estu_semestre" placeholder="semestre" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputprograma_academico">programa_academico</label>
+                            <select class="form-control" name="estu_programa_academico" id="estu_programa_academico">
+                                <option value="">SELECCIONE UN PROGRAMA ACA...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputtipo_docuemnto_id">tipo_docuemnto_id</label>
+                            <select class="form-control" name="estu_tipo_docuemnto_id" id="estu_tipo_docuemnto_id">
+                                <option value="">SELECCIONE...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputnum_documento">num_documento</label>
+                            <input type="text" name="estu_num_documento" class="form-control" id="estu_num_documento" placeholder="num_documento" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" onclick="cerrarModalEstu()">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" id="btnEstuAct" onclick="UpdateEstu()">
+                    Actualizar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnEstuReg" onclick="registrarEstu()">
+                    Registrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal fade" id="myModalDatosAdd" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Registro myModalDatosAdd</h4>
+            </div>
+            <div class="modal-body">
+                <div class="ibox-content">
+
+                    <form role="form" id="EstudianteInsert">
+                        <input type="hidden" name="dataadd_id" class="form-control" id="dataadd_id" placeholder="id" />
+                        <input type="hidden" name="dataadd_index" class="form-control" id="dataadd_index" placeholder="id" />
+                        <div class="form-group">
+                            <label for="Inputproducto">producto</label>
+                            <input type="text" name="dataadd_producto" class="form-control" id="dataadd_producto" placeholder="producto" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputdescripcion">descripcion</label>
+                            <input type="text" name="dataadd_descripcion" class="form-control" id="dataadd_descripcion" placeholder="descripcion" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputresponsable">responsable</label>
+                            <input type="email" name="dataadd_responsable" class="form-control" id="dataadd_responsable" placeholder="responsable" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputcodigo">codigo</label>
+                            <input type="text" name="dataadd_codigo" class="form-control" id="dataadd_codigo" placeholder="codigo" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Inputfecha">fecha</label>
+                            <input type="number" min="1" max="10" name="dataadd_fecha" class="form-control" id="dataadd_fecha" placeholder="fecha" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" onclick="cerrarModalDatosadd()">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" id="btndataadReg" onclick="registrardatosadd()">
+                    Registrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../js/semillero/estudiantestabla.js"></script>

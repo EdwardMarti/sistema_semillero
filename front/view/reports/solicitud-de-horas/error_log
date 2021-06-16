@@ -1,0 +1,9 @@
+[14-Jun-2021 23:04:51 UTC] PHP Notice:  Undefined index: [object Object] in /home7/nortcodingdemos/public_html/semillero/front/view/reports/solicitud-de-horas/solicitud.php on line 9
+[14-Jun-2021 23:11:49 UTC] PHP Notice:  Undefined index: [object Object] in /home7/nortcodingdemos/public_html/semillero/front/view/reports/solicitud-de-horas/solicitud.php on line 9
+[14-Jun-2021 23:12:31 UTC] PHP Notice:  Undefined index: [object Object] in /home7/nortcodingdemos/public_html/semillero/front/view/reports/solicitud-de-horas/solicitud.php on line 9
+[14-Jun-2021 23:16:52 UTC] PHP Notice:  Undefined index: grupo_investigacion in /home7/nortcodingdemos/public_html/semillero/front/view/reports/solicitud-de-horas/solicitud.php on line 30
+[14-Jun-2021 23:16:52 UTC] PHP Notice:  Undefined index: semillero in /home7/nortcodingdemos/public_html/semillero/front/view/reports/solicitud-de-horas/solicitud.php on line 31
+[14-Jun-2021 23:16:52 UTC] PHP Notice:  Undefined index: docente in /home7/nortcodingdemos/public_html/semillero/front/view/reports/solicitud-de-horas/solicitud.php on line 33
+[14-Jun-2021 23:29:38 UTC] PHP Notice:  Undefined index: grupo_investigacion in /home7/nortcodingdemos/public_html/semillero/front/view/reports/solicitud-de-horas/solicitud.php on line 30
+[14-Jun-2021 23:29:38 UTC] PHP Notice:  Undefined index: semillero in /home7/nortcodingdemos/public_html/semillero/front/view/reports/solicitud-de-horas/solicitud.php on line 31
+[14-Jun-2021 23:29:38 UTC] PHP Notice:  Undefined index: docente in /home7/nortcodingdemos/public_html/semillero/front/view/reports/solicitud-de-horas/solicitud.php on line 33

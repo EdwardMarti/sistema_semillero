@@ -25,8 +25,8 @@ if ($parte == 1) {
 }
 
 if ($parte == 1) {
+    Proy_lineas_investFacade::insertByProject($id,$linea_investigacion);
     $rpta = ProyectosFacade::updateParte1($id, $tiempo_ejecucion, $fecha_ini, $resumen, $linea_investigacion, $fecha_fin);
-    Proy_lineas_investFacade::insert($id,$linea_investigacion);
 } else if ($parte == 2) {
     $rpta = ProyectosFacade::updateParte2($id, $tiempo_ejecucion, $fecha_ini, $resumen, $linea_investigacion);
 }

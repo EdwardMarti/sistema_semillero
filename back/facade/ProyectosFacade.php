@@ -80,11 +80,12 @@ class ProyectosFacade
      * @param titulo
      * @param investigador
      */
-    public static function insertBasico($titulo, $investigador)
+    public static function insertBasico($titulo, $investigador, $id_semillero)
     {
         $proyectos = new Proyectos();
         $proyectos->setTitulo($titulo);
         $proyectos->setInvestigador($investigador);
+        $proyectos->setSemillero_id($id_semillero);
 
         $FactoryDao = new FactoryDao(self::getGestorDefault());
         $proyectosDao = $FactoryDao->getproyectosDao(self::getDataBaseDefault());
@@ -223,6 +224,15 @@ class ProyectosFacade
         $FactoryDao = new FactoryDao(self::getGestorDefault());
         $proyectosDao = $FactoryDao->getproyectosDao(self::getDataBaseDefault());
         $result = $proyectosDao->listAll_id($id);
+        $proyectosDao->close();
+        return $result;
+    }
+   
+    public static function listAll_Project_id($id)
+    {
+        $FactoryDao = new FactoryDao(self::getGestorDefault());
+        $proyectosDao = $FactoryDao->getproyectosDao(self::getDataBaseDefault());
+        $result = $proyectosDao->listAll_Project_id($id);
         $proyectosDao->close();
         return $result;
     }

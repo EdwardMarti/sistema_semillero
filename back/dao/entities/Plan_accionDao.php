@@ -105,6 +105,26 @@ $otras_actividades_id=$plan_accion->getOtras_actividades_id()->getId();
       }
   }
 
+  
+    public function select_ano_semes($amo , $semestre){
+    
+      $rpta=false;
+
+      try {
+          $sql= "
+SELECT * FROM `plan_accion` WHERE `semestre`='$semestre' and `ano` = '$amo'";
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+         
+              $rpta=true;
+
+          }
+      return $rpta;     
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
     /**
      * Modifica un objeto Plan_accion en la base de datos.
      * @param plan_accion objeto con la información a modificar
@@ -194,6 +214,77 @@ $otras_actividades_id=$plan_accion->getOtras_actividades_id()->getId();
       $lista = array();
       try {
           $sql ="SELECT `id`, `semestre`, `ano`, `vbo_dirSemillero`, `vbo_dirGinvestigacion`, `vbo_facultaInv`, `semillero_id`  FROM `plan_accion` WHERE `dele` = '0' " ;
+         
+     
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $plan_accion= new Plan_accion();
+          $plan_accion->setId($data[$i]['id']);
+        
+          $vbo_dirSemillero=$data[$i]['vbo_dirSemillero'];
+          if($vbo_dirSemillero==0){
+              $vbo_dirsem="En Revision";
+          }
+          if($vbo_dirSemillero==1){
+              $vbo_dirsem="Rechazado";
+          }
+          if($vbo_dirSemillero==2){
+              $vbo_dirSemillero="Aprobado";
+          }
+          $plan_accion->setSemestre($vbo_dirsem);
+        
+          /************************************************************/
+            $vbo_dirGinvestigacion=$data[$i]['vbo_dirGinvestigacion'];
+          if($vbo_dirGinvestigacion==0){
+              $vbo_dirGinvestigacion="En Revision";
+          }
+          if($vbo_dirGinvestigacion==1){
+              $vbo_dirGinvestigacion="Rechazado";
+          }
+          if($vbo_dirGinvestigacion==2){
+              $vbo_dirGinvestigacion="Aprobado";
+          }
+            $plan_accion->setAno($vbo_dirGinvestigacion);
+          /************************************************************/
+          $vbo_facultaInv=$data[$i]['vbo_facultaInv'];
+            if($vbo_dirsem==0){
+              $vbo_facultaInv="En Revision";
+          }
+          if($vbo_dirsem==1){
+              $vbo_facultaInv="Rechazado";
+          } if($vbo_dirsem==2){
+              $vbo_facultaInv="Aprobado";
+          }
+          $plan_accion->setVbo_dirSemillero($vbo_facultaInv);
+          
+          /*****************************semestrre***********/
+           $semestre=$data[$i]['semestre'];
+            if($semestre==1){
+              $semestre="Primer";
+          }
+           
+            if($semestre==2){
+              $semestre="Segundo";
+          }
+          $plan_accion->setVbo_dirGinvestigacion($semestre);
+          $plan_accion->setVbo_facultaInv($data[$i]['ano']);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $plan_accion->setSemillero_id($semillero);
+         
+          array_push($lista,$plan_accion);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  
+  public function listAll_plan_sem($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `semestre`, `ano`, `vbo_dirSemillero`, `vbo_dirGinvestigacion`, `vbo_facultaInv`, `semillero_id`  FROM `plan_accion` WHERE `semillero_id` = '$id' " ;
          
      
           $data = $this->ejecutarConsulta($sql);

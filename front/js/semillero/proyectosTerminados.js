@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    semille = Utilitario.getLocal('id_semillero');
+
     $("#btnLnRegC").hide();
     $("#btnLnActC").hide();
     $("#btnLnRegU").hide();
@@ -6,6 +8,18 @@ $(document).ready(function() {
     $("#btnLnRegF").hide();
     $("#btnLnActF").hide();
     //--------Btn off antes insert----------------
+    iniciarValidacionTablas();
+
+    $("#modalRegistro").hide();
+    $("#ModalTablas").show();
+
+    iniciarTablaProjectos();
+    obtenerDatosProjectos();
+    //--------Tablas----------------
+
+});
+
+function iniciarValidacionTablas() {
     let idP = $('#id_proyecto').val()
     if (idP === "") {
         $('#btn_coinvestigadores').hide()
@@ -20,8 +34,14 @@ $(document).ready(function() {
         $('#btn_objetivos').show()
         $('#btn_fuentes').show()
     }
+}
 
-    //--------Tablas----------------
+function iniciarRegistro() {
+    iniciarValidacionTablas();
+
+    $("#modalRegistro").show();
+    $("#ModalTablas").hide();
+
     iniciarTablaUsuario();
     iniciarTablaCooinvestigadores();
     iniciarTablaFuentes();
@@ -31,8 +51,15 @@ $(document).ready(function() {
     obtenerDatosFuentes();
     //--------Data Select----------------
     obtenerDatosSelectLineas();
-});
+}
 
+function iniciarTablaRegitrarTodo() {
+
+    $("#modalRegistro").hide();
+    $("#ModalTablas").show();
+
+    obtenerDatosProjectos();
+}
 //----------------------------------TABLA USUARIOS----------------------------------
 
 /**
@@ -507,7 +534,7 @@ function selectLineas(lineas) {
     input.append(opcion);
     for (let index = 0; index < lineas.length; index++) {
         let lineaInv = lineas[index],
-            opcion = new Option(lineaInv.linea, lineaInv.id);
+            opcion = new Option(lineaInv.linea, lineaInv.descripcion);
         $(opcion).html(lineaInv.linea);
         input.append(opcion);
     }
@@ -524,6 +551,7 @@ function RegistrarData() {
     let data = {
         titulo: $('#titulo').val(),
         investigador: $('#inv_principal').val(),
+        id_semillero: Utilitario.getLocal('id_semillero'),
     }
     Utilitario.agregarMascara();
     fetch("../../back/controller/ProyectosController_Insert.php", {
@@ -549,6 +577,7 @@ function RegistrarData() {
             $('#btn_objetivos').show();
             $('#btn_fuentes').show();
 
+            iniciarTablaRegitrarTodo();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -892,4 +921,246 @@ function mostrarModalUsuarios(btn, pi, si) {
 
 function cerrarModalUsuarios() {
     $('#ModalUsuarios').modal('hide');
+}
+
+
+function mostrarModalProyectos_t() {
+    //    limpiarcampos();
+    $('#myModalProyectos_t').modal({ show: true });
+    $("#btnOrderReg").show();
+    $("#btnOrderAct").hide();
+
+
+}
+
+function cerrarModalProyectos() {
+
+    $('#myModalProyectos').modal('hide');
+    //    $('#myModalProyectos').modal({show: true});
+    //    $("#btnOrderReg").show();
+    //    $("#btnOrderAct").hide();
+
+
+}
+
+function obtenerDatosProjectos() {
+    let semi = {
+        id: Utilitario.getLocal('id_semillero'),
+    };
+    fetch("../../back/controller/ProyectosController_List_id.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(semi),
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+            console.log(data.projectos.length);
+            if (data.projectos.length > 0)
+                listadoEspecialProjectos(data.projectos);
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                //                Mensaje.mostrarMsjError(
+                //                    "Error al traer projectos",
+                //                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                //                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+}
+
+function listadoEspecialProjectos(Projectos) {
+
+    let tabla = $("#listadoProjectosTabla").DataTable();
+    tabla.data().clear();
+    tabla.rows.add(Projectos).draw();
+}
+
+function iniciarTablaProjectos() {
+
+    //tabla de alumnos
+    $("#listadoProjectosTabla").DataTable({
+        responsive: true,
+        ordering: false,
+        paging: false,
+        searching: false,
+        info: true,
+        lengthChange: false,
+        language: {
+            emptyTable: "Sin Projectos...",
+            search: "Buscar:",
+            info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
+            infoEmpty: "Ningun registro 0 de 0",
+            infoFiltered: "(filtro de _MAX_ registros en total)",
+            paginate: {
+                first: "Primero",
+                previous: "Anterior",
+                next: "Siguiente",
+                last: "Ultimo"
+            }
+        },
+        columns: [{
+                data: "id",
+                className: "text-center",
+                visible: false,
+            },
+            {
+                data: "titulo",
+                className: "text-center",
+                orderable: true,
+            },
+            {
+                data: "investigador",
+                className: "text-center",
+                orderable: true,
+            },
+            {
+                orderable: false,
+                defaultContent: [
+                    "<div class='text-center'>",
+                    "<a class='personalizado actualizarpro' title='Gestionar'><i class='fa fa-edit'></i>&nbsp; &nbsp;  &nbsp;</a>",
+                    "<a class='personalizado eliminarpro' title='eliminar'><i class='fa fa-trash'></i></a>",
+                    "</div>",
+                ].join(""),
+            },
+        ],
+        rowCallback: function(row, data, index) {
+            var id_order = data.id
+            var persona_id_id = data.persona_id_id
+
+            $(".actualizarpro", row).click(function() {
+                gestionarPro(data);
+            });
+            $(".eliminarpro", row).click(function() {
+                DeletePro(id_order, index, persona_id_id);
+            });
+        },
+        dom: '<"html5buttons"B>lTfgitp',
+        buttons: [{
+                extend: "copy",
+                className: "btn btn-primary glyphicon glyphicon-duplicate"
+            },
+            {
+                extend: "csv",
+                title: "listadoProjectos",
+                className: "btn btn-primary glyphicon glyphicon-save-file"
+            },
+            {
+                extend: "excel",
+                title: "listadoProjectos",
+                className: "btn btn-primary glyphicon glyphicon-list-alt"
+            },
+            {
+                extend: "pdf",
+                title: "listadoProjectos",
+                className: "btn btn-primary glyphicon glyphicon-file"
+            },
+            {
+                extend: "print",
+                className: "btn btn-primary glyphicon glyphicon-print",
+                customize: function(win) {
+                    $(win.document.body).addClass("white-bg");
+                    $(win.document.body).css("font-size", "10px");
+                    $(win.document.body)
+                        .find("table")
+                        .addClass("compact")
+                        .css("font-size", "inherit");
+                },
+            },
+        ],
+    });
+
+}
+
+function gestionarPro(data) {
+    $('#id_proyecto').val(data.id);
+    $("#modalRegistro").show();
+    $("#ModalTablas").hide();
+    iniciarRegistro();
+    infoDataProyectoById(data.id);
+}
+
+function infoDataProyectoById(id) {
+    let data = {
+        id: id,
+    }
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/ProyectosController_List_Project_id.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw response;
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            llenarFormWithData(data.projectos);
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+}
+
+function llenarFormWithData(data) {
+    $('#titulo').val(data[0].titulo);
+    $('#inv_principal').val(data[0].investigador);
+    /* Otros Datos */
+    $('#linea_investigacion').val(data[0].linea_investigacion);
+    $('#t_ejecucion').val(data[0].tiempo_ejecucion);
+    $('#fecha_ini').val(data[0].fecha_ini);
+    $('#fecha_fin').val(data[0].fecha_fin);
+    $('#resumen').val(data[0].resumen);
+    /* Objetivos */
+    $('#obj_general').val(data[0].obj_general);
+    $('#obj_especifico').val(data[0].obj_especifico);
+    $('#resultados').val(data[0].resultados);
+    $('#costo').val(data[0].costo_valor);
 }
