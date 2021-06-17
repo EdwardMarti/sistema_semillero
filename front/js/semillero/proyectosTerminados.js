@@ -13,8 +13,11 @@ $(document).ready(function() {
     $("#modalRegistro").hide();
     $("#ModalTablas").show();
 
-    iniciarTablaProjectos();
-    obtenerDatosProjectos();
+    iniciarTablaProyectos();
+    obtenerDatosProyectos();
+    iniciarTablaUsuario();
+    iniciarTablaCooinvestigadores();
+    iniciarTablaFuentes();
     //--------Tablas----------------
 
 });
@@ -37,20 +40,8 @@ function iniciarValidacionTablas() {
 }
 
 function iniciarRegistro() {
-    iniciarValidacionTablas();
-
     $("#modalRegistro").show();
     $("#ModalTablas").hide();
-
-    iniciarTablaUsuario();
-    iniciarTablaCooinvestigadores();
-    iniciarTablaFuentes();
-    //--------Data Tablas----------------
-    obtenerDatosUsuario();
-    obtenerDatosCooinvestigadores();
-    obtenerDatosFuentes();
-    //--------Data Select----------------
-    obtenerDatosSelectLineas();
 }
 
 function iniciarTablaRegitrarTodo() {
@@ -58,7 +49,7 @@ function iniciarTablaRegitrarTodo() {
     $("#modalRegistro").hide();
     $("#ModalTablas").show();
 
-    obtenerDatosProjectos();
+    obtenerDatosProyectos();
 }
 //----------------------------------TABLA USUARIOS----------------------------------
 
@@ -269,12 +260,83 @@ function iniciarTablaCooinvestigadores() {
                 gestionarItem(id_order, data, index);
             });
             $(".eliminar", row).click(function() {
-                DeleteOrder(id_order, index);
+                DeleteProT(id_order, index);
             });
         },
     });
 
 }
+
+
+
+function DeleteProT(id_order, id_proCap) {
+    Mensaje.mostrarMsjConfirmacion(
+        'Eliminar Registros ',
+        'Este proceso es irreversible , ¿esta seguro que desea eliminar este Registro?',
+        function() {
+            eliminarProyecT(id_order, id_proCap);
+        }
+    );
+}
+
+
+function eliminarProyecT(id) {
+
+
+    let data = {
+        id: id,
+
+    };
+    Utilitario.agregarMascara();
+    fetch("../../back/controller/ProyectosController_Delete.php", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+
+                Plataform: "web",
+            },
+
+            body: JSON.stringify(data),
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function(data) {
+
+            Mensaje.mostrarMsjExito("Borrado Exitoso", data.mensaje);
+
+            obtenerDatosProyectos();
+        })
+        .catch(function(promise) {
+            if (promise.json) {
+                promise.json().then(function(response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function() {
+                            Utilitario.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        })
+        .finally(function() {
+            Utilitario.quitarMascara();
+        });
+
+}
+
 
 /**
  * @method obtenerDatos
@@ -577,7 +639,7 @@ function RegistrarData() {
             $('#btn_objetivos').show();
             $('#btn_fuentes').show();
 
-            iniciarTablaRegitrarTodo();
+//            iniciarTablaRegitrarTodo();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -943,7 +1005,7 @@ function cerrarModalProyectos() {
 
 }
 
-function obtenerDatosProjectos() {
+function obtenerDatosProyectos() {
     let semi = {
         id: Utilitario.getLocal('id_semillero'),
     };
@@ -962,9 +1024,8 @@ function obtenerDatosProjectos() {
             throw response;
         })
         .then(function(data) {
-            console.log(data.projectos.length);
             if (data.projectos.length > 0)
-                listadoEspecialProjectos(data.projectos);
+                listadoEspecialProyectos(data.projectos);
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -991,17 +1052,17 @@ function obtenerDatosProjectos() {
         });
 }
 
-function listadoEspecialProjectos(Projectos) {
+function listadoEspecialProyectos(Proyectos) {
 
-    let tabla = $("#listadoProjectosTabla").DataTable();
+    let tabla = $("#listadoProyectosTabla").DataTable();
     tabla.data().clear();
-    tabla.rows.add(Projectos).draw();
+    tabla.rows.add(Proyectos).draw();
 }
 
-function iniciarTablaProjectos() {
+function iniciarTablaProyectos() {
 
     //tabla de alumnos
-    $("#listadoProjectosTabla").DataTable({
+    $("#listadoProyectosTabla").DataTable({
         responsive: true,
         ordering: false,
         paging: false,
@@ -1009,7 +1070,7 @@ function iniciarTablaProjectos() {
         info: true,
         lengthChange: false,
         language: {
-            emptyTable: "Sin Projectos...",
+            emptyTable: "Sin Proyectos...",
             search: "Buscar:",
             info: "_START_ de _MAX_ registros", //_END_ muestra donde acaba _TOTAL_ muestra el total
             infoEmpty: "Ningun registro 0 de 0",
@@ -1064,17 +1125,17 @@ function iniciarTablaProjectos() {
             },
             {
                 extend: "csv",
-                title: "listadoProjectos",
+                title: "listadoProyectos",
                 className: "btn btn-primary glyphicon glyphicon-save-file"
             },
             {
                 extend: "excel",
-                title: "listadoProjectos",
+                title: "listadoProyectos",
                 className: "btn btn-primary glyphicon glyphicon-list-alt"
             },
             {
                 extend: "pdf",
-                title: "listadoProjectos",
+                title: "listadoProyectos",
                 className: "btn btn-primary glyphicon glyphicon-file"
             },
             {
@@ -1098,7 +1159,15 @@ function gestionarPro(data) {
     $('#id_proyecto').val(data.id);
     $("#modalRegistro").show();
     $("#ModalTablas").hide();
-    iniciarRegistro();
+
+    iniciarValidacionTablas();
+    //--------Data Tablas----------------
+    obtenerDatosUsuario();
+    obtenerDatosCooinvestigadores();
+    obtenerDatosFuentes();
+    //--------Data Select----------------
+    obtenerDatosSelectLineas();
+
     infoDataProyectoById(data.id);
 }
 

@@ -64,7 +64,7 @@ $objetivo=$capacitaciones->getObjetivo();
       
       try {
           $sql= "INSERT INTO `linea_proyecto_plan`( `linea_id`, `proy_id`, `plan_id`, `sem`, `ano`)  VALUES ('$linea_id','$proy_id','$plan_accion_id','$semestre','$anio')";
-//          var_dump($sql);
+          var_dump($sql);
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');

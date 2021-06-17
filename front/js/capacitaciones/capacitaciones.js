@@ -194,7 +194,7 @@ function listadoTCap(capacitaciones) {
 //<editor-fold defaultstate="collapsed" desc="Modal Capacitaciones">
 
 function mostrarModalCapacitaciones() {
-    //    limpiarcampos();
+    LimpiarCapacitaciones();
     $('#myModalCapacitaciones').modal({ show: true });
     $("#btnOrderReg").show();
     $("#btnOrderAct").hide();
@@ -254,6 +254,7 @@ function registrarCapacitacion() {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
             obtenerDatosC(id_Semil);
+            LimpiarCapacitaciones();
             cerrarModalCapacitaciones();
         })
         .catch(function(promise) {
@@ -365,6 +366,26 @@ function dataItemTablaLn(data) {
 }
 
 
+
+
+function LimpiarCapacitaciones() {
+    
+    $('#id_semillero').val("");
+    $('#nombre').val("");
+    $('#sigla').val("");
+    $('#grupo_investigacion').val("");
+    $('#departamentos').val("");
+    $('#facultades').val("");
+  
+
+    $('#p_estudio').val("");
+   
+    $('#fecha').val("");
+    $('#nombreD').val("");
+    $('#correoD').val("");
+    $('#telefonoD').val("");
+    $('#tp_vinculacion').val("");
+}
 function ActualizarData() {
 
     let semillero = {
@@ -401,6 +422,9 @@ function ActualizarData() {
             Mensaje.mostrarMsjExito("Datos Actualizados", data.mensaje);
             //            obtenerDatos();
             //            ocultarModalOrdenes();
+                 obtenerDatosC(id_Semil);
+                LimpiarCapacitaciones();
+                cerrarModalCapacitaciones();
         })
         .catch(function(promise) {
             if (promise.json) {

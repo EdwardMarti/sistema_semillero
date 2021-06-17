@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h1>Registro de Horas</h1>
+            </div>
+            <div class="card-body">
+                <input type="hidden" id="idSolicitud">
+                <div class="form-row">
+                    <div class="col-md-7 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Semestre</span>
+                            </div>
+                            <select class="custom-select custom-select-md" id="semestre">
+                                <option value="1" selected>Primero</option>
+                                <option value="2">Segundo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend3">Año</span>
+                            </div>
+                                <input type="text" class="text-right yearpicker form-control" name="anio"
+                                       id="anio" aria-describedby="inputGroupPrepend3"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary float-right ml-2 registrar" onclick="registrarSolicitudHorasV2()">Registrar</button>
+                <button class="btn btn-primary float-right ml-2 actualizar" style="display: none" onclick="actualizarSolicitudHoras()">Actualizar</button>
+                <button class="btn btn-white float-right"  onclick="Menu.loadFormSolicitudHorasDocente()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(() => {
+        console.log(VAL("anio"), "da")
+        if(VAL("anio")==""){
+            $(".yearpicker").yearpicker({
+                year: 2021,
+                startYear: 2012,
+                endYear: 2030
+            });
+        }else{
+            console.log("sass")
+            $(".yearpicker").yearpicker({
+                year: VAL("anio"),
+                startYear: 2012,
+                endYear: 2030
+            });
+        }
+
+    });
+</script>
+<link rel="stylesheet" href="../js/helpers/jquery-year-picker/css/style.css"/>
+<link rel="stylesheet" href="../js/helpers/jquery-year-picker/css/yearpicker.css">
+<!--<script src="../js/helpers/jquery-year-picker/js/yearpicker.js"></script>-->

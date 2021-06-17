@@ -169,6 +169,32 @@ class Menu {
                 Utilitario.quitarMascara();
             });
     }
+    
+       static editar_Plan(id_order,id_sem) {
+
+     
+        
+        Utilitario.agregarMascara();
+        fetch("editar_PlanAccion.html", {
+                method: "GET",
+            })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+        
+         obtenerDatosLineas_has_proyectos2(id_order);
+//                   document.getElementById("id_planReg").value = id_order;
+//                 document.getElementById("id_Semillero").value = id_sem;
+            })
+            .finally(function() {
+               
+            
+                
+                Utilitario.quitarMascara();
+            });
+    }
 
     static listadoPonencias() {
 
@@ -434,12 +460,27 @@ class Menu {
          * carga en la vista principal el formulario para registrar las horas
          * de investigacion para directores de semillero
          */
-    static loadFormSolicitudHoras() {
-
+    static loadFormSolicitudHorasAdmin() {
         Utilitario.agregarMascara();
         fetch("formRegistroHorasInvestigacion.html", {
                 method: "GET",
             })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+    static loadFormSolicitudHorasDocente() {
+
+        Utilitario.agregarMascara();
+        fetch("formRegistroHorasInvestigacionDocente.html", {
+            method: "GET",
+        })
             .then(function(response) {
                 return response.text();
             })
@@ -499,6 +540,42 @@ class Menu {
             })
             .then(function(vista) {
                 $("#mostrarcontenido").html(vista);
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+    static registroHorasDocente() {
+        Utilitario.agregarMascara();
+        fetch("registroHorasDocente.html", {
+            method: "GET",
+        })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+            })
+            .finally(function() {
+                Utilitario.quitarMascara();
+            });
+    }
+    static editarHorasDocente(data) {
+        console.log(data)
+        Utilitario.agregarMascara();
+        fetch("registroHorasDocente.html", {
+            method: "GET",
+        })
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(vista) {
+                $("#mostrarcontenido").html(vista);
+                $(".registrar").hide();
+                $(".actualizar").show();
+                document.getElementById("semestre").value = data.semestre;
+                document.getElementById("idSolicitud").value = data.id;
+                document.getElementById("anio").value = data.anio;
             })
             .finally(function() {
                 Utilitario.quitarMascara();

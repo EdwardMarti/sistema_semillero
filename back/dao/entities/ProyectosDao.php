@@ -170,6 +170,16 @@ class ProyectosDao implements IProyectosDao
             throw new Exception('Primary key is null');
         }
     }
+    public function updateDelete($id)
+    {
+    
+        try {
+            $sql = "UPDATE `proyectos` SET `stado`='1'  WHERE `id`='$id' ";
+            return $this->updateConsulta($sql);
+        } catch (SQLException $e) {
+            throw new Exception('Primary key is null');
+        }
+    }
 
     /**
      * Modifica un objeto Proyectos en la base de datos.
@@ -258,7 +268,42 @@ class ProyectosDao implements IProyectosDao
         $lista = array();
         try {
             $sql = " SELECT `id`, `titulo`, `investigador`, `tipo_proyecto_id`, `tiempo_ejecucion`, `fecha_ini`, `resumen`, `obj_general`, `obj_especifico`, `resultados`, `costo_valor`, `producto`, `semillero_id` FROM `proyectos` "
-                . "WHERE  `semillero_id` = '$id' ";
+                . "WHERE  `semillero_id` = '$id' and `fecha_fin` <> -1 and `stado` = '0' ";
+            $data = $this->ejecutarConsulta($sql);
+            for ($i = 0; $i < count($data); $i++) {
+                $proyectos = new Proyectos();
+                $proyectos->setId($data[$i]['id']);
+                $proyectos->setTitulo($data[$i]['titulo']);
+                $proyectos->setInvestigador($data[$i]['investigador']);
+                $estado_proyecto = new Estado_proyecto();
+                $estado_proyecto->setId($data[$i]['tipo_proyecto_id']);
+                $proyectos->setTipo_proyecto_id($estado_proyecto);
+                $proyectos->setTiempo_ejecucion($data[$i]['tiempo_ejecucion']);
+                $proyectos->setFecha_ini($data[$i]['fecha_ini']);
+                $proyectos->setResumen($data[$i]['resumen']);
+                $proyectos->setObj_general($data[$i]['obj_general']);
+                $proyectos->setobj_especifico($data[$i]['obj_especifico']);
+                $proyectos->setResultados($data[$i]['resultados']);
+                $proyectos->setCosto_valor($data[$i]['costo_valor']);
+                $proyectos->setProducto($data[$i]['producto']);
+                $semillero = new Semillero();
+                $semillero->setId($data[$i]['semillero_id']);
+                $proyectos->setSemillero_id($semillero);
+                array_push($lista, $proyectos);
+            }
+            return $lista;
+        } catch (SQLException $e) {
+            throw new Exception('Primary key is null');
+            return null;
+        }
+    }
+    
+    public function listAll_id_Ejecucion($id)
+    {
+        $lista = array();
+        try {
+            $sql = "SELECT `id`, `titulo`, `investigador`, `tipo_proyecto_id`, `tiempo_ejecucion`, `fecha_ini`, `resumen`, `obj_general`, `obj_especifico`, `resultados`, `costo_valor`, `producto`, `semillero_id` FROM `proyectos` "
+                . "WHERE  `semillero_id` = '$id' and `fecha_fin` = -1  and `stado` = '0' ";
             $data = $this->ejecutarConsulta($sql);
             for ($i = 0; $i < count($data); $i++) {
                 $proyectos = new Proyectos();
@@ -293,7 +338,7 @@ class ProyectosDao implements IProyectosDao
         $lista = array();
         try {
             $sql = " SELECT * FROM `proyectos` "
-                . "WHERE  `id` = '$id' ";
+                . "WHERE  `id` = '$id'  and `stado` = '0' ";
             $data = $this->ejecutarConsulta($sql);
             for ($i = 0; $i < count($data); $i++) {
                 $proyectos = new Proyectos();

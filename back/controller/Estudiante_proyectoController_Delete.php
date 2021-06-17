@@ -21,9 +21,9 @@ $dataObject = json_decode($JSONData);
          try {
                         if ($rpta > 0) {
                             http_response_code(200);
-                            echo "{\"mensaje\":\"Se ha registrado exitosamente\"}";
+                            echo "{\"mensaje\":\"Se ha Borrado exitosamente\"}";
                         }
                     } catch (Exception $e) {
                         http_response_code(500);
-                        echo "{\"mensaje\":\"Error al registrar \"}";
+                        echo "{\"mensaje\":\"Error al Borra \"}";
                     }

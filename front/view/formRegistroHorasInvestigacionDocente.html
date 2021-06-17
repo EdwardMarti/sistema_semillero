@@ -1,0 +1,35 @@
+<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
+
+<div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="ibox ">
+                    <div class="ibox-title row" id="descripcion_menu">
+                        <h5 class="text-white col">Solicitud Horas</h5>
+                        <h5 class="label label-successE"> <a onclick="Menu.registroHorasDocente()"
+                                                             style="background-color: #243747 ;display: inline !important" class="btn btn-primary" id="agregar">+
+                            Agregar</a></h5>
+                    </div>
+
+                <div class="ibox-content">
+                        <table class='table table-striped mt-4 mb-4 centradito table-hover ' id='listadoHorasTabla'
+                           >
+                            <thead>
+                                <tr class="ufps-tabl">
+                                    <th>Año</th>
+                                    <th>Semestre</th>
+                                    <th>Estado</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/solicitudes/horasInvestigacionDocente.js"></script>
+<script type="text/javascript" src="../js/tours/solicitudes/horas_investigacion_tour.js"></script>
+<script src="../js/helpers/jquery-year-picker/js/yearpicker.js"></script>

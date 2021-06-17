@@ -17,7 +17,7 @@ $(document).ready(function () {
         ],
         onEnd:() => {
             Mensaje.mostrarMsjExito(msg_culminacion_tour, "Felicitaciones", () => {
-                Menu.loadFormSolicitudHoras();
+                Menu.loadFormSolicitudHorasAdmin();
                 document.getElementById("_menuSolicitudesTour").click();
             });
         }

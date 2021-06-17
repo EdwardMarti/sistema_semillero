@@ -25,7 +25,7 @@ $plan= strip_tags($dataObject->plan);
 	    \"nombre_actividad\":\"{$Otras_actividades->getnombre_actividad()}\",
 	    \"modalidad_participacion\":\"{$Otras_actividades->getmodalidad_participacion()}\",
 	    \"responsable\":\"{$Otras_actividades->getresponsable()}\",
-	    \"fecha_realizacion\":\"{$Otras_actividades->getfecha_realizacion()}\",
+	    \"fecha\":\"{$Otras_actividades->getfecha_realizacion()}\",
 	    \"producto\":\"{$Otras_actividades->getproducto()}\",
 	    \"semillero_id_id\":\"{$Otras_actividades->getsemillero_id()->getid()}\"
 	       },";

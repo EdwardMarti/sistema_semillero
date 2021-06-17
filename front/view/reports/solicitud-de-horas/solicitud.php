@@ -1,6 +1,5 @@
 <?php
 require_once "../../../../vendor/autoload.php";
-require_once('./styles.css');
 
 $key = $_GET["token"];
 
@@ -8,37 +7,35 @@ session_start();
 
 $data = $_SESSION[$key];
 
-if(strtoupper(substr(PHP_OS, 0, 3))== "WIN"){
-    $mpdf = new \Mpdf\Mpdf(['setAutoBottomMargin' => 'stretch','setAutoTopMargin' => 'stretch']);
-}else{
-    $mpdf = new \Mpdf\Mpdf(['tempDir' => '/tmp','setAutoBottomMargin' => 'stretch','setAutoTopMargin' => 'stretch']);
+if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN") {
+    $mpdf = new \Mpdf\Mpdf(['setAutoBottomMargin' => 'stretch', 'setAutoTopMargin' => 'stretch']);
+} else {
+    $mpdf = new \Mpdf\Mpdf(['tempDir' => '/tmp', 'setAutoBottomMargin' => 'stretch', 'setAutoTopMargin' => 'stretch']);
 }
-//
 
 $htmlHeader = getHeader();
-$htmlHeader = str_replace("_codigo", $data['codigo'] , $htmlHeader);
-$htmlHeader = str_replace("_version", $data['version'] , $htmlHeader);
-$htmlHeader = str_replace("_fecha", $data["fecha"] , $htmlHeader);
+$htmlHeader = str_replace("_codigo", $data['codigo'], $htmlHeader);
+$htmlHeader = str_replace("_version", $data['version'], $htmlHeader);
+$htmlHeader = str_replace("_fecha", $data["fecha"], $htmlHeader);
 
 $mpdf->SetHTMLHeader($htmlHeader);
 $mpdf->SetHTMLFooter(getFooter());
 
 $htmlBody = getBody();
-$htmlBody = str_replace("_horas_catedra", $data["horas_catedra"] , $htmlBody);
-$htmlBody = str_replace("_horas_planta", $data["horas_planta"] , $htmlBody);
-$htmlBody = str_replace("_semestre", $data["semestre"] , $htmlBody);
-$htmlBody = str_replace("_grupo_investigacion", $data["grupo_investigacion"] , $htmlBody);
-$htmlBody = str_replace("_semillero", $data["semillero"] , $htmlBody);
-$htmlBody = str_replace("_anio", $data["anio"] , $htmlBody);
-$htmlBody = str_replace("_docente", $data["docente"] , $htmlBody);
-$htmlBody = str_replace("_horas_solicitadas", $data["horas_solicitadas"] , $htmlBody);
-
+$htmlBody = str_replace("_horas", $data["horasCantidad"], $htmlBody);
+$htmlBody = str_replace("_tipo_vinculacion", $data["horasDescripcion"], $htmlBody);
+$htmlBody = str_replace("_anio", $data["anio"], $htmlBody);
+$htmlBody = str_replace("_semestre", $data["semestre"] == 1 ? 'primer' : 'segundo', $htmlBody);
+$htmlBody = str_replace("_nombre_semillero", $data["nombreSemillero"], $htmlBody);
+$htmlBody = str_replace("_docente", $data["nombreDocente"], $htmlBody);
+$htmlBody = str_replace("_nombre_grupo", $data["grupoInvestigacionNombre"], $htmlBody);
 
 $mpdf->WriteHTML(file_get_contents('styles.css'), \Mpdf\HTMLParserMode::HEADER_CSS);
 $mpdf->WriteHTML($htmlBody, \Mpdf\HTMLParserMode::HTML_BODY);
 $mpdf->Output("solicitudHoras.pdf", \Mpdf\Output\Destination::INLINE);
 
-function getHeader(){
+function getHeader()
+{
     return "
 <table class='table table-border' cellspacing='0' cellpadding='0'>
 
@@ -79,8 +76,9 @@ function getHeader(){
 ";
 }
 
-function getBody(){
-    return"
+function getBody()
+{
+    return "
 <body>
 <table>
     <tr>
@@ -103,7 +101,7 @@ function getBody(){
     <tr>
         <td style='text-align:justify'>
             <p>
-            Por medio de la presente me permito solicitar el reconocimiento de horas de investigación por concepto de Dirección del Semillero de Investigación <strong>_grupo_investigacion</strong> adscrito al Grupo de Investigación <strong>_semillero</strong>, 
+            Por medio de la presente me permito solicitar el reconocimiento de horas de investigación por concepto de Dirección del Semillero de Investigación <strong>_nombre_semillero</strong> adscrito al Grupo de Investigación <strong>_nombre_grupo</strong>, 
             al docente <strong>_docente</strong>, teniendo en cuenta que se encuentra al día en la entrega del plan de acción del <strong>_semestre</strong> semestre académico del año <strong>_anio</strong> y el informe de gestión del semestre académico actual.
             </p>       
         </td>
@@ -117,23 +115,15 @@ function getBody(){
         <td style='text-align:left'>
             <table>
                 <tr>
-                    <td class='strong'>Catedra:</td>
-                    <td>_horas_catedra horas</td>
-                </tr>
-            </table>
-        </td>
-        <td style='text-align:left'>
-            <table>
-                <tr>
-                    <td class='strong'>Planta:</td>
-                    <td>_horas_planta horas</td>
+                    <td class='strong'>_tipo_vinculacion:</td>
+                    <td>_horas horas</td>
                 </tr>
             </table>
         </td>
     </tr>
 </table>
 <div style='margin-top:5px; padding-left:5px'>
-    Número de Horas Solicitadas: las _horas_solicitadas laborales
+    Número de Horas Solicitadas: las _horas laborales
 </div>
 <table style='margin-top:30px'>
     <tr>
@@ -183,8 +173,9 @@ function getBody(){
     ";
 }
 
-function getFooter(){
-    return"
+function getFooter()
+{
+    return "
     <table width='100%'>
     <tr>
         <td align='center' width='100%' style='font-size: 10px;'>

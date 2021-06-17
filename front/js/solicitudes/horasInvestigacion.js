@@ -1,19 +1,10 @@
-$(document).ready(function () {
+$(document).ready(() => {
     iniciarTabla();
-    cargarHorasBySemillero();
+    cargarSolicitudes();
 });
 
-function cargarHorasBySemillero() {
-    console.log("id del semillero ", Utilitario.getLocal('id_semillero'))
-    fetch("../../back/controller/Solicitud_horasControllerList.php", {
-        method: "POST",
-        body: JSON.stringify({ id: Utilitario.getLocal('id_semillero') }),
-        headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Plataform: "web",
-        },
-    })
+function cargarSolicitudes() {
+    fetch("../../back/controller/Solicitud_horasControllerAdmin.php", GET())
         .then(function (response) {
             if (response.ok) {
                 return response.json();
@@ -44,10 +35,11 @@ function cargarHorasBySemillero() {
             }
         });
 }
-function loadTabla({ horas }) {
+function loadTabla({ solicitudes }) {
+    console.log(solicitudes)
     let tabla = $("#listadoHorasTabla").DataTable();
     tabla.data().clear();
-    tabla.rows.add(horas).draw();
+    tabla.rows.add(solicitudes).draw();
 }
 
 /**
@@ -77,28 +69,28 @@ function iniciarTabla() {
         },
         columns: [
             {
-                data: "anio",
+                data: "nombreDocente",
                 className: "text-center",
                 orderable: true,
             },
             {
-                data: "semestre",
+                data: "anio",
                 className: "text-center",
                 orderable: true,
             },
 
             {
-                data: "horas_catedra",
+                data: "semestre",
                 className: "text-center",
                 orderable: true,
             },
             {
-                data: "horas_planta",
+                data: "horasCantidad",
                 className: "text-center",
                 orderable: true,
             },
             {
-                data: "horas_solicitadas",
+                data: "siglaSemillero",
                 className: "text-center",
                 orderable: true,
             },
@@ -106,14 +98,18 @@ function iniciarTabla() {
                 orderable: false,
                 defaultContent: [
                     "<div class='text-center'>",
+                    "<a class='text-secondary _revisar' title='Revisar'><i class='fa fa-eye'></i>&nbsp; &nbsp;  &nbsp;</a>",
                     "<a class='text-secondary actualizar' title='Modificar'><i class='fa fa-edit'></i>&nbsp; &nbsp;  &nbsp;</a>",
                     "<a class='text-secondary make-pdf' title='Ver en formato PDF'><i class='fa fa-file-o'></i>&nbsp; &nbsp;  &nbsp;</a>",
-                    "<a class='text-danger eliminar' title='Eliminar'><i class='fa fa-trash-o'></i>&nbsp; &nbsp;  &nbsp;</a>",
+                //    "<a class='text-danger eliminar' title='Eliminar'><i class='fa fa-trash-o'></i>&nbsp; &nbsp;  &nbsp;</a>",
                     "</div>",
                 ].join(""),
             },
 
         ], rowCallback: function (row, data, index) {
+            $("._revisar", row).click(function () {
+                revisarSolicitud(data);
+            });
             $(".actualizar", row).click(function () {
                 editarSolicitud(data);
             });
@@ -160,7 +156,9 @@ function iniciarTabla() {
                 $(win.document.body)
                     .find("table")
                     .addClass("compact")
-                    .css("font-size", "inherit");
+                    //.addClass("table-responsive")
+                 //   .css("font-size", "inherit")
+           // .css("background-color", "yellow");
             },
         },
         ],
@@ -199,7 +197,7 @@ function registrarSolicitudHoras() {
         })
         .then(function (data) {
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            cargarHorasBySemillero();
+            cargarSolicitudes();
             closeModalRegistroHoras();
         })
         .catch(function (promise) {
@@ -254,7 +252,7 @@ function actualizarSolicitudHoras() {
         })
         .then(function (data) {
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            cargarHorasBySemillero();
+            cargarSolicitudes();
             closeModalRegistroHoras();
         })
         .catch(function (promise) {
@@ -308,7 +306,7 @@ function deleteSolicitud(id) {
         })
         .then(function (data) {
             Mensaje.mostrarMsjExito("Removido Correctamente", data.mensaje);
-            cargarHorasBySemillero();
+            cargarSolicitudes();
         })
         .catch(function (promise) {
 
@@ -385,4 +383,78 @@ function makeSolicitudHorasPdf(id) {
                 );
             }
         });   
+}
+
+/**
+ * selector de año
+ */
+$(document).ready(function() {
+    $(".yearpicker").yearpicker({
+        year: 2017,
+        startYear: 2012,
+        endYear: 2030
+    });
+});
+
+/*
+* nuevo formulario
+* */
+
+function registrarSolicitudHorasV2() {
+
+    let data = {
+        idSemillero:Utilitario.getLocal('id_semillero'),
+        idDocente:Utilitario.getLocal('id'),
+        anio:VAL("anio"),
+        semestre:SELECTED_ITEM("semestre").value
+    }
+    fetch("../../back/controller/Solicitud_horasControllerDocente.php", POST(data))
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw response;
+        })
+        .then(function (data) {
+            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
+            cargarSolicitudes();
+            closeModalRegistroHoras();
+        })
+        .catch(function (promise) {
+
+            if (promise.json) {
+                promise.json().then(function (response) {
+                    let status = promise.status,
+                        mensaje = response ? response.mensaje : "";
+                    if (status === 401 && mensaje) {
+                        Mensaje.mostrarMsjWarning("Advertencia", mensaje, function () {
+                            Utilitario2.cerrarSesion();
+                        });
+                    } else if (mensaje) {
+                        Mensaje.mostrarMsjError("Error", mensaje);
+                    }
+                });
+            } else {
+                Mensaje.mostrarMsjError(
+                    "Error",
+                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+                );
+            }
+        });
+}
+
+closeModalRevision = ()=>{
+    $("#ModalRevisar").hide();
+}
+
+revisarSolicitud =(data) =>{
+    console.log("data", data)
+    $("#ModalRevisar").show();
+    document.getElementById("anio").value = data.anio;
+    document.getElementById("semestre").innerHTML=`<option>${data.semestre==1?'Primero':'Segundo'}</option>`;
+    document.getElementById("semillero").value = data.nombreSemillero;
+}
+
+autorizar = () => {
+    console.log("autori")
 }

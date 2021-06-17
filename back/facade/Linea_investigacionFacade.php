@@ -129,6 +129,13 @@ class Linea_investigacionFacade {
      $linea_investigacionDao->close();
      return $result;
   }
+  public static function listAll_id_linea_act($plan){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $linea_investigacionDao =$FactoryDao->getlinea_investigacionDao(self::getDataBaseDefault());
+     $result = $linea_investigacionDao->listAll_id_linea_act($plan);
+     $linea_investigacionDao->close();
+     return $result;
+  }
 
 
 }

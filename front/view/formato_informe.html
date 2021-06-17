@@ -410,36 +410,55 @@
             <div class="modal-body">
                 <div class="ibox-content">
 
-                    <form role="form" id="EstudianteInsert">
+                   
                         <input type="hidden" name="dataadd_id" class="form-control" id="dataadd_id" placeholder="id" />
                         <input type="hidden" name="dataadd_index" class="form-control" id="dataadd_index" placeholder="id" />
-                        <div class="form-group">
-                            <label for="Inputproducto">producto</label>
-                            <input type="text" name="dataadd_producto" class="form-control" id="dataadd_producto" placeholder="producto" />
-                        </div>
-                        <div class="form-group">
-                            <label for="Inputdescripcion">descripcion</label>
-                            <input type="text" name="dataadd_descripcion" class="form-control" id="dataadd_descripcion" placeholder="descripcion" />
-                        </div>
-                        <div class="form-group">
-                            <label for="Inputresponsable">responsable</label>
-                            <input type="email" name="dataadd_responsable" class="form-control" id="dataadd_responsable" placeholder="responsable" />
-                        </div>
-                        <div class="form-group">
+                        
+                                  <div class="form-group">
                             <label for="Inputcodigo">codigo</label>
                             <input type="text" name="dataadd_codigo" class="form-control" id="dataadd_codigo" placeholder="codigo" />
                         </div>
-                        <div class="form-group">
-                            <label for="Inputfecha">fecha</label>
-                            <input type="number" min="1" max="10" name="dataadd_fecha" class="form-control" id="dataadd_fecha" placeholder="fecha" />
+                         <div class="form-group">
+                            <label for="Inputproducto">producto</label>
+                            <textarea name="dataadd_producto" class="form-control" id="dataadd_producto" placeholder="producto" ></textarea>
                         </div>
-                    </form>
+                        <div class="form-group">
+                            <label for="Inputdescripcion">descripcion</label>
+                            <textarea  name="dataadd_descripcion" class="form-control" id="dataadd_descripcion" placeholder="descripcion" ></textarea>
+                        </div>
+                     
+                        <div class="row">
+                       
+                                    <div class="form-group">
+                            <label for="Inputresponsable">responsable</label>
+                            <input type="text" name="dataadd_responsable" class="form-control" id="dataadd_responsable" placeholder="responsable" />
+                        </div>
+                        </div>    
+                            <div class="col-6">  
+                       
+                                 <div class="form-group">
+                            <label for="Inputfecha">fecha</label>
+                            <input type="date" min="1" max="10" name="dataadd_fecha" class="form-control" id="dataadd_fecha" placeholder="fecha" />
+                        </div>
+                                
+                                       <div class="form-group">
+                            <label for="Inputfecha">Calificacion</label>
+                            <input type="text"  name="calificacion" class="form-control" id="calificacion" placeholder="calificacion" />
+                        </div>  
+                        </div>    
+                        </div>    
+                        
+                       
+                    
+                       
+                       
+               
                 </div>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" onclick="cerrarModalDatosadd()">
-                    Close
+                    Cerrar
                 </button>
                 <button type="button" class="btn btn-primary" id="btndataadReg" onclick="registrardatosadd()">
                     Registrar

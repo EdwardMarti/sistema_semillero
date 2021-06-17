@@ -107,7 +107,8 @@
         </center>
       <br>
       <br>
-      
+       
+      <input style="display: none" class="form-control" type="text" id="id_planReg" name="id_planReg" >
      <div class=" ibox-content">
                  <div class="ibox-title row">
                     <h5 class="text-white col"> <b>OTRAS ACTIVIDADES DE INVESTIGACION (*) </b></h5>
@@ -169,14 +170,12 @@
 
    </div>
       
-      <button type="button" class="btn btn-w-m btn-primary    " id="botonTerminar"
-                   onclick="cerrarTerminar()"
-                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                                                aria-controls="collapseTwo">+ Terminar
-                                        </button>
+
       
    </div>
 
+         
+    
     <div class="wrapper wrapper-content animated fadeInRight" id="ModalTablaplan2">
         <div class="ibox-content">
        <div class="alert alert-warning">
@@ -199,6 +198,8 @@
                 <li>Actividades de Investigación: Espacios de socialización, Foros, Reuniones, Elaboración de
                     documentos, entre otros.
                 </li>
+                <li>Se deben Registrar Minimo <b style="color: red">4 Actividades </b> Por Todas las lineas de Investigacion del Semillero.
+                </li>
 
             </ul>
 
@@ -208,7 +209,7 @@
     </div>
 
     
-    <input class="form-control" type="hidden" id="id_planReg" name="id_planReg" >
+        <input style="display: none" class="form-control" type="text" id="id_planReg" name="id_planReg" >
     
     <div class="ibox-content" >
             <div class="accordion" id="accordionExample">
@@ -324,7 +325,7 @@
                                 </div>
 
                             <div class="form-group">
-                                <label for="formGroupExampleInput"><b>Productos </b> </label>
+                                <label for="formGroupExampleInput"><b>Productos (*)</b> </label>
 
 
                             </div>
@@ -336,10 +337,8 @@
 
                             </div>
 
-                               <div class="modal-footer" style="display: none">
-                                <button type="button" class="btn btn-w-m btn-primary collapsed" onclick="AgregarPlan()"
-                                        id="btnContinuarActividades" data-toggle="collapse" data-target="#collapseOne"
-                                        aria-expanded="true" aria-controls="collapseOne" disabled="disabled">+ Continuar
+                               <div class="modal-footer" >
+                                   <button  type="button" id="btnContinuarActividades" class="btn btn-w-m btn-primary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" disabled="disabled"  onclick="SiguienteCapacitaciones1()" >+ Continuar
                                 </button>
 
                             </div>
@@ -385,7 +384,7 @@
                                         </div>
 
        <div class="modal-footer">
-                                <button type="button" class="btn btn-w-m btn-primary collapsed"
+                                <button  type="button" class="btn btn-w-m btn-primary collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
                                         onclick="SiguienteCapacitaciones()" >+ Continuar
                                 </button>
 
@@ -461,7 +460,13 @@
     
    </div>  
     
-    
+       <div class="ibox-content" id="btnterminar">
+           <button type="button" class="btn btn-w-m btn-primary    " id="botonTerminar" disabled="disabled"
+                   onclick="cerrarTerminar()"
+                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                                                aria-controls="collapseTwo">+ Terminar
+                                        </button>
+    </div> 
 <!------------------------------------------------------------------------->
 <!---------------------------------------        Modales    ----------------------->
 
