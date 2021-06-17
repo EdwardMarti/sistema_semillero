@@ -216,7 +216,11 @@ class Proy_lineas_investDao implements IProy_lineas_investDao
                 $proyectos->setInvestigador($data[$i]['investigador']);
                 $proyectos->setObj_general($data[$i]['obj_general']);
                 $proyectos->setFecha_ini($data[$i]['fecha_ini']);
-                $proyectos->setFecha_fin($data[$i]['fecha_fin']);
+                $fecha_f=$data[$i]['fecha_fin'];
+                if($fecha_f=="-1"){
+                    $fecha_f=" ";
+                }
+                $proyectos->setFecha_fin($fecha_f);
                 $proyectos->setProducto($data[$i]['producto']);
                 $proy_lineas_invest->setProyectos_id($proyectos);
                 $linea_investigacion = new Linea_investigacion();

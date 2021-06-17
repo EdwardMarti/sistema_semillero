@@ -214,10 +214,9 @@ function listadoTPo(ponencias) {
 
 
 function mostrarModalPonencias() {
-//    limpiarcampos();
+    
    $('#myModalPonencias').modal({show: true});
-    $("#btnOrderReg").show();
-    $("#btnOrderAct").hide();
+
 }
 
 /**
@@ -226,6 +225,7 @@ function mostrarModalPonencias() {
  */
 function cerrarModalPonencias() {
        $('#myModalPonencias').modal('hide');
+         Limpiar();
 }
 
 
@@ -233,9 +233,6 @@ function cerrarModalPonencias() {
  * @method ocultarModalOrdenes
  * Método que se encarga de cerrar el modal para registro o actualizacion
  */
-function cerrarModalPonencias() {
-    $('#myModalPonencias').modal('hide');
-}
 
 //</editor-fold>
 
@@ -286,6 +283,7 @@ function registrarPonencias() {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
             obtenerDatosPo(id_Semil);
+              Limpiar();
             cerrarModalPonencias()();
         })
         .catch(function(promise) {
@@ -387,10 +385,22 @@ function dataItemTablaPon(data) {
     $('#tipo_ponencias').val(data[0].tipo_ponencias_id);
 
 
-    mostrarModalPonenciasU();
+    mostrarModalPonencias();
 }
 
 
+function Limpiar() {
+      $('#id').val("");
+    $('#nombre_po').val("");
+    $('#fecha').val("");
+    $('#nombre_eve').val("");
+    $('#institucion').val("");
+    $('#ciudad').val("");
+    $('#lugar').val("");
+    $('#tipo_ponencias').val("");
+
+
+}
 function ActualizarDataPo() {
 
    
@@ -432,6 +442,7 @@ function ActualizarDataPo() {
 
             Mensaje.mostrarMsjExito("Datos Actualizados", data.mensaje);
             obtenerDatosPo(id_Semil);
+              Limpiar();
             cerrarModalPonencias();
         })
         .catch(function(promise) {

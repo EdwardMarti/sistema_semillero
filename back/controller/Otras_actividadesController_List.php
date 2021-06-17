@@ -14,6 +14,7 @@ $dataObject = json_decode($JSONData);
 $id = strip_tags($dataObject->id);
 
 
+
         $list=Otras_actividadesFacade::listAll();
         $rta="";
         foreach ($list as $obj => $Otras_actividades) {	

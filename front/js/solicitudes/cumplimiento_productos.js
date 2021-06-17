@@ -313,7 +313,7 @@ function actualizarCumplimiento() {
         })
         .then(function (data) {
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-            cargarHorasBySemillero();
+            cargarSolicitudes();
             closeModalRegistroHoras();
         })
         .catch(function (promise) {

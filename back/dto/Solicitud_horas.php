@@ -17,6 +17,8 @@ class Solicitud_horas {
   private $horas_planta;
   private $horas_solicitadas;
   private $id_semillero;
+  private $id_docente;
+  private $estado;
 
     /**
      * Constructor de Solicitud_horas
@@ -122,6 +124,20 @@ class Solicitud_horas {
       $this->horas_solicitadas = $horas_solicitadas;
   }
 
+    function getIdDocente() {
+        return $this->id_docente;
+    }
 
+    function setIdDocente($id_docente) {
+        $this->id_docente = $id_docente;
+    }
+
+    public function setEstado($estado){
+        $this->estado = $estado;
+    }
+
+    public function getEstado(){
+        return $this->estado;
+    }
 }
 //That`s all folks!

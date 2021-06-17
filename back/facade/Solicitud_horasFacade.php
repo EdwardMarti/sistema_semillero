@@ -136,7 +136,54 @@ class Solicitud_horasFacade {
     $solicitud_horasDao->close();
     return $result;
  }
-//listHorasBySemillero
+    public static function listHorasByDocente($idSemillero, $idDocente){
+        $FactoryDao=new FactoryDao(self::getGestorDefault());
+        $solicitud_horasDao =$FactoryDao->getsolicitud_horasDao(self::getDataBaseDefault());
+        $result = $solicitud_horasDao->listHorasByDocente($idSemillero, $idDocente);
+        $solicitud_horasDao->close();
+        return $result;
+    }
+
+    public static function insertByDocente( $anio,  $semestre, $idSemillero, $idDocente){
+        $solicitud_horas = new Solicitud_horas();
+        $solicitud_horas->setAnio($anio);
+        $solicitud_horas->setSemestre($semestre);
+        $solicitud_horas->setId_semillero($idSemillero);
+        $solicitud_horas->setIdDocente($idDocente);
+        $FactoryDao=new FactoryDao(self::getGestorDefault());
+        $solicitud_horasDao =$FactoryDao->getsolicitud_horasDao(self::getDataBaseDefault());
+        $rtn = $solicitud_horasDao->insertByDocente($solicitud_horas);
+        $solicitud_horasDao->close();
+        return $rtn;
+    }
+    public static function updateByDocente( $idSolicitud, $anio, $semestre, $idSemillero, $idDocente){
+        $solicitud_horas = new Solicitud_horas();
+        $solicitud_horas->setId($idSolicitud);
+        $solicitud_horas->setAnio($anio);
+        $solicitud_horas->setSemestre($semestre);
+        $solicitud_horas->setId_semillero($idSemillero);
+        $solicitud_horas->setIdDocente($idDocente);
+        $FactoryDao=new FactoryDao(self::getGestorDefault());
+        $solicitud_horasDao =$FactoryDao->getsolicitud_horasDao(self::getDataBaseDefault());
+        $rtn = $solicitud_horasDao->updateByDocente($solicitud_horas);
+        $solicitud_horasDao->close();
+        return $rtn;
+    }
+    public static function selectDataForReport( $idSolicitud){
+        $FactoryDao=new FactoryDao(self::getGestorDefault());
+        $solicitud_horasDao =$FactoryDao->getsolicitud_horasDao(self::getDataBaseDefault());
+        $rtn = $solicitud_horasDao->selectDataForReport($idSolicitud);
+        $solicitud_horasDao->close();
+        return $rtn;
+    }
+    public static function selectDataForReportAdmin(){
+        $FactoryDao=new FactoryDao(self::getGestorDefault());
+        $solicitud_horasDao =$FactoryDao->getsolicitud_horasDao(self::getDataBaseDefault());
+        $rtn = $solicitud_horasDao->selectDataForReportAdmin();
+        $solicitud_horasDao->close();
+        return $rtn;
+    }
+
 
 }
 //That`s all folks!

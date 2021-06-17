@@ -10,20 +10,19 @@ $idSolicitud = strip_tags($dataObject->idSolicitud);
 $idDocente = strip_tags($dataObject->idDocente);
 $key = hash("ripemd160", $idSolicitud);
 
-$solicitud = Solicitud_horasFacade::select($idSolicitud);
-$horas = Solicitud_horasFacade::selectDataForReport($idSolicitud);
+$response = Solicitud_horasFacade::selectDataForReportAdmin();
 
 $data = array(
     "codigo" => "FO-IN-05",
     "version" => "01",
     "fecha" => "24/04/2018",
-    "semestre" => $solicitud->getSemestre() ,
-    "anio" => $solicitud->getAnio() ,
-    "horasCantidad" => $horas["horasCantidad"],
-    "horasDescripcion" => $horas["horasDescripcion"],
-    "nombreSemillero" => $horas["nombreSemillero"],
-    "grupoInvestigacionNombre" => $horas["grupoInvestigacionNombre"],
-    "nombreDocente" => $horas["nombreDocente"]
+    "semestre" => $response["semestre"] ,
+    "anio" => $response["anio"] ,
+    "horasCantidad" => $response["horasCantidad"],
+    "horasDescripcion" => $response["horasDescripcion"],
+    "nombreSemillero" => $response["nombreSemillero"],
+    "grupoInvestigacionNombre" => $response["grupoInvestigacionNombre"],
+    "nombreDocente" => $response["nombreDocente"]
 );
 session_start();
 

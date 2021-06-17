@@ -52,7 +52,7 @@ $semillero_id=$otras_actividades->getSemillero_id()->getId();
 
 
       try {
-          $sql= "INSERT INTO `otras_actividades`(  `nombre_proyecto`, `nombre_actividad`, `modalidad_participacion`, `responsable`, `fecha_realizacion`, `producto`, `semillero_id`, `proy_id` )"
+          $sql= "INSERT INTO `otras_actividades`(  `nombre_proyecto`, `nombre_actividad`, `modalidad_participacion`, `responsable`, `fecha_realizacion`, `producto`, `semillero_id`, `plan_accion_id` )"
           ."VALUES ('$nombre_proyecto', '$nombre_actividad', '$modalidad_participacion', '$responsable', '$fecha_realizacion', '$producto', '$Semillero_id','$plan_accion_id')";
 
           return $this->insertarConsulta($sql);
@@ -174,7 +174,8 @@ $semillero_id=$otras_actividades->getSemillero_id()->getId();
       try {
           $sql ="SELECT `id`, `nombre_proyecto`, `nombre_actividad`, `modalidad_participacion`, `responsable`, `fecha_realizacion`, `producto`, `semillero_id`"
           ."FROM `otras_actividades`"
-          ."WHERE 1";
+          ."WHERE `semillero_id` = '$semillero_id' AND `plan_accion_id` = '$plan' ";
+//  var_dump($sql);
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $otras_actividades= new Otras_actividades();

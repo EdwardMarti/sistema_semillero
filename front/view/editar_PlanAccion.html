@@ -1,114 +1,26 @@
-<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
+
 <!-- Tabla de Usuarios -->
 <link href="css/plugins/summernote/summernote-bs4.css" rel="stylesheet">
 <!-- Tabla de Usuarios -->
-<div class="wrapper wrapper-content animated fadeInRight" id="ModalTablaRegistroPlan">
 
-    <div class="row" id="step_1_tour">
-        <div class="col-lg-12">
-            <div class="ibox ">
-                <div class="ibox-title row">
-                    <h5 class="text-white col">Listado Plan de Accion</h5>
-                    <h5 class="label label-successE"><a onclick="gestionarItemPlan()"
-                                                        style="background-color: #243747 ;display: inline !important"
-                                                        class="btn btn-primary">+
-                        Agregar</a></h5>
-
-                </div>
-                <div class="ibox-content">
-                    <div class='table mt-4 mb-4'><br>
-                          <table class='table table-striped mt-4 mb-4 centradito table-hover' id='listadoTablaPlanesS'   style='width: 100%'>
-                                 
-                       
-                            <thead>
-                            <tr class="ufps-tabl">
-
-                                <th>ID</th>
-                                <th>SEMESTRE</th>
-                                <th>AÑO</th>
-                                <th>VBO DIR. SEMILLERO</th>
-                                <th>VBO DIR. GRUPO INVESTIGACION</th>
-                                <th>VBO DOC FACULTA INVESTIGACION</th>
-                                <th>ESTADO</th>
-                                <th>ACCIONES</th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Fin Tabla de Usuarios -->
+    <input class="form-control" type="text" id="id_planReg" name="id_planReg" >
+    <input class="form-control" type="text" id="id_Semillero" name="id_Semillero" >
 
        <div class="ibox-content"  id="inicio_del_plan">      
       <center><H2><b><u style="background: #ae2623">PLAN DE ACCIÓN SEMILLEROS DE INVESTIGACIÓN</u></b></H2>
                 </center>
               <br>
               <br>
-             
-               <div class="form-group" style="display: none">
-                                    <label for="formGroupExampleInput">persona_Id </label>
-                                    <input type="text" style="background: white;" class="form-control" name="persona_Id"
-                                           id="persona_Id" required>
-                                </div>
-                    <div class="row" >
-                        <div class="col-2"> </div> 
-                    <div class="col-3">  
-                         <div class="form-group">
-                                        <label for="Inputdescripcion">Semestre</label>
-                                        <select class="form-control" name="semestre" id="semestre">
-                                            <option value="-1">SELECCIONE</option>
-                                            <option value="1">PRIMER</option>
-                                            <option value="2">SEGUNDO</option>
-                                        </select>
 
-                                    </div>
-                   
-                        
-                        
-                    </div>
-                    <div class="col-2">
-                        
-                         <div class="form-group">
-
-                                        <label for="formGroupExampleInput">Año </label>
-                                        <input class="form-control" type="number" id="anio" placeholder="YYYY" min="1900" max="2100" onkeypress="validarAño()">
-
-                                    </div>
-                        
-                            
-                    </div>
-                        <div class="col-2">
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-w-m btn-primary collapsed" onclick="AgregarPlan()" id="btnIniciar">Iniciar
-                                </button>
-
-                            </div>
-                        </div>
-                                 <div class="col-2"> </div> 
-                </div>
               </div>
 
 
-
-<!--------------------------------fin inicio--------------------------------->
-
-
-
-
-
-
-
-    <!---------------------------Registro de Lineas y  otras  -------------------------->
   <div class="wrapper wrapper-content animated fadeInRight" id="mostrarModalRegistro">
         <center><H2><b><u style="background: #ae2623">LISTA LÍNEAS DE INVESTIGACIÓN</u></b></H2>
         </center>
       <br>
       <br>
-       
-      <input style="display: none" class="form-control" type="text" id="id_planReg" name="id_planReg" >
+      
      <div class=" ibox-content">
                  <div class="ibox-title row">
                     <h5 class="text-white col"> <b>OTRAS ACTIVIDADES DE INVESTIGACION (*) </b></h5>
@@ -170,12 +82,14 @@
 
    </div>
       
-
+      <button type="button" class="btn btn-w-m btn-primary    " id="botonTerminar"
+                   onclick="cerrarTerminar()"
+                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                                                aria-controls="collapseTwo">+ Terminar
+                                        </button>
       
    </div>
 
-         
-    
     <div class="wrapper wrapper-content animated fadeInRight" id="ModalTablaplan2">
         <div class="ibox-content">
        <div class="alert alert-warning">
@@ -198,8 +112,6 @@
                 <li>Actividades de Investigación: Espacios de socialización, Foros, Reuniones, Elaboración de
                     documentos, entre otros.
                 </li>
-                <li>Se deben Registrar Minimo <b style="color: red">4 Actividades </b> Por Todas las lineas de Investigacion del Semillero.
-                </li>
 
             </ul>
 
@@ -209,7 +121,7 @@
     </div>
 
     
-        <input style="display: none" class="form-control" type="text" id="id_planReg" name="id_planReg" >
+    <input class="form-control" type="hidden" id="id_planReg" name="id_planReg" >
     
     <div class="ibox-content" >
             <div class="accordion" id="accordionExample">
@@ -325,7 +237,7 @@
                                 </div>
 
                             <div class="form-group">
-                                <label for="formGroupExampleInput"><b>Productos (*)</b> </label>
+                                <label for="formGroupExampleInput"><b>Productos </b> </label>
 
 
                             </div>
@@ -337,8 +249,10 @@
 
                             </div>
 
-                               <div class="modal-footer" >
-                                   <button  type="button" id="btnContinuarActividades" class="btn btn-w-m btn-primary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" disabled="disabled"  onclick="SiguienteCapacitaciones1()" >+ Continuar
+                               <div class="modal-footer" style="display: none">
+                                <button type="button" class="btn btn-w-m btn-primary collapsed" onclick="AgregarPlan()"
+                                        id="btnContinuarActividades" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne" disabled="disabled">+ Continuar
                                 </button>
 
                             </div>
@@ -384,7 +298,7 @@
                                         </div>
 
        <div class="modal-footer">
-                                <button  type="button" class="btn btn-w-m btn-primary collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                                <button type="button" class="btn btn-w-m btn-primary collapsed"
                                         onclick="SiguienteCapacitaciones()" >+ Continuar
                                 </button>
 
@@ -460,13 +374,7 @@
     
    </div>  
     
-       <div class="ibox-content" id="btnterminar">
-           <button type="button" class="btn btn-w-m btn-primary    " id="botonTerminar" disabled="disabled"
-                   onclick="cerrarTerminar()"
-                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-                                                aria-controls="collapseTwo">+ Terminar
-                                        </button>
-    </div> 
+    
 <!------------------------------------------------------------------------->
 <!---------------------------------------        Modales    ----------------------->
 
@@ -641,7 +549,7 @@
 </div>
 
 
-<script type="text/javascript" src="../js/plan/plan.js"></script>
+<script type="text/javascript" src="../js/plan/planEditar.js"></script>
 <script type="text/javascript" src="../js/tours/plan_de_accion/plan_de_accion_semilleros.js"></script>
 
 <script src="js/plugins/summernote/summernote-bs4.js"></script>

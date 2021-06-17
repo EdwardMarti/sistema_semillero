@@ -170,6 +170,16 @@ class ProyectosFacade
         $proyectosDao->close();
         return $rpta;
     }
+    public static function updateDelete($id)
+    {
+      
+
+        $FactoryDao = new FactoryDao(self::getGestorDefault());
+        $proyectosDao = $FactoryDao->getproyectosDao(self::getDataBaseDefault());
+        $rpta = $proyectosDao->updateDelete($id);
+        $proyectosDao->close();
+        return $rpta;
+    }
 
     /**
      * Modifica los atributos de un objeto Proyectos  ya existente en base de datos.
@@ -224,6 +234,15 @@ class ProyectosFacade
         $FactoryDao = new FactoryDao(self::getGestorDefault());
         $proyectosDao = $FactoryDao->getproyectosDao(self::getDataBaseDefault());
         $result = $proyectosDao->listAll_id($id);
+        $proyectosDao->close();
+        return $result;
+    }
+    
+    public static function listAll_id_Ejecucion($id)
+    {
+        $FactoryDao = new FactoryDao(self::getGestorDefault());
+        $proyectosDao = $FactoryDao->getproyectosDao(self::getDataBaseDefault());
+        $result = $proyectosDao->listAll_id_Ejecucion($id);
         $proyectosDao->close();
         return $result;
     }

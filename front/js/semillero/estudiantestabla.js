@@ -305,12 +305,12 @@ function listadoEspecialPares(pares) {
  */
 
 
-function listadoEspecialProjectos(Projectos) {
+// function listadoEspecialProjectos(Projectos) {
 
-    let tabla = $("#listadoProjectosTabla").DataTable();
-    tabla.data().clear();
-    tabla.rows.add(Projectos).draw();
-}
+//     let tabla = $("#listadoProjectosTabla").DataTable();
+//     tabla.data().clear();
+//     tabla.rows.add(Projectos).draw();
+// }
 
 
 /**

@@ -8,31 +8,11 @@ options = (method, data) => ({
     body: JSON.stringify(data),
     headers: headers(),
 });
-//GET = (data) => (options("GET", data));
+
 PUT = (data) => (options("PUT", data));
 DELETE = (data) => (options("DELETE", data));
 POST = (data) => (options("POST", data));
-// PUT2 = (data) => (peticion("PUT", data))
-// PUT = (data) => ({
-//     method: "PUT",
-//     body: JSON.stringify(data),
-//     headers: headers(),
-// });
-// DELETE = (data) => ({
-//     method: "DELETE",
-//     body: JSON.stringify(data),
-//     headers: headers(),
-// });
-// POST = (data) => ({
-//     method: "POST",
-//     body: JSON.stringify(data),
-//     headers: headers(),
-// });
-//
- GET = () => ({
-     method: "GET",
-     headers: headers(),
- });
+GET = () => ({method: "GET", headers: headers(),});
 
 VAL = (id) => (document.getElementById(id).value);
 IS_CHECKED = (id) => (document.getElementById(id).checked);

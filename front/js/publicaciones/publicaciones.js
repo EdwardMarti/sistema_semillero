@@ -230,14 +230,16 @@ function gestionarItempubli(id_order, data, index) {
     $('#myModalPublicaciones').modal({ show: true });
 }
 
+
+
 /**
  * @method mostrarModalOrdenes
  * Método que se encarga de abrir el modal para registro o actualizacion
  */
 function mostrarModalPublicaciones() {
     //    limpiarcampos();
-   
- limpiar();
+    limpiar();
+
     $('#myModalPublicaciones').modal({ show: true });
 
 }
@@ -304,6 +306,7 @@ function UpdatePublicacion() {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
             obtenerDatosPu(id_Semil);
+             limpiar();
             cerrarModalPublicaciones();
         })
         .catch(function(promise) {
@@ -346,11 +349,7 @@ function limpiar() {
     $('#fecha').val(""),
     $("#ciudad").val("");
     $('#tipo_publicaciones_id').val("");
-    
-    
-    
 
-    
 }
 function registrarPublicacion() {
     
@@ -401,6 +400,7 @@ function registrarPublicacion() {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
             obtenerDatosPu(id_Semil);
+             limpiar();
             cerrarModalPublicaciones();
         })
         .catch(function(promise) {
