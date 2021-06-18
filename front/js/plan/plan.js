@@ -14,17 +14,30 @@ $(document).ready(function() {
 
     cargarSelectLineas(semille);
 
-    $("#ModalDatosPlan").hide();
-    $("#ModalTablaplan2").hide();
-    $("#collapseFour").hide();
-    $("#ModalTablaRegistroPlan").show();
-    $("#mostrarModalRegistro").hide();
-    $("#inicio_del_plan").hide();
-    $("#btnterminar").hide();
-    $("#tabladeAcordeon").hide(); /** acordeones*/
 
+//   $("#SeccionTablaListaPlan").hide();/**Tabla Principal */
+$("#Titulo").hide();/**Tabla Principal */
+    $("#SeccionIniciar").hide(); /** Carga la fecha */
+//    $("#inicio_del_plan").hide(); /** Carga la fecha */
+    $("#SeccionRegistrar").hide(); /** Carga la fecha */
+//    $("#mostrarModalRegistro").hide(); /** Carga la fecha */
 
+    $("#SeccionRegistrarLineas").hide(); /** Carga la fecha */
+//    $("#ModalTablaplan2").hide();
+//    $("#collapseFour").hide();
+//    
+//    $("#mostrarModalRegistro").hide();
+//    $("#inicio_del_plan").hide();
+//    $("#tabladeAcordeon").hide(); /** acordeones*/
+//    
+//    
+//    $("#SeccionActualizar").hide(); /** Actualizar*/
+   
+//   $("#SeccionRegistrar").hide()(); /** Actualizar*/
+//   $("#SeccionActualizar").show(); /** Actualizar*/
 
+   $("#SeccionTablaListaPlan").show();/**Tabla Principal */
+   $("#Titulo").show();/**Tabla Principal */
 
 });
 
@@ -105,7 +118,7 @@ function iniciarlistadoTablaPlanesS() {
                 orderable: false,
                 defaultContent: [
                     "<div class='text-center'>",
-//                    "<a class='personalizado actualizar' title='Gestionar'><i class='fa fa-edit'></i>&nbsp; &nbsp;  &nbsp;</a>",
+                    "<a class='personalizado actualizar' title='Gestionar'><i class='fa fa-edit'></i>&nbsp; &nbsp;  &nbsp;</a>",
                     "<a class='personalizado eliminar' title='eliminar'><i class='fa fa-trash'></i></a>",
                     "</div>",
                 ].join(""),
@@ -117,21 +130,12 @@ function iniciarlistadoTablaPlanesS() {
          let     id_sem =  Utilitario.getLocal('id_semillero')
 
             $(".actualizar", row).click(function() {
-                  fetch("editar_PlanAccion.html", {
-                method: "GET",
-            })
-            .then(function(response) {
-                return response.text();
-            })
-            .then(function(vista) {
-                $("#mostrarcontenido").html(vista);
-        
-         obtenerDatosLineas_has_proyectos2(id_order);
-//                   document.getElementById("id_planReg").value = id_order;
-//                 document.getElementById("id_Semillero").value = id_sem;
-            })
-//                 Menu.editar_Plan(id_order,id_sem);
+            
 //                gestionarItem(id_order, data, index);
+              
+                 $("#SeccionActualizar").show(); /** Actualizar*/
+                 $("#SeccionRegistrar").hide()(); /** Actualizar*/
+//                  $("#seccionTact").show(); /** Actualizar*/
             });
             $(".eliminar", row).click(function() {
                 DeletePlan(id_order, id_proCap);
@@ -481,12 +485,8 @@ function gestionarItemPlan() {
 
 
     //    $("#mostrarModalRegistro").hide();
-    $("#ModalTablaplan2").hide();
-
-    $("#ModalTablaRegistroPlan").hide();
-    $("#ModalDatosPlan").hide();
-    $("#mostrarModalRegistro").hide();
-    $("#inicio_del_plan").show();
+    $("#SeccionTablaListaPlan").hide();
+    $("#SeccionIniciar").show();
 
 
 }
@@ -495,16 +495,16 @@ function gestionarItemPlanLineas(plan_id) {
 
    
 
-     $("#btnterminar").show();
-//    $("#botonTerminar").hide();
-    $("#ocultarTablaLineas").hide();
-        $("#ModalTablaplan2").show();
+    $("#btnterminar").show();
 
-   $('#btnAgregarActividades').prop('disabled', false);
+    $("#ocultarTablaLineas").hide();
+    $("#SeccionRegistrarLineas").show();
+
+   
     $('#acor1').prop('disabled', false);
+    $('#btnCuatro').prop('disabled', false);
     $('#uno').prop('disabled', false);
-//    $('#dos').prop('disabled', false);
-//    $('#tres').prop('disabled', false);
+
   
     
 }
@@ -585,7 +585,9 @@ function registrarActividades() {
             throw response;
         })
         .then(function(data) {
-
+               $('#btnContinuarActividades').prop('disabled', false);
+               $('#botonTerminar').prop('disabled', false);
+//            Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
             /***********************plan y protecto**/
             MostrarDatosActividadesP(planss, proyec);
@@ -701,9 +703,11 @@ function cerrarModalActividades2() {
 function SiguienteActividades(mensaje) {
 
 
-  $("#mostrarModalRegistro").show();
-  $("#inicio_del_plan").hide();
-  $('#btnIniciar').prop('disabled', false);
+  $("#SeccionRegistrar").show();
+  $("#SeccionIniciar").hide();
+  $('#btnIniciar').prop('disabled', true);
+  $('#btnDos').prop('disabled', false);
+  $('#btnTres').prop('disabled', false);
   
     $('#id_planReg').val(mensaje);
 
@@ -713,19 +717,21 @@ function SiguienteCapacitaciones() {
     //    limpiarcampos();
     if(cont=>4){
         $('#botonTerminar').prop('disabled', false);
-      Mensaje.mostrarMsjExito(" Exitos"," Puedes Terminar el Proceso... ");   
+//      Mensaje.mostrarMsjExito(" Exitos"," Puedes Terminar el Proceso... ");   
     }
+  
     $('#tres').prop('disabled', false);
     $('#btnAgregarCapacitaciones').prop('disabled', false);
- $('#botonTerminar').prop('disabled', false);
+    $('#botonTerminar').prop('disabled', false);
 cont++;
 //    obtenerDatosCapacitaciones();
 }
 function SiguienteCapacitaciones1() {
     //    limpiarcampos();
-    $('#dos').prop('disabled', false);
-    $('#btnAgregarCapacitaciones').prop('disabled', false);
-
+   
+     $('#dos').prop('disabled', false);
+     $('#btnCinco').prop('disabled', false);
+     $('#btnAgregarActividades').prop('disabled', false);
 //    obtenerDatosCapacitaciones();
 }
 
@@ -884,13 +890,7 @@ function cerrarModalCapacitaciones() {
 
 }
 
-function cerrarModalActividades() {
 
-
-    $('#ModalCapacitaciones').modal('hide');
-    $('#ModalCapacitaciones').modal('hide');
-
-}
 
 function obtenerDatosCapacitaciones() {
 
@@ -1004,7 +1004,8 @@ function registrarCapacitaciones() {
             throw response;
         })
         .then(function(data) {
-
+            $('#btnContinuarActividades').prop('disabled', false);
+           $('#botonTerminar').prop('disabled', false);
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
             obtenerDatosCapacitaciones();
             cerrarItemPlanLineas;
@@ -1038,7 +1039,7 @@ function registrarCapacitaciones() {
 
 function obtenerDatosLineas_has_proyectos() {
 
- 
+    
 
     let order = {
         plan: id_PlanR,
@@ -1178,18 +1179,12 @@ function eliminarPlan(id) {
 
 function registrarLineas_semilleros() {
 
- cerrarModalFinalizar();
+
 
     id_Sem1 = Utilitario.getLocal('id_semillero');
-    //    id_Proyect=$('#proyecto_linea2').val();
-    //    id_PlanR=$('#id_planReg').val();
-        id_PlanR=$('#id_planReg').val();
+    id_PlanR=$('#id_planReg').val();
        
-    //    id_LineaR=$('#lineas_investigacion2').val();
-    //    id_LineaR=$('#anio').val();
-    //    id_LineaR=$('#lineas_investigacion2').val();
-
-    let ordenes = {
+     let ordenes = {
 
         anio: $('#anio').val(),
         semestre: $('#semestre').val(),
@@ -1222,13 +1217,9 @@ function registrarLineas_semilleros() {
         .then(function(data) {
 
             Mensaje.mostrarMsjExito("Registro Exitoso", data.mensaje);
-
-            obtenerDatosLineas_has_proyectos();
             
-            cerrarModalActividades()();
-            console.log("exitoso");
-
-            
+                    cerrarModalTerminarLinea();
+                alert();
         })
         .catch(function(promise) {
             if (promise.json) {
@@ -1267,36 +1258,50 @@ function mostrarModalOtrasCapacitaciones() {
  * @method ocultarModalOrdenes
  * Método que se encarga de cerrar el modal para registro o actualizacion
  */
-function cerrarModalActividades() {
-    $("#mostrarModalRegistro").hide();
-    $("#ModalTablaplan2").hide();
-
-    $("#ModalTablaRegistroPlan").hide();
-    $("#ModalDatosPlan").hide();
-
-    $("#mostrarModalRegistro").show();
+function cerrarModalTerminarLinea() {
+ 
+  obtenerDatosLineas_has_proyectos();
+     $('#btnCuatro').prop('disabled', true);
+     $('#btnContinuarActividades').prop('disabled', true);
+     
+    $('#uno').prop('disabled', false);
+    $('#dos').prop('disabled', true);
+    $('#btnCinco').prop('disabled', true);
+    $('#btnAgregarActividades').prop('true', false);
+    $('#tres').prop('disabled', true);
+    $('#btnAgregarCapacitaciones').prop('disabled', true);
+      $("#CamposRegistrarLineas").hide();
+      $("#ocultarTablaLineas").show();
+      
 
 }
-function cerrarModalFinalizar() {
-    $("#ModalTablaplan2").hide();
-    $("#ModalTablaplan2").hide();
-    $("#ocultarTablaLineas").show();
 
 
-}
+
 
 function cerrarTerminar() {
     
-   obtenerDatosPrincipales();
+  
 
 
-    $("#ModalDatosPlan").hide();
-    $("#ModalTablaplan2").hide();
-    $("#collapseFour").hide();
+    $("#SeccionIniciar").hide();
+    $("#SeccionRegistrar").hide();
+    $("#SeccionRegistrarLineas").hide();
+    $("#btnterminar").hide();
+    $("#btnContinuarActividades").hide();
     $("#ModalTablaRegistroPlan").show();
-    $("#mostrarModalRegistro").hide();
-    $("#inicio_del_plan").hide();
-    $("#tabladeAcordeon").hide(); /** acordeones*/
+
+
+    $('#btnCuatro').prop('disabled', true);
+    $('#uno').prop('disabled', false);
+    $('#dos').prop('disabled', true);
+    $('#btnCinco').prop('disabled', true);
+    $('#btnAgregarActividades').prop('true', false);
+    $('#tres').prop('disabled', true);
+    $('#btnAgregarCapacitaciones').prop('disabled', true);
+
+Menu.añadirPlan();
+ obtenerDatosPrincipales();
 }
 
 
@@ -1905,9 +1910,9 @@ function cargarSelectProyectos2(area) {
 
 
 
-    $('#btnContinuarActividades').prop('disabled', false);
   
-     $('#dos').prop('disabled', false);
+  
+//     $('#dos').prop('disabled', false);
 
     cargarDatosProyectosLineasI2(area);
 }
