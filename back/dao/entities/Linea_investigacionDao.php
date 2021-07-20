@@ -102,7 +102,7 @@ $disciplina_id=$linea_investigacion->getDisciplina_id()->getId();
       $id=$linea_investigacion->getId();
 
       try {
-          $sql ="DELETE FROM `linea_investigacion` WHERE `id`='$id'";
+          $sql ="DELETE FROM `linea_proyecto_plan` WHERE `id`='$id'";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -164,10 +164,11 @@ $disciplina_id=$linea_investigacion->getDisciplina_id()->getId();
   }
   
   
-  public function listAll_id_linea($plan,$linea){
+  
+  public function listAll_id_linea($plan){
       $lista = array();
       try {
-          $sql ="SELECT lpp.`id`, lpp.`linea_id`,linea_investigacion.descripcion, lpp.`plan_id` , lpp.`proy_id`, proyectos.titulo FROM `linea_proyecto_plan` lpp INNER JOIN linea_investigacion ON linea_investigacion.id=`lpp`.`linea_id`  INNER JOIN proyectos ON lpp.proy_id=proyectos.id WHERE `linea_id` = '$linea' AND `plan_id` = '$plan' ";
+          $sql ="SELECT lpp.`id`, lpp.`linea_id`,linea_investigacion.descripcion, lpp.`plan_id` , lpp.`proy_id`, proyectos.titulo FROM `linea_proyecto_plan` lpp INNER JOIN linea_investigacion ON linea_investigacion.id=`lpp`.`linea_id`  INNER JOIN proyectos ON lpp.proy_id=proyectos.id WHERE  `plan_id` = '$plan' ";
 //          var_dump($sql);
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {

@@ -91,43 +91,21 @@
 
 </div>
 
-<div  id="SeccionRegistrar" style="display: none">
 
-  <div class="wrapper wrapper-content animated fadeInRight" id="mostrarModalRegistro">
-     <input style="display: none" class="form-control" type="text" id="id_planReg" name="id_planReg" >
-     <div class=" ibox-content">
-                 <div class="ibox-title row">
-                    <h5 class="text-white col"> <b>OTRAS ACTIVIDADES DE INVESTIGACION (*) </b></h5>
-                   
-                    <button class="btn btn-link collapsed" type="button"  onclick="ModalOtrasCapacitaciones()" disabled="disabled" id="btnDos"  style="background: white">
-                        <b style="color: black">*  Agregar</b>
-                    </button>
+     <input type="text"   name="proyecto_linea_aux" id="proyecto_linea_aux" > 
+     <input type="text"   name="id_LineaR_aux" id="id_LineaR_aux" >
+     <input type="text"   name="semestre_aux" id="semestre_aux" >
 
-                </div> 
-             <div class='table mt-4 mb-4'><br>
-             <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaOtrasCap' style='width: 100%'>   
-                                        
-               
-                                                <thead>
-                                                <tr class="ufps-tabl">
-
-                                                    <th>NOMBRE DEL PROYECTO</th>
-                                                    <th>NOMBRE ACTIVIDAD</th>
-                                                    <th>MODALIDAD DE PARTICIPACION</th>
-                                                    <th>RESPONSABLE</th>
-                                                    <th>FECHA DE REALIZACION</th>
-                                                    <th>PRODUCTO(PONENCIA/ARTICULO)</th>
-                                                    <th>ACCIONES</th>
-                                                </tr>
-                                                </thead>
-                                            </table>
-            
-            
-            </div>
-            </div>
-      
+    
+     <input  class="form-control" type="text" id="id_planReg" name="id_planReg" >
+  
+     <div id="TituloPlanAccion" class="ibox-content" style="background: #af2623; display: none">
+    
+         <center><H2><b><u style="background: #ae2623">PLAN DE ACCIÓN # <span id="numeroPlan"></span></u></b> </H2>
+        </center>
+</div> 
    
-      <div class="ibox-content"  id="ocultarTablaLineas">
+     <div class="ibox-content wrapper wrapper-content animated fadeInRight"  id="seccionLineasInvestigacion" style="display: none">
   
          <hr style="background: #ae2623">
         <center><H2><b><u style="background: #ae2623">LÍNEAS DE INVESTIGACIÓN</u></b></H2>
@@ -155,12 +133,12 @@
         </div>
 
    </div>
-      
+
 
       
-   </div>
 
-</div>
+
+
 
 <div  id="SeccionRegistrarLineas" style="display: none">
     
@@ -326,7 +304,7 @@
           <div class="ibox ">
               <div class="modal-footer">
                   <button type="button" class="btn btn-w-m btn-primary"
-                          onclick="mostrarModalCapacitaciones()"
+                          onclick="mostrarModalCapacitacionesP()"
                           id="btnAgregarCapacitaciones" disabled="disabled">+ Agregar
                   </button>
 
@@ -359,7 +337,42 @@
    
         </div>
     
-    <div class="ibox-content" id="btnterminar" style="display: none">
+
+</div>
+     <!---------------------------------Otras actividades----------------------------------->
+     
+        <div class=" ibox-content wrapper wrapper-content animated fadeInRight" id="seccionOtrasActividades" style="display: none">
+                 <div class="ibox-title row">
+                    <h5 class="text-white col"> <b>OTRAS ACTIVIDADES DE INVESTIGACION (*) </b></h5>
+                   
+                    <button class="btn btn-link collapsed" type="button"  onclick="ModalOtrasCapacitaciones()" disabled="disabled" id="btnDos"  style="background: white">
+                        <b style="color: black">*  Agregar</b>
+                    </button>
+
+                </div> 
+             <div class='table mt-4 mb-4'><br>
+             <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaOtrasCap' style='width: 100%'>   
+                                        
+               
+                                                <thead>
+                                                <tr class="ufps-tabl">
+
+                                                    <th>NOMBRE DEL PROYECTO</th>
+                                                    <th>NOMBRE ACTIVIDAD</th>
+                                                    <th>MODALIDAD DE PARTICIPACION</th>
+                                                    <th>RESPONSABLE</th>
+                                                    <th>FECHA DE REALIZACION</th>
+                                                    <th>PRODUCTO(PONENCIA/ARTICULO)</th>
+                                                    <th>ACCIONES</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+            
+            
+            </div>
+            </div>
+     
+         <div class="ibox-content" id="btnterminar" style="display: none">
          <div class="modal-footer">
         <button type="button" class="btn btn-w-m btn-primary    " id="botonTerminar" disabled="disabled"
                 onclick="cerrarTerminar()"
@@ -368,16 +381,33 @@
         </button>
         
           
-                  <button type="button" class="btn btn-w-m btn-warning collapsed" disabled="disabled"
+             <button type="button" class="btn btn-w-m btn-warning collapsed"  disabled="disabled"
                           onclick="registrarLineas_semilleros()" id="btnContinuarActividades"
                           data-toggle="collapse" data-target="#collapseTres" aria-expanded="true"
                           aria-controls="collapseTres">+ Registrar Linea
+                  </button>
+             
+                  <button type="button" class="btn btn-w-m btn-warning collapsed"  id="btneditarLinea" 
+                          onclick="Actualizar_Lineas_semilleros()" id="btneditarLinea"
+                          data-toggle="collapse" data-target="#collapseTres" aria-expanded="true"
+                          aria-controls="collapseTres">+ Actualizar Datos Linea
+                  </button>
+                  <button type="button" class="btn btn-w-m btn-warning collapsed"  id="btneTerminarineas" 
+                          onclick="cerrar_Lineas_semilleros()" id="btneditarLinea"
+                          data-toggle="collapse" data-target="#collapseTres" aria-expanded="true"
+                          aria-controls="collapseTres">Terminar Actualizar Datos Linea
                   </button>
 
            </div>   
     </div> 
     
-</div>
+     <!-------------------------------------------------------------------->
+<!-------------------------------- Actualizar --------------------------------->
+
+     
+
+      
+
 <!-------------------------------- Actualizar --------------------------------->
 
 <!---------------------------------------        Modales    ----------------------->
@@ -427,7 +457,8 @@
         <div class="modal-content animated bounceInRight">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
-                        class="sr-only">Close</span></button>
+                        class="sr-only">Close x</span></button>
+                        <h4 class="modal-title">Formulario Capacitaciones</h4>
             </div>
             <div class="modal-body">
                 <form role="form" id="CapacitacionesInsert">
@@ -476,7 +507,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btnCapacitacionesAct"
-                        onclick="actualizarActividades()">Actualizar
+                        onclick="UpdateCapacitacionesAct()">Actualizar
                 </button>
                 <button type="button" class="btn btn-primary" id="btnCapacitacionesReg"
                         onclick="registrarCapacitaciones()">Registrar
@@ -543,7 +574,7 @@
                  
             </div>
              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnCapacitacionesAct2" onclick="AgregarOtrasCapcitaciones2()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnCapacitacionesAct2" onclick="Update_OtrasCapcitaciones()">Actualizar</button>
                 <button type="button" class="btn btn-primary" id="btnCapacitacionesReg2" onclick="AgregarOtrasCapcitaciones()">Registrar</button>
                 <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
 

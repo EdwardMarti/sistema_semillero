@@ -30,3 +30,27 @@ buildSelect = (idSelect, data) => {
         input.append(opcion);
     }
 }
+capitalize = (word) => {
+    const lower = word.toLowerCase();
+    return word.charAt(0).toUpperCase() + lower.slice(1);
+}
+
+cargarVista = (ruta) => (
+    fetch(ruta)
+        .then((response) => (response.text()))
+        .then((vista) => {
+            $("#mostrarcontenido").html(vista);
+        })
+)
+fetch("solicitudesAutorizadas.html", {
+    method: "GET",
+})
+    .then(function (response) {
+        return response.text();
+    })
+    .then(function (vista) {
+        $("#mostrarcontenido").html(vista);
+    })
+    .finally(function () {
+        Utilitario.quitarMascara();
+    });

@@ -11,7 +11,7 @@ class Menu {
      *
      */
     static cargarMenu() {
-        const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+        const {...usuario} = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
         //Se carga el nombre del usuario.
         //        this.validarSesison();
         this.mostrarNombresUsuario();
@@ -32,7 +32,7 @@ class Menu {
      *
      */
     static mostrarNombresUsuario() {
-        const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+        const {...usuario} = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
         $("#nombreUsuario").html(usuario.displayName);
     }
 
@@ -52,19 +52,19 @@ class Menu {
      * Metodo que se encarga de mostrar los usuarios registrados
      */
     static listadoUsuarios() {
-        const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+        const {...usuario} = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
         Utilitario.agregarMascara();
         fetch("listadoUsuarios.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 (usuario.rol === 3 || usuario.rol === 2) ?
-                window.location.href = "principal.html": $("#mostrarcontenido").html(vista);
+                    window.location.href = "principal.html" : $("#mostrarcontenido").html(vista);
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -75,20 +75,20 @@ class Menu {
      */
     static listadoOrdenes() {
         console.log('ordenes');
-        const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+        const {...usuario} = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
         Utilitario.agregarMascara();
         fetch("listadoOrdenes.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
                 /*(usuario.rol == = 1 || usuario.rol === 2) ?
                 window.location.href = "principal.html": $("#mostrarcontenido").html(vista); */
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -98,20 +98,20 @@ class Menu {
      * Metodo que se encarga de mostrar las ordenes registradas
      */
     static listadoFacultades() {
-        const {...usuario } = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
+        const {...usuario} = Utilitario.getLocal("user") ? JSON.parse(Utilitario.getLocal("user")) : {};
         Utilitario.agregarMascara();
         fetch("listadoFacultades.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
                 /*(usuario.rol == = 1 || usuario.rol === 2) ?
                 window.location.href = "principal.html": $("#mostrarcontenido").html(vista); */
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -120,16 +120,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoProyectos_t.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -138,16 +138,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoProyectos_e.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -156,42 +156,40 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoCapacitaciones.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
-    
-       static editar_Plan(id_order,id_sem) {
 
-     
-        
+    static editar_Plan(id_order, id_sem) {
+
+
         Utilitario.agregarMascara();
         fetch("editar_PlanAccion.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
-        
-         obtenerDatosLineas_has_proyectos2(id_order);
+
+                obtenerDatosLineas_has_proyectos2(id_order);
 //                   document.getElementById("id_planReg").value = id_order;
 //                 document.getElementById("id_Semillero").value = id_sem;
             })
-            .finally(function() {
-               
-            
-                
+            .finally(function () {
+
+
                 Utilitario.quitarMascara();
             });
     }
@@ -200,16 +198,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoPonencias.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -218,16 +216,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoActividades.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -236,16 +234,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoInformes.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -255,16 +253,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("formato_informe.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -273,16 +271,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoPublicaciones.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -291,16 +289,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoEstudiantes.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -309,16 +307,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoPares.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -327,16 +325,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("registroSemillero.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -345,16 +343,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("estadoSemillero.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -363,16 +361,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("perfilSemillero.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -381,16 +379,16 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoSemillero_p.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
 
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -404,15 +402,15 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoRangos.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -424,15 +422,15 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("listadoDanadas.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -442,52 +440,54 @@ class Menu {
 
     static añadirPlan() {
 
-            Utilitario.agregarMascara();
-            fetch("añadirPlanAccion.html", {
-                    method: "GET",
-                })
-                .then(function(response) {
-                    return response.text();
-                })
-                .then(function(vista) {
-                    $("#mostrarcontenido").html(vista);
-                })
-                .finally(function() {
-                    Utilitario.quitarMascara();
-                });
-        }
-        /**
-         * carga en la vista principal el formulario para registrar las horas
-         * de investigacion para directores de semillero
-         */
-    static loadFormSolicitudHorasAdmin() {
         Utilitario.agregarMascara();
-        fetch("formRegistroHorasInvestigacion.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+        fetch("añadirPlanAccion.html", {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
+
+    /**
+     * carga en la vista principal el formulario para registrar las horas
+     * de investigacion para directores de semillero
+     */
+    static loadFormSolicitudHorasAdmin() {
+        Utilitario.agregarMascara();
+        fetch("formRegistroHorasInvestigacion.html", {
+            method: "GET",
+        })
+            .then(function (response) {
+                return response.text();
+            })
+            .then(function (vista) {
+                $("#mostrarcontenido").html(vista);
+            })
+            .finally(function () {
+                Utilitario.quitarMascara();
+            });
+    }
+
     static loadFormSolicitudHorasDocente() {
 
         Utilitario.agregarMascara();
         fetch("formRegistroHorasInvestigacionDocente.html", {
             method: "GET",
         })
-            .then(function(response) {
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -496,15 +496,15 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("proyectosTerminados.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -513,15 +513,15 @@ class Menu {
 
         Utilitario.agregarMascara();
         fetch("proyectosEjecucion.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
@@ -533,43 +533,45 @@ class Menu {
     static loadFormCumplimientoProductos() {
         Utilitario.agregarMascara();
         fetch("formRegistroCumplimientoProductos.html", {
-                method: "GET",
-            })
-            .then(function(response) {
+            method: "GET",
+        })
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
+
     static registroHorasDocente() {
         Utilitario.agregarMascara();
         fetch("registroHorasDocente.html", {
             method: "GET",
         })
-            .then(function(response) {
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
     }
+
     static editarHorasDocente(data) {
         console.log(data)
         Utilitario.agregarMascara();
         fetch("registroHorasDocente.html", {
             method: "GET",
         })
-            .then(function(response) {
+            .then(function (response) {
                 return response.text();
             })
-            .then(function(vista) {
+            .then(function (vista) {
                 $("#mostrarcontenido").html(vista);
                 $(".registrar").hide();
                 $(".actualizar").show();
@@ -577,8 +579,19 @@ class Menu {
                 document.getElementById("idSolicitud").value = data.id;
                 document.getElementById("anio").value = data.anio;
             })
-            .finally(function() {
+            .finally(function () {
                 Utilitario.quitarMascara();
             });
+    }
+
+     static async solicitudesAutorizadas() {
+        Utilitario.agregarMascara();
+        await cargarVista("solicitudesAutorizadas.html");
+        Utilitario.quitarMascara();
+    }
+    static async solicitudesRechazadas() {
+        Utilitario.agregarMascara();
+        await cargarVista("solicitudesRechazadas.html");
+        Utilitario.quitarMascara();
     }
 }

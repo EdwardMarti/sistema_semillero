@@ -111,8 +111,25 @@ $producto=$otras_actividades->getProducto();
 $semillero_id=$otras_actividades->getSemillero_id()->getId();
 
       try {
-          $sql= "UPDATE `otras_actividades` SET`id`='$id' ,`nombre_proyecto`='$nombre_proyecto' ,`nombre_actividad`='$nombre_actividad' ,`modalidad_participacion`='$modalidad_participacion' ,`responsable`='$responsable' ,`fecha_realizacion`='$fecha_realizacion' ,`producto`='$producto' ,`semillero_id`='$semillero_id' WHERE `id`='$id' ";
+          $sql= "UPDATE `otras_actividades` SET  `nombre_proyecto`='$nombre_proyecto' ,`nombre_actividad`='$nombre_actividad' ,`modalidad_participacion`='$modalidad_participacion' ,`responsable`='$responsable' ,`fecha_realizacion`='$fecha_realizacion' ,`producto`='$producto' ,`semillero_id`='$semillero_id' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      }
+  }
+  public function updateO($otras_actividades,$semillero_o){
+      $id=$otras_actividades->getId();
+$nombre_proyecto=$otras_actividades->getNombre_proyecto();
+$nombre_actividad=$otras_actividades->getNombre_actividad();
+$modalidad_participacion=$otras_actividades->getModalidad_participacion();
+$responsable=$otras_actividades->getResponsable();
+$fecha_realizacion=$otras_actividades->getFecha_realizacion();
+$producto=$otras_actividades->getProducto();
+$semillero_id=$semillero_o;
+
+      try {
+          $sql= "UPDATE `otras_actividades` SET  `nombre_proyecto`='$nombre_proyecto' ,`nombre_actividad`='$nombre_actividad' ,`modalidad_participacion`='$modalidad_participacion' ,`responsable`='$responsable' ,`fecha_realizacion`='$fecha_realizacion' ,`producto`='$producto' ,`semillero_id`='$semillero_id' WHERE `id`='$id' ";
+         return $this->updateConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       }
@@ -198,6 +215,35 @@ $semillero_id=$otras_actividades->getSemillero_id()->getId();
       return null;
       }
   }
+  public function listAll_plan_id($id){
+      $lista = array();
+      try {
+          $sql ="SELECT `id`, `nombre_proyecto`, `nombre_actividad`, `modalidad_participacion`, `responsable`, `fecha_realizacion`, `producto`, `semillero_id`"
+          ."FROM `otras_actividades`"
+          ."WHERE `id` = '$id' ";
+//  var_dump($sql);
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $otras_actividades= new Otras_actividades();
+          $otras_actividades->setId($data[$i]['id']);
+          $otras_actividades->setNombre_proyecto($data[$i]['nombre_proyecto']);
+          $otras_actividades->setNombre_actividad($data[$i]['nombre_actividad']);
+          $otras_actividades->setModalidad_participacion($data[$i]['modalidad_participacion']);
+          $otras_actividades->setResponsable($data[$i]['responsable']);
+          $otras_actividades->setFecha_realizacion($data[$i]['fecha_realizacion']);
+          $otras_actividades->setProducto($data[$i]['producto']);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $otras_actividades->setSemillero_id($semillero);
+
+          array_push($lista,$otras_actividades);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -213,6 +259,19 @@ $semillero_id=$otras_actividades->getSemillero_id()->getId();
           $data = $sentencia->fetchAll();
           $sentencia = null;
           return $data;
+    }
+     public function updateConsulta($sql)
+    {
+        try {
+            $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sentencia = $this->cn->prepare($sql);
+            $sentencia->execute();
+            $rta = 1;
+            $sentencia = null;
+            return $rta;
+        } catch (Exception $e) {
+            return 0;
+        }
     }
     /**
      * Cierra la conexión actual a la base de datos

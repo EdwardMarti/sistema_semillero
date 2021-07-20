@@ -342,6 +342,9 @@ $otras_actividades_id=$plan_accion->getOtras_actividades_id()->getId();
            $semillero = new Semillero();
            $semillero->setId($data[$i]['semillero_id']);
            $plan_accion->setSemillero_id($semillero);
+           $plan_accion->setCapacitaciones_id($data[$i]['semestre']);
+           
+           
          
           array_push($lista,$plan_accion);
           }

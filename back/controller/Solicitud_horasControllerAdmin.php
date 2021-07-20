@@ -14,27 +14,13 @@ class SolicitudHorasAdmin
     public function insert()
     {
         $dataObject = $this->data;
-        $semestre = strip_tags($dataObject->semestre);
-        $anio = strip_tags($dataObject->anio);
-        $idSemillero = strip_tags($dataObject->idSemillero);
-        $idDocente = strip_tags($dataObject->idDocente);
-        var_dump(Solicitud_horasFacade::insertByDocente($anio, $semestre, $idSemillero, $idDocente));
-        return Solicitud_horasFacade::insertByDocente($anio, $semestre, $idSemillero, $idDocente);
+        return Solicitud_horasFacade::autorizarSolicitudByDocente(strip_tags($dataObject->idSolicitud),strip_tags($dataObject->estado));
     }
 
     public function selectAll()
     {
-        /*$list = Solicitud_horasFacade::selectDataForReportAdmin();
-        $response = array();
-        foreach ($list as $obj => $item) {
-            $temp = [
-                "id" => $item->getId(),
-                "semestre" => $item->getSemestre(),
-                "anio" => $item->getAnio()
-            ];
-            array_push($response, $temp);
-        }*/
-        return Solicitud_horasFacade::selectDataForReportAdmin();
+
+        return Solicitud_horasFacade::listByEstado($_GET["estadoSolicitud"]);
     }
 
     public function select()
@@ -70,7 +56,7 @@ try {
             $res = $controller->insert();
             if ($res > 0) {
                 http_response_code(200);
-                echo json_encode(["mensaje" => "Se ha registrado exitosamente"]);
+                echo json_encode(["mensaje" => "Se ha actualizado exitosamente"]);
             } else {
                 throw new Exception('Error al registrar tu solicitud de horas');
             }

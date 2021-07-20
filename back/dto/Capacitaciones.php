@@ -17,6 +17,9 @@ class Capacitaciones {
   private $cant_capacitados;
   private $semillero_id;
   private $objetivo;
+  private $plan_id;
+  private $proyecto_id;
+  private $linea_id;
 
     /**
      * Constructor de Capacitaciones
@@ -128,6 +131,30 @@ class Capacitaciones {
   public function setObjetivo($objetivo){
       $this->objetivo = $objetivo;
   }
+  function getPlan_id() {
+      return $this->plan_id;
+  }
+
+  function getProyecto_id() {
+      return $this->proyecto_id;
+  }
+
+  function setPlan_id($plan_id) {
+      $this->plan_id = $plan_id;
+  }
+
+  function setProyecto_id($proyecto_id) {
+      $this->proyecto_id = $proyecto_id;
+  }
+
+  function getLinea_id() {
+      return $this->linea_id;
+  }
+
+  function setLinea_id($linea_id) {
+      $this->linea_id = $linea_id;
+  }
+
 
 
 }

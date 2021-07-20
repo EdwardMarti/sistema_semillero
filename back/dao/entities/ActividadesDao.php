@@ -42,12 +42,12 @@ $proyectos_id=$actividades->getProyectos_id()->getId();
           throw new Exception('Primary key is null');
       }
   }
-  public function insert2( $descripcion, $pro_id, $plan_id ){
+  public function insert2( $descripcion, $pro_id, $plan_id,$semestre ){
 
 
     
        try {
-          $sql= "INSERT INTO `actividades`( `descripcion`, `proyectos_id`, `ano` ) VALUES ('$descripcion','$pro_id','$plan_id')";
+          $sql= "INSERT INTO `actividades`( `descripcion`, `proyectos_id`, `ano`, `semestre`) VALUES ('$descripcion','$pro_id','$plan_id','$semestre')";
         
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {

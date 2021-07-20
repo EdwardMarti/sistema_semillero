@@ -26,11 +26,11 @@ $dataObject = json_decode($JSONData);
        
      $rpta=   PonenciasFacade::update2($id, $nombre_po, $fecha, $nombre_eve, $institucion, $ciudad, $lugar, $tipo_ponencias_id, $semillero_id);
    try {
-                        if ($rpta > 0) {
-                            http_response_code(200);
-                            echo "{\"mensaje\":\"Se ha registrado exitosamente\"}";
-                        }
-                    } catch (Exception $e) {
-                        http_response_code(500);
-                        echo "{\"mensaje\":\"Error al registrar \"}";
-                    }
+    if ($rpta > 0) {
+        http_response_code(200);
+        echo "{\"mensaje\":\"Se ha registrado exitosamente\"}";
+    }
+} catch (Exception $e) {
+    http_response_code(500);
+    echo "{\"mensaje\":\"Error al registrar \"}";
+}

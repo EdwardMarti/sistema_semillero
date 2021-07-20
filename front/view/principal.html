@@ -82,27 +82,8 @@
                                 class="fa arrow"></span></a>
 
                         <ul class="nav nav-second-level collapse">
-                            <li>
-                                <a href="#">Informacion Adicional <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a onclick="Menu.MonstrarPerfilSemillero()">Perfil Semillero</a>
-                                    </li>
-                                    <li>
-                                        <a onclick="Menu.listadoCapacitaciones()">Capacitaciones</a>
-                                    </li>
-                                    <li>
-                                        <a onclick="Menu.listadoPonencias()">Ponencias</a>
-                                    </li>
-                                    <li>
-                                        <a onclick="Menu.listadoPublicaciones()">Publicaciones</a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li><a onclick="Menu.MonstrarEstadoSemillero()"><i class="fa fa-circle-o-notch"
-                                        aria-hidden="true"></i>Estado</a>
-                            </li>
+                       
+                          
                             <li><a onclick="Menu.MonstrarRegistrarSemillero()"><i class="fa fa-circle-o-notch"
                                         aria-hidden="true"></i>FO-IN-03 Inscripcion de Semilleros</a>
                             </li>
@@ -168,9 +149,43 @@
                     </li>
 
 
-                    <li id="menuFacultades">
+                  
+                    
+                             <li id="menuOrdenes">
+                        <a id="_menuSemilleroTour"><i class="fa fa-users" aria-hidden="true"></i> <span class="nav-label">Gestion Semillero</span> <span
+                                class="fa arrow"></span></a>
+
+                        <ul class="nav nav-second-level collapse">
+                            <li>
+                                <a href="#">Informacion Adicional <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a onclick="Menu.MonstrarPerfilSemillero()">Perfil Semillero</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="Menu.listadoCapacitaciones()">Capacitaciones</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="Menu.listadoPonencias()">Ponencias</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="Menu.listadoPublicaciones()">Publicaciones</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li><a onclick="Menu.MonstrarEstadoSemillero()"><i class="fa fa-circle-o-notch"
+                                        aria-hidden="true"></i>Estado</a>
+                            </li>
+                      
+
+                        </ul>
+
+                    </li>
+
+                      <li id="menuFacultades">
                         <a id="_menuGestionFacultadesTour"><i class="fa fa-users" aria-hidden="true"></i> <span
-                                    class="nav-label">Gestion Facultades</span> <span class="fa arrow"></span></a>
+                                    class="nav-label">Administrador General</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a onclick="Menu.listadoFacultades()"><i
                                             class="fa fa-circle-o-notch" aria-hidden="true"></i>Facultades</a>
@@ -179,13 +194,23 @@
 
                     </li>
 
-
                     <li id="menuProyectos">
                         <a id="_menuAdmSemilleroTour"><i class="fa fa-users" aria-hidden="true"></i> <span
                                     class="nav-label">Adm Semillero</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a onclick="Menu.loadFormSolicitudHorasAdmin()"><i class="fa fa-clock-o" aria-hidden="true"></i>FO-IN-04 HORAS DE INVESTIGACIÓN</a>
+                                <a><i class="fa fa-clock-o" aria-hidden="true"></i>FO-IN-04 HORAS DE INVESTIGACIÓN</a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a onclick="Menu.loadFormSolicitudHorasAdmin()">En Tramite</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="Menu.solicitudesAutorizadas()">Autorizadas</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="Menu.solicitudesRechazadas()">Rechazadas</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li><a onclick="Menu.listadoSemilleros_p()"><i
                                             class="fa fa-circle-o-notch" aria-hidden="true"></i>Pendiente</a>

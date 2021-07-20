@@ -66,6 +66,7 @@ class CapacitacionesFacade {
      $capacitacionesDao->close();
      return $rtn;
   }
+ 
   public static function insertCap2($semestre, $anio, $Semillero_id,$linea_id,$proy_id,$plan_accion_id){
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
@@ -117,19 +118,18 @@ class CapacitacionesFacade {
      $capacitacionesDao->update($capacitaciones);
      $capacitacionesDao->close();
   }
-  public static function update2($id, $tema, $docente, $fecha, $cant_capacitados, $semillero_id){
+  public static function update2($id, $tema, $docente, $fecha, $cant_capacitados){
       $capacitaciones = self::select($id);
       $capacitaciones->setTema($tema); 
       $capacitaciones->setDocente($docente); 
       $capacitaciones->setFecha($fecha); 
       $capacitaciones->setCant_capacitados($cant_capacitados); 
-      $capacitaciones->setSemillero_id($semillero_id); 
-     
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $capacitacionesDao =$FactoryDao->getcapacitacionesDao(self::getDataBaseDefault());
-     $capacitacionesDao->update2($capacitaciones);
+     $result =$capacitacionesDao->update2($capacitaciones);
      $capacitacionesDao->close();
+      return $result;
   }
 
   /**
@@ -179,6 +179,21 @@ class CapacitacionesFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $capacitacionesDao =$FactoryDao->getcapacitacionesDao(self::getDataBaseDefault());
      $result = $capacitacionesDao->listAll_id_SemilleroPlan($plan,$linea_id,$proyecto,$semillero);
+     $capacitacionesDao->close();
+     return $result;
+  }
+  public static function listAll_id_SemilleroPlan2($plan,$linea_id,$proyecto){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $capacitacionesDao =$FactoryDao->getcapacitacionesDao(self::getDataBaseDefault());
+     $result = $capacitacionesDao->listAll_id_SemilleroPlan2($plan,$linea_id,$proyecto);
+     $capacitacionesDao->close();
+     return $result;
+  }
+  
+  public static function listAll_id_SemilleroPlan_id($id) {
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $capacitacionesDao =$FactoryDao->getcapacitacionesDao(self::getDataBaseDefault());
+     $result = $capacitacionesDao->listAll_id_SemilleroPlan_id($id) ;
      $capacitacionesDao->close();
      return $result;
   }

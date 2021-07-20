@@ -113,6 +113,22 @@ class Otras_actividadesFacade {
      $otras_actividadesDao->update($otras_actividades);
      $otras_actividadesDao->close();
   }
+  public static function updateO($id, $nombre_proyecto, $nombre_actividad, $modalidad_participacion, $responsable, $fecha_realizacion, $producto, $semillero_id){
+      $otras_actividades = self::select($id);
+      $otras_actividades->setNombre_proyecto($nombre_proyecto); 
+      $otras_actividades->setNombre_actividad($nombre_actividad); 
+      $otras_actividades->setModalidad_participacion($modalidad_participacion); 
+      $otras_actividades->setResponsable($responsable); 
+      $otras_actividades->setFecha_realizacion($fecha_realizacion); 
+      $otras_actividades->setProducto($producto); 
+
+
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $otras_actividadesDao =$FactoryDao->getotras_actividadesDao(self::getDataBaseDefault());
+     $result = $otras_actividadesDao->updateO($otras_actividades,$semillero_id);
+     $otras_actividadesDao->close();
+     return $result;
+  }
 
   /**
    * Elimina un objeto Otras_actividades de la base de datos a partir de su(s) llave(s) primaria(s).
@@ -125,8 +141,9 @@ class Otras_actividadesFacade {
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $otras_actividadesDao =$FactoryDao->getotras_actividadesDao(self::getDataBaseDefault());
-     $otras_actividadesDao->delete($otras_actividades);
+     $result = $otras_actividadesDao->delete($otras_actividades);
      $otras_actividadesDao->close();
+      return $result;
   }
 
   /**
@@ -145,6 +162,13 @@ class Otras_actividadesFacade {
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $otras_actividadesDao =$FactoryDao->getotras_actividadesDao(self::getDataBaseDefault());
      $result = $otras_actividadesDao->listAll_plan($semillero_id,$plan);
+     $otras_actividadesDao->close();
+     return $result;
+  }
+  public static function listAll_plan_id($id){
+     $FactoryDao=new FactoryDao(self::getGestorDefault());
+     $otras_actividadesDao =$FactoryDao->getotras_actividadesDao(self::getDataBaseDefault());
+     $result = $otras_actividadesDao->listAll_plan_id($id);
      $otras_actividadesDao->close();
      return $result;
   }

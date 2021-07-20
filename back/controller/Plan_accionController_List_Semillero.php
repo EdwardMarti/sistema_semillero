@@ -23,6 +23,7 @@ $list=Plan_accionFacade::listAll_plan_sem($id);
 	    \"descripcion\":\"{$Plan_accion->getano()}\",
 	    \"nombre\":\"{$Plan_accion->getvbo_dirSemillero()}\",
 	    \"semestre\":\"{$Plan_accion->getvbo_dirGinvestigacion()}\",
+            \"id_semestre\":\"{$Plan_accion->getCapacitaciones_id()}\",
 	    \"ano\":\"{$Plan_accion->getvbo_facultaInv()}\",
 	    \"estado\":\"{$Plan_accion->getsemillero_id()->getid()}\"
            

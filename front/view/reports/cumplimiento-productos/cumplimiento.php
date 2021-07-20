@@ -1,22 +1,16 @@
 <?php
 require_once "../../../../vendor/autoload.php";
-//require_once('./styles.css');
-/**
-de Gestión presentado por el (Grupo) de Investigación la vaca loa
-de Gestión presentado por el (Semillero__) de Investigación yo quiero asado
- */
 $key = $_GET["token"];
 
 session_start();
 
 $data = $_SESSION[$key];
 
-if(strtoupper(substr(PHP_OS, 0, 3))== "WIN"){
+if(esWindows()){
     $mpdf = new \Mpdf\Mpdf(['setAutoBottomMargin' => 'stretch','setAutoTopMargin' => 'stretch']);
 }else{
     $mpdf = new \Mpdf\Mpdf(['tempDir' => '/tmp','setAutoBottomMargin' => 'stretch','setAutoTopMargin' => 'stretch']);
 }
-
 $htmlHeader = getHeader();
 $htmlHeader = str_replace("_codigo", $data['codigo'] , $htmlHeader);
 $htmlHeader = str_replace("_version", $data['version'] , $htmlHeader);
@@ -31,13 +25,14 @@ $htmlBody = str_replace("_porcentaje", $data["porcentaje"] , $htmlBody);
 $htmlBody = str_replace("_cumple_requisitos", $data["acepta_dos_id"] == 1 ? "si" : "no" , $htmlBody);
 $htmlBody = str_replace("_recomendacion_horas", $data["acepta_uno_id"] == 1 ? "si" : "no" , $htmlBody);
 $htmlBody = str_replace("_semestre", $data["semestre"] , $htmlBody);
-$htmlBody = str_replace("_grupo", $data["descripcion"] , $htmlBody);
-$htmlBody = str_replace("_semillero", $data["semillero"] , $htmlBody);
+//$htmlBody = str_replace("_grupo", $data["descripcion"] , $htmlBody);
+//$htmlBody = str_replace("_semillero", $data["semillero"] , $htmlBody);
 $htmlBody = str_replace("_anio", $data["anio"] , $htmlBody);
 $htmlBody = str_replace("_productos", $data["productos"] , $htmlBody);
 //$htmlBody = str_replace("_horas_solicitadas", $data["horas_solicitadas"] , $htmlBody);
 //$htmlBody = str_replace("_facultad", "INGENIERIAS" , $htmlBody);
-
+$htmlBody = str_replace("grupo_semillero", "sem" , $htmlBody);
+$htmlBody = str_replace("_nombre_grupo_o_semillero", "grop" , $htmlBody);
 
 $mpdf->WriteHTML(file_get_contents('styles.css'), \Mpdf\HTMLParserMode::HEADER_CSS);
 $mpdf->WriteHTML($htmlBody, \Mpdf\HTMLParserMode::HTML_BODY);
@@ -114,7 +109,7 @@ function getBody(){
     <tr>
         <td style='text-align:justify'>
             <p>
-            Por medio de la presente me permito informar que he revisado el Informe de Gestión presentado por el semillero <strong>_semillero</strong> del grupo  de Investigación <strong>_grupo</strong>, el cual ha cumplido con el <strong>_porcentaje % </strong> de los productos previstos en el Plan de Acción del <strong>_semestre</strong> Semestre del Año <strong>_anio</strong> , los cuales son (_productos), por lo tanto   <strong>_recomendacion_horas</strong> recomiendo las horas de investigación solicitadas.
+            Por medio de la presente me permito informar que he revisado el Informe de Gestión presentado por el <strong>grupo_semillero</strong> de Investigación <strong>_nombre_grupo_o_semillero</strong>, el cual ha cumplido con el <strong>_porcentaje % </strong> de los productos previstos en el Plan de Acción del <strong>_semestre</strong> Semestre del Año <strong>_anio</strong> , los cuales son (_productos), por lo tanto   <strong>_recomendacion_horas</strong> recomiendo las horas de investigación solicitadas.
 <br><br><br>De igual manera informo que el Plan de Acción presentado para el próximo semestre académico <strong>_cumple_requisitos</strong> cumple con los productos mínimos exigidos en el artículo 25 del Acuerdo 056 de 2012.
             </p>       
         </td>
@@ -137,7 +132,7 @@ function getBody(){
 <br>
 <table class='table'>
     <tr>
-        <td style='width: 50%;text-align: left; padding-left:30px'><img src='../../../img/firmaTest.png' alt='firma docente' width='100' /></td>
+        <td style='width: 50%;text-align: left; padding-left:30px'><img src='../../../img/check.svg' alt='firma representante de facultad' width='70' /></td>
     </tr>
     <tr>
         <td class='strong' style='text-align: left;'>
@@ -155,14 +150,15 @@ function getBody(){
 function getFooter(){
     return"
     <table width='100%'>
-    <tr>
-        <td align='center' width='100%' style='font-size: 10px;'>
-        ** Copia No Controlada **
-        </td>
-    </tr>
-</table>
+        <tr>
+            <td align='center' width='100%' style='font-size: 10px;'>
+            ** Copia No Controlada **
+            </td>
+        </tr>
+    </table>
     ";
 }
-//
-//de Gestión presentado por el (Grupo) de Investigación la vaca loa
-// de Gestión presentado por el (Semillero__) de Investigación yo quiero asado
+function esWindows()
+{
+    return strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
+}

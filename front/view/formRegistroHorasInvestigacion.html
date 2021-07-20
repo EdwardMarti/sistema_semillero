@@ -3,7 +3,12 @@
     <div class="modal-dialog">
         <div class="modal-content animated bounceInRight">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" onclick="closeModalRevision()"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <div class="row">
+                    <div class="col-md-9 mx-auto">
+                        <h3 class="ml-5" id="tipo_docente"></h3>
+                    </div>
+                    <button type="button" class="close mr-2" data-dismiss="modal" onclick="closeModalRevision()"><i class="fa fa-close" aria-hidden="true"></i><span class="sr-only">Close</span></button>
+                </div>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="idSolicitud">
@@ -11,10 +16,41 @@
                     <div class="col-md-12 mb-3">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupPrepend3">Semillero</span>
+                                <span class="input-group-text" id="inputGroupPrepend4">Docente</span>
                             </div>
-                            <input type="text" class="text-right yearpicker form-control" name="semillero"
-                                   id="semillero" aria-describedby="inputGroupPrepend3" readonly="true"/>
+                            <input type="text" class="text-right form-control text-secondary" name="docente"
+                                   id="docente" aria-describedby="inputGroupPrepend4" readonly="true"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend5">Semillero</span>
+                            </div>
+                            <input type="text" class="text-right form-control text-secondary" name="semillero"
+                                   id="semillero" aria-describedby="inputGroupPrepend5" readonly="true"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Sigla Semillero</span>
+                            </div>
+                            <input type="text" class="text-right yearpicker form-control text-secondary" name="sigla"
+                                   id="sigla" aria-describedby="inputGroupPrepend3" readonly="true"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend6">Horas Solicitadas</span>
+                            </div>
+                            <input type="text" class="text-right yearpicker form-control text-secondary" name="horas_solicitadas"
+                                   id="horas_solicitadas" aria-describedby="inputGroupPrepend6" readonly="true"/>
                         </div>
                     </div>
                 </div>
@@ -35,7 +71,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroupPrepend3">Año</span>
                             </div>
-                            <input type="text" class="text-right yearpicker form-control" name="anio"
+                            <input type="text" class="text-right yearpicker form-control text-secondary" name="anio"
                                    id="anio" aria-describedby="inputGroupPrepend3" readonly="true"/>
                         </div>
                     </div>
@@ -43,6 +79,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal" onclick="closeModalRevision()">Cerrar</button>
+                <button type="button" onclick="rechazar()" class="btn btn-warning">Rechazar</button>
                 <button type="button" onclick="autorizar()" class="btn btn-primary">Autorizar</button>
             </div>
         </div>
@@ -54,10 +91,8 @@
 
             <div class="ibox ">
                     <div class="ibox-title row" id="descripcion_menu">
-                        <h5 class="text-white col">Solicitud Horas</h5>
-                        <h5 class="label label-successE"> <a onclick="Menu.registroHorasDocente()"
-                                                             style="background-color: #243747 ;display: inline !important" class="btn btn-primary" id="agregar">+
-                            Agregar</a></h5>
+                        <h class="text-white col">Solicitudes en Tramite</h>
+
                     </div>
 
                 <div class="ibox-content">
