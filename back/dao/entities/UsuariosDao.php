@@ -37,8 +37,24 @@ class UsuariosDao implements IUsuariosDao
         $password = $usuarios->getPassword();
 
         try {
-            $sql = "INSERT INTO `usuarios`(  `persona_id`, `password`)"
-                . "VALUES ('$persona_id','$password')";
+            $sql = "INSERT INTO `usuarios`(  `persona_id`, `password`, `rol`)"
+                . "VALUES ('$persona_id','$password','4')";
+        var_dump($sql);
+            return $this->insertarConsulta($sql);
+        } catch (SQLException $e) {
+            throw new Exception('Primary key is null');
+        }
+    }
+    public function insert2($persona_id,$password)
+    {
+//        $id = $usuarios->getId();
+//        $persona_id = $usuarios->getPersona_id()->getId();
+//        $password = $usuarios->getPassword();
+
+        try {
+            $sql = "INSERT INTO `usuarios`(  `persona_id`, `password`, `rol`)"
+                . "VALUES ('$persona_id','$password','4')";
+        
             return $this->insertarConsulta($sql);
         } catch (SQLException $e) {
             throw new Exception('Primary key is null');
@@ -182,12 +198,13 @@ class UsuariosDao implements IUsuariosDao
     {
         $usuarios = null;
         try {
-            $sql = "SELECT * FROM `data_seme` WHERE `correo`='$user' and `password`='$pass' ";
+            $sql = "SELECT * FROM `persona_login` WHERE `correo`='$user' and `password`='$pass' ";
+          
             $data = $this->ejecutarConsulta($sql);
-        
+           
             for ($i = 0; $i < count($data); $i++) {
                 $usuarios = new Usuarios();
-                $usuarios->setId($data[$i]['nombreD']);
+                $usuarios->setId($data[$i]['nombre']);
                 $persona = new Persona();
                 $persona->setId($data[$i]['persona_id']);
                 $persona->setCorreo($data[$i]['correo']);

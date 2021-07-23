@@ -20,6 +20,9 @@ class Capacitaciones {
   private $plan_id;
   private $proyecto_id;
   private $linea_id;
+  private $cumplimeito;
+  private $puntos;
+  
 
     /**
      * Constructor de Capacitaciones
@@ -48,8 +51,23 @@ class Capacitaciones {
   public function getTema(){
       return $this->tema;
   }
+  function getCumplimeito() {
+      return $this->cumplimeito;
+  }
 
-    /**
+  function getPuntos() {
+      return $this->puntos;
+  }
+
+  function setCumplimeito($cumplimeito) {
+      $this->cumplimeito = $cumplimeito;
+  }
+
+  function setPuntos($puntos) {
+      $this->puntos = $puntos;
+  }
+
+      /**
      * Modifica el valor correspondiente a tema
      * @param tema
      */

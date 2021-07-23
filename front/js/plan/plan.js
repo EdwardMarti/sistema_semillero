@@ -1373,7 +1373,7 @@ function cerrarModalPublicaciones() {
 
 
 function gestionarItemPlanLineas() {
-
+   
   //    $("#ocultarTablaLineas").hide();
 if(!flag){ /** es nuevea */
         
@@ -1384,6 +1384,8 @@ if(!flag){ /** es nuevea */
     $("#collapseOne").show();
     
        $("#btnterminar").show();
+        $("#btneditarLinea").hide(); /** seccion de  act lineas */
+      $("#btneTerminarineas").hide(); /** seccion de  act lineas */
 
     $('#acor1').prop('disabled', false);
     $('#btnCuatro').prop('disabled', false);
@@ -1393,9 +1395,9 @@ if(!flag){ /** es nuevea */
         
  MostrarDatosActividadesP(-1,-1);
         MostrarDatosOtrasCap();
-    
+    $("#btnContinuarActividades").show();
 }else{
-  
+       
    $("#seccionLineasInvestigacion").show();
     $("#SeccionRegistrarLineas").show();
     $("#seccionOtrasActividades").show();
@@ -1403,8 +1405,9 @@ if(!flag){ /** es nuevea */
     $("#collapseOne").show();
     
        $("#btnterminar").show();
-       $("#btnContinuarActividades").hide();
-       $("#btneditarLinea").show();
+       $("#btneditarLineas2").hide();
+       $("#btneditarLinea").hide();
+       $("#btnContinuarActividades").show();
        $("#botonTerminar").hide();
 
     $('#acor1').prop('disabled', false);
@@ -2058,7 +2061,7 @@ function Actualizar_Lineas_semilleros() {
 }
 function cerrar_Lineas_semilleros() {
   
-    alert();
+ 
     
       Mensaje.mostrarMsjExito("Actualizacion Exitosa", "Datos Actualizados Correctamente");
             
@@ -2607,7 +2610,8 @@ function gestionarItemEditar(id_order, data) {
   
    $('#id_planReg').val(id_order);
    
-   
+   flag=true;
+    
    
    $('#semestre_aux').val(data.id_semestre);
 
@@ -2630,7 +2634,7 @@ function gestionarLineasInv( data) {
     $("#collapseOne").hide();
     $("#botonTerminar").hide();
     $("#btnContinuarActividades").hide();
-    $("#btneditarLinea").show();
+//    $("#btneditarLinea").show();
 
     $('#acor1').prop('disabled', false);
     $('#btnCuatro').prop('disabled', false);

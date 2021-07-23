@@ -210,7 +210,7 @@ $semillero_id=$persona_has_semillero->getSemillero_id()->getId();
       $lista = array();
       try {
           $sql ="SELECT `id`, `nombre`, `sigla`, `fecha_creacion`, `aval_dic_grupo`, `aval_dic_sem`, `aval_dic_unidad`, `grupo_investigacion_id`, `gi_nombre`, `departamento`, `dpto_d`, `facultad`, `fdescrip`, `plan_estudios`, `pe_descrip`, `ubicacionSemillero`, `persona_id`, `nombreD`, `telefono`, `correo`, `tipo_vinculacion_id`, `descripcion`, `id_docente`, `ubicacionDocente` FROM `data_seme` WHERE `id` = '$id'";
-//          var_dump($sql);
+      
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $persona_has_semillero= new Persona_has_semillero();

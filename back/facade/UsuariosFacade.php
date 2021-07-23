@@ -52,6 +52,16 @@ class UsuariosFacade
         $usuariosDao->close();
         return $rtn;
     }
+    public static function insert2( $persona_id, $password)
+    {
+       
+
+        $FactoryDao = new FactoryDao(self::getGestorDefault());
+        $usuariosDao = $FactoryDao->getusuariosDao(self::getDataBaseDefault());
+        $rtn = $usuariosDao->insert2($persona_id,$password);
+        $usuariosDao->close();
+        return $rtn;
+    }
 
     /**
      * Selecciona un objeto Usuarios de la base de datos a partir de su(s) llave(s) primaria(s).

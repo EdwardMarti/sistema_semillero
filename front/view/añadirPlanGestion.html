@@ -1,0 +1,619 @@
+
+<div id="Titulo" class="ibox-content" style="background: #af2623">
+    
+     <center><H2><b><u style="background: #ae2623">PLAN DE GESTION SEMILLEROS DE INVESTIGACIÓN</u></b></H2>
+        </center>
+</div>
+
+<div  id="SeccionTablaListaPlan" style="display: none">
+    
+    <div class="ibox-content wrapper wrapper-content animated fadeInRight" id="ModalTablaRegistroPlan">
+
+        <div class="row" id="step_1_tour">
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title row">
+                        <h5 class="text-white col">Listado Plan de Accion</h5>
+                        <h5 class="label label-successE"><a onclick="gestionarItemPlan()"
+                                                            style="background-color: #243747 ;display: inline !important"
+                                                            class="btn btn-primary">+
+                                Agregar</a></h5>
+
+                    </div>
+                    <div class="ibox-content">
+                        <div class='table mt-4 mb-4'><br>
+                            <table class='table table-striped mt-4 mb-4 centradito table-hover' id='listadoTablaPlanesS'   style='width: 100%'>
+
+
+                                <thead>
+                                    <tr class="ufps-tabl">
+
+                                        <th>ID</th>
+                                        <th>SEMESTRE</th>
+                                        <th>AÑO</th>
+                                        <th>VBO DIR. SEMILLERO</th>
+                                        <th>VBO DIR. GRUPO INVESTIGACION</th>
+                                        <th>VBO DOC FACULTA INVESTIGACION</th>
+                                        <th>ESTADO</th>
+                                        <th>ACCIONES</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div  id="SeccionIniciar" style="display: none">
+
+    <div class="ibox-content wrapper wrapper-content animated fadeInRight"  id="inicio_del_plan">      
+    
+        <div class="form-row">
+             <div class="col-2"> </div> 
+            <div class="col-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Semestre</span>
+                    </div>
+                    <select class="custom-select custom-select-md" id="semestre">
+                        <option value="1" selected>Primer</option>
+                        <option value="2">Segundo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend3">Año</span>
+                    </div>
+                    <input type="text" class="text-right yearpicker form-control" name="anio"
+                           id="anio" aria-describedby="inputGroupPrepend3"/>
+                </div>
+            </div>
+                <div class="col-2">
+               
+                    <button type="button" class="btn btn-w-m btn-primary collapsed" onclick="AgregarPlan()" id="btnUno">Iniciar
+                    </button>
+
+               
+            </div>
+            <div class="col-2"> </div> 
+        </div>
+     
+   
+    </div>
+
+</div>
+
+
+<input type="text"   name="proyecto_linea_aux" id="proyecto_linea_aux" style="display: none" > 
+     <input type="text"   name="id_LineaR_aux" id="id_LineaR_aux" style="display: none">
+     <input type="text"   name="semestre_aux" id="semestre_aux" style="display: none">
+
+    
+     <input  class="form-control" type="text" id="id_planReg" name="id_planReg" style="display: none">
+  
+     <div id="TituloPlanAccion" class="ibox-content" style="background: #af2623; display: none">
+    
+         <center><H2><b><u style="background: #ae2623">PLAN DE ACCIÓN # <span id="numeroPlan"></span></u></b> </H2>
+        </center>
+</div> 
+   
+     <div class="ibox-content wrapper wrapper-content animated fadeInRight"  id="seccionLineasInvestigacion" style="display: none">
+  
+         <hr style="background: #ae2623">
+        <center><H2><b><u style="background: #ae2623">LÍNEAS DE INVESTIGACIÓN</u></b></H2>
+        </center>
+        <div class='table mt-4 mb-4' id="step_3_tour">
+            <div class="modal-footer">
+
+             
+                <div class="modal-footer" >
+                    <button  type="button" id="btnTres" class="btn btn-w-m btn-primary collapsed" disabled="disabled"  onclick="gestionarItemPlanLineas()" >+ Agregar
+                    </button>
+                </div>                                  
+               
+            </div>
+            <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablalinea_pro'>
+                <thead>
+                <tr class="ufps-tabl">
+
+                    <th>LINEA</th>
+                    <th>PROYECTO</th>
+                    <th>ACCIONES</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+   </div>
+
+
+      
+
+
+
+
+<div  id="SeccionRegistrarLineas" style="display: none">
+    
+    <div  id="CamposRegistrarLineas">
+
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"  id="uno" disabled="disabled">
+          1. LÍNEAS DE INVESTIGACIÓN
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+                <div class="ibox-content" style="background: #ffeeba " >
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="Inputdescripcion" style="color: #ae2623"><b>Linea de Investigacion
+                                        (*)</b></label>
+                                <select onchange="cargarSelectProyectos(this.value);" class="form-control"
+                                        name="lineas_investigacion2" id="lineas_investigacion2">
+                                    <option value="">SELECCIONE</option>
+                                </select>
+                            </div>  
+
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="Inputdescripcion" style="color: #ae2623">Proyecto a Ejecutar (*)</label>
+                                <select onchange="cargarSelectProyectos2(this.value);" class="form-control"
+                                        name="proyecto_linea2" id="proyecto_linea2">
+                                    <option value="">SELECCIONE</option>
+
+
+                                </select>
+
+                            </div> 
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group" style="display: none">
+                            <label for="formGroupExampleInput">persona_Id </label>
+                            <input type="text" style="background: white;" class="form-control" name="persona_Id"
+                                   id="persona_Id" required>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="formGroupExampleInput">Responsable del Proyecto </label>
+                            <input type="text" style="background: white;" class="form-control"
+                                   name="investigador" id="investigador" readonly="">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Fecha de Terminación </label>
+                            <input type="text" style="background: white;" class="form-control" name="fecha_fin"
+                                   id="fecha_fin" required>
+                        </div>
+                        <div class="form-group" style="display: none">
+                            <label for="formGroupExampleInput">ResponsableLinea de Investigacion</label>
+                            <input type="text" style="background: white;" class="form-control"
+                                   name="responsable" id="responsable" required>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Fecha de Inicio </label>
+                            <input type="text" style="background: white;" class="form-control" name="fecha_ini"
+                                   id="fecha_ini" readonly="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Objetivo General </label>
+                    <textarea style="background: white;" class="form-control" name="objetivoG"
+                              id="objetivoG" readonly=""></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="formGroupExampleInput"><b>Productos (*)</b> </label>
+                </div>
+                <div class="ibox-content no-padding col-lg-12">
+                    <div class="summernote" id="producto">
+
+                    </div>
+                </div>
+            
+     <hr style="background: #ae2623">
+     
+                <div class="modal-footer" >
+                    <button  type="button" id="btnCuatro" class="btn btn-w-m btn-primary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" disabled="disabled"  onclick="SiguienteCapacitaciones1()" >+ Continuar
+                    </button>
+                </div>
+         </div>
+    </div>
+  </div>
+    
+    
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="dos"  disabled="disabled">
+          Actividades
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+          <div class="ibox ">
+
+
+              <div class='table mt-4 mb-4'>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-w-m btn-primary  collapsed"
+                              onclick="mostrarModalActividades2()" id="btnAgregarActividades"
+                              disabled="disabled" >+ Agregar
+                      </button>
+
+                  </div>
+                  <table class='table table-striped mt-4 mb-4 centradito'
+                         id='listadoTablaAct'>
+                      <thead>
+                          <tr class="ufps-tabl">
+
+                              <th>DESCRIPCIOON</th>
+                              <th>FECHA INICIO</th>
+                              <th>FECHA FIN</th>
+                              <th>% CUMPLIMIENTO</th>
+                              <th>PUNTOS CUMPLIMIENTO</th>
+                              <th>ACCIONES</th>
+                          </tr>
+                      </thead>
+                  </table>
+              </div>
+
+              <div class="modal-footer">
+                  <button  type="button" class="btn btn-w-m btn-primary collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" disabled="disabled" id="btnCinco"
+                           onclick="SiguienteCapacitaciones()" >+ Continuar
+                  </button>
+
+              </div>
+
+          </div>
+      </div>
+    </div>
+  </div>
+    
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="tres" disabled="disabled">
+          2. Capacitaciones
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+          <div class="ibox ">
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-w-m btn-primary"
+                          onclick="mostrarModalCapacitacionesP()"
+                          id="btnAgregarCapacitaciones" disabled="disabled">+ Agregar
+                  </button>
+
+              </div>
+              <div class='table mt-4 mb-4'>
+                  <table class='table table-striped mt-4 mb-4 centradito'
+                         id='listadoTablaCap'>
+                      <thead>
+                          <tr class="ufps-tabl">
+
+                              <th>NOMBRE DE LA CAPACITACION</th>
+                              <th>ORADOR</th>
+                              <th>OBJETIVO</th>
+                              <th>FECHA DE REALIZACION</th>
+                              <th>Nº DE ASISTENTES</th>
+                               <th>% CUMPLIMIENTO</th>
+                               <th>PUNTOS CUMPLIMIENTO</th>
+                              <th>ACCIONES</th>
+                          </tr>
+                      </thead>
+                  </table>
+              </div>
+
+
+
+           
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+     
+      
+        </div>
+     
+   <div class="modal-footer">
+              <button type="button" class="btn btn-w-m btn-warning collapsed"  disabled="disabled"
+                          onclick="registrarLineas_semilleros()" id="btnContinuarActividades"
+                          data-toggle="collapse" data-target="#collapseTres" aria-expanded="true"
+                          aria-controls="collapseTres">+ Registrar Linea
+                  </button>
+        </div>
+</div>
+     <!---------------------------------Otras actividades----------------------------------->
+     
+        <div class=" ibox-content wrapper wrapper-content animated fadeInRight" id="seccionOtrasActividades" style="display: none">
+                 <div class="ibox-title row">
+                    <h5 class="text-white col"> <b>OTRAS ACTIVIDADES DE INVESTIGACION (*) </b></h5>
+                   
+                    <button class="btn btn-link collapsed" type="button"  onclick="ModalOtrasCapacitaciones()" disabled="disabled" id="btnDos"  style="background: white">
+                        <b style="color: black">*  Agregar</b>
+                    </button>
+
+                </div> 
+             <div class='table mt-4 mb-4'><br>
+             <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaOtrasCap' style='width: 100%'>   
+                                        
+               
+                                                <thead>
+                                                <tr class="ufps-tabl">
+
+                                                    <th>NOMBRE DEL PROYECTO</th>
+                                                    <th>NOMBRE ACTIVIDAD</th>
+                                                    <th>MODALIDAD DE PARTICIPACION</th>
+                                                    <th>RESPONSABLE</th>
+                                                    <th>FECHA DE REALIZACION</th>
+                                                    <th>PRODUCTO(PONENCIA/ARTICULO)</th>
+                                                    <th>% CUMPLIMIENTO</th>
+                                                    <th>PUNTOS CUMPLIMIENTO</th>
+                                                    <th>ACCIONES</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+            
+            
+            </div>
+            </div>
+     
+         <div class="ibox-content" id="btnterminar" style="display: none">
+         <div class="modal-footer">
+        <button type="button" class="btn btn-w-m btn-primary    " id="botonTerminar" disabled="disabled"
+                onclick="cerrarTerminar()"
+                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                aria-controls="collapseTwo">+ Terminar
+        </button>
+        
+          
+            
+             
+                  <button type="button" class="btn btn-w-m btn-warning collapsed"  id="btneditarLinea" 
+                          onclick="Actualizar_Lineas_semilleros()" id="btneditarLineas2"
+                          data-toggle="collapse" data-target="#collapseTres" aria-expanded="true"
+                          aria-controls="collapseTres">+ Actualizar Datos Linea
+                  </button>
+                  <button type="button" class="btn btn-w-m btn-warning collapsed"  id="btneTerminarineas" 
+                          onclick="cerrar_Lineas_semilleros()" id="btneditarLinea"
+                          data-toggle="collapse" data-target="#collapseTres" aria-expanded="true"
+                          aria-controls="collapseTres">Terminar y Actualizar Datos Plan
+                  </button>
+
+           </div>   
+    </div> 
+    
+     <!-------------------------------------------------------------------->
+<!-------------------------------- Actualizar --------------------------------->
+
+     
+
+      
+
+<!-------------------------------- Actualizar --------------------------------->
+
+<!---------------------------------------        Modales    ----------------------->
+
+
+<div class="modal inmodal" id="ModalActividades" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="ActividadesInsert">
+                    <div class="form-group" style="display: none">
+                        <label for="Inputid">id</label>
+                        <input type="text" name="id" class="form-control" id="id" placeholder="id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Inputdescripcion">descripcion</label>
+                        <input type="text" name="descripcionA" class="form-control" id="descripcionA"
+                               placeholder="descripcion">
+                    </div>
+
+
+            
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnRegAct" onclick="actualizarActividades()">
+                    Actualizar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnRegReg" onclick="registrarActividades()">
+                    Registrar
+                </button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal inmodal" id="ModalCapacitaciones" tabindex="-1" role="dialog" style="display: none;"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">Close x</span></button>
+                        <h4 class="modal-title">Formulario Capacitaciones</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="CapacitacionesInsert">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group" style="display: none">
+                                <label for="Inputid">id</label>
+                                <input type="text" name="idCap" class="form-control" id="idCap" placeholder="id"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="Inputtema">tema</label>
+                                <textarea name="temaCap" class="form-control" id="temaCap" placeholder="tema"
+                                          rows="3"></textarea>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="Inputobjetivo">objetivo</label>
+                                <textarea name="objetivoCap" class="form-control" id="objetivoCap"
+                                          placeholder="objetivoCap" rows="3"></textarea>
+
+                            </div>
+
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="Inputdocente">docente</label>
+                                <input type="text" name="docenteCap" class="form-control" id="docenteCap"
+                                       placeholder="docente">
+                            </div>
+                            <div class="form-group">
+                                <label for="Inputfecha">fecha</label>
+                                <input type="date" name="fechaCap" class="form-control" id="fechaCap"
+                                       placeholder="fecha">
+                            </div>
+                            <div class="form-group">
+                                <label for="Inputcant_capacitados">cant_capacitados</label>
+                                <input type="number" name="cant_capacitadosCap" class="form-control"
+                                       id="cant_capacitadosCap" placeholder="cant_capacitados">
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnCapacitacionesAct"
+                        onclick="UpdateCapacitacionesAct()">Actualizar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnCapacitacionesReg"
+                        onclick="registrarCapacitaciones()">Registrar
+                </button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="ModalOtrasCapacitaciones" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <form role="form" id="Otras_actividadesInsert">
+                     <div class="form-group">
+                          <label for="Inputnombre_proyecto">Nombre Proyecto</label>
+                          <textarea  name="nombre_proyectoO" class="form-control" id="nombre_proyectoO" placeholder="nombre_proyecto"></textarea>
+                       </div>
+                  
+                  
+                  <div class="row">
+                      
+                      <div class="col-6">
+                          <div class="form-group" style="display: none">
+                          <label for="Inputid">id</label>
+                          <input type="text" name="idO" class="form-control" id="idO" placeholder="id" required>
+                       </div>
+                 
+                      <div class="form-group">
+                          <label for="Inputnombre_actividad">nombre_actividad</label>
+                          <input type="text" name="nombre_actividadO" class="form-control" id="nombre_actividadO" placeholder="nombre_actividadO">
+                       </div>
+                            <div class="form-group">
+                          <label for="Inputfecha_realizacion">Fecha Realizacion</label>
+                          <input type="date" name="fecha_realizacionO" class="form-control" id="fecha_realizacionO" placeholder="fecha_realizacion">
+                       </div>
+                      </div>
+                      <div class="col-6">
+                                    <div class="form-group">
+                          <label for="Inputmodalidad_participacion">modalidad_participacion</label>
+                          <input type="text" name="modalidad_participacionO" class="form-control" id="modalidad_participacionO" placeholder="modalidad_participacion">
+                       </div>
+                      <div class="form-group">
+                          <label for="Inputresponsable">responsable</label>
+                          <input type="text" name="responsableO" class="form-control" id="responsableO" placeholder="responsable">
+                       </div>
+                    
+                      </div>
+                  </div>
+                   
+            
+                      <div class="form-group">
+                          <label for="Inputproducto">producto</label>
+                          <textarea  name="productoO" class="form-control" id="productoO" placeholder="producto"></textarea>
+                       </div>
+                   
+                 
+            </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnCapacitacionesAct2" onclick="Update_OtrasCapcitaciones()">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="btnCapacitacionesReg2" onclick="AgregarOtrasCapcitaciones()">Registrar</button>
+                <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="../js/informe/info_gestion.js"></script>
+<script type="text/javascript" src="../js/tours/plan_de_accion/plan_de_accion_semilleros.js"></script>
+
+
+<script src="../js/plugins/summernote/summernote-bs4.js"></script>
+<link rel="stylesheet" href="../js/helpers/jquery-year-picker/css/style.css"/>
+<link rel="stylesheet" href="../js/helpers/jquery-year-picker/css/yearpicker.css">
+<script src="../js/helpers/jquery-year-picker/js/yearpicker.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('.summernote').summernote();
+
+ $(".yearpicker").yearpicker({
+                year: 2021,
+                startYear: 2021,
+                endYear: 2050
+            });
+
+    });
+</script>

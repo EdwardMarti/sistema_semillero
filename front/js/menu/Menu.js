@@ -233,7 +233,7 @@ class Menu {
     static listadoInformes() {
 
         Utilitario.agregarMascara();
-        fetch("listadoInformes.html", {
+        fetch("añadirPlanGestion.html", {
             method: "GET",
         })
             .then(function (response) {

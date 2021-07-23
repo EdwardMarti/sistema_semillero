@@ -38,6 +38,8 @@ $dataObject = json_decode($JSONData);
 	    \"proyecto_id\":\"{$Capacitaciones->getProyecto_id()}\",
 	    \"cant_capacitados\":\"{$Capacitaciones->getcant_capacitados()}\",
 	    \"semillero_id_id\":\"{$Capacitaciones->getsemillero_id()->getid()}\",
+	    \"cumplimiento\":\"{$Capacitaciones->getCumplimeito()}\",
+	    \"Pcumplimiento\":\"{$Capacitaciones->getPuntos()}\",
 	    \"linea_id\":\"{$Capacitaciones->getLinea_id()}\",
 	   
 	    \"objetivo\":\"{$Capacitaciones->getobjetivo()}\"

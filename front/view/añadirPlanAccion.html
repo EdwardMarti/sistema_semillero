@@ -92,12 +92,12 @@
 </div>
 
 
-     <input type="text"   name="proyecto_linea_aux" id="proyecto_linea_aux" > 
-     <input type="text"   name="id_LineaR_aux" id="id_LineaR_aux" >
-     <input type="text"   name="semestre_aux" id="semestre_aux" >
+<input type="text"   name="proyecto_linea_aux" id="proyecto_linea_aux" style="display: none" > 
+     <input type="text"   name="id_LineaR_aux" id="id_LineaR_aux" style="display: none">
+     <input type="text"   name="semestre_aux" id="semestre_aux" style="display: none">
 
     
-     <input  class="form-control" type="text" id="id_planReg" name="id_planReg" >
+     <input  class="form-control" type="text" id="id_planReg" name="id_planReg" style="display: none">
   
      <div id="TituloPlanAccion" class="ibox-content" style="background: #af2623; display: none">
     
@@ -334,10 +334,17 @@
     </div>
   </div>
 </div>
-   
+     
+      
         </div>
-    
-
+     
+   <div class="modal-footer">
+              <button type="button" class="btn btn-w-m btn-warning collapsed"  disabled="disabled"
+                          onclick="registrarLineas_semilleros()" id="btnContinuarActividades"
+                          data-toggle="collapse" data-target="#collapseTres" aria-expanded="true"
+                          aria-controls="collapseTres">+ Registrar Linea
+                  </button>
+        </div>
 </div>
      <!---------------------------------Otras actividades----------------------------------->
      
@@ -381,21 +388,17 @@
         </button>
         
           
-             <button type="button" class="btn btn-w-m btn-warning collapsed"  disabled="disabled"
-                          onclick="registrarLineas_semilleros()" id="btnContinuarActividades"
-                          data-toggle="collapse" data-target="#collapseTres" aria-expanded="true"
-                          aria-controls="collapseTres">+ Registrar Linea
-                  </button>
+            
              
                   <button type="button" class="btn btn-w-m btn-warning collapsed"  id="btneditarLinea" 
-                          onclick="Actualizar_Lineas_semilleros()" id="btneditarLinea"
+                          onclick="Actualizar_Lineas_semilleros()" id="btneditarLineas2"
                           data-toggle="collapse" data-target="#collapseTres" aria-expanded="true"
                           aria-controls="collapseTres">+ Actualizar Datos Linea
                   </button>
                   <button type="button" class="btn btn-w-m btn-warning collapsed"  id="btneTerminarineas" 
                           onclick="cerrar_Lineas_semilleros()" id="btneditarLinea"
                           data-toggle="collapse" data-target="#collapseTres" aria-expanded="true"
-                          aria-controls="collapseTres">Terminar Actualizar Datos Linea
+                          aria-controls="collapseTres">Terminar y Actualizar Datos Plan
                   </button>
 
            </div>   

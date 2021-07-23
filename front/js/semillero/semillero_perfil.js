@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     sem_id =  Utilitario.getLocal('id_semillero');
+    
     p_idPersona =  Utilitario.getLocal('id');
 
   
@@ -12,7 +13,7 @@ $(document).ready(function() {
     cargarSelectTp_vin();
 
 
-
+    alert(sem_id);
     cargarInfoSemillero(sem_id);
 
 
@@ -96,7 +97,7 @@ function cargarInfoSemillero(id_order) {
             dataItem(data.semilleroPer);
         })
         .catch(function(promise) {
-            console.log("ptomridsf", promise.json);
+           
             if (promise.json) {
                 promise.json().then(function(response) {
                     console.log("respsada", response);
@@ -522,10 +523,10 @@ function cargarSelectPlan(dpto) {
                     }
                 });
             } else {
-                Mensaje.mostrarMsjError(
-                    "Error",
-                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-                );
+//                Mensaje.mostrarMsjError(
+//                    "Error",
+//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+//                );
             }
         });
 }
@@ -942,10 +943,10 @@ function iniciarTablaS() {
             var id_order = data.id
 
             $(".actualizar", row).click(function() {
-                gestionarItem(id_order, data, index);
+                gestionarItemLineaI(id_order, data, index);
             });
             $(".eliminar", row).click(function() {
-                DeleteOrder(id_order, data);
+                DeleteOrderLineaI(id_order, data);
             });
         },
 
@@ -1084,7 +1085,7 @@ function registrarLn() {
 }
 
 
-function gestionarItem(id_order) {
+function gestionarItemLineaI(id_order) {
 
 
     cargarInfoTablaLn(id_order);
@@ -1302,7 +1303,7 @@ function ActualizarDataDocente() {
 
 
 
-function DeleteOrder(id) {
+function DeleteOrderLineaI(id) {
     Mensaje.mostrarMsjConfirmacion(
         'Eliminar Registro',
         'Este proceso es irreversible , ¿esta seguro que desea eliminar la Orden?',
@@ -1511,8 +1512,8 @@ function listadoTitulos(titulos) {
 function DeleteTitulo(id) {
 
     Mensaje.mostrarMsjConfirmacion(
-        'Eliminar Orden',
-        'Este proceso es irreversible , ¿esta seguro que desea eliminar la Orden?',
+        'Eliminar Registro',
+        'Este proceso es irreversible , ¿esta seguro que desea eliminar Este Registro?',
         function() {
             eliminarTitulos(id);
         }

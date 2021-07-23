@@ -190,6 +190,7 @@ $semillero_id=$semillero_o;
       $lista = array();
       try {
           $sql ="SELECT `id`, `nombre_proyecto`, `nombre_actividad`, `modalidad_participacion`, `responsable`, `fecha_realizacion`, `producto`, `semillero_id`"
+                  . ", `porcentaje`, `puntos`"
           ."FROM `otras_actividades`"
           ."WHERE `semillero_id` = '$semillero_id' AND `plan_accion_id` = '$plan' ";
 //  var_dump($sql);
@@ -203,6 +204,8 @@ $semillero_id=$semillero_o;
           $otras_actividades->setResponsable($data[$i]['responsable']);
           $otras_actividades->setFecha_realizacion($data[$i]['fecha_realizacion']);
           $otras_actividades->setProducto($data[$i]['producto']);
+          $otras_actividades->setCumplimeito($data[$i]['porcentaje']);
+          $otras_actividades->setPuntos($data[$i]['puntos']);
            $semillero = new Semillero();
            $semillero->setId($data[$i]['semillero_id']);
            $otras_actividades->setSemillero_id($semillero);

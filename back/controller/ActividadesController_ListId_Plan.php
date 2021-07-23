@@ -25,6 +25,10 @@ $plan = strip_tags($dataObject->plan);
 	       $rta.="{
 	    \"id\":\"{$Actividades->getid()}\",
 	    \"descripcion\":\"{$Actividades->getdescripcion()}\",
+	    \"fecha_ini\":\"{$Actividades->getFecha_ini()}\",
+	    \"fecha_fin\":\"{$Actividades->getFecha_fin()}\",
+	    \"cumplimiento\":\"{$Actividades->getCumplimiento()}\",
+	    \"puntos\":\"{$Actividades->getPuntos()}\",
 	    \"proyectos_id\":\"{$Actividades->getproyectos_id()->getid()}\"
 	       },";
         }

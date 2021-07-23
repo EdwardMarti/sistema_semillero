@@ -11,9 +11,13 @@ include_once realpath('../facade/PersonaFacade.php');
 include_once realpath('../facade/DocenteFacade.php');
 include_once realpath('../facade/Persona_has_semilleroFacade.php');
 include_once realpath('../facade/UsuariosFacade.php');
+include_once realpath('../correoPhp/enviarMail.php');
 
 $JSONData = file_get_contents("php://input");
 $dataObject = json_decode($JSONData);
+
+$email = new enviarMail();
+
 
       
         $nombre = strip_tags($dataObject->nombre);
@@ -29,36 +33,37 @@ $dataObject = json_decode($JSONData);
 
   
 
-  
-        if ($rptaS > 0) {
+
+        if ($rptaS>0 ) {
             
       /**registro persona */
         $nombre = strip_tags($dataObject->nombreD);
         $telefono = strip_tags($dataObject->telefonoD);
         $correo = strip_tags($dataObject->correoD);
-        $Perfiles_id = "1";
+        $Perfiles_id = "4";
 //        $Perfiles_id = strip_tags($dataObject->perfiles_id);
+         $password= randomPassword();
         $perfiles= new Perfiles();
         $perfiles->setId($Perfiles_id);
-        $rptaP=PersonaFacade::insert( $nombre, $telefono, $correo, $perfiles);
+        $rptaP=PersonaFacade::insert( $nombre, $telefono, $correo, $perfiles,$password);
        
        /*registrar docente*/
         $Persona_id = $rptaP;
         $persona= new Persona();
         $persona->setId($Persona_id);
 //        $password = strip_tags($dataObject->password);
-        $password= randomPassword();
+       $clave = md5($password);
         $Tipo_vinculacion_id = strip_tags($dataObject->tp_vinculacion);
         $tipo_vinculacion= new Tipo_vinculacion();
         $tipo_vinculacion->setId($Tipo_vinculacion_id);
 //        $ubicacion = strip_tags($dataObject->ubicacion);
         $ubicacion = "NO APLICA";
-        DocenteFacade::insert($persona, $password, $tipo_vinculacion, $ubicacion);
-//       
-   
-        UsuariosFacade::insert( $Persona_id, $password);
-        
-        $Persona_id =  $rptaP;
+        $rpta99=DocenteFacade::insert($persona, $clave, $tipo_vinculacion, $ubicacion);
+//   
+//        
+        $rptaUsuario=UsuariosFacade::insert2( $Persona_id, $clave);
+//        
+        $Persona_id =  $Persona_id;
         $persona= new Persona();
         $persona->setId($Persona_id);
         $Semillero_id = $rptaS;
@@ -67,13 +72,15 @@ $dataObject = json_decode($JSONData);
         $rpta=Persona_has_semilleroFacade::insert( $persona, $semillero);    
 //            
              try {
-                        if ($rpta > 0) {
+                        if ($rptaUsuario > 0) {
+//                            enviarCorreoD($correo,$nombre,$password);
                             http_response_code(200);
-                            echo "{\"mensaje\":\"Se ha registrado exitosamente\"}";
+                            echo "{\"mensaje\":\"Se ha registrado $rpta exitosamente\"}";
+                            
                         }
                     } catch (Exception $e) {
                         http_response_code(500);
-                        echo "{\"mensaje\":\"Error al registrar el ciclo\"}";
+                        echo "{\"mensaje\":\"$rptaP\"}";
                     }    
             
            
@@ -91,4 +98,20 @@ function randomPassword() {
         $pass[] = $alphabet[$n];
     }
     return implode($pass); //turn the array into a string
+}
+
+function  enviarCorreoD($correo,$nombre,$password){
+    $base_url = "http://localhost/unik/cvs_web/front/";  //change this baseurl value as per your file path
+    $base_url_sistema = "http://nortcoding-demos.tk/semillero/front/view/intro/";  //change this baseurl value as per your file path
+      //$base_url = "http://localhost/tutorial/email-address-verification-script-using-php/";  //change this baseurl value as per your file path
+      $mail_body_user = "
+      <p>Hola ".$nombre.",</p>
+      <p>Usted ha sido registrado en el sistema . Su contraseña Temporal es :".$password.", Esta contraseña funcionará solo después de la verificación del correo electrónico, reaalizada por el administrador.</p>
+                            <p>El link del sistema es el siguiente ".$base_url_sistema.",</p>
+                                
+      <p>Saludos cordiales ,<br />Sistema de Gestion de Semilleros</p>";  
+                        
+      
+      
+      $email->enviarMensajePeticionUsuario($correo, $mail_body_user);
 }

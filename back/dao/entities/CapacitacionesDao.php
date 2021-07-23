@@ -279,7 +279,7 @@ $cant_capacitados=$capacitaciones->getCant_capacitados();
   public function listAll_id_SemilleroPlan2($plan,$linea_id,$proyecto){
       $lista = array();
       try {
-         $sql ="SELECT `id`, `tema`, `docente`, `fecha`, `cant_capacitados`, `semillero_id`, `objetivo`, `plan_accion_id`, `fecha_reg`, `linea_id`, `proy_id` FROM `capacitaciones` WHERE `plan_accion_id` = '$plan' AND `linea_id` = '$linea_id' AND `proy_id` = '$proyecto'";
+         $sql ="SELECT `id`, `tema`, `docente`, `fecha`, `cant_capacitados`, `semillero_id`, `objetivo`, `plan_accion_id`, `fecha_reg`, `linea_id`, `proy_id`, `cumplimiento`, `puntos` FROM `capacitaciones` WHERE `plan_accion_id` = '$plan' AND `linea_id` = '$linea_id' AND `proy_id` = '$proyecto'";
        
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
@@ -296,6 +296,8 @@ $cant_capacitados=$capacitaciones->getCant_capacitados();
           $capacitaciones->setPlan_id($data[$i]['plan_accion_id']);
           $capacitaciones->setProyecto_id($data[$i]['proy_id']);
           $capacitaciones->setLinea_id($data[$i]['linea_id']);
+          $capacitaciones->setPuntos($data[$i]['puntos']);
+          $capacitaciones->setCumplimeito($data[$i]['cumplimiento']);
 
           array_push($lista,$capacitaciones);
           }
