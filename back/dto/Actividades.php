@@ -13,6 +13,10 @@ class Actividades {
   private $id;
   private $descripcion;
   private $proyectos_id;
+  private $fecha_ini;
+  private $fecha_fin;
+  private $cumplimiento;
+  private $puntos;
 
     /**
      * Constructor de Actividades
@@ -41,8 +45,38 @@ class Actividades {
   public function getDescripcion(){
       return $this->descripcion;
   }
+  function getFecha_ini() {
+      return $this->fecha_ini;
+  }
 
-    /**
+  function getFecha_fin() {
+      return $this->fecha_fin;
+  }
+
+  function getCumplimiento() {
+      return $this->cumplimiento;
+  }
+
+  function setFecha_ini($fecha_ini) {
+      $this->fecha_ini = $fecha_ini;
+  }
+
+  function setFecha_fin($fecha_fin) {
+      $this->fecha_fin = $fecha_fin;
+  }
+
+  function setCumplimiento($cumplimiento) {
+      $this->cumplimiento = $cumplimiento;
+  }
+  function getPuntos() {
+      return $this->puntos;
+  }
+
+  function setPuntos($puntos) {
+      $this->puntos = $puntos;
+  }
+
+        /**
      * Modifica el valor correspondiente a descripcion
      * @param descripcion
      */

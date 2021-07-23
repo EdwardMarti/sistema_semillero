@@ -13,9 +13,9 @@ $dataObject = json_decode($JSONData);
 
 
 $plan = strip_tags($dataObject->plan);
-$linea = strip_tags($dataObject->linea);
+//$linea = strip_tags($dataObject->linea);
 
-        $list=Linea_investigacionFacade::listAll_id_linea($plan,$linea);
+        $list=Linea_investigacionFacade::listAll_id_linea($plan);
         $rta="";
         foreach ($list as $obj => $Linea_investigacion) {	
 	       $rta.="{

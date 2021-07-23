@@ -7,7 +7,7 @@ session_start();
 
 $data = $_SESSION[$key];
 
-if (strtoupper(substr(PHP_OS, 0, 3)) == "WIN") {
+if (esWindows()) {
     $mpdf = new \Mpdf\Mpdf(['setAutoBottomMargin' => 'stretch', 'setAutoTopMargin' => 'stretch']);
 } else {
     $mpdf = new \Mpdf\Mpdf(['tempDir' => '/tmp', 'setAutoBottomMargin' => 'stretch', 'setAutoTopMargin' => 'stretch']);
@@ -153,8 +153,8 @@ function getBody()
 <br>
 <table class='table'>
                 <tr>
-                    <td style='width: 50%'><img src='../../../img/firmaTest.png' alt='firma docente' width='100' ></td>
-                    <td style='width: 50%'><img src='../../../img/firmaTest.png' alt='firma docente' width='100' ></td>
+                    <td style='width: 50%'><img src='../../../img/check.svg' alt='firma director grupo de investigacion' width='70' ></td>
+                    <td style='width: 50%'><img src='../../../img/check.svg' alt='firma representate de facultad' width='70' ></td>
                 </tr>
                 <tr>
                     <td>
@@ -177,11 +177,16 @@ function getFooter()
 {
     return "
     <table width='100%'>
-    <tr>
-        <td align='center' width='100%' style='font-size: 10px;'>
-        ** Copia No Controlada **
-        </td>
-    </tr>
-</table>
+        <tr>
+            <td align='center' width='100%' style='font-size: 10px;'>
+                ** Copia No Controlada **
+            </td>
+        </tr>
+    </table>
     ";
+}
+
+function esWindows()
+{
+    return strtoupper(substr(PHP_OS, 0, 3)) == "WIN";
 }

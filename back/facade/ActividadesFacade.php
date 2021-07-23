@@ -48,11 +48,11 @@ class ActividadesFacade {
      $actividadesDao->close();
      return $rtn;
   }
-  public static function insert2( $descripcion, $proyectos,$plan_id){
+  public static function insert2( $descripcion, $proyectos,$plan_id,$semestre){
    
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $actividadesDao =$FactoryDao->getactividadesDao(self::getDataBaseDefault());
-     $rtn = $actividadesDao->insert2( $descripcion, $proyectos,$plan_id);
+     $rtn = $actividadesDao->insert2( $descripcion, $proyectos,$plan_id,$semestre);
 //     $rtn = $actividadesDao->listAll();
      $actividadesDao->close();
      return $rtn;

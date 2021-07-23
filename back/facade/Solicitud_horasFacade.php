@@ -176,14 +176,20 @@ class Solicitud_horasFacade {
         $solicitud_horasDao->close();
         return $rtn;
     }
-    public static function selectDataForReportAdmin(){
+    public static function listByEstado($estadoSolicitud){
         $FactoryDao=new FactoryDao(self::getGestorDefault());
         $solicitud_horasDao =$FactoryDao->getsolicitud_horasDao(self::getDataBaseDefault());
-        $rtn = $solicitud_horasDao->selectDataForReportAdmin();
+        $rtn = $solicitud_horasDao->listByEstado($estadoSolicitud);
         $solicitud_horasDao->close();
         return $rtn;
     }
-
+    public static function autorizarSolicitudByDocente($idSolicitud, $estado){
+        $FactoryDao=new FactoryDao(self::getGestorDefault());
+        $solicitud_horasDao =$FactoryDao->getsolicitud_horasDao(self::getDataBaseDefault());
+        $rtn = $solicitud_horasDao->autorizarSolicitudByDocente($idSolicitud, $estado);
+        $solicitud_horasDao->close();
+        return $rtn;
+    }
 
 }
 //That`s all folks!

@@ -1,0 +1,402 @@
+
+
+<div  id="SeccionTablaListaPlan">
+    
+    <div class="ibox-content wrapper wrapper-content animated fadeInRight" id="ModalTablaRegistroPlan">
+
+        <div class="row" id="step_1_tour">
+            <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title row">
+                        <h5 class="text-white col">Listado Plan de Accion</h5>
+                        <h5 class="label label-successE"><a onclick="gestionarItemPlan()"
+                                                            style="background-color: #243747 ;display: inline !important"
+                                                            class="btn btn-primary">+
+                                Agregar</a></h5>
+
+                    </div>
+                    <div class="ibox-content">
+                        <div class='table mt-4 mb-4'><br>
+                            <table class='table table-striped mt-4 mb-4 centradito table-hover' id='listadoTablaPlanesS'   style='width: 100%'>
+
+
+                                <thead>
+                                    <tr class="ufps-tabl">
+
+                                        <th>ID</th>
+                                        <th>SEMESTRE</th>
+                                        <th>AÑO</th>
+                                        <th>VBO DIR. SEMILLERO</th>
+                                        <th>VBO DIR. GRUPO INVESTIGACION</th>
+                                        <th>VBO DOC FACULTA INVESTIGACION</th>
+                                        <th>ESTADO</th>
+                                        <th>ACCIONES</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="Titulo" class="ibox-content">
+    
+     <center><H2><b><u style="background: #ae2623">PLAN DE ACCIÓN SEMILLEROS DE INVESTIGACIÓN</u></b></H2>
+        </center>
+</div>
+
+<div  id="SeccionIniciar">
+
+    <div class="ibox-content wrapper wrapper-content animated fadeInRight"  id="inicio_del_plan">      
+    
+        <div class="form-row">
+             <div class="col-2"> </div> 
+            <div class="col-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Semestre</span>
+                    </div>
+                    <select class="custom-select custom-select-md" id="semestre">
+                        <option value="1" selected>Primer</option>
+                        <option value="2">Segundo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend3">Año</span>
+                    </div>
+                    <input type="text" class="text-right yearpicker form-control" name="anio"
+                           id="anio" aria-describedby="inputGroupPrepend3"/>
+                </div>
+            </div>
+                <div class="col-2">
+               
+                    <button type="button" class="btn btn-w-m btn-primary collapsed" onclick="AgregarPlan()" id="btnUno">Iniciar
+                    </button>
+
+               
+            </div>
+            <div class="col-2"> </div> 
+        </div>
+     
+   
+    </div>
+
+</div>
+
+<div  id="SeccionRegistrar">
+
+  <div class="wrapper wrapper-content animated fadeInRight" id="mostrarModalRegistro">
+     <input style="display: none" class="form-control" type="text" id="id_planReg" name="id_planReg" >
+     <div class=" ibox-content">
+                 <div class="ibox-title row">
+                    <h5 class="text-white col"> <b>OTRAS ACTIVIDADES DE INVESTIGACION (*) </b></h5>
+                   
+                    <button class="btn btn-link collapsed" type="button"  onclick="ModalOtrasCapacitaciones()" disabled="disabled" id="cuatro"  style="background: white">
+                        <b style="color: black">*  Agregar</b>
+                    </button>
+
+                </div> 
+             <div class='table mt-4 mb-4'><br>
+             <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablaOtrasCap' style='width: 100%'>   
+                                        
+               
+                                                <thead>
+                                                <tr class="ufps-tabl">
+
+                                                    <th>NOMBRE DEL PROYECTO</th>
+                                                    <th>NOMBRE ACTIVIDAD</th>
+                                                    <th>MODALIDAD DE PARTICIPACION</th>
+                                                    <th>RESPONSABLE</th>
+                                                    <th>FECHA DE REALIZACION</th>
+                                                    <th>PRODUCTO(PONENCIA/ARTICULO)</th>
+                                                    <th>ACCIONES</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+            
+            
+            </div>
+            </div>
+      
+   
+      <div class="ibox-content"  id="ocultarTablaLineas">
+  
+         <hr style="background: #ae2623">
+        <center><H2><b><u style="background: #ae2623">LÍNEAS DE INVESTIGACIÓN</u></b></H2>
+        </center>
+        <div class='table mt-4 mb-4' id="step_3_tour">
+            <div class="modal-footer">
+
+             
+                <div class="modal-footer" >
+                    <button  type="button" id="btnRegistrarLineas" class="btn btn-w-m btn-primary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" disabled="disabled"  onclick="gestionarItemPlanLineas()" >+ Agregar
+                    </button>
+                </div>                                  
+               
+            </div>
+            <table class='table table-striped mt-4 mb-4 centradito' id='listadoTablalinea_pro'>
+                <thead>
+                <tr class="ufps-tabl">
+
+                    <th>LINEA</th>
+                    <th>PROYECTO</th>
+                    <th>ACCIONES</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+   </div>
+      
+
+      
+   </div>
+
+</div>
+
+<div  id="SeccionRegistrarLineas">
+    
+
+
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"  id="uno" disabled="disabled">
+          1. LÍNEAS DE INVESTIGACIÓN
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+                <div class="ibox-content" style="background: #ffeeba " >
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="Inputdescripcion" style="color: #ae2623"><b>Linea de Investigacion
+                                        (*)</b></label>
+                                <select onchange="cargarSelectProyectos(this.value);" class="form-control"
+                                        name="lineas_investigacion2" id="lineas_investigacion2">
+                                    <option value="">SELECCIONE</option>
+                                </select>
+                            </div>  
+
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="Inputdescripcion" style="color: #ae2623">Proyecto a Ejecutar (*)</label>
+                                <select onchange="cargarSelectProyectos2(this.value);" class="form-control"
+                                        name="proyecto_linea2" id="proyecto_linea2">
+                                    <option value="">SELECCIONE</option>
+
+
+                                </select>
+
+                            </div> 
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group" style="display: none">
+                            <label for="formGroupExampleInput">persona_Id </label>
+                            <input type="text" style="background: white;" class="form-control" name="persona_Id"
+                                   id="persona_Id" required>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="formGroupExampleInput">Responsable del Proyecto </label>
+                            <input type="text" style="background: white;" class="form-control"
+                                   name="investigador" id="investigador" readonly="">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Fecha de Terminación </label>
+                            <input type="text" style="background: white;" class="form-control" name="fecha_fin"
+                                   id="fecha_fin" required>
+                        </div>
+                        <div class="form-group" style="display: none">
+                            <label for="formGroupExampleInput">ResponsableLinea de Investigacion</label>
+                            <input type="text" style="background: white;" class="form-control"
+                                   name="responsable" id="responsable" required>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Fecha de Inicio </label>
+                            <input type="text" style="background: white;" class="form-control" name="fecha_ini"
+                                   id="fecha_ini" readonly="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Objetivo General </label>
+                    <textarea style="background: white;" class="form-control" name="objetivoG"
+                              id="objetivoG" readonly=""></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="formGroupExampleInput"><b>Productos (*)</b> </label>
+                </div>
+                <div class="ibox-content no-padding col-lg-12">
+                    <div class="summernote" id="producto">
+
+                    </div>
+                </div>
+            
+     <hr style="background: #ae2623">
+     
+                <div class="modal-footer" >
+                    <button  type="button" id="btnContinuarActividades" class="btn btn-w-m btn-primary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" disabled="disabled"  onclick="SiguienteCapacitaciones1()" >+ Continuar
+                    </button>
+                </div>
+         </div>
+    </div>
+  </div>
+    
+    
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="dos" disabled="disabled">
+          Actividades
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+          <div class="ibox ">
+
+
+              <div class='table mt-4 mb-4'>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-w-m btn-primary  collapsed"
+                              onclick="mostrarModalActividades2()" id="btnAgregarActividades"
+                              disabled="disabled" >+ Agregar
+                      </button>
+
+                  </div>
+                  <table class='table table-striped mt-4 mb-4 centradito'
+                         id='listadoTablaAct'>
+                      <thead>
+                          <tr class="ufps-tabl">
+
+                              <th>DESCRIPCIOON</th>
+                              <th>ACCIONES</th>
+                          </tr>
+                      </thead>
+                  </table>
+              </div>
+
+              <div class="modal-footer">
+                  <button  type="button" class="btn btn-w-m btn-primary collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                           onclick="SiguienteCapacitaciones()" >+ Continuar
+                  </button>
+
+              </div>
+
+          </div>
+      </div>
+    </div>
+  </div>
+    
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" id="tres" disabled="disabled">
+          2. Capacitaciones
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+          <div class="ibox ">
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-w-m btn-primary"
+                          onclick="mostrarModalCapacitaciones()"
+                          id="btnAgregarCapacitaciones" disabled="disabled">+ Agregar
+                  </button>
+
+              </div>
+              <div class='table mt-4 mb-4'>
+                  <table class='table table-striped mt-4 mb-4 centradito'
+                         id='listadoTablaCap'>
+                      <thead>
+                          <tr class="ufps-tabl">
+
+                              <th>NOMBRE DE LA CAPACITACION</th>
+                              <th>ORADOR</th>
+                              <th>OBJETIVO</th>
+                              <th>FECHA DE REALIZACION</th>
+                              <th>Nº DE ASISTENTES</th>
+                              <th>ACCIONES</th>
+                          </tr>
+                      </thead>
+                  </table>
+              </div>
+
+
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-w-m btn-primary collapsed"
+                          onclick="registrarLineas_semilleros()" id="btnContinuarActividades"
+                          data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                          aria-controls="collapseTwo">+ Registrar Linea
+                  </button>
+
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    <div class="ibox-content" id="btnterminar">
+        <button type="button" class="btn btn-w-m btn-primary    " id="botonTerminar" disabled="disabled"
+                onclick="cerrarTerminar()"
+                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+                aria-controls="collapseTwo">+ Terminar
+        </button>
+    </div> 
+    
+</div>
+<!-------------------------------- Actualizar --------------------------------->
+
+
+<div  id="SeccionActualizar">
+
+</div>
+
+
+<script type="text/javascript" src="../js/tours/plan_de_accion/plan_de_accion_semilleros.js"></script>
+
+
+<script src="../js/plugins/summernote/summernote-bs4.js"></script>
+<link rel="stylesheet" href="../js/helpers/jquery-year-picker/css/style.css"/>
+<link rel="stylesheet" href="../js/helpers/jquery-year-picker/css/yearpicker.css">
+<script src="../js/helpers/jquery-year-picker/js/yearpicker.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('.summernote').summernote();
+
+ $(".yearpicker").yearpicker({
+                year: 2021,
+                startYear: 2012,
+                endYear: 2030
+            });
+
+    });
+</script>

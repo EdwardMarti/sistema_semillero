@@ -33,11 +33,12 @@ private $cn;
     $nombre=$persona->getNombre();
     $telefono=$persona->getTelefono();
     $correo=$persona->getCorreo();
+    $password=$persona->getPassword();
     $perfiles_id=$persona->getPerfiles_id()->getId();
 
       try {
-          $sql= "INSERT INTO `persona`(  `nombre`, `telefono`, `correo`, `perfiles_id`)"
-          ."VALUES ( '$nombre','$telefono','$correo','$perfiles_id')";
+          $sql= "INSERT INTO `persona`(  `nombre`, `telefono`, `correo`, `perfiles_id`,`password`)"
+          ."VALUES ( '$nombre','$telefono','$correo','$perfiles_id','$password')";
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');

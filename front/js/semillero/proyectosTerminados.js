@@ -573,10 +573,10 @@ function obtenerDatosSelectLineas() {
                     }
                 });
             } else {
-                Mensaje.mostrarMsjError(
-                    "Error",
-                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-                );
+//                Mensaje.mostrarMsjError(
+//                    "Error",
+//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+//                );
             }
         })
         .finally(function() {

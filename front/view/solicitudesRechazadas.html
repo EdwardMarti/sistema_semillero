@@ -1,0 +1,118 @@
+<a href="#" class="btn btn-danger startTour"><i class="fa fa-play"></i> Empezar Tour</a>
+<div class="modal inmodal" id="ModalRevisar" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-9 mx-auto">
+                        <h3 class="ml-5" id="tipo_docente"></h3>
+                    </div>
+                    <button type="button" class="close mr-2" data-dismiss="modal" onclick="closeModalRevision()"><i class="fa fa-close" aria-hidden="true"></i><span class="sr-only">Close</span></button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="idSolicitud">
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend4">Docente</span>
+                            </div>
+                            <input type="text" class="text-right form-control text-secondary" name="docente"
+                                   id="docente" aria-describedby="inputGroupPrepend4" readonly="true"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend5">Semillero</span>
+                            </div>
+                            <input type="text" class="text-right form-control text-secondary" name="semillero"
+                                   id="semillero" aria-describedby="inputGroupPrepend5" readonly="true"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Sigla Semillero</span>
+                            </div>
+                            <input type="text" class="text-right yearpicker form-control text-secondary" name="sigla"
+                                   id="sigla" aria-describedby="inputGroupPrepend3" readonly="true"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend6">Horas Solicitadas</span>
+                            </div>
+                            <input type="text" class="text-right yearpicker form-control text-secondary" name="horas_solicitadas"
+                                   id="horas_solicitadas" aria-describedby="inputGroupPrepend6" readonly="true"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-7 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Semestre</span>
+                            </div>
+                            <select class="custom-select custom-select-md" id="semestre" disabled="true">
+                                <option value="1" selected>Primero</option>
+                                <option value="2">Segundo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend3">Año</span>
+                            </div>
+                            <input type="text" class="text-right form-control text-secondary" name="anio"
+                                   id="anio" aria-describedby="inputGroupPrepend3" readonly="true"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal" onclick="closeModalRevision()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" id="tablaOrdenes">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="ibox ">
+                    <div class="ibox-title row" id="descripcion_menu">
+                        <h class="text-white col">Solicitudes Rechazadas</h>
+
+                    </div>
+
+                <div class="ibox-content">
+
+                        <table class='table table-striped mt-4 mb-4 centradito table-hover ' id='listadoHorasTabla'
+                           >
+                            <thead>
+                                <tr class="ufps-tabl">
+                                    <th width="40%">Docente</th>
+                                    <th>Año</th>
+                                    <th>Semestre</th>
+                                    <th>Horas Solicitadas</th>
+                                    <th>Sigla</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/solicitudes/solicitudesRechazadas.js"></script>
+<script type="text/javascript" src="../js/tours/solicitudes/horas_investigacion_tour.js"></script>

@@ -335,10 +335,10 @@ function obtenerDatosEstudiantes2() {
                     }
                 });
             } else {
-                Mensaje.mostrarMsjError(
-                    "Error",
-                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
-                );
+//                Mensaje.mostrarMsjError(
+//                    "Error",
+//                    "Ocurrió un error inesperado. Intentelo nuevamente por favor."
+//                );
             }
         })
         .finally(function() {
@@ -1608,7 +1608,7 @@ function cerrarModalPares() {
 //     let semi = {
 //         id: Utilitario.getLocal('id_semillero'),
 //     };
-//     fetch("../../back/controller/ProyectosController_List_id.php", {
+//     fetch("../../back/controller/ProyectosController_List_idEstudianteController_list_Semillero.php", {
 //             method: "POST",
 //             headers: {
 //                 Accept: "application/json",

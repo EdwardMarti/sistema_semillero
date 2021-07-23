@@ -60,11 +60,11 @@ $objetivo=$capacitaciones->getObjetivo();
   }
   public function insertCap2($semestre, $anio, $Semillero_id,$linea_id,$proy_id,$plan_accion_id){
  
-
+//$semestre, $anio, $Semillero_id,$linea_id,$proy_id,$plan_accion_id
       
       try {
           $sql= "INSERT INTO `linea_proyecto_plan`( `linea_id`, `proy_id`, `plan_id`, `sem`, `ano`)  VALUES ('$linea_id','$proy_id','$plan_accion_id','$semestre','$anio')";
-          var_dump($sql);
+//          var_dump($sql);
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -116,11 +116,11 @@ $tema=$capacitaciones->getTema();
 $docente=$capacitaciones->getDocente();
 $fecha=$capacitaciones->getFecha();
 $cant_capacitados=$capacitaciones->getCant_capacitados();
-$semillero_id=$capacitaciones->getSemillero_id()->getId();
+
 $objetivo=$capacitaciones->getObjetivo();
 
       try {
-          $sql= "UPDATE `capacitaciones` SET`id`='$id' ,`tema`='$tema' ,`docente`='$docente' ,`fecha`='$fecha' ,`cant_capacitados`='$cant_capacitados' ,`semillero_id`='$semillero_id' ,`objetivo`='$objetivo' WHERE `id`='$id' ";
+          $sql= "UPDATE `capacitaciones` SET`id`='$id' ,`tema`='$tema' ,`docente`='$docente' ,`fecha`='$fecha' ,`cant_capacitados`='$cant_capacitados' 5,`objetivo`='$objetivo' WHERE `id`='$id' ";
          return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
@@ -133,12 +133,12 @@ $tema=$capacitaciones->getTema();
 $docente=$capacitaciones->getDocente();
 $fecha=$capacitaciones->getFecha();
 $cant_capacitados=$capacitaciones->getCant_capacitados();
-$semillero_id=$capacitaciones->getSemillero_id()->getId();
+
 
 
       try {
-          $sql= "UPDATE `capacitaciones` SET `tema`='$tema' ,`docente`='$docente' ,`fecha`='$fecha' ,`cant_capacitados`='$cant_capacitados' ,`semillero_id`='$semillero_id'  WHERE `id`='$id' ";
-         return $this->insertarConsulta($sql);
+          $sql= "UPDATE `capacitaciones` SET `tema`='$tema' ,`docente`='$docente' ,`fecha`='$fecha' ,`cant_capacitados`='$cant_capacitados'  WHERE `id`='$id' ";
+         return $this->updateConsulta($sql);
       } catch (SQLException $e) {
           throw new Exception('Primary key is null');
       }
@@ -276,6 +276,65 @@ $semillero_id=$capacitaciones->getSemillero_id()->getId();
       return null;
       }
   }
+  public function listAll_id_SemilleroPlan2($plan,$linea_id,$proyecto){
+      $lista = array();
+      try {
+         $sql ="SELECT `id`, `tema`, `docente`, `fecha`, `cant_capacitados`, `semillero_id`, `objetivo`, `plan_accion_id`, `fecha_reg`, `linea_id`, `proy_id`, `cumplimiento`, `puntos` FROM `capacitaciones` WHERE `plan_accion_id` = '$plan' AND `linea_id` = '$linea_id' AND `proy_id` = '$proyecto'";
+       
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $capacitaciones= new Capacitaciones();
+          $capacitaciones->setId($data[$i]['id']);
+          $capacitaciones->setTema($data[$i]['tema']);
+          $capacitaciones->setDocente($data[$i]['docente']);
+          $capacitaciones->setFecha($data[$i]['fecha']);
+          $capacitaciones->setCant_capacitados($data[$i]['cant_capacitados']);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $capacitaciones->setSemillero_id($semillero);
+          $capacitaciones->setObjetivo($data[$i]['objetivo']);
+          $capacitaciones->setPlan_id($data[$i]['plan_accion_id']);
+          $capacitaciones->setProyecto_id($data[$i]['proy_id']);
+          $capacitaciones->setLinea_id($data[$i]['linea_id']);
+          $capacitaciones->setPuntos($data[$i]['puntos']);
+          $capacitaciones->setCumplimeito($data[$i]['cumplimiento']);
+
+          array_push($lista,$capacitaciones);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
+  public function listAll_id_SemilleroPlan_id($id) {
+      $lista = array();
+      try {
+         $sql ="SELECT `id`, `tema`, `docente`, `fecha`, `cant_capacitados`, `semillero_id`, `objetivo`, `plan_accion_id`, `fecha_reg`, `linea_id`, `proy_id` FROM `capacitaciones` WHERE `id` = '$id' ";
+       
+          $data = $this->ejecutarConsulta($sql);
+          for ($i=0; $i < count($data) ; $i++) {
+              $capacitaciones= new Capacitaciones();
+          $capacitaciones->setId($data[$i]['id']);
+          $capacitaciones->setTema($data[$i]['tema']);
+          $capacitaciones->setDocente($data[$i]['docente']);
+          $capacitaciones->setFecha($data[$i]['fecha']);
+          $capacitaciones->setCant_capacitados($data[$i]['cant_capacitados']);
+           $semillero = new Semillero();
+           $semillero->setId($data[$i]['semillero_id']);
+           $capacitaciones->setSemillero_id($semillero);
+          $capacitaciones->setObjetivo($data[$i]['objetivo']);
+          $capacitaciones->setPlan_id($data[$i]['linea_id']);
+          $capacitaciones->setProyecto_id($data[$i]['proy_id']);
+
+          array_push($lista,$capacitaciones);
+          }
+      return $lista;
+      } catch (SQLException $e) {
+          throw new Exception('Primary key is null');
+      return null;
+      }
+  }
 
       public function insertarConsulta($sql){
           $this->cn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -306,6 +365,7 @@ $semillero_id=$capacitaciones->getSemillero_id()->getId();
             return 0;
         }
     }
+   
     /**
      * Cierra la conexión actual a la base de datos
      */

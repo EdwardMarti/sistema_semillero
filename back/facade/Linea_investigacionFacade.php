@@ -122,10 +122,10 @@ class Linea_investigacionFacade {
      $linea_investigacionDao->close();
      return $result;
   }
-  public static function listAll_id_linea($plan,$linea){
+  public static function listAll_id_linea($plan){
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $linea_investigacionDao =$FactoryDao->getlinea_investigacionDao(self::getDataBaseDefault());
-     $result = $linea_investigacionDao->listAll_id_linea($plan,$linea);
+     $result = $linea_investigacionDao->listAll_id_linea($plan);
      $linea_investigacionDao->close();
      return $result;
   }

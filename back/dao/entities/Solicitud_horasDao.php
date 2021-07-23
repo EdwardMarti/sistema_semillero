@@ -300,7 +300,7 @@ class Solicitud_horasDao implements ISolicitud_horasDao
         }
     }
 
-    public function selectDataForReportAdmin()
+    public function listByEstado($estadoSolicitud)
     {
         try {
             $sql = "SELECT
@@ -312,7 +312,8 @@ class Solicitud_horasDao implements ISolicitud_horasDao
                         gi.nombre AS grupo_investigacion_nombre,
                         p.nombre AS nombre_docente,
                         sh.semestre,
-                        sh.anio
+                        sh.anio,
+                        sh.id as id_solicitud
                     FROM
                         docente d
                     INNER JOIN persona p ON
@@ -322,7 +323,8 @@ class Solicitud_horasDao implements ISolicitud_horasDao
                     INNER JOIN semillero s ON
                         s.id = sh.id_semillero AND s.grupo_investigacion_id = gi.id
                     INNER JOIN tipo_vinculacion tv ON
-                        tv.id = d.tipo_vinculacion_id";
+                        tv.id = d.tipo_vinculacion_id
+                    WHERE sh.vb_representante = '$estadoSolicitud'";
             $data = $this->ejecutarConsulta($sql);
             $solicitudes = array();
             for ($i = 0; $i < count($data); $i++) {
@@ -336,6 +338,7 @@ class Solicitud_horasDao implements ISolicitud_horasDao
                     "siglaSemillero" => $data[$i]["sigla_semillero"],
                     "semestre" => $data[$i]["semestre"],
                     "anio" => $data[$i]["anio"],
+                    "idSolicitud" => $data[$i]["id_solicitud"],
                 ];
                 array_push($solicitudes, $temp);
             }
@@ -343,6 +346,15 @@ class Solicitud_horasDao implements ISolicitud_horasDao
         } catch (SQLException $e) {
             throw new Exception('Primary key is null');
             return null;
+        }
+    }
+    public function autorizarSolicitudByDocente($idSolicitud, $estado)
+    {
+        try {
+            $sql = "UPDATE solicitud_horas SET vb_representante='$estado' WHERE id=$idSolicitud";
+            return $this->updateConsulta($sql);
+        } catch (SQLException $e) {
+            throw new Exception('Primary key is null');
         }
     }
 }

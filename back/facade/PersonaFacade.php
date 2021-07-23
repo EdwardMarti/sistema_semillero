@@ -38,12 +38,13 @@ class PersonaFacade {
    * @param correo
    * @param perfiles_id
    */
-  public static function insert(   $nombre,  $telefono,  $correo,  $perfiles_id){
+  public static function insert(   $nombre,  $telefono,  $correo,  $perfiles_id,$password){
       $persona = new Persona();
       $persona->setNombre($nombre); 
       $persona->setTelefono($telefono); 
       $persona->setCorreo($correo); 
       $persona->setPerfiles_id($perfiles_id); 
+      $persona->setPassword($password); 
 
      $FactoryDao=new FactoryDao(self::getGestorDefault());
      $personaDao =$FactoryDao->getpersonaDao(self::getDataBaseDefault());

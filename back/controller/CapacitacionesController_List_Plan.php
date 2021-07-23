@@ -15,8 +15,8 @@ $dataObject = json_decode($JSONData);
 //
         $plan = strip_tags($dataObject->plan);
         $linea = strip_tags($dataObject->linea);
-        $proyecto = strip_tags($dataObject->proyecto);
-        $semillero = strip_tags($dataObject->semillero);
+        $proyecto = strip_tags($dataObject->proyect);
+//        $semillero = strip_tags($dataObject->semillero);
         
         
 ////        25', '7', '5', '2'
@@ -25,7 +25,8 @@ $dataObject = json_decode($JSONData);
 //        $proyecto = '5';
 //        $semillero = '2';
         
-        $list=CapacitacionesFacade::listAll_id_SemilleroPlan($plan,$linea,$proyecto,$semillero);
+//        $list=CapacitacionesFacade::listAll_id_SemilleroPlan($plan,$linea,$proyecto,$semillero);
+        $list=CapacitacionesFacade::listAll_id_SemilleroPlan2($plan,$linea,$proyecto);
         $rta="";
         foreach ($list as $obj => $Capacitaciones) {	
 	       $rta.="{
@@ -33,8 +34,14 @@ $dataObject = json_decode($JSONData);
 	    \"tema\":\"{$Capacitaciones->gettema()}\",
 	    \"docente\":\"{$Capacitaciones->getdocente()}\",
 	    \"fecha\":\"{$Capacitaciones->getfecha()}\",
+	    \"plan_id\":\"{$Capacitaciones->getPlan_id()}\",
+	    \"proyecto_id\":\"{$Capacitaciones->getProyecto_id()}\",
 	    \"cant_capacitados\":\"{$Capacitaciones->getcant_capacitados()}\",
 	    \"semillero_id_id\":\"{$Capacitaciones->getsemillero_id()->getid()}\",
+	    \"cumplimiento\":\"{$Capacitaciones->getCumplimeito()}\",
+	    \"Pcumplimiento\":\"{$Capacitaciones->getPuntos()}\",
+	    \"linea_id\":\"{$Capacitaciones->getLinea_id()}\",
+	   
 	    \"objetivo\":\"{$Capacitaciones->getobjetivo()}\"
 	       },";
         }

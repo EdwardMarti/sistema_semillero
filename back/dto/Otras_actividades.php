@@ -18,6 +18,8 @@ class Otras_actividades {
   private $fecha_realizacion;
   private $producto;
   private $semillero_id;
+   private $cumplimeito;
+  private $puntos;
 
     /**
      * Constructor de Otras_actividades
@@ -46,8 +48,23 @@ class Otras_actividades {
   public function getNombre_proyecto(){
       return $this->nombre_proyecto;
   }
+  function getCumplimeito() {
+      return $this->cumplimeito;
+  }
 
-    /**
+  function getPuntos() {
+      return $this->puntos;
+  }
+
+  function setCumplimeito($cumplimeito) {
+      $this->cumplimeito = $cumplimeito;
+  }
+
+  function setPuntos($puntos) {
+      $this->puntos = $puntos;
+  }
+
+      /**
      * Modifica el valor correspondiente a nombre_proyecto
      * @param nombre_proyecto
      */

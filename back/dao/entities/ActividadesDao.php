@@ -42,12 +42,12 @@ $proyectos_id=$actividades->getProyectos_id()->getId();
           throw new Exception('Primary key is null');
       }
   }
-  public function insert2( $descripcion, $pro_id, $plan_id ){
+  public function insert2( $descripcion, $pro_id, $plan_id,$semestre ){
 
 
     
        try {
-          $sql= "INSERT INTO `actividades`( `descripcion`, `proyectos_id`, `ano` ) VALUES ('$descripcion','$pro_id','$plan_id')";
+          $sql= "INSERT INTO `actividades`( `descripcion`, `proyectos_id`, `ano`, `semestre`) VALUES ('$descripcion','$pro_id','$plan_id','$semestre')";
         
           return $this->insertarConsulta($sql);
       } catch (SQLException $e) {
@@ -177,13 +177,17 @@ $proyectos_id=$actividades->getProyectos_id()->getId();
   public function listAll_proyectos2($id,$plan){
       $lista = array();
       try {
-          $sql ="SELECT `id`, `descripcion`, `proyectos_id`  FROM `actividades` WHERE `proyectos_id` = '$id' and `ano` = '$plan' ";
+          $sql ="SELECT `id`, `descripcion`, `proyectos_id`, `fecha_ini`, `fecha_fin`, `cumplimiento`, `puntos`   FROM `actividades` WHERE `proyectos_id` = '$id' and `ano` = '$plan' ";
          
           $data = $this->ejecutarConsulta($sql);
           for ($i=0; $i < count($data) ; $i++) {
               $actividades= new Actividades();
           $actividades->setId($data[$i]['id']);
           $actividades->setDescripcion($data[$i]['descripcion']);
+          $actividades->setFecha_ini($data[$i]['fecha_ini']);
+          $actividades->setFecha_fin($data[$i]['fecha_fin']);
+          $actividades->setCumplimiento($data[$i]['cumplimiento']);
+          $actividades->setPuntos($data[$i]['puntos']);
            $proyectos = new Proyectos();
            $proyectos->setId($data[$i]['proyectos_id']);
            $actividades->setProyectos_id($proyectos);

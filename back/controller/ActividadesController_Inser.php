@@ -17,10 +17,11 @@ $dataObject = json_decode($JSONData);
         $descripcion = strip_tags($dataObject->descripcionAct);
         $Proyectos_id = strip_tags($dataObject->proyectos_id);
         $plan_id = strip_tags($dataObject->id_planReg);
+        $semestre = strip_tags($dataObject->semestre);
 
         
           
-        $rpta=  ActividadesFacade::insert2( $descripcion, $Proyectos_id,$plan_id);
+        $rpta=  ActividadesFacade::insert2( $descripcion, $Proyectos_id,$plan_id,$semestre);
 
     
                 try {
